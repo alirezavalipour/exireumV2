@@ -14,8 +14,10 @@ class Register extends Component {
         this.Auth = new AuthService();
         this.handleChange = this.handleChange.bind(this);
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
+        this.changeCreateOrHaveAccount = this.changeCreateOrHaveAccount.bind(this);
         this.state = {
-            err: ""
+            err: "",
+            change: "",
         }
     }
 
@@ -64,7 +66,29 @@ class Register extends Component {
         // });
     }
 
+    changeCreateOrHaveAccount(e){
+        this.setState( {
+            change: e.target.value,
+        });
+        console.log(this.state.change);
+    }
+
     render() {
+        let create;
+        let have;
+        let publicKey="";
+        if(this.state.change == "create"){
+           // publicKey = <div className="col-12"><div className="row">
+           //     <input className="col-12 mt-2 p-2 rounded shadow-lg" placeholder="Public key : GDNRPMNBJYNFDVTOBBPGWQBJORVPYVI2YP4G2MG6DNRXGJKQA5TG2PRO" name="generate-public-key" required="required" type="text" onChange={this.handleChange}/>
+           //     <input className="col-12 mt-2 p-2 rounded shadow-lg" placeholder="Public key : SB3JKIKJ7ECA2GBB55KG55KRHUILGDHXZ5GZ5WBWYOFS7KU6JT73C7HX" name="generate-secret-key" required="required" type="text" onChange={this.handleChange}/>
+           // </div></div>
+        }
+        else if(this.state.change == "have"){
+            publicKey = <div className="col-12"><div className="row">
+                <input className="col-12 p-2 rounded shadow-lg" placeholder="Public key : GDNRPMNBJYNFDVTOBBPGWQBJORVPYVI2YP4G2MG6DNRXGJKQA5TG2PRO" name="public-key" required="required" type="text" onChange={this.handleChange}/>
+                <input className="col-12 mt-2 p-2 rounded shadow-lg" placeholder="Public key : SB3JKIKJ7ECA2GBB55KG55KRHUILGDHXZ5GZ5WBWYOFS7KU6JT73C7HX" name="secret-key" required="required" type="text" onChange={this.handleChange}/>
+            </div></div>;
+        }
         return (
             <div className="col-sm-6 col-12 clearfix mx-auto">
                 <div className="row">
@@ -80,11 +104,12 @@ class Register extends Component {
                         <input className="col-12 mt-2 p-2 rounded shadow-lg" placeholder="Sheba : IR************************" name="sheba" required="required" type="text" onChange={this.handleChange} />
                         <input className="col-12 mt-2 p-2 rounded shadow-lg" placeholder="Card number : **** **** **** ****" name="card-number" required="required" type="tel" onChange={this.handleChange} />
                         <div className="p-2 mt-2 col-12">
-                            <input type="radio" id="Choice1" name="account" value=""/>
+                            <input type="radio" id="Choice1" name="account" value="create" onChange={this.changeCreateOrHaveAccount}/>
                             <label className="col-5 text-light" htmlFor="Choice1">Create New Account</label>
-                            <input type="radio" id="Choice2" name="account" value=""/>
+                            <input type="radio" id="Choice2" name="account" value="have" onChange={this.changeCreateOrHaveAccount}/>
                             <label className="col-5 text-light" htmlFor="Choice2">I Already Have An Account</label>
                         </div>
+                        {publicKey}
                         <div className="p-2 mt-2 col-12">
                             <input type="radio" id="Choice3" name="accept" value=""/>
                             <label className="col-5 text-light" htmlFor="Choice3">Accept term and conditions</label>
