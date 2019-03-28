@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Router, Route, Link, browserHistory, IndexRoute, HashRouter } from 'react-router-dom';
-// import { Redirect } from 'react-router-dom';
+import '../App.css';
+import axios from 'axios';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Container, Row, Col } from 'bootstrap-4-react';
 import AuthService from './AuthService.jsx';
-
-import TermApp from '../app.jsx';
-import AccountView from './Session/AccountView.jsx';
-
 
 class Login extends Component {
 
@@ -46,80 +46,24 @@ class Login extends Component {
     }
 
     render() {
+        let saman ="";
         if(this.state.err!=""){
-            return (
-                <div className="center">
-                    <div className="center_in"></div>
-                    <div className="card">
-                        <div className="registererror">This phone number or password is incorrect</div>
-                        <h1>Login</h1>
-                        <form onSubmit={this.handleFormSubmit}>
-                            <input
-                                className="form-item"
-                                placeholder="phone number"
-                                name="mobile"
-                                required="required"
-                                type="text"
-                                pattern="^[0][9][0-3][0-9]{8,8}$"
-                                onChange={this.handleChange}
-                            />
-                            <input
-                                className="form-item"
-                                placeholder="Password"
-                                name="password"
-                                minLength="8"
-                                required="required"
-                                type="password"
-                                onChange={this.handleChange}
-                            />
-                            <input
-                                className="form-submit"
-                                value="SUBMIT"
-                                type="submit"
-                            />
-                        </form>
-                    </div>
-                </div>
-            );
+            saman = <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center">This phone number or password is incorrect</div>;
         }
-        else{
-            return (
-                <div className="center">
-                    <div className="center_in"></div>
-                    <div className="card">
-                        <h1>Login</h1>
-                        <form onSubmit={this.handleFormSubmit}>
-                            <input
-                                className="form-item"
-                                placeholder="phone number"
-                                name="mobile"
-                                required="required"
-                                type="text"
-                                pattern="^[0][9][0-3][0-9]{8,8}$"
-                                onChange={this.handleChange}
-                            />
-                            <input
-                                className="form-item"
-                                placeholder="Password"
-                                name="password"
-                                minLength="8"
-                                required="required"
-                                type="password"
-                                onChange={this.handleChange}
-                            />
-                            <input
-                                className="form-submit"
-                                value="SUBMIT"
-                                type="submit"
-                            />
-                        </form>
-                    </div>
+        return (
+            <div className="col-sm-6 col-12 clearfix mx-auto">
+                <div className="row">
+                    {saman}
+                    <h2 className="col-12 text-light">Login</h2>
+                    <form className="col-12" onSubmit={this.handleFormSubmit}>
+                        <input className="col-12 mt-2 p-2 rounded shadow-lg" placeholder="phone number" name="mobile" required="required" type="text" pattern="^[0][9][0-3][0-9]{8,8}$" onChange={this.handleChange}/>
+                        <input className="col-12 mt-2 p-2 rounded shadow-lg" placeholder="Password" name="password" minLength="8" required="required" type="password" onChange={this.handleChange}/>
+                        <input className="col-12 bg-warning p-2 rounded mt-2 shadow-lg" value="SUBMIT" type="submit"/>
+                    </form>
                 </div>
-            );
-        }
+            </div>
+        );
     }
-
-
 }
 
 export default Login;

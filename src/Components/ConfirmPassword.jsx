@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
-import { Router, Route, Link, browserHistory, IndexRoute, HashRouter } from 'react-router-dom';
-// import { Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import AuthService from './AuthService.jsx';
-import TermApp from '../app.jsx';
-import AccountView from './Session/AccountView.jsx';
-import ReactCountdownClock from 'react-countdown-clock';
 
 
-class SetPassword extends Component {
+class ConfirmPassword extends Component {
 
     constructor() {
         super();
@@ -115,4 +111,4 @@ class SetPassword extends Component {
         }
     }
 }
-export default SetPassword;
+export default ConfirmPassword;

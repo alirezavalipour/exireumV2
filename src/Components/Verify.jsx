@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import { Router, Route, Link, browserHistory, IndexRoute, HashRouter } from 'react-router-dom';
-// import { Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import AuthService from './AuthService.jsx';
-import TermApp from '../app.jsx';
-import AccountView from './Session/AccountView.jsx';
-import ReactCountdownClock from 'react-countdown-clock';
+// import ReactCountdownClock from 'react-countdown-clock';
 
 
 class sms extends Component {
@@ -74,16 +71,16 @@ class sms extends Component {
                             type="submit"
                         />
                     </form>
-                    <div id="timer" className="timer">
-                        <ReactCountdownClock
-                            className="timerin"
-                            seconds={120}
-                            color="#fff"
-                            alpha={1}
-                            size={85}
-                            onComplete={this.activeClick}
-                        />
-                    </div>
+                    {/*<div id="timer" className="timer">*/}
+                        {/*<ReactCountdownClock*/}
+                            {/*className="timerin"*/}
+                            {/*seconds={120}*/}
+                            {/*color="#fff"*/}
+                            {/*alpha={1}*/}
+                            {/*size={85}*/}
+                            {/*onComplete={this.activeClick}*/}
+                        {/*/>*/}
+                    {/*</div>*/}
                     <a id="verify" className="disable" onClick={this.unResendClick}>resend code to phone number</a>
                 </div>
             </div>)

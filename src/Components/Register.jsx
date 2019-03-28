@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Router, Route, Link, browserHistory, IndexRoute, HashRouter } from 'react-router-dom';
-// import { Redirect } from 'react-router-dom';
+import '../App.css';
+import axios from 'axios';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Container, Row, Col } from 'bootstrap-4-react';
 import AuthService from './AuthService.jsx';
-import TermApp from '../app.jsx';
-import AccountView from './Session/AccountView.jsx';
-
 
 class Register extends Component {
 
@@ -13,7 +14,6 @@ class Register extends Component {
         this.Auth = new AuthService();
         this.handleChange = this.handleChange.bind(this);
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
-        this.handleFormChange = this.handleFormChange.bind(this);
         this.state = {
             err: ""
         }
@@ -66,86 +66,26 @@ class Register extends Component {
 
     render() {
         return (
-            <div className="center">
-                <div className="center_in"></div>
-                <div className="card">
-                    <h1>Register</h1>
-                    <form  className="personal" onSubmit={this.handleFormSubmit}>
-                        <select className="form-item" onChange={this.handleFormChange} name="type">
-                            <option value="personal" type="0">Personal</option>
-                            <option value="company" type="1">Company</option>
-                        </select>
-                        <input
-                            className="form-item"
-                            placeholder="User name : js"
-                            name="username"
-                            minLength="3"
-                            maxLength="10"
-                            required="required"
-                            type="text"
-                            onChange={this.handleChange}
-                        />
-                        <input
-                            className="form-item"
-                            placeholder="Email : js@gmail.com"
-                            name="email"
-                            required="required"
-                            type="email"
-                            onChange={this.handleChange}
-                        />
-                        <input
-                            className="form-item"
-                            placeholder="First name : John"
-                            name="first_name"
-                            minLength="3"
-                            maxLength="10"
-                            required="required"
-                            type="text"
-                            onChange={this.handleChange}
-                        />
-                        <input
-                            className="form-item"
-                            placeholder="Last name : Smith"
-                            name="last_name"
-                            minLength="3"
-                            maxLength="10"
-                            required="required"
-                            type="text"
-                            onChange={this.handleChange}
-                        />
-                        <input
-                            className="form-item"
-                            placeholder="National code : 0123456789"
-                            name="national_number"
-                            required="required"
-                            type="tel"
-                            pattern="^[0-9][0-9][0-9][0-9]{7,7}$"
-                            onChange={this.handleChange}
-                        />
-                        <textarea
-                            className="form-item"
-                            placeholder="Address : No1,2nd Street,Tehran,Iran"
-                            name="address"
-                            minLength="10"
-                            maxLength="100"
-                            required="required"
-                            type="text"
-                            onChange={this.handleChange}
-                        />
-                        <input
-                            className="form-item"
-                            placeholder="Phone : 09191000000"
-                            name="mobile"
-                            required="required"
-                            type="tel"
-                            pattern="^[0][9][0-3][0-9]{8,8}$"
-                            onChange={this.handleChange}
-                        />
-                        <input
-                            className="form-submit"
-                            value="SUBMIT"
-                            type="submit"
-                        />
+            <div className="col-sm-6 col-12 clearfix mx-auto">
+                <div className="row">
+                    <h2 className="col-12 text-light">Register</h2>
+                    <form className="col-12" onSubmit={this.handleFormSubmit}>
+                        <input className="col-12 mt-2 p-2 rounded shadow-lg" placeholder="User name : js" name="username" minLength="3" maxLength="10" required="required" type="text" onChange={this.handleChange}/>
+                        <input className="col-12 mt-2 p-2 rounded shadow-lg" placeholder="Email : js@gmail.com" name="email" required="required" type="email" onChange={this.handleChange}/>
+                        <input className="col-12 mt-2 p-2 rounded shadow-lg" placeholder="First name : John" name="first_name" minLength="3" maxLength="10" required="required" type="text" onChange={this.handleChange}/>
+                        <input className="col-12 mt-2 p-2 rounded shadow-lg" placeholder="Last name : Smith" name="last_name" minLength="3" maxLength="10" required="required" type="text" onChange={this.handleChange}/>
+                        <input className="col-12 mt-2 p-2 rounded shadow-lg" placeholder="National code : 0123456789" name="national_number" required="required" type="tel" pattern="^[0-9][0-9][0-9][0-9]{7,7}$" onChange={this.handleChange}/>
+                        <textarea className="col-12 mt-2 p-2 rounded shadow-lg" placeholder="Address : No1,2nd Street,Tehran,Iran" name="address" minLength="10" maxLength="100" required="required" type="text" onChange={this.handleChange}/>
+                        <input className="col-12 p-2 rounded shadow-lg" placeholder="Phone : 09191000000" name="mobile" required="required" type="tel" pattern="^[0][9][0-3][0-9]{8,8}$" onChange={this.handleChange}/>
+                        <input className="col-12 mt-2 p-2 rounded shadow-lg" placeholder="Sheba : IR************************" name="sheba" required="required" type="text" onChange={this.handleChange} />
+                        <input className="col-12 mt-2 p-2 rounded shadow-lg" placeholder="Card number : **** **** **** ****" name="card-number" required="required" type="tel" onChange={this.handleChange} />
+                        <div className="p-2 mt-2 col-12">
+                            <input type="radio" id="Choice1" name="account" value=""/>
+                            <label className="col-5 text-light" htmlFor="Choice1">Create New Account</label>
+                            <input type="radio" id="Choice2" name="account" value=""/>
+                            <label className="col-5 text-light" htmlFor="Choice2">I Already Have An Account</label>
+                        </div>
+                        <input className="col-12 bg-warning p-2 rounded mt-2 shadow-lg" value="SUBMIT" type="submit"/>
                     </form>
                 </div>
             </div>
