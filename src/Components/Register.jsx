@@ -85,6 +85,10 @@ class Register extends Component {
                             <input type="radio" id="Choice2" name="account" value=""/>
                             <label className="col-5 text-light" htmlFor="Choice2">I Already Have An Account</label>
                         </div>
+                        <div className="p-2 mt-2 col-12">
+                            <input type="radio" id="Choice3" name="accept" value=""/>
+                            <label className="col-5 text-light" htmlFor="Choice3">Accept term and conditions</label>
+                        </div>
                         <input className="col-12 bg-warning p-2 rounded mt-2 shadow-lg" value="SUBMIT" type="submit"/>
                     </form>
                 </div>
