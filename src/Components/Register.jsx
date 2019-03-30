@@ -6,6 +6,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Container, Row, Col } from 'bootstrap-4-react';
 import AuthService from './AuthService.jsx';
+var StellarSdk = require('stellar-sdk');
+const isValidPublicKey = input => {
+    try {
+        StellarSdk.Keypair.fromPublicKey(input);
+        return true;
+    } catch (e) {
+        //console.error(e);
+        return false;
+    }
+}
 
 class Register extends Component {
 
@@ -18,6 +28,17 @@ class Register extends Component {
         this.state = {
             err: "",
             change: "",
+            newKeypair: 'null',
+            termsAccepted: false,
+        }
+        this.handleGenerate = event => {
+            let keypair = StellarSdk.Keypair.random();
+            this.setState({
+                newKeypair: {
+                    pubKey: keypair.publicKey(),
+                    secretKey: keypair.secret(),
+                }
+            });
         }
     }
 
@@ -77,16 +98,25 @@ class Register extends Component {
         let create;
         let have;
         let publicKey="";
+        let d = this.props.d;
         if(this.state.change == "create"){
-           // publicKey = <div className="col-12"><div className="row">
-           //     <input className="col-12 mt-2 p-2 rounded shadow-lg" placeholder="Public key : GDNRPMNBJYNFDVTOBBPGWQBJORVPYVI2YP4G2MG6DNRXGJKQA5TG2PRO" name="generate-public-key" required="required" type="text" onChange={this.handleChange}/>
-           //     <input className="col-12 mt-2 p-2 rounded shadow-lg" placeholder="Public key : SB3JKIKJ7ECA2GBB55KG55KRHUILGDHXZ5GZ5WBWYOFS7KU6JT73C7HX" name="generate-secret-key" required="required" type="text" onChange={this.handleChange}/>
-           // </div></div>
+           publicKey = <div className="col-12"><div className="row">
+               <input className="col-sm-6 col-12 bg-danger" onClick={this.handleGenerate} value="Generate keypair" type="submit"/>
+               <input className="col-12 mt-2 p-2 rounded shadow-lg" placeholder="Generate Public key" name="generate-public-key"/>
+               <input className="col-12 mt-2 p-2 rounded shadow-lg" placeholder="Generate Secret key" name="generate-secret-key"/>
+           </div></div>;
+            if (this.state.newKeypair !== null) {
+                publicKey = <div className="col-12"><div className="row">
+                    <input className="col-sm-6 col-12 bg-danger p-2 rounded shadow-lg" onClick={this.handleGenerate} value="Generate keypair" type="submit"/>
+                    <input className="col-12 mt-2 p-2 rounded shadow-lg" placeholder="Generate Public key" name="generate-public-key" value={this.state.newKeypair.pubKey}/>
+                    <input className="col-12 mt-2 p-2 rounded shadow-lg" placeholder="Generate Secret key" name="generate-secret-key" value={this.state.newKeypair.secretKey}/>
+                </div></div>;
+            }
         }
         else if(this.state.change == "have"){
             publicKey = <div className="col-12"><div className="row">
                 <input className="col-12 p-2 rounded shadow-lg" placeholder="Public key : GDNRPMNBJYNFDVTOBBPGWQBJORVPYVI2YP4G2MG6DNRXGJKQA5TG2PRO" name="public-key" required="required" type="text" onChange={this.handleChange}/>
-                <input className="col-12 mt-2 p-2 rounded shadow-lg" placeholder="Public key : SB3JKIKJ7ECA2GBB55KG55KRHUILGDHXZ5GZ5WBWYOFS7KU6JT73C7HX" name="secret-key" required="required" type="text" onChange={this.handleChange}/>
+                <input className="col-12 mt-2 p-2 rounded shadow-lg" placeholder="Secret key : SB3JKIKJ7ECA2GBB55KG55KRHUILGDHXZ5GZ5WBWYOFS7KU6JT73C7HX" name="secret-key" required="required" type="text" onChange={this.handleChange}/>
             </div></div>;
         }
         return (
@@ -112,9 +142,9 @@ class Register extends Component {
                         {publicKey}
                         <div className="p-2 mt-2 col-12">
                             <input type="radio" id="Choice3" name="accept" value=""/>
-                            <label className="col-5 text-light" htmlFor="Choice3">Accept term and conditions</label>
+                            <label className="col-5 text-light" htmlFor="Choice3"><a href="#" className="text-light">Accept term and conditions</a></label>
                         </div>
-                        <input className="col-12 bg-warning p-2 rounded mt-2 shadow-lg" value="SUBMIT" type="submit"/>
+                        <input className="col-12 bg-warning p-2 rounded shadow-lg" value="SUBMIT" type="submit"/>
                     </form>
                 </div>
             </div>
