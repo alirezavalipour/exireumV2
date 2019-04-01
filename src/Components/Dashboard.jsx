@@ -18,7 +18,7 @@ class Dashboard extends Component {
         return (
             <div className="col-sm-8 col-12 clearfix mx-auto">
                 <div className="row">
-                    <div className="col-sm-5 col-12 border border-light text-center bg-white rounded shadow-lg">
+                    <div className="col-sm-5 col-12 border border-light text-center bg-white rounded shadow-lg mt-2">
                         <div className="row">
                             <h2 className="col-12">XIR</h2>
                             {/*<div className="col-12">*/}
@@ -27,14 +27,15 @@ class Dashboard extends Component {
                                     {/*<div className="col-6">10000</div>*/}
                                 {/*</div>*/}
                             {/*</div>*/}
-                            <a href="#" className="col-12">Withdrawed XLM</a>
-                            <a href="#" className="col-12">Deposit XIR</a>
-                            <a href="#" className="col-12">Send XIR with sheba</a>
-                            <a href="#" className="col-12">Send XIR with card number</a>
+                            <a href="#" className="col-12 border-top border-dark pt-2 pb-2">Withdrawed XLM</a>
+                            <a href="#" className="col-12 border-top border-dark pt-2 pb-2">Deposit XIR</a>
+                            <a href="#" className="col-12 border-top border-dark pt-2 pb-2">Send XIR with sheba</a>
+                            <a href="#" className="col-12 border-top border-dark pt-2 pb-2">Send XIR with card number</a>
+                            <a href="#" className="col-12 border-top border-dark pt-2 pb-2">Paying the bill</a>
                         </div>
                     </div>
                     <div className="col-sm-2 col-12"></div>
-                    <div className="col-sm-5 col-12 border border-light text-center bg-white rounded shadow-lg">
+                    <div className="col-sm-5 col-12 border border-light text-center bg-white rounded shadow-lg mt-2">
                         <div className="row">
                             <h2 className="col-12">XLM</h2>
                             {/*<div className="col-12">*/}
@@ -43,9 +44,9 @@ class Dashboard extends Component {
                                     {/*<div className="col-6">10000</div>*/}
                                 {/*</div>*/}
                             {/*</div>*/}
-                            <a href="#" className="col-12">Withdrawed XIR</a>
-                            <a href="#" className="col-12">Deposit XLM</a>
-                            <a href="#" className="col-12">Send XLM</a>
+                            <a href="#" className="col-12 border-top border-dark pt-2 pb-2">Withdrawed XIR</a>
+                            <a href="#" className="col-12 border-top border-dark pt-2 pb-2">Deposit XLM</a>
+                            <a href="#" className="col-12 border-top border-dark pt-2 pb-2">Send XLM</a>
                         </div>
                     </div>
                 </div>
