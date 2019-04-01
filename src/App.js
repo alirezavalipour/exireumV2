@@ -10,6 +10,7 @@ import Login from './Components/Login.jsx';
 import Register from './Components/Register.jsx';
 import Verify from './Components/Verify.jsx';
 import ConfirmPassword from './Components/ConfirmPassword.jsx';
+import Dashboard from './Components/Dashboard.jsx';
 import { faIgloo , faHome  , faUser , faMoneyBill , faCode , faHighlighter , faNewspaper } from '@fortawesome/free-solid-svg-icons';
 library.add(
     faMoneyBill,
@@ -78,9 +79,11 @@ class App extends Component {
                <ul className="col-12">
                  <li><Link to="/Components/Login">Login</Link></li>
                  <li><Link to="/Components/Register">Sign In</Link></li>
+                 <li><Link to="/Components/Dashboard">Dashboard</Link></li>
                </ul>
                <Route exact path="/Components/Login" component={Login}/>
                <Route path="/Components/Register" component={Register}/>
+               <Route path="/Components/Dashboard" component={Dashboard}/>
              </div>
            </div>
           </Router>
