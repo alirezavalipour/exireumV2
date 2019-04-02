@@ -58,7 +58,7 @@ class Login extends Component {
                     <form className="col-12" onSubmit={this.handleFormSubmit}>
                         <input className="col-12 mt-2 p-2 rounded shadow-lg" placeholder="phone number" name="mobile" required="required" type="text" pattern="^[0][9][0-3][0-9]{8,8}$" onChange={this.handleChange}/>
                         <input className="col-12 mt-2 p-2 rounded shadow-lg" placeholder="Password" name="password" minLength="8" required="required" type="password" onChange={this.handleChange}/>
-                        <input className="col-12 bg-warning p-2 rounded mt-2 shadow-lg" value="SUBMIT" type="submit"/>
+                        <input className="col-12 bg-success p-2 rounded mt-2 shadow-lg" value="SUBMIT" type="submit"/>
                     </form>
                 </div>
             </div>

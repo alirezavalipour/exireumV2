@@ -72,17 +72,21 @@ library.add(
 class App extends Component {
   render() {
     return (
-        <div className="App bg-secondary mh-100">
+        <div className="App">
           <Router>
            <div className="col-12">
              <div className="row">
                <ul className="col-12">
                  <li><Link to="/Components/Login">Login</Link></li>
                  <li><Link to="/Components/Register">Sign In</Link></li>
+                 <li><Link to="/Components/Verify">Verify</Link></li>
+                 <li><Link to="/Components/ConfirmPassword">ConfirmPassword</Link></li>
                  <li><Link to="/Components/Dashboard">Dashboard</Link></li>
                </ul>
                <Route exact path="/Components/Login" component={Login}/>
                <Route path="/Components/Register" component={Register}/>
+               <Route path="/Components/Verify" component={Verify}/>
+               <Route path="/Components/ConfirmPassword" component={ConfirmPassword}/>
                <Route path="/Components/Dashboard" component={Dashboard}/>
              </div>
            </div>

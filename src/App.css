@@ -1,0 +1,19 @@
+body{
+    background-color: #555 !important;
+}
+
+.disable
+{
+    display: none;
+}
+
+.enable
+{
+    display: block;
+    cursor: pointer;
+}
+
+.fontSize
+{
+    font-size: 20px !important;
+}

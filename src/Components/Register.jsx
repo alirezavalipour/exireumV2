@@ -25,11 +25,13 @@ class Register extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.changeCreateOrHaveAccount = this.changeCreateOrHaveAccount.bind(this);
+        this.acceptTerm = this.acceptTerm.bind(this);
         this.state = {
             err: "",
             change: "",
             newKeypair: 'null',
             termsAccepted: false,
+            term:""
         }
         this.handleGenerate = event => {
             let keypair = StellarSdk.Keypair.random();
@@ -91,10 +93,20 @@ class Register extends Component {
         this.setState( {
             change: e.target.value,
         });
-        console.log(this.state.change);
+    }
+    acceptTerm(e){
+        this.setState( {
+            term: e.target.value,
+        });
     }
 
     render() {
+        let accept;
+        let acceptShow = <div className="col-12 bg-warning p-2 rounded shadow-lg text-center">Submit</div>;
+        if(this.state.term == "accept")
+        {
+            acceptShow = <input className="col-12 bg-success p-2 rounded shadow-lg" value="SUBMIT" type="submit"/>;
+        }
         let create;
         let have;
         let publicKey="";
@@ -141,10 +153,10 @@ class Register extends Component {
                         </div>
                         {publicKey}
                         <div className="p-2 mt-2 col-12">
-                            <input type="radio" id="Choice3" name="accept" value=""/>
+                            <input type="radio" id="Choice3" name="accept" value="accept" onChange={this.acceptTerm}/>
                             <label className="col-5 text-light" htmlFor="Choice3"><a href="#" className="text-light">Accept term and conditions</a></label>
                         </div>
-                        <input className="col-12 bg-warning p-2 rounded shadow-lg" value="SUBMIT" type="submit"/>
+                        {acceptShow}
                     </form>
                 </div>
             </div>
