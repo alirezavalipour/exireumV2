@@ -10,6 +10,7 @@ import Login from './Components/Login.jsx';
 import Register from './Components/Register.jsx';
 import Verify from './Components/Verify.jsx';
 import ConfirmPassword from './Components/ConfirmPassword.jsx';
+import DepositXir from './Components/DepositXir.jsx';
 import Dashboard from './Components/Dashboard.jsx';
 import { faIgloo , faHome  , faUser , faMoneyBill , faCode , faHighlighter , faNewspaper } from '@fortawesome/free-solid-svg-icons';
 library.add(
@@ -20,7 +21,6 @@ library.add(
     faHome,
     faIgloo,
     faNewspaper
-    // more icons go here
 );
 
 // const Home = () => (
@@ -82,12 +82,14 @@ class App extends Component {
                  <li><Link to="/Components/Verify">Verify</Link></li>
                  <li><Link to="/Components/ConfirmPassword">ConfirmPassword</Link></li>
                  <li><Link to="/Components/Dashboard">Dashboard</Link></li>
+                 <li><Link to="/Components/DepositXir">DepositXir</Link></li>
                </ul>
                <Route exact path="/Components/Login" component={Login}/>
                <Route path="/Components/Register" component={Register}/>
                <Route path="/Components/Verify" component={Verify}/>
                <Route path="/Components/ConfirmPassword" component={ConfirmPassword}/>
                <Route path="/Components/Dashboard" component={Dashboard}/>
+               <Route path="/Components/DepositXir" component={DepositXir}/>
              </div>
            </div>
           </Router>
