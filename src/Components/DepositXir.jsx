@@ -91,4 +91,4 @@ class DepositXir extends Component {
         );
     }
 }
-export default DepositXir;k
+export default DepositXir;
