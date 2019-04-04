@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Container, Row, Col } from 'bootstrap-4-react';
 import AuthService from './AuthService.jsx';
 
-class WithdrawedXir extends Component {
+class WithdrawedXlm extends Component {
 
     constructor() {
         super();
@@ -60,11 +60,11 @@ class WithdrawedXir extends Component {
             return(
                 <div className="col-sm-8 col-12 clearfix mx-auto">
                     <div className="row">
-                        <h2 className="col-12 text-light">Withdrawed XIR</h2>
+                        <h2 className="col-12 text-light">Withdrawed XLM</h2>
                         <form className="col-12" onSubmit={this.handleFormSubmit}>
                             <label className="col-12">
                                 <div className="row shadow-lg">
-                                    <span className="col-3 text-center text-light p-2 mt-2 rounded-left bg-info">Amount XIR (Exir)</span>
+                                    <span className="col-3 text-center text-light p-2 mt-2 rounded-left bg-info">Amount XLM</span>
                                     <input className="col-9 text-center rounded-right p-2 mt-2" placeholder="" name="amount" minLength="5" type="tel" onChange={this.handleChange}/>
                                 </div>
                             </label>
@@ -76,7 +76,7 @@ class WithdrawedXir extends Component {
                             </label>
                             <label className="col-12">
                                 <div className="row shadow-lg">
-                                    <span className="col-3 text-center text-light p-2 mt-2 rounded-left bg-info">Amount will be IRR (Rial)</span>
+                                    <span className="col-3 text-center text-light p-2 mt-2 rounded-left bg-info">Amount will be IRR(Rial)</span>
                                     <div className="col-9 text-center rounded-right p-2 mt-2 bg-white">  {this.state.rial}  </div>
                                 </div>
                             </label>
@@ -106,4 +106,4 @@ class WithdrawedXir extends Component {
         }
     }
 }
-export default WithdrawedXir;
+export default WithdrawedXlm;

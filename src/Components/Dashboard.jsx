@@ -27,7 +27,7 @@ class Dashboard extends Component {
                                     {/*<div className="col-6">10000</div>*/}
                                 {/*</div>*/}
                             {/*</div>*/}
-                            <a href="#" className="col-12 border-top border-dark pt-2 pb-2">Withdrawed XLM</a>
+                            <a href="#" className="col-12 border-top border-dark pt-2 pb-2">Withdrawed XIR</a>
                             <a href="#" className="col-12 border-top border-dark pt-2 pb-2">Deposit XIR</a>
                             <a href="#" className="col-12 border-top border-dark pt-2 pb-2">Send XIR with sheba</a>
                             <a href="#" className="col-12 border-top border-dark pt-2 pb-2">Send XIR with card number</a>
@@ -44,7 +44,7 @@ class Dashboard extends Component {
                                     {/*<div className="col-6">10000</div>*/}
                                 {/*</div>*/}
                             {/*</div>*/}
-                            <a href="#" className="col-12 border-top border-dark pt-2 pb-2">Withdrawed XIR</a>
+                            <a href="#" className="col-12 border-top border-dark pt-2 pb-2">Withdrawed XLM</a>
                             <a href="#" className="col-12 border-top border-dark pt-2 pb-2">Deposit XLM</a>
                             <a href="#" className="col-12 border-top border-dark pt-2 pb-2">Send XLM</a>
                         </div>

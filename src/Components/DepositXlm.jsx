@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Container, Row, Col } from 'bootstrap-4-react';
 import AuthService from './AuthService.jsx';
 
-class DepositXir extends Component {
+class DepositXlm extends Component {
 
     constructor() {
         super();
@@ -69,11 +69,11 @@ class DepositXir extends Component {
         return(
             <div className="col-sm-8 col-12 clearfix mx-auto">
                 <div className="row">
-                    <h2 className="col-12 text-light">Deposit XIR</h2>
+                    <h2 className="col-12 text-light">Deposit XLM</h2>
                     <form className="col-12" onSubmit={this.handleFormSubmit}>
                         <label className="col-12">
                             <div className="row shadow-lg">
-                                <span className="col-3 bg-info p-2 mt-2 rounded-left text-center text-light">Amount XIR (Exir)</span>
+                                <span className="col-3 bg-info p-2 mt-2 rounded-left text-center text-light">Amount XLM</span>
                                 <input className="col-9 p-2 mt-2 rounded-right text-center" placeholder="" name="amount" minLength="5" type="tel" onChange={this.handleChange}/>
                             </div>
                         </label>
@@ -90,4 +90,4 @@ class DepositXir extends Component {
         );
     }
 }
-export default DepositXir;
+export default DepositXlm;
