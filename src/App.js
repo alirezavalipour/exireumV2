@@ -14,6 +14,10 @@ import DepositXir from './Components/DepositXir.jsx';
 import DepositXlm from './Components/DepositXlm.jsx';
 import WithdrawedXir from './Components/WithdrawedXir.jsx';
 import WithdrawedXlm from './Components/WithdrawedXlm.jsx';
+import SendXirWithSheba from './Components/SendXirWithSheba.jsx';
+import SendXirWithCard from './Components/SendXirWithCard.jsx';
+import SendXlm from './Components/SendXlm.jsx';
+import PayingTheBill from './Components/PayingTheBill.jsx';
 import Dashboard from './Components/Dashboard.jsx';
 import { faIgloo , faHome  , faUser , faMoneyBill , faCode , faHighlighter , faNewspaper } from '@fortawesome/free-solid-svg-icons';
 library.add(
@@ -89,6 +93,10 @@ class App extends Component {
                  <li><Link to="/Components/DepositXlm">DepositXlm</Link></li>
                  <li><Link to="/Components/WithdrawedXir">WithdrawedXir</Link></li>
                  <li><Link to="/Components/WithdrawedXlm">WithdrawedXlm</Link></li>
+                 <li><Link to="/Components/SendXirWithSheba">SendXirWithSheba</Link></li>
+                 <li><Link to="/Components/SendXirWithCard">SendXirWithCard</Link></li>
+                 <li><Link to="/Components/SendXlm">SendXlm</Link></li>
+                 <li><Link to="/Components/PayingTheBill">PayingTheBill</Link></li>
                </ul>
                <Route exact path="/Components/Login" component={Login}/>
                <Route path="/Components/Register" component={Register}/>
@@ -99,6 +107,10 @@ class App extends Component {
                <Route path="/Components/DepositXlm" component={DepositXlm}/>
                <Route path="/Components/WithdrawedXir" component={WithdrawedXir}/>
                <Route path="/Components/WithdrawedXlm" component={WithdrawedXlm}/>
+               <Route path="/Components/SendXirWithSheba" component={SendXirWithSheba}/>
+               <Route path="/Components/SendXirWithCard" component={SendXirWithCard}/>
+               <Route path="/Components/SendXlm" component={SendXlm}/>
+               <Route path="/Components/PayingTheBill" component={PayingTheBill}/>
              </div>
            </div>
           </Router>
