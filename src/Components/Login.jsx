@@ -21,7 +21,7 @@ class Login extends Component {
 
     componentWillMount() {
         if (this.Auth.loggedIn()) {
-            window.location.replace('/#dashboard/account');
+            window.location.replace('/Components/Dashboard');
         }
     }
 
@@ -36,18 +36,19 @@ class Login extends Component {
         e.preventDefault();
         this.Auth.login(this.state.mobile, this.state.password)
             .then((res) => {
-                window.location.replace('/#dashboard/account');
+                window.location.replace('/Components/Dashboard');
             })
             .catch((err) => {
                 this.setState({
                     err : err,
                 });
+                console.log(err);
             });
     }
 
     render() {
         let saman ="";
-        if(this.state.err!=""){
+        if(this.state.err != ""){
             saman = <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center">This phone number or password is incorrect</div>;
         }
         return (
