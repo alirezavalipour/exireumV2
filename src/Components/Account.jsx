@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Container, Row, Col } from 'bootstrap-4-react';
 import AuthService from './AuthService.jsx';
+var base64 = require('base-64');
 var StellarSdk = require('stellar-sdk');
 const isValidPublicKey = input => {
     try {
@@ -17,7 +18,7 @@ const isValidPublicKey = input => {
     }
 }
 
-class Register extends Component {
+class Account extends Component {
 
     constructor() {
         super();
@@ -53,35 +54,93 @@ class Register extends Component {
 
     handleFormSubmit(e) {
         e.preventDefault();
-        const urlCreate = this.Auth.getDomain() + '/user/account/create';
+        // start create account
+        // const urlCreate = this.Auth.getDomain() + '/user/account/create';
+        // const formDataCreate = {
+        //     public_key: this.state.newKeypair.pubKey,
+        // };
+        // const headersCreate = {
+        //     Accept: 'application/json',
+        //     'Content-Type': 'application/json',
+        //     Authorization: `Bearer ${this.Auth.getToken()}`,
+        // };
+        // var configCreate = { headersCreate };
+        // return axios.post(urlAdd, formDataAdd, configCreate)
+        //     .then(response =>{
+        //         if(response.status == 200){
+        //         }
+        //     });
+        // end create account
+        // start add account
         const urlAdd = this.Auth.getDomain() + '/user/account/add';
-        const urlPaya = this.Auth.getDomain() + '/user/account/create';
-        const formDataCreate = {
-            public_key: this.state.newKeypair.pubKey,
-        };
         const formDataAdd = {
             public_key: this.state.public_key,
         };
-        const formDataPaya = {
-            sheba: this.state.sheba,
-            card: this.state.card
-        };
-        const headers = {
+        const headersAdd = {
             Accept: 'application/json',
             'Content-Type': 'application/json',
             Authorization: `Bearer ${this.Auth.getToken()}`,
         };
+        var configAdd = { headersAdd };
+        return axios.post(urlAdd, formDataAdd, configAdd)
+            .then(response =>{
+                if(response.status == 200){
+                }
+            });
+        // end add account
+        const urlAddAcceptAsset = this.Auth.getDomain() + '/user/stellar/asset/accept';
+        const formDataAddAcceptAsset = {
+            public_key: this.state.public_key,
+        };
+        const headersAddAcceptAsset = {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${this.Auth.getToken()}`,
+        };
+        var configAddAcceptAsset = { headersAddAcceptAsset };
+        return axios.post(urlAddAcceptAsset, formDataAddAcceptAsset, configAddAcceptAsset)
+            .then(response =>{
+                if(response.status == 200){
+                    this.setState({
+                        xdr : response.data.xdr,
+                    });
+                }
+            //console.log(response)
+        });
+        StellarSdk.Network.useTestNetwork();
+        var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
+        let keypair = StellarSdk.Keypair.fromSecret(this.state.secret_key);
+        //console.log(keypair);
+        // let xdr = StellarSdk.xdr.TransactionEnvelope.fromXDR(this.state.xdr,'base64');
+        let transaction = new StellarSdk.Transaction(this.state.xdr);
+        transaction.sign(keypair);
+        let xdr = transaction.toEnvelope().toXDR('base64');
+
+        const url = this.Auth.getDomain() + '/user/stellar/asset/accept/submit';
+        const formData = {
+          xdr: xdr,
+        };
+        const headers = {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${this.Auth.getToken()}`,
+        };
         var config = { headers };
-        return axios.post(urlAdd, formDataAdd, config)
-            .then(response =>{
-                if(response.status == 200){
-                }
-            });
-        return axios.post(urlCreate, formDataCreate, config)
-            .then(response =>{
-                if(response.status == 200){
-                }
-            });
+        return axios.post(url, formData, config)
+          .then(response =>{
+            if(response.status == 200){
+              this.setState({
+                res: response.data.hash,
+              });
+            }
+           });
+        // start bank
+        const urlPaya = this.Auth.getDomain() + '/user/account/create';
+        const formDataPaya = {
+            sheba: this.state.sheba,
+            card: this.state.card
+        };
+        // end bank
     }
 
     changeCreateOrHaveAccount(e){
@@ -152,4 +211,4 @@ class Register extends Component {
     }
 }
 
-export default Register;
+export default Account;
