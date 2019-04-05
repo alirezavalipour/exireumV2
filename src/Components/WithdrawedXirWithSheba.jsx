@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Container, Row, Col } from 'bootstrap-4-react';
 import AuthService from './AuthService.jsx';
 
-class WithdrawedXir extends Component {
+class WithdrawedXirWithSheba extends Component {
 
     constructor() {
         super();
@@ -60,7 +60,7 @@ class WithdrawedXir extends Component {
             return(
                 <div className="col-sm-8 col-12 clearfix mx-auto">
                     <div className="row">
-                        <h2 className="col-12 text-light">Withdrawed XIR</h2>
+                        <h2 className="col-12 text-light">Withdrawed XIR with sheba</h2>
                         <form className="col-12" onSubmit={this.handleFormSubmit}>
                             <label className="col-12">
                                 <div className="row shadow-lg">
@@ -106,4 +106,4 @@ class WithdrawedXir extends Component {
         }
     }
 }
-export default WithdrawedXir;
+export default WithdrawedXirWithSheba;

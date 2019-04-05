@@ -27,11 +27,12 @@ class Dashboard extends Component {
                                     {/*<div className="col-6">10000</div>*/}
                                 {/*</div>*/}
                             {/*</div>*/}
-                            <a href="#" className="col-12 border-top border-dark pt-2 pb-2">Withdrawed XIR</a>
-                            <a href="#" className="col-12 border-top border-dark pt-2 pb-2">Deposit XIR</a>
-                            <a href="#" className="col-12 border-top border-dark pt-2 pb-2">Send XIR with sheba</a>
-                            <a href="#" className="col-12 border-top border-dark pt-2 pb-2">Send XIR with card number</a>
-                            <a href="#" className="col-12 border-top border-dark pt-2 pb-2">Paying the bill</a>
+                            <a href="/Components/ExchangeXir" className="col-12 border-top border-dark pt-2 pb-2">Exchange XIR to XLM</a>
+                            <a href="/Components/DepositXirWithQr" className="col-12 border-top border-dark pt-2 pb-2">Deposit XIR with QR</a>
+                            <a href="/Components/DepositXirWithIpg" className="col-12 border-top border-dark pt-2 pb-2">Deposit XIR With IPG</a>
+                            <a href="/Components/WithdrawedXirWithSheba" className="col-12 border-top border-dark pt-2 pb-2">Withdrawed XIR with sheba</a>
+                            <a href="/Components/WithdrawedXirWithSend" className="col-12 border-top border-dark pt-2 pb-2">Withdrawed XIR with send</a>
+                            <a href="/Components/PayingTheBill" className="col-12 border-top border-dark pt-2 pb-2">Paying the bill</a>
                         </div>
                     </div>
                     <div className="col-sm-2 col-12"></div>
@@ -44,9 +45,9 @@ class Dashboard extends Component {
                                     {/*<div className="col-6">10000</div>*/}
                                 {/*</div>*/}
                             {/*</div>*/}
-                            <a href="#" className="col-12 border-top border-dark pt-2 pb-2">Withdrawed XLM</a>
-                            <a href="#" className="col-12 border-top border-dark pt-2 pb-2">Deposit XLM</a>
-                            <a href="#" className="col-12 border-top border-dark pt-2 pb-2">Send XLM</a>
+                            <a href="/Components/ExchangeXlm" className="col-12 border-top border-dark pt-2 pb-2">Exchange XLM to XIR</a>
+                            <a href="/Components/DepositXlm" className="col-12 border-top border-dark pt-2 pb-2">Deposit XLM</a>
+                            <a href="/Components/WithdrawedXlm" className="col-12 border-top border-dark pt-2 pb-2">Withdrawed XLM</a>
                         </div>
                     </div>
                 </div>

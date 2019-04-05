@@ -10,13 +10,14 @@ import Login from './Components/Login.jsx';
 import Register from './Components/Register.jsx';
 import Verify from './Components/Verify.jsx';
 import ConfirmPassword from './Components/ConfirmPassword.jsx';
-import DepositXir from './Components/DepositXir.jsx';
+import DepositXirWithIpg from './Components/DepositXirWithIpg.jsx';
+import DepositXirWithQr from './Components/DepositXirWithQr.jsx';
 import DepositXlm from './Components/DepositXlm.jsx';
-import WithdrawedXir from './Components/WithdrawedXir.jsx';
+import WithdrawedXirWithSheba from './Components/WithdrawedXirWithSheba.jsx';
 import WithdrawedXlm from './Components/WithdrawedXlm.jsx';
-import SendXirWithSheba from './Components/SendXirWithSheba.jsx';
-import SendXirWithCard from './Components/SendXirWithCard.jsx';
-import SendXlm from './Components/SendXlm.jsx';
+import ExchangeXir from './Components/ExchangeXir.jsx';
+import WithdrawedXirWithSend from './Components/WithdrawedXirWithSend.jsx';
+import ExchangeXlm from './Components/ExchangeXlm.jsx';
 import PayingTheBill from './Components/PayingTheBill.jsx';
 import Dashboard from './Components/Dashboard.jsx';
 import { faIgloo , faHome  , faUser , faMoneyBill , faCode , faHighlighter , faNewspaper } from '@fortawesome/free-solid-svg-icons';
@@ -89,13 +90,14 @@ class App extends Component {
                  <li><Link to="/Components/Verify">Verify</Link></li>
                  <li><Link to="/Components/ConfirmPassword">ConfirmPassword</Link></li>
                  <li><Link to="/Components/Dashboard">Dashboard</Link></li>
-                 <li><Link to="/Components/DepositXir">DepositXir</Link></li>
+                 <li><Link to="/Components/ExchangeXir">ExchangeXir</Link></li>
+                 <li><Link to="/Components/ExchangeXlm">ExchangeXlm</Link></li>
+                 <li><Link to="/Components/DepositXirWithIpg">DepositXirWithIpg</Link></li>
+                 <li><Link to="/Components/DepositXirWithQr">DepositXirWithQr</Link></li>
                  <li><Link to="/Components/DepositXlm">DepositXlm</Link></li>
-                 <li><Link to="/Components/WithdrawedXir">WithdrawedXir</Link></li>
+                 <li><Link to="/Components/WithdrawedXirWithSheba">WithdrawedXirWithSheba</Link></li>
+                 <li><Link to="/Components/WithdrawedXirWithSend">WithdrawedXirWithSend</Link></li>
                  <li><Link to="/Components/WithdrawedXlm">WithdrawedXlm</Link></li>
-                 <li><Link to="/Components/SendXirWithSheba">SendXirWithSheba</Link></li>
-                 <li><Link to="/Components/SendXirWithCard">SendXirWithCard</Link></li>
-                 <li><Link to="/Components/SendXlm">SendXlm</Link></li>
                  <li><Link to="/Components/PayingTheBill">PayingTheBill</Link></li>
                </ul>
                <Route exact path="/Components/Login" component={Login}/>
@@ -103,13 +105,14 @@ class App extends Component {
                <Route path="/Components/Verify" component={Verify}/>
                <Route path="/Components/ConfirmPassword" component={ConfirmPassword}/>
                <Route path="/Components/Dashboard" component={Dashboard}/>
-               <Route path="/Components/DepositXir" component={DepositXir}/>
+               <Route path="/Components/ExchangeXir" component={ExchangeXir}/>
+               <Route path="/Components/ExchangeXlm" component={ExchangeXlm}/>
+               <Route path="/Components/DepositXirWithIpg" component={DepositXirWithIpg}/>
+               <Route path="/Components/DepositXirWithQr" component={DepositXirWithQr}/>
                <Route path="/Components/DepositXlm" component={DepositXlm}/>
-               <Route path="/Components/WithdrawedXir" component={WithdrawedXir}/>
+               <Route path="/Components/WithdrawedXirWithSheba" component={WithdrawedXirWithSheba}/>
+               <Route path="/Components/WithdrawedXirWithSend" component={WithdrawedXirWithSend}/>
                <Route path="/Components/WithdrawedXlm" component={WithdrawedXlm}/>
-               <Route path="/Components/SendXirWithSheba" component={SendXirWithSheba}/>
-               <Route path="/Components/SendXirWithCard" component={SendXirWithCard}/>
-               <Route path="/Components/SendXlm" component={SendXlm}/>
                <Route path="/Components/PayingTheBill" component={PayingTheBill}/>
              </div>
            </div>

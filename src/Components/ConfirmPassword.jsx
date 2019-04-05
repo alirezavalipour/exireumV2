@@ -29,11 +29,9 @@ class ConfirmPassword extends Component {
 
     handleFormSubmit(e) {
         e.preventDefault();
-
-
         this.Auth.setpassword(this.state.password, this.state.password_confirmation)
             .then((res) => {
-                window.location.replace('/#dashboard');
+                window.location.replace('/Components/Account');
             })
             .catch((err) => {
                 this.setState({

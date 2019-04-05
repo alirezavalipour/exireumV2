@@ -88,11 +88,11 @@ export default class AuthService {
             });
     }
 
-    register( type, username, email, company_name, first_name, last_name, national_id, address, mobile) {
+    register( username, email, first_name, last_name, national_number, address, mobile) {
         // Get a token from api server using the fetch api
         return this.fetch(`${this.domain}/auth/register`, {
             method: 'POST',
-            body: JSON.stringify({ type, username, email, company_name, first_name, last_name, national_id, address, mobile }),
+            body: JSON.stringify({ username, email, first_name, last_name, national_number, address, mobile }),
         })
             .then((res) => {
                 // console.log(res);

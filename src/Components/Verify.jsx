@@ -49,7 +49,7 @@ class sms extends Component {
         e.preventDefault();
         this.Auth.sms(this.state.temporary_code)
             .then((res) => {
-                window.location.replace('/#Confirmpassword');
+                window.location.replace('/Components/Confirmpassword');
             })
             .catch((err) => {
                 alert(err);

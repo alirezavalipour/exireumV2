@@ -17,3 +17,12 @@ body{
 {
     font-size: 20px !important;
 }
+
+.qr-image
+{
+    height: 100px;
+    background-image: url("../src/qrcode.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
