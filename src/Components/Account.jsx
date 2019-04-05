@@ -89,53 +89,53 @@ class Account extends Component {
             });
         // end add account
         // start accept asset
-        const urlAddAcceptAsset = this.Auth.getDomain() + '/user/stellar/asset/accept';
-        const formDataAddAcceptAsset = {
-            public_key: this.state.public_key,
-        };
-        const headersAddAcceptAsset = {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${this.Auth.getToken()}`,
-        };
-        var configAddAcceptAsset = { headersAddAcceptAsset };
-        return axios.post(urlAddAcceptAsset, formDataAddAcceptAsset, configAddAcceptAsset)
-            .then(response =>{
-                if(response.status == 200){
-                    this.setState({
-                        xdr : response.data.xdr,
-                    });
-                }
-            console.log(response);
-        });
-        StellarSdk.Network.useTestNetwork();
-        var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
-        let keypair = StellarSdk.Keypair.fromSecret(this.state.secret_key);
-        //console.log(keypair);
-        // let xdr = StellarSdk.xdr.TransactionEnvelope.fromXDR(this.state.xdr,'base64');
-        let transaction = new StellarSdk.Transaction(this.state.xdr);
-        transaction.sign(keypair);
-        let xdr = transaction.toEnvelope().toXDR('base64');
-
-        const url = this.Auth.getDomain() + '/user/stellar/asset/accept/submit';
-        const formData = {
-          xdr: xdr,
-        };
-        const headers = {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${this.Auth.getToken()}`,
-        };
-        var config = { headers };
-        return axios.post(url, formData, config)
-          .then(response =>{
-            if(response.status == 200){
-              this.setState({
-                res: response.data.hash,
-              });
-            }
-            console.log(response);
-           });
+        // const urlAddAcceptAsset = this.Auth.getDomain() + '/user/stellar/asset/accept';
+        // const formDataAddAcceptAsset = {
+        //     public_key: this.state.public_key,
+        // };
+        // const headersAddAcceptAsset = {
+        //     Accept: 'application/json',
+        //     'Content-Type': 'application/json',
+        //     Authorization: `Bearer ${this.Auth.getToken()}`,
+        // };
+        // var configAddAcceptAsset = { headersAddAcceptAsset };
+        // return axios.post(urlAddAcceptAsset, formDataAddAcceptAsset, configAddAcceptAsset)
+        //     .then(response =>{
+        //         if(response.status == 200){
+        //             this.setState({
+        //                 xdr : response.data.xdr,
+        //             });
+        //         }
+        //     console.log(response);
+        // });
+        // StellarSdk.Network.useTestNetwork();
+        // var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
+        // let keypair = StellarSdk.Keypair.fromSecret(this.state.secret_key);
+        // //console.log(keypair);
+        // // let xdr = StellarSdk.xdr.TransactionEnvelope.fromXDR(this.state.xdr,'base64');
+        // let transaction = new StellarSdk.Transaction(this.state.xdr);
+        // transaction.sign(keypair);
+        // let xdr = transaction.toEnvelope().toXDR('base64');
+        //
+        // const url = this.Auth.getDomain() + '/user/stellar/asset/accept/submit';
+        // const formData = {
+        //   xdr: xdr,
+        // };
+        // const headers = {
+        //   Accept: 'application/json',
+        //   'Content-Type': 'application/json',
+        //   Authorization: `Bearer ${this.Auth.getToken()}`,
+        // };
+        // var config = { headers };
+        // return axios.post(url, formData, config)
+        //   .then(response =>{
+        //     if(response.status == 200){
+        //       this.setState({
+        //         res: response.data.hash,
+        //       });
+        //     }
+        //     console.log(response);
+        //    });
         // end accept asset
         // start bank
         // const urlPaya = this.Auth.getDomain() + '/user/account/create';
