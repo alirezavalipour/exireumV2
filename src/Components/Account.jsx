@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Container, Row, Col } from 'bootstrap-4-react';
 import AuthService from './AuthService.jsx';
-var base64 = require('base-64');
 var StellarSdk = require('stellar-sdk');
 const isValidPublicKey = input => {
     try {
@@ -86,8 +85,10 @@ class Account extends Component {
             .then(response =>{
                 if(response.status == 200){
                 }
+                console.log(response);
             });
         // end add account
+        // start accept asset
         const urlAddAcceptAsset = this.Auth.getDomain() + '/user/stellar/asset/accept';
         const formDataAddAcceptAsset = {
             public_key: this.state.public_key,
@@ -105,7 +106,7 @@ class Account extends Component {
                         xdr : response.data.xdr,
                     });
                 }
-            //console.log(response)
+            console.log(response);
         });
         StellarSdk.Network.useTestNetwork();
         var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
@@ -133,13 +134,15 @@ class Account extends Component {
                 res: response.data.hash,
               });
             }
+            console.log(response);
            });
+        // end accept asset
         // start bank
-        const urlPaya = this.Auth.getDomain() + '/user/account/create';
-        const formDataPaya = {
-            sheba: this.state.sheba,
-            card: this.state.card
-        };
+        // const urlPaya = this.Auth.getDomain() + '/user/account/create';
+        // const formDataPaya = {
+        //     sheba: this.state.sheba,
+        //     card: this.state.card
+        // };
         // end bank
     }
 
@@ -168,21 +171,21 @@ class Account extends Component {
         if(this.state.change == "create"){
             publicKey = <div className="col-12"><div className="row">
                 <input className="col-sm-6 col-12 bg-danger" onClick={this.handleGenerate} value="Generate keypair" type="submit"/>
-                <input className="col-12 mt-2 p-2 rounded shadow-lg" placeholder="Generate Public key" name="generate-public-key"/>
-                <input className="col-12 mt-2 p-2 rounded shadow-lg" placeholder="Generate Secret key" name="generate-secret-key"/>
+                <input className="col-12 mt-2 p-2 rounded shadow-lg" placeholder="Generate Public key" name="generate_public_key"/>
+                <input className="col-12 mt-2 p-2 rounded shadow-lg" placeholder="Generate Secret key" name="generate_secret_key"/>
             </div></div>;
             if (this.state.newKeypair !== null) {
                 publicKey = <div className="col-12"><div className="row">
                     <input className="col-sm-6 col-12 bg-danger p-2 rounded shadow-lg" onClick={this.handleGenerate} value="Generate keypair" type="submit"/>
-                    <input className="col-12 mt-2 p-2 rounded shadow-lg" placeholder="Generate Public key" name="generate-public-key" value={this.state.newKeypair.pubKey}/>
-                    <input className="col-12 mt-2 p-2 rounded shadow-lg" placeholder="Generate Secret key" name="generate-secret-key" value={this.state.newKeypair.secretKey}/>
+                    <input className="col-12 mt-2 p-2 rounded shadow-lg" placeholder="Generate Public key" name="generate_public_key" value={this.state.newKeypair.pubKey}/>
+                    <input className="col-12 mt-2 p-2 rounded shadow-lg" placeholder="Generate Secret key" name="generate_secret_key" value={this.state.newKeypair.secretKey}/>
                 </div></div>;
             }
         }
         else if(this.state.change == "have"){
             publicKey = <div className="col-12"><div className="row">
-                <input className="col-12 p-2 rounded shadow-lg" placeholder="Public key : GDNRPMNBJYNFDVTOBBPGWQBJORVPYVI2YP4G2MG6DNRXGJKQA5TG2PRO" name="public-key" required="required" type="text" onChange={this.handleChange}/>
-                <input className="col-12 mt-2 p-2 rounded shadow-lg" placeholder="Secret key : SB3JKIKJ7ECA2GBB55KG55KRHUILGDHXZ5GZ5WBWYOFS7KU6JT73C7HX" name="secret-key" required="required" type="text" onChange={this.handleChange}/>
+                <input className="col-12 p-2 rounded shadow-lg" placeholder="Public key : GDNRPMNBJYNFDVTOBBPGWQBJORVPYVI2YP4G2MG6DNRXGJKQA5TG2PRO" name="public_key" required="required" type="text" onChange={this.handleChange}/>
+                <input className="col-12 mt-2 p-2 rounded shadow-lg" placeholder="Secret key : SB3JKIKJ7ECA2GBB55KG55KRHUILGDHXZ5GZ5WBWYOFS7KU6JT73C7HX" name="secret_key" required="required" type="text" onChange={this.handleChange}/>
             </div></div>;
         }
         return (
