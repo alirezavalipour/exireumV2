@@ -36,8 +36,9 @@ class Login extends Component {
 
         e.preventDefault();
         this.Auth.login(this.state.mobile, this.state.password)
-            .then((res) => {
-                console.log(res);
+            .then(res => res.json())
+            .then(response =>   {
+                this.Auth.setToken(response.access_token);
                 window.location.replace('/Components/Dashboard');
             })
             .catch((err) => {

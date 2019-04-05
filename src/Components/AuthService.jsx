@@ -21,8 +21,8 @@ export default class AuthService {
             method: 'POST',
             body: JSON.stringify({mobile, password}),
         }).then((res) => {
-            console.log(res);
-            this.setToken(res.access_token); // Setting the token in localStorage
+
+            // this.setToken(res.access_token); // Setting the token in localStorage
             return Promise.resolve(res);
         });
     }
