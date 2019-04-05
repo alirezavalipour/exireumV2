@@ -35,6 +35,7 @@ class Register extends Component {
 
     handleFormSubmit(e) {
         e.preventDefault();
+        window.localStorage.setItem('mobile' , this.state.mobile);
         this.Auth.register(this.state.username, this.state.email, this.state.first_name, this.state.last_name, this.state.national_number, this.state.address, this.state.mobile)
             .then((res) => {
                 window.location.replace('/Components/Verify');

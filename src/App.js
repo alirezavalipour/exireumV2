@@ -19,6 +19,7 @@ import ExchangeXir from './Components/ExchangeXir.jsx';
 import WithdrawedXirWithSend from './Components/WithdrawedXirWithSend.jsx';
 import ExchangeXlm from './Components/ExchangeXlm.jsx';
 import PayingTheBill from './Components/PayingTheBill.jsx';
+import Account from './Components/Account.jsx';
 import Dashboard from './Components/Dashboard.jsx';
 import { faIgloo , faHome  , faUser , faMoneyBill , faCode , faHighlighter , faNewspaper } from '@fortawesome/free-solid-svg-icons';
 library.add(
@@ -87,18 +88,6 @@ class App extends Component {
                <ul className="col-12">
                  <li><Link to="/Components/Login">Login</Link></li>
                  <li><Link to="/Components/Register">Sign In</Link></li>
-                 <li><Link to="/Components/Verify">Verify</Link></li>
-                 <li><Link to="/Components/ConfirmPassword">ConfirmPassword</Link></li>
-                 <li><Link to="/Components/Dashboard">Dashboard</Link></li>
-                 <li><Link to="/Components/ExchangeXir">ExchangeXir</Link></li>
-                 <li><Link to="/Components/ExchangeXlm">ExchangeXlm</Link></li>
-                 <li><Link to="/Components/DepositXirWithIpg">DepositXirWithIpg</Link></li>
-                 <li><Link to="/Components/DepositXirWithQr">DepositXirWithQr</Link></li>
-                 <li><Link to="/Components/DepositXlm">DepositXlm</Link></li>
-                 <li><Link to="/Components/WithdrawedXirWithSheba">WithdrawedXirWithSheba</Link></li>
-                 <li><Link to="/Components/WithdrawedXirWithSend">WithdrawedXirWithSend</Link></li>
-                 <li><Link to="/Components/WithdrawedXlm">WithdrawedXlm</Link></li>
-                 <li><Link to="/Components/PayingTheBill">PayingTheBill</Link></li>
                </ul>
                <Route exact path="/Components/Login" component={Login}/>
                <Route path="/Components/Register" component={Register}/>
@@ -114,6 +103,7 @@ class App extends Component {
                <Route path="/Components/WithdrawedXirWithSend" component={WithdrawedXirWithSend}/>
                <Route path="/Components/WithdrawedXlm" component={WithdrawedXlm}/>
                <Route path="/Components/PayingTheBill" component={PayingTheBill}/>
+               <Route path="/Components/Account" component={Account}/>
              </div>
            </div>
           </Router>
