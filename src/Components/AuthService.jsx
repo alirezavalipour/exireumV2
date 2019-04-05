@@ -19,18 +19,17 @@ export default class AuthService {
         // Get a token from api server using the fetch api
         return this.fetch(`${this.domain}/auth/login`, {
             method: 'POST',
-            body: JSON.stringify({ mobile, password }),
-        })
-            .then((res) => {
-                // console.log(res);
-                this.setToken(res.access_token); // Setting the token in localStorage
-                return Promise.resolve(res);
-            });
+            body: JSON.stringify({mobile, password}),
+        }).then((res) => {
+            console.log(res);
+            this.setToken(res.access_token); // Setting the token in localStorage
+            return Promise.resolve(res);
+        });
     }
 
-    convertXirToIrr(amount){
+    convertXirToIrr(amount) {
 
-        return this.fetch(`${this.domain}/user/convert?type=deposit&amount=`+amount , {
+        return this.fetch(`${this.domain}/user/convert?type=deposit&amount=` + amount, {
             method: 'GET'
         })
             .then((res) => {
@@ -40,9 +39,9 @@ export default class AuthService {
             });
     }
 
-    convertIrrToXir(amount){
+    convertIrrToXir(amount) {
 
-        return this.fetch(`${this.domain}/user/convert?type=withdraw&amount=`+amount , {
+        return this.fetch(`${this.domain}/user/convert?type=withdraw&amount=` + amount, {
             method: 'GET'
         })
             .then((res) => {
@@ -52,9 +51,9 @@ export default class AuthService {
             });
     }
 
-    convertXirToXlm(amount){
+    convertXirToXlm(amount) {
 
-        return this.fetch(`${this.domain}/user/convert?type=XIRTOXLM&amount=`+amount , {
+        return this.fetch(`${this.domain}/user/convert?type=XIRTOXLM&amount=` + amount, {
             method: 'GET'
         })
             .then((res) => {
@@ -64,9 +63,9 @@ export default class AuthService {
             });
     }
 
-    convertIrrToXlm(amount){
+    convertIrrToXlm(amount) {
 
-        return this.fetch(`${this.domain}/user/convert?type=IRRTOXLM&amount=`+amount , {
+        return this.fetch(`${this.domain}/user/convert?type=IRRTOXLM&amount=` + amount, {
             method: 'GET'
         })
             .then((res) => {
@@ -76,9 +75,9 @@ export default class AuthService {
             });
     }
 
-    convertXlmToIrr(amount){
+    convertXlmToIrr(amount) {
 
-        return this.fetch(`${this.domain}/user/convert?type=XLMTOIRR&amount=`+amount , {
+        return this.fetch(`${this.domain}/user/convert?type=XLMTOIRR&amount=` + amount, {
             method: 'GET'
         })
             .then((res) => {
@@ -88,11 +87,11 @@ export default class AuthService {
             });
     }
 
-    register( username, email, first_name, last_name, national_number, address, mobile) {
+    register(username, email, first_name, last_name, national_number, address, mobile) {
         // Get a token from api server using the fetch api
         return this.fetch(`${this.domain}/auth/register`, {
             method: 'POST',
-            body: JSON.stringify({ username, email, first_name, last_name, national_number, address, mobile }),
+            body: JSON.stringify({username, email, first_name, last_name, national_number, address, mobile}),
         })
             .then((res) => {
                 // console.log(res);
@@ -107,7 +106,7 @@ export default class AuthService {
         var mobile = window.localStorage.getItem('mobile');
         return this.fetch(`${this.domain}/auth/verify`, {
             method: 'POST',
-            body: JSON.stringify({ temporary_code, mobile }),
+            body: JSON.stringify({temporary_code, mobile}),
         })
             .then((res) => {
                 this.setToken(res.token);
@@ -123,7 +122,7 @@ export default class AuthService {
         console.log(mobile);
         return this.fetch(`${this.domain}/auth/resend`, {
             method: 'POST',
-            body: JSON.stringify({ mobile }),
+            body: JSON.stringify({mobile}),
         })
             .then((res) => {
                 this.setToken(res.token);
@@ -133,12 +132,12 @@ export default class AuthService {
             });
     }
 
-    setpassword(password,password_confirmation) {
+    setpassword(password, password_confirmation) {
         // Get a token from api server using the fetch api
         var token = this.getToken();
         return this.fetch(`${this.domain}/auth/password`, {
             method: 'POST',
-            body: JSON.stringify({ password, password_confirmation }),
+            body: JSON.stringify({password, password_confirmation}),
         })
             .then((res) => {
                 // console.log(res);
@@ -152,7 +151,7 @@ export default class AuthService {
         var public_key = window.localStorage.getItem('public_key');
         return this.fetch(`${this.domain}/user/deposit`, {
             method: 'POST',
-            body: JSON.stringify({ amount, public_key }),
+            body: JSON.stringify({amount, public_key}),
         })
             .then((res) => {
                 // console.log(res);
@@ -166,7 +165,7 @@ export default class AuthService {
         var public_key = window.localStorage.getItem('public_key');
         return this.fetch(`${this.domain}/user/stellar/asset/accept`, {
             method: 'POST',
-            body: JSON.stringify({ public_key }),
+            body: JSON.stringify({public_key}),
         })
             .then((res) => {
                 // console.log(res);
@@ -175,12 +174,12 @@ export default class AuthService {
             });
     }
 
-    Withdrawed(amount,sheba) {
+    Withdrawed(amount, sheba) {
         // Get a token from api server using the fetch api
         var public_key = window.localStorage.getItem('public_key');
         return this.fetch(`${this.domain}/user/stellar/withdraw`, {
             method: 'POST',
-            body: JSON.stringify({ amount, public_key, sheba }),
+            body: JSON.stringify({amount, public_key, sheba}),
         })
             .then((res) => {
                 // console.log(res);
@@ -268,7 +267,7 @@ export default class AuthService {
             options,
         })
             .then(this._checkStatus)
-            .then(response => response.json());
+
     }
 
     _checkStatus(response) {
@@ -281,6 +280,6 @@ export default class AuthService {
         // error.response = response;
         // error.body = response.json();
         // console.log(error);
-        throw error.body ;
+        throw error.body;
     }
 }

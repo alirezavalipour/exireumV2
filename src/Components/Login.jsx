@@ -33,9 +33,11 @@ class Login extends Component {
     }
 
     handleFormSubmit(e) {
+
         e.preventDefault();
         this.Auth.login(this.state.mobile, this.state.password)
             .then((res) => {
+                console.log(res);
                 window.location.replace('/Components/Dashboard');
             })
             .catch((err) => {
