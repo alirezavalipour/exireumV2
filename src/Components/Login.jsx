@@ -45,7 +45,6 @@ class Login extends Component {
                 this.setState({
                     err : err,
                 });
-                console.log(err);
             });
     }
 

@@ -26,6 +26,7 @@ class Account extends Component {
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.changeCreateOrHaveAccount = this.changeCreateOrHaveAccount.bind(this);
         this.acceptTerm = this.acceptTerm.bind(this);
+        this.signXdr = this.signXdr.bind(this);
         this.state = {
             err: "",
             change: "",
@@ -70,7 +71,6 @@ class Account extends Component {
         //         }
         //     });
         // end create account
-        // start add account
         const urlAdd = this.Auth.getDomain() + '/user/account/add';
         const formDataAdd = {
             public_key: this.state.public_key,
@@ -81,13 +81,17 @@ class Account extends Component {
             Authorization: `Bearer ${this.Auth.getToken()}`,
         };
         var configAdd = { headers: headersAdd };
-        return axios.post(urlAdd, formDataAdd, configAdd)
-            .then(response =>{
-                if(response.status == 200){
-                }
-            });
-        // end add account
-        // start accept asset
+        const urlBank = this.Auth.getDomain() + '/user/bank-account';
+        const formDataBank = {
+            sheba: this.state.sheba,
+            card: this.state.card,
+        };
+        const headersBank = {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${this.Auth.getToken()}`,
+        };
+        var configBank = { headers: headersBank };
         const urlAddAcceptAsset = this.Auth.getDomain() + '/user/stellar/asset/accept';
         const formDataAddAcceptAsset = {
             public_key: this.state.public_key,
@@ -98,50 +102,53 @@ class Account extends Component {
             Authorization: `Bearer ${this.Auth.getToken()}`,
         };
         var configAddAcceptAsset = { headers: headersAddAcceptAsset };
-        return axios.post(urlAddAcceptAsset, formDataAddAcceptAsset, configAddAcceptAsset)
+        return axios.all([
+        axios.post(urlBank, formDataBank, configBank)
             .then(response =>{
                 if(response.status == 200){
-                    this.setState({
-                        xdr : response.data.xdr,
-                    });
                 }
-            console.log(response);
+            }),
+        axios.post(urlAdd, formDataAdd, configAdd)
+            .then(response =>{
+                if(response.status == 200){
+                }
+            }),
+        axios.post(urlAddAcceptAsset, formDataAddAcceptAsset, configAddAcceptAsset)
+            .then(response =>{
+                if(response.status == 200){
+                    this.signXdr(response.data.xdr)
+                }
+            }),
+        ])
+        .then(response =>{
+            window.location.replace('/Components/Dashboard');
         });
+    }
+
+    signXdr (xdr){
         StellarSdk.Network.useTestNetwork();
         var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
         let keypair = StellarSdk.Keypair.fromSecret(this.state.secret_key);
         //console.log(keypair);
         // let xdr = StellarSdk.xdr.TransactionEnvelope.fromXDR(this.state.xdr,'base64');
-        let transaction = new StellarSdk.Transaction(this.state.xdr);
+        let transaction = new StellarSdk.Transaction(xdr);
         transaction.sign(keypair);
-        let xdr = transaction.toEnvelope().toXDR('base64');
-
+        let xdr1 = transaction.toEnvelope().toXDR('base64');
         const url = this.Auth.getDomain() + '/user/stellar/asset/accept/submit';
         const formData = {
-          xdr: xdr,
+            xdr: xdr1,
         };
         const headers = {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${this.Auth.getToken()}`,
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${this.Auth.getToken()}`,
         };
         var config = { headers };
         return axios.post(url, formData, config)
-          .then(response =>{
-            if(response.status == 200){
-              this.setState({
-                res: response.data.hash,
-              });
-            }
-           });
-        // end accept asset
-        // start bank
-        // const urlPaya = this.Auth.getDomain() + '/user/account/create';
-        // const formDataPaya = {
-        //     sheba: this.state.sheba,
-        //     card: this.state.card
-        // };
-        // end bank
+            .then(response =>{
+                if(response.status == 200){
+                }
+            });
     }
 
     changeCreateOrHaveAccount(e){
@@ -192,7 +199,7 @@ class Account extends Component {
                     <h2 className="col-12 text-light">Account</h2>
                     <form className="col-12" onSubmit={this.handleFormSubmit}>
                         <input className="col-12 mt-2 p-2 rounded shadow-lg" placeholder="Sheba : IR************************" name="sheba" required="required" type="text" onChange={this.handleChange} />
-                        <input className="col-12 mt-2 p-2 rounded shadow-lg" placeholder="Card number : **** **** **** ****" name="card-number" required="required" type="tel" onChange={this.handleChange} />
+                        <input className="col-12 mt-2 p-2 rounded shadow-lg" placeholder="Card number : **** **** **** ****" name="card" required="required" type="tel" onChange={this.handleChange} />
                         <div className="p-2 mt-2 col-12">
                             <input type="radio" id="Choice1" name="account" value="create" onChange={this.changeCreateOrHaveAccount}/>
                             <label className="col-5 text-light" htmlFor="Choice1">Create New Account</label>

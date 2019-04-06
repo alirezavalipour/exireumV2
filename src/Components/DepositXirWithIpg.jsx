@@ -27,15 +27,19 @@ class DepositXirWithIpg extends Component {
                 [e.target.name]: e.target.value,
             });
         let amount =  e.target.value;
-
-        this.Auth.convertXirToIrr(amount)
-            .then((res) => {
+        var url= `${this.Auth.domain}/user/convert?type=deposit&amount=` + amount;
+        const headers = {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${this.Auth.getToken()}`,
+        };
+        var config = { headers };
+        return axios.get(url, config)
+            .then(response =>{
                 this.setState({
-                    rial : res.result
-                });
-            }).catch( (err) => {
-            alert(err);
-        });
+                    rial: response.data.result
+                })
+            });
     }
 
     handleFormSubmit(e) {
@@ -43,9 +47,11 @@ class DepositXirWithIpg extends Component {
         this.Auth.Deposit(this.state.amount)
             .then((res) => {
                 window.location.replace(this.Auth.getDomain()+"/user/order/pay/" + res.order_id );
+                console.log(res);
             })
             .catch((err) => {
                 alert(err);
+                console.log(err);
             });
     }
 
