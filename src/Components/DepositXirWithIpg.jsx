@@ -18,6 +18,7 @@ class DepositXirWithIpg extends Component {
             price: null,
             secret_key:'',
             xdr: null,
+            public_key:''
         }
     }
 
@@ -42,16 +43,40 @@ class DepositXirWithIpg extends Component {
             });
     }
 
+    componentWillMount() {
+        const url = this.Auth.getDomain() + '/user/account';
+        const headers = {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${this.Auth.getToken()}`,
+        };
+        var config = { headers };
+        return axios.get(url, config)
+            .then(response => {
+                this.setState({
+                    public_key: response.data[0].public_key
+                })
+            })
+    }
+
     handleFormSubmit(e) {
         e.preventDefault();
-        this.Auth.Deposit(this.state.amount)
-            .then((res) => {
-                window.location.replace(this.Auth.getDomain()+"/user/order/pay/" + res.order_id );
-                console.log(res);
-            })
-            .catch((err) => {
-                alert(err);
-                console.log(err);
+        const url = `${this.Auth.domain}/user/deposit`;
+        const formData = {
+            amount: this.state.amount,
+            public_key: this.state.public_key,
+        };
+        const headers = {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${this.Auth.getToken()}`,
+        };
+        var config = { headers };
+        return axios.post(url, formData, config)
+            .then(response =>{
+                if(response.status == 200){
+                    window.location.replace(this.Auth.getDomain()+"/user/order/pay/" + response.data.order_id );
+                }
             });
     }
 

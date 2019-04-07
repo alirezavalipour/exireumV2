@@ -79,6 +79,24 @@ library.add(
 // )
 
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+    // this.state = {
+    //   listDataFromChild: null
+    // };
+    //
+    // this.callBackData = this.callBackData.bind(this);
+  }
+
+  // callBackData (dataFromChild){
+  //   this.setState({
+  //     listDataFromChild: dataFromChild
+  //   });
+  // }
+
+
+
   render() {
     return (
         <div className="App">
@@ -93,7 +111,7 @@ class App extends Component {
                <Route path="/Components/Register" component={Register}/>
                <Route path="/Components/Verify" component={Verify}/>
                <Route path="/Components/ConfirmPassword" component={ConfirmPassword}/>
-               <Route path="/Components/Dashboard" component={Dashboard}/>
+               <Route path="/Components/Dashboard" component={Dashboard} />
                <Route path="/Components/ExchangeXir" component={ExchangeXir}/>
                <Route path="/Components/ExchangeXlm" component={ExchangeXlm}/>
                <Route path="/Components/DepositXirWithIpg" component={DepositXirWithIpg}/>

@@ -50,6 +50,10 @@ class Account extends Component {
             {
                 [e.target.name]: e.target.value,
             });
+
+
+        // console.log(this.state.public_key);
+        // this.someFn(this.state.public_key);
     }
 
     handleFormSubmit(e) {
@@ -161,6 +165,11 @@ class Account extends Component {
             term: e.target.value,
         });
     }
+
+    // someFn (public_key) {
+    //     console.log(public_key);
+    //     this.props.callbackFromParent(public_key);
+    // }
 
     render() {
         let accept;
