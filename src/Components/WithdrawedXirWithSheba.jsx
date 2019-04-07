@@ -189,12 +189,12 @@ class WithdrawedXirWithSheba extends Component {
         else if(this.state.hash)
         {
             return(
-                    <div className="col-sm-8 col-12 clearfix mx-auto">
-                        <div className="row">
-                            <h2 className="col-12 text-light">Withdrawed XIR with sheba</h2>
-                            <div className="col-12 text-left text-light mt-2 p-2">Your order has been registred and will be processed whitin few minute.</div>
-                        </div>
+                <div className="col-sm-8 col-12 clearfix mx-auto">
+                    <div className="row">
+                        <h2 className="col-12 text-light">Withdrawed XIR with sheba</h2>
+                        <div className="col-12 text-left text-light mt-2 p-2">Your order has been registred and will be processed whitin few minutes.</div>
                     </div>
+                </div>
             );
         }
     }
