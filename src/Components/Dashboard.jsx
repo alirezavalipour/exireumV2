@@ -31,7 +31,7 @@ class Dashboard extends Component {
                             <a href="/Components/DepositXirWithQr" className="col-12 border-top border-dark pt-2 pb-2">Deposit XIR with QR</a>
                             <a href="/Components/DepositXirWithIpg" className="col-12 border-top border-dark pt-2 pb-2">Deposit XIR With IPG</a>
                             <a href="/Components/WithdrawedXirWithSheba" className="col-12 border-top border-dark pt-2 pb-2">Withdrawed XIR with sheba</a>
-                            <a href="/Components/WithdrawedXirWithSend" className="col-12 border-top border-dark pt-2 pb-2">Withdrawed XIR with send</a>
+                            <a href="/Components/SendXir" className="col-12 border-top border-dark pt-2 pb-2">Send XIR</a>
                             <a href="/Components/PayingTheBill" className="col-12 border-top border-dark pt-2 pb-2">Paying the bill</a>
                         </div>
                     </div>
