@@ -41,7 +41,7 @@ class PayingTheBill extends Component {
         return axios.get(url, config)
             .then(response => {
                 this.setState({
-                    public_key: response.data[0].public_key
+                    public_key: response.data[56].public_key
                 })
                 console.log(this.state.public_key);
             })
@@ -49,54 +49,53 @@ class PayingTheBill extends Component {
 
     handleFormSubmit(e){
         e.preventDefault();
-        // const url = this.Auth.getDomain() + '/user/account';
-        // const formData = {
-        //     billing_code: this.state.billing_code,
-        //     payment_code: this.state.payment_code,
-        //     public_key: this.state.public_key,
-        // };
-        // const headers = {
-        //     Accept: 'application/json',
-        //     'Content-Type': 'application/json',
-        //     Authorization: `Bearer ${this.Auth.getToken()}`,
-        // };
-        // var config = { headers };
-        // return axios.post(url, formData, config)
-        //     .then(response => {
-        //         this.setState({
-        //             xdr: response.data.xdr
-        //         })
-        //     });
+        const url = this.Auth.getDomain() + '/user/bank/bill-payment';
+        const formData = {
+            billing_code: this.state.billing_code,
+            payment_code: this.state.payment_code,
+            public_key: this.state.public_key,
+        };
+        const headers = {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${this.Auth.getToken()}`,
+        };
+        var config = { headers };
+        return axios.post(url, formData, config)
+            .then(response => {
+                this.setState({
+                    xdr: response.data.xdr
+                });
+            });
     }
 
     handleForSignWithSecretKey(e){
         e.preventDefault();
-        // StellarSdk.Network.useTestNetwork();
-        // var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
-        // let keypair = StellarSdk.Keypair.fromSecret(this.state.secret_key);
-        // //console.log(keypair);
-        // // let xdr = StellarSdk.xdr.TransactionEnvelope.fromXDR(this.state.xdr,'base64');
-        // let transaction = new StellarSdk.Transaction(this.state.xdr);
-        // transaction.sign(keypair);
-        // let xdr = transaction.toEnvelope().toXDR('base64');
-        // const url = `${this.Auth.domain}/user/stellar/withdraw/submit`;
-        // const formData = {
-        //     xdr: xdr,
-        // };
-        // const headers = {
-        //     Accept: 'application/json',
-        //     'Content-Type': 'application/json',
-        //     Authorization: `Bearer ${this.Auth.getToken()}`,
-        // };
-        // var config = { headers };
-        // return axios.post(url, formData, config)
-        //     .then(response =>{
-        //         this.setState({
-        //             hash: response.data.extras.envelope_xdr
-        //         })
-        //         if(response.status == 200){
-        //         }
-        //     });
+        StellarSdk.Network.useTestNetwork();
+        var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
+        let keypair = StellarSdk.Keypair.fromSecret(this.state.secret_key);
+        //console.log(keypair);
+        // let xdr = StellarSdk.xdr.TransactionEnvelope.fromXDR(this.state.xdr,'base64');
+        let transaction = new StellarSdk.Transaction(this.state.xdr);
+        transaction.sign(keypair);
+        let xdr = transaction.toEnvelope().toXDR('base64');
+        console.log(xdr);
+        const url = `${this.Auth.domain}/user/stellar/withdraw/submit`;
+        const formData = {
+            xdr: xdr,
+        };
+        const headers = {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${this.Auth.getToken()}`,
+        };
+        var config = { headers };
+        return axios.post(url, formData, config)
+            .then(response =>{
+                this.setState({
+                    hash: response.data.extras.envelope_xdr
+                })
+            })
     }
 
     render() {

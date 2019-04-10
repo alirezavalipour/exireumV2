@@ -14,7 +14,7 @@ import DepositXirWithIpg from './Components/DepositXirWithIpg.jsx';
 import DepositXirWithQr from './Components/DepositXirWithQr.jsx';
 import DepositXlm from './Components/DepositXlm.jsx';
 import WithdrawedXirWithSheba from './Components/WithdrawedXirWithSheba.jsx';
-import WithdrawedXlm from './Components/WithdrawedXlm.jsx';
+import SendXlm from './Components/SendXlm.jsx';
 import ExchangeXir from './Components/ExchangeXir.jsx';
 import SendXir from './Components/SendXir.jsx';
 import ExchangeXlm from './Components/ExchangeXlm.jsx';
@@ -119,7 +119,7 @@ class App extends Component {
                <Route path="/Components/DepositXlm" component={DepositXlm}/>
                <Route path="/Components/WithdrawedXirWithSheba" component={WithdrawedXirWithSheba}/>
                <Route path="/Components/SendXir" component={SendXir}/>
-               <Route path="/Components/WithdrawedXlm" component={WithdrawedXlm}/>
+               <Route path="/Components/SendXlm" component={SendXlm}/>
                <Route path="/Components/PayingTheBill" component={PayingTheBill}/>
                <Route path="/Components/Account" component={Account}/>
              </div>

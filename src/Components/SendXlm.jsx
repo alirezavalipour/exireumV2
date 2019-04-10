@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Container, Row, Col } from 'bootstrap-4-react';
 import AuthService from './AuthService.jsx';
 var StellarSdk = require('stellar-sdk');
-class SendXir extends Component {
+class SendXlm extends Component {
 
     constructor() {
         super();
@@ -26,8 +26,8 @@ class SendXir extends Component {
 
     handleChange(e) {
         this.setState({
-                [e.target.name]: e.target.value,
-            });
+            [e.target.name]: e.target.value,
+        });
     }
 
     handleFormSubmit(e) {
@@ -37,15 +37,13 @@ class SendXir extends Component {
         var keypair = StellarSdk.Keypair.fromSecret(this.state.secret_key_source);
         var destination = this.state.public_key_dest;
         var amount = this.state.amount;
-        var issuingKeys = StellarSdk.Keypair.fromSecret('SCWZO5OVQLGZ36BNDCDTQOZAYAXVDCHUKS6SFPQSPCPNDLLB6S6IU2NK');
-        var XIR = new StellarSdk.Asset('XIR', issuingKeys.publicKey());
         server.loadAccount(keypair.publicKey())
             .then(function(source) {
                 var transaction = new StellarSdk.TransactionBuilder(source)
                     .addOperation(StellarSdk.Operation.payment({
                         destination,
                         amount,
-                        asset: XIR
+                        asset: StellarSdk.Asset.native(),
                     }))
                     .setTimeout(180)
                     .build();
@@ -61,7 +59,7 @@ class SendXir extends Component {
         return(
             <div className="col-sm-8 col-12 clearfix mx-auto">
                 <div className="row">
-                    <h2 className="col-12 text-light">Send XIR</h2>
+                    <h2 className="col-12 text-light">Send XLM</h2>
                     <form className="col-12" onSubmit={this.handleFormSubmit}>
                         <label className="col-12">
                             <div className="row shadow-lg">
@@ -88,4 +86,4 @@ class SendXir extends Component {
         );
     }
 }
-export default SendXir;
+export default SendXlm;

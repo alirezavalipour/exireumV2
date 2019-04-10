@@ -47,7 +47,7 @@ class Dashboard extends Component {
                             {/*</div>*/}
                             <a href="/Components/ExchangeXlm" className="col-12 border-top border-dark pt-2 pb-2">Exchange XLM to XIR</a>
                             <a href="/Components/DepositXlm" className="col-12 border-top border-dark pt-2 pb-2">Deposit XLM</a>
-                            <a href="/Components/WithdrawedXlm" className="col-12 border-top border-dark pt-2 pb-2">Withdrawed XLM</a>
+                            <a href="/Components/SendXlm" className="col-12 border-top border-dark pt-2 pb-2">Send XLM</a>
                         </div>
                     </div>
                 </div>
