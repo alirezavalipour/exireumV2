@@ -64,8 +64,10 @@ class PayingTheBill extends Component {
         return axios.post(url, formData, config)
             .then(response => {
                 this.setState({
-                    xdr: response.data.xdr
+                    xdr: response.data.xdr,
+                    billPaymentId: response
                 });
+                console.log(response);
             });
     }
 
