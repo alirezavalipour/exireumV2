@@ -17,3 +17,37 @@ body{
 {
     font-size: 20px !important;
 }
+
+.logo
+{
+    height: 60px;
+    background-image: url("../src/logo-exireum.png");
+    background-position: 80%;
+    background-size: 70%;
+    background-repeat: no-repeat;
+}
+
+.header
+{
+    background-color: #151d2e;
+}
+
+.menu
+{
+    line-height: 60px;
+}
+
+.menu-in
+{
+    font-size: 18px;
+}
+
+.menu-in:hover
+{
+    text-decoration: none;
+}
+
+.activation
+{
+    font-weight: bold;
+}

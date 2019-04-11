@@ -21,6 +21,7 @@ import ExchangeXlm from './Components/ExchangeXlm.jsx';
 import PayingTheBill from './Components/PayingTheBill.jsx';
 import Account from './Components/Account.jsx';
 import Dashboard from './Components/Dashboard.jsx';
+import Cookies from 'universal-cookie';
 import { faIgloo , faHome  , faUser , faMoneyBill , faCode , faHighlighter , faNewspaper } from '@fortawesome/free-solid-svg-icons';
 library.add(
     faMoneyBill,
@@ -31,6 +32,9 @@ library.add(
     faIgloo,
     faNewspaper
 );
+const cookies = new Cookies();
+cookies.set('reactUrl', 'true', { domain :'localhost' });
+
 
 // const Home = () => (
 //    <div>
@@ -100,13 +104,21 @@ class App extends Component {
   render() {
     return (
         <div className="App">
+          <div className="col-12 header">
+            <div className="row">
+              <div className="logo col-sm-2 col-12"></div>
+              <div className="menu col-sm-7 col-12">
+                <div className="row">
+                  <a className={'menu-in ml-3 text-light' + (window.location.pathname === '/Components/Dashboard' ? ' activation' : '')} href="#">Dashboard</a>
+                  <a className={'menu-in ml-4 text-light' + (window.location.pathname === '/Components/Orders' ? ' activation' : '')} href="#">Orders</a>
+                </div>
+              </div>
+              <div className="user col-sm-3 col-12"></div>
+            </div>
+          </div>
           <Router>
            <div className="col-12">
              <div className="row">
-               <ul className="col-12">
-                 <li><Link to="/Components/Login">Login</Link></li>
-                 <li><Link to="/Components/Register">Sign In</Link></li>
-               </ul>
                <Route exact path="/Components/Login" component={Login}/>
                <Route path="/Components/Register" component={Register}/>
                <Route path="/Components/Verify" component={Verify}/>
