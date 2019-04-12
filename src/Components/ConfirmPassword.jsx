@@ -44,17 +44,17 @@ class ConfirmPassword extends Component {
         let equalpass="";
         if(this.state.err!="")
         {
-            equalpass = <div className="col-12"><div className="col-12 bg-danger text-center text-light p-2 mt-2 rounded shadow-lg"> Your password and confirm password are not match </div></div>;
+            equalpass = <div className="col-12"><div className="col-12 bg-danger text-center text-light p-2 mb-5 rounded shadow-lg"> Your password and confirm password are not match </div></div>;
         }
         return(
             <div className="col-sm-6 col-12 clearfix mx-auto">
                 <div className="row">
                     {equalpass}
-                    <h2 className="col-12 text-light mt-2">Set your password</h2>
+                    <h2 className="col-12 text-light mb-5 text-center font-weight-bold">Set your password</h2>
                     <form  className="col-12" onSubmit={this.handleFormSubmit}>
-                        <input className="col-12 p-2 mt-2 rounded shadow-lg" placeholder="New Password" name="password" minLength="8" required="required" type="password" onChange={this.handleChange}/>
-                        <input className="col-12 p-2 mt-2 rounded shadow-lg" placeholder="Confirm Password" name="password_confirmation" minLength="8" required="required" type="password" onChange={this.handleChange}/>
-                        <input className="col-12 mt-2 p-2 bg-success rounded shadow-lg" value="SUBMIT" type="submit"/>
+                        <input className="col-12 p-2 rounded shadow-lg" placeholder="New Password" name="password" minLength="8" required="required" type="password" onChange={this.handleChange}/>
+                        <input className="col-12 p-2 mt-3 rounded shadow-lg" placeholder="Confirm Password" name="password_confirmation" minLength="8" required="required" type="password" onChange={this.handleChange}/>
+                        <input className="col-12 mt-3 p-2 bg-warning rounded shadow-lg" value="SUBMIT" type="submit"/>
                     </form>
                 </div>
             </div>

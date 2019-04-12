@@ -18,36 +18,36 @@ class Dashboard extends Component {
         return (
             <div className="col-sm-8 col-12 clearfix mx-auto">
                 <div className="row">
-                    <div className="col-sm-5 col-12 border border-light text-center bg-white rounded shadow-lg mt-2">
+                    <div className="col-sm-5 col-12 text-center">
                         <div className="row">
-                            <h2 className="col-12">XIR</h2>
+                            <h2 className="col-12 mb-5 font-weight-bold text-light">XIR</h2>
                             {/*<div className="col-12">*/}
                                 {/*<div className="row">*/}
                                     {/*<div className="col-6">Remind of XIR :</div>*/}
                                     {/*<div className="col-6">10000</div>*/}
                                 {/*</div>*/}
                             {/*</div>*/}
-                            <a href="/Components/ExchangeXir" className="col-12 border-top border-dark pt-2 pb-2">Exchange XIR to XLM</a>
-                            <a href="/Components/DepositXirWithQr" className="col-12 border-top border-dark pt-2 pb-2">Deposit XIR with QR</a>
-                            <a href="/Components/DepositXirWithIpg" className="col-12 border-top border-dark pt-2 pb-2">Deposit XIR With IPG</a>
-                            <a href="/Components/WithdrawedXirWithSheba" className="col-12 border-top border-dark pt-2 pb-2">Withdrawed XIR with sheba</a>
-                            <a href="/Components/SendXir" className="col-12 border-top border-dark pt-2 pb-2">Send XIR</a>
-                            <a href="/Components/PayingTheBill" className="col-12 border-top border-dark pt-2 pb-2">Paying the bill</a>
+                            <a href="/Components/ExchangeXir" className="hover-div col-12 border-div p-2 rounded shadow-lg">Exchange XIR to XLM</a>
+                            <a href="/Components/DepositXirWithQr" className="hover-div col-12 border-div p-2 mt-3 rounded shadow-lg">Deposit XIR with QR</a>
+                            <a href="/Components/DepositXirWithIpg" className="hover-div col-12 border-div p-2 mt-3 rounded shadow-lg">Deposit XIR With IPG</a>
+                            <a href="/Components/WithdrawedXirWithSheba" className="hover-div col-12 border-div p-2 mt-3 rounded shadow-lg">Withdrawed XIR with sheba</a>
+                            <a href="/Components/SendXir" className="hover-div col-12 border-div p-2 mt-3 rounded shadow-lg">Send XIR</a>
+                            <a href="/Components/PayingTheBill" className="hover-div col-12 border-div p-2 mt-3 rounded shadow-lg">Paying the bill</a>
                         </div>
                     </div>
                     <div className="col-sm-2 col-12"></div>
-                    <div className="col-sm-5 col-12 border border-light text-center bg-white rounded shadow-lg mt-2">
+                    <div className="col-sm-5 col-12 text-center">
                         <div className="row">
-                            <h2 className="col-12">XLM</h2>
+                            <h2 className="col-12 mb-5 font-weight-bold text-light">XLM</h2>
                             {/*<div className="col-12">*/}
                                 {/*<div className="row">*/}
                                     {/*<div className="col-6">Remind of XLM :</div>*/}
                                     {/*<div className="col-6">10000</div>*/}
                                 {/*</div>*/}
                             {/*</div>*/}
-                            <a href="/Components/ExchangeXlm" className="col-12 border-top border-dark pt-2 pb-2">Exchange XLM to XIR</a>
-                            <a href="/Components/DepositXlm" className="col-12 border-top border-dark pt-2 pb-2">Deposit XLM</a>
-                            <a href="/Components/SendXlm" className="col-12 border-top border-dark pt-2 pb-2">Send XLM</a>
+                            <a href="/Components/ExchangeXlm" className="div-hover col-12 border-div p-2 rounded shadow-lg">Exchange XLM to XIR</a>
+                            <a href="/Components/DepositXlm" className="div-hover col-12 border-div p-2 mt-3 rounded shadow-lg">Deposit XLM</a>
+                            <a href="/Components/SendXlm" className="div-hover col-12 border-div p-2 mt-3 rounded shadow-lg">Send XLM</a>
                         </div>
                     </div>
                 </div>

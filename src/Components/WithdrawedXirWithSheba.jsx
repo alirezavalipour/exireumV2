@@ -68,7 +68,7 @@ class WithdrawedXirWithSheba extends Component {
             axios.get(url, config)
                 .then(response => {
                     this.setState({
-                        sheba: response.data[1].sheba
+                        sheba: response.data[0].sheba
                     });
                 }),
             axios.get(urlPublic, configPublic)
@@ -141,27 +141,27 @@ class WithdrawedXirWithSheba extends Component {
             return(
                 <div className="col-sm-8 col-12 clearfix mx-auto">
                     <div className="row">
-                        <h2 className="col-12 text-light">Withdrawed XIR with sheba</h2>
+                        <h2 className="col-12 text-light text-center font-weight-bold mb-5">Withdrawed XIR with sheba</h2>
                         <form className="col-12" onSubmit={this.handleFormSubmit}>
                             <label className="col-12">
                                 <div className="row shadow-lg">
-                                    <span className="col-3 text-center text-light p-2 mt-2 rounded-left bg-info">Amount XIR (Exir)</span>
-                                    <input className="col-9 text-center rounded-right p-2 mt-2" placeholder="" name="amount" minLength="5" type="tel" onChange={this.handleChange}/>
+                                    <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Amount XIR (Exir)</span>
+                                    <input className="col-9 text-center rounded-right p-2" placeholder="" name="amount" minLength="5" type="tel" onChange={this.handleChange}/>
                                 </div>
                             </label>
-                            <label className="col-12">
+                            <label className="col-12 mt-3">
                                 <div className="row shadow-lg">
-                                    <span className="col-3 text-center text-light p-2 mt-2 rounded-left bg-info">Sheba</span>
-                                    <input className="col-9 text-center rounded-right p-2 mt-2" placeholder={this.state.sheba} name="sheba" type="text" onChange={this.handleChange}/>
+                                    <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Sheba</span>
+                                    <input className="col-9 text-center rounded-right p-2 text-light" placeholder={this.state.sheba} name="sheba" type="text" onChange={this.handleChange}/>
                                 </div>
                             </label>
-                            <label className="col-12">
+                            <label className="col-12 mt-3">
                                 <div className="row shadow-lg">
-                                    <span className="col-3 text-center text-light p-2 mt-2 rounded-left bg-info">Amount will be IRR (Rial)</span>
-                                    <div className="col-9 text-center rounded-right p-2 mt-2 bg-white">  {this.state.rial}  </div>
+                                    <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Amount will be IRR (Rial)</span>
+                                    <div className="col-9 text-center rounded-right p-2 border-div">  {this.state.rial}  </div>
                                 </div>
                             </label>
-                            <button className="col-md-3 col-sm-6 col-12 bg-success p-2 mt-2 rounded shadow-lg">Submit</button>
+                            <button className="col-12 bg-warning p-2 mt-3 rounded shadow-lg">Submit</button>
                         </form>
                     </div>
                 </div>
@@ -172,15 +172,15 @@ class WithdrawedXirWithSheba extends Component {
             return(
                 <div className="col-sm-8 col-12 clearfix mx-auto">
                     <div className="row">
-                        <h2 className="col-12 text-light">Withdrawed XIR with sheba</h2>
+                        <h2 className="col-12 text-light text-center font-weight-bold mb-5">Withdrawed XIR with sheba</h2>
                         <form className="col-12" onSubmit={this.handleForSignWithSecretKey}>
                             <label className="col-12">
                                 <div className="row shadow-lg">
-                                    <span className="col-3 text-center text-light p-2 mt-2 rounded-left bg-info">Secret key</span>
-                                    <input className="col-9 text-center rounded-right p-2 mt-2" placeholder="SB3JKIKJ7ECA2GBB55KG55KRHUILGDHXZ5GZ5WBWYOFS7KU6JT73C7HX" name="secret_key" type="text" onChange={this.handleChange}/>
+                                    <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Secret key</span>
+                                    <input className="col-9 text-center rounded-right p-2" placeholder="SB3JKIKJ7ECA2GBB55KG55KRHUILGDHXZ5GZ5WBWYOFS7KU6JT73C7HX" name="secret_key" type="text" onChange={this.handleChange}/>
                                 </div>
                             </label>
-                            <button className="col-md-3 col-sm-6 col-12 bg-success p-2 mt-2 rounded shadow-lg">Submit</button>
+                            <button className="col-12 bg-warning p-2 mt-3 rounded shadow-lg">Submit</button>
                         </form>
                     </div>
                 </div>
@@ -191,8 +191,8 @@ class WithdrawedXirWithSheba extends Component {
             return(
                 <div className="col-sm-8 col-12 clearfix mx-auto">
                     <div className="row">
-                        <h2 className="col-12 text-light">Withdrawed XIR with sheba</h2>
-                        <div className="col-12 text-left text-light mt-2 p-2">Your order has been registred and will be processed whitin few minutes.</div>
+                        <h2 className="col-12 text-light text-center font-weight-bold mb-5">Withdrawed XIR with sheba</h2>
+                        <div className="col-12 text-center text-light p-2">Your order has been registred and will be processed whitin few minutes.</div>
                     </div>
                 </div>
             );

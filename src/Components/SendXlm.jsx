@@ -59,27 +59,27 @@ class SendXlm extends Component {
         return(
             <div className="col-sm-8 col-12 clearfix mx-auto">
                 <div className="row">
-                    <h2 className="col-12 text-light">Send XLM</h2>
+                    <h2 className="col-12 text-light text-center font-weight-bold mb-5">Send XLM</h2>
                     <form className="col-12" onSubmit={this.handleFormSubmit}>
                         <label className="col-12">
                             <div className="row shadow-lg">
-                                <span className="col-3 text-center text-light p-2 mt-2 rounded-left bg-info">Amount XIR (Exir)</span>
-                                <input className="col-9 text-center rounded-right p-2 mt-2" placeholder="" name="amount" type="tel" onChange={this.handleChange}/>
+                                <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Amount XIR (Exir)</span>
+                                <input className="col-9 text-center rounded-right p-2" placeholder="" name="amount" type="tel" onChange={this.handleChange}/>
                             </div>
                         </label>
-                        <label className="col-12">
+                        <label className="col-12 mt-3">
                             <div className="row shadow-lg">
-                                <span className="col-3 text-center text-light p-2 mt-2 rounded-left bg-info">Source secret key</span>
-                                <input className="col-9 text-center rounded-right p-2 mt-2" placeholder="SBFHY64P7A4UUONPZJFBUUCI76PCKJXYMA5AESBC4LAETUUOAS55GBI2" name="secret_key_source" type="text" onChange={this.handleChange}/>
+                                <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Source secret key</span>
+                                <input className="col-9 text-center rounded-right p-2" placeholder="SBFHY64P7A4UUONPZJFBUUCI76PCKJXYMA5AESBC4LAETUUOAS55GBI2" name="secret_key_source" type="text" onChange={this.handleChange}/>
                             </div>
                         </label>
-                        <label className="col-12">
+                        <label className="col-12 mt-3">
                             <div className="row shadow-lg">
-                                <span className="col-3 text-center text-light p-2 mt-2 rounded-left bg-info">Destination public_key</span>
-                                <input className="col-9 text-center rounded-right p-2 mt-2" placeholder="GDNRPMNBJYNFDVTOBBPGWQBJORVPYVI2YP4G2MG6DNRXGJKQA5TG2PRO" name="public_key_dest" type="text" onChange={this.handleChange}/>
+                                <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Destination public_key</span>
+                                <input className="col-9 text-center rounded-right p-2" placeholder="GDNRPMNBJYNFDVTOBBPGWQBJORVPYVI2YP4G2MG6DNRXGJKQA5TG2PRO" name="public_key_dest" type="text" onChange={this.handleChange}/>
                             </div>
                         </label>
-                        <button className="col-md-3 col-sm-6 col-12 bg-success p-2 mt-2 rounded shadow-lg">Submit</button>
+                        <button className="col-12 bg-warning p-2 mt-3 rounded shadow-lg">Submit</button>
                     </form>
                 </div>
             </div>

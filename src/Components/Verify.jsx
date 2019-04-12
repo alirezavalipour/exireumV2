@@ -64,20 +64,20 @@ class sms extends Component {
         return(
             <div className="col-sm-6 col-12 clearfix mx-auto">
                 <div className="row">
-                    <h2 className="col-12 text-light">Verify</h2>
-                    <div className="col-12 text-light">Please enter the verification code sent to your phone by SMS</div>
+                    <h2 className="col-12 text-light text-center font-weight-bold mb-5">Verify</h2>
+                    <div className="col-12 text-light text-center mb-5">Please enter the verification code sent to your phone by SMS</div>
                     <form  className="col-12" onSubmit={this.handleFormSubmit}>
-                        <input className="col-12 mt-2 p-2 rounded shadow-lg" name="temporary_code" type="tel" onChange={this.handleChange}/>
-                        <input className="col-12 bg-success p-2 rounded shadow-lg mt-2" value="SUBMIT" type="submit"/>
+                        <input className="col-12 p-2 rounded shadow-lg" name="temporary_code" type="tel" onChange={this.handleChange}/>
+                        <input className="col-12 bg-warning p-2 rounded shadow-lg mt-3" value="SUBMIT" type="submit"/>
                     </form>
-                    <div className="text-center text-light col-12 mt-2 fontSize">
+                    <div className="text-center text-light col-12 mt-3 fontSize">
                         <Countdown
                         date={Date.now() + 120000}
                         onComplete={this.activeClick}
                         renderer={renderer}
                         />
                     </div>
-                    <a id="verify" className="disable col-12 mt-2 text-center text-light" onClick={this.unResendClick}>resend code to phone number</a>
+                    <a id="verify" className="disable col-12 mt-3 text-center text-light" onClick={this.unResendClick}>resend code to phone number</a>
                 </div>
             </div>)
     }

@@ -102,38 +102,54 @@ class App extends Component {
 
 
   render() {
+
+      let header="";
+      if(window.location.pathname == "/Components/Login" || window.location.pathname == "/Components/Register" || window.location.pathname == "/Components/Verify" || window.location.pathname == "/Components/ConfirmPassword" || window.location.pathname == "/Components/Account")
+      {
+          header = <div className="col-12 header mb-5">
+                      <div className="row">
+                          <div className="logo col-sm-2 col-12"></div>
+                          <div className="col-sm-10 col-12"></div>
+                      </div>
+                  </div>;
+      }
+      else if(window.location.pathname == "/Components/Dashboard" || window.location.pathname == "/Components/ExchangeXir" || window.location.pathname == "/Components/ExchangeXlm" || window.location.pathname == "/Components/DepositXirWithIpg" || window.location.pathname == "/Components/DepositXirWithQr" || window.location.pathname == "/Components/DepositXlm" || window.location.pathname == "/Components/WithdrawedXirWithSheba" || window.location.pathname == "/Components/SendXir" || window.location.pathname == "/Components/SendXlm" || window.location.pathname == "/Components/PayingTheBill")
+      {
+          header = <div className="col-12 header mb-5">
+                      <div className="row">
+                          <div className="logo col-sm-2 col-12"></div>
+                          <div className="menu col-sm-7 col-12">
+                              <div className="row">
+                                  <a className={'menu-in ml-3 text-light' + (window.location.pathname === '/Components/Dashboard' ? ' activation' : '')} href="/Components/Dashboard">Dashboard</a>
+                                  <a className={'menu-in ml-4 text-light' + (window.location.pathname === '/Components/Orders' ? ' activation' : '')} href="#">Orders</a>
+                              </div>
+                          </div>
+                          <div className="user col-sm-3 col-12"></div>
+                      </div>
+                  </div>;
+      }
+
     return (
         <div className="App">
-          <div className="col-12 header">
-            <div className="row">
-              <div className="logo col-sm-2 col-12"></div>
-              <div className="menu col-sm-7 col-12">
-                <div className="row">
-                  <a className={'menu-in ml-3 text-light' + (window.location.pathname === '/Components/Dashboard' ? ' activation' : '')} href="#">Dashboard</a>
-                  <a className={'menu-in ml-4 text-light' + (window.location.pathname === '/Components/Orders' ? ' activation' : '')} href="#">Orders</a>
-                </div>
-              </div>
-              <div className="user col-sm-3 col-12"></div>
-            </div>
-          </div>
+            {header}
           <Router>
            <div className="col-12">
              <div className="row">
-               <Route exact path="/Components/Login" component={Login}/>
-               <Route path="/Components/Register" component={Register}/>
-               <Route path="/Components/Verify" component={Verify}/>
-               <Route path="/Components/ConfirmPassword" component={ConfirmPassword}/>
-               <Route path="/Components/Dashboard" component={Dashboard} />
-               <Route path="/Components/ExchangeXir" component={ExchangeXir}/>
-               <Route path="/Components/ExchangeXlm" component={ExchangeXlm}/>
-               <Route path="/Components/DepositXirWithIpg" component={DepositXirWithIpg}/>
-               <Route path="/Components/DepositXirWithQr" component={DepositXirWithQr}/>
-               <Route path="/Components/DepositXlm" component={DepositXlm}/>
-               <Route path="/Components/WithdrawedXirWithSheba" component={WithdrawedXirWithSheba}/>
-               <Route path="/Components/SendXir" component={SendXir}/>
-               <Route path="/Components/SendXlm" component={SendXlm}/>
-               <Route path="/Components/PayingTheBill" component={PayingTheBill}/>
-               <Route path="/Components/Account" component={Account}/>
+                <Route exact path="/Components/Login" component={Login}/>
+                <Route path="/Components/Register" component={Register}/>
+                <Route path="/Components/Verify" component={Verify}/>
+                <Route path="/Components/ConfirmPassword" component={ConfirmPassword}/>
+                <Route path="/Components/Account" component={Account}/>
+                <Route path="/Components/Dashboard" component={Dashboard} />
+                <Route path="/Components/ExchangeXir" component={ExchangeXir}/>
+                <Route path="/Components/ExchangeXlm" component={ExchangeXlm}/>
+                <Route path="/Components/DepositXirWithIpg" component={DepositXirWithIpg}/>
+                <Route path="/Components/DepositXirWithQr" component={DepositXirWithQr}/>
+                <Route path="/Components/DepositXlm" component={DepositXlm}/>
+                <Route path="/Components/WithdrawedXirWithSheba" component={WithdrawedXirWithSheba}/>
+                <Route path="/Components/SendXir" component={SendXir}/>
+                <Route path="/Components/SendXlm" component={SendXlm}/>
+                <Route path="/Components/PayingTheBill" component={PayingTheBill}/>
              </div>
            </div>
           </Router>

@@ -1,5 +1,5 @@
 body{
-    background-color: #555 !important;
+    background-color: #151d2e !important;
 }
 
 .disable
@@ -30,6 +30,7 @@ body{
 .header
 {
     background-color: #151d2e;
+    box-shadow: 2px 0 10px #000;
 }
 
 .menu
@@ -51,3 +52,32 @@ body{
 {
     font-weight: bold;
 }
+
+input , textarea , .border-div , button
+{
+    background-color: #151d2e;
+    border: 2px solid #ffc107;
+    color: #fff;
+}
+
+.hover-div:hover
+{
+    background-color: #ffc107;
+    color: #fff;
+    text-decoration: none;
+    animation: left 0.8s;
+    left: 5%;
+}
+
+@keyframes left {0%{left: 0; background-color: #151d2e;} 100%{left: 5%; background-color: #ffc107;}}
+
+.div-hover:hover
+{
+    background-color: #ffc107;
+    color: #fff;
+    text-decoration: none;
+    animation: right 0.8s;
+    right: 5%;
+}
+
+@keyframes right {0%{right: 0; background-color: #151d2e;} 100%{right: 5%; background-color: #ffc107;}}

@@ -50,8 +50,8 @@ class DepositXirWithQr extends Component {
         return(
             <div className="col-sm-7 col-12 clearfix mx-auto">
                 <div className="row">
-                    <h2 className="col-12 text-light text-center">Deposit XIR With QR</h2>
-                    <div className="col-12 mt-2 p-2">
+                    <h2 className="col-12 text-light text-center font-weight-bold mb-5">Deposit XIR With QR</h2>
+                    <div className="col-12 p-2">
                         <QRCode
                             className="d-flex mx-auto"
                             value={this.state.public_key}
@@ -59,13 +59,13 @@ class DepositXirWithQr extends Component {
                             level="L"
                             includeMargin="true"
                             bgColor="#fff"
-                            fgColor="#555"
+                            fgColor="#151d2e"
                         />
                     </div>
-                    <div className="col-12 p-2 mt-2">
+                    <div className="col-12 p-2 mt-3">
                         <div className="row">
-                            <div className="text-center col-9 p-2 bg-white border border-white rounded-left shadow-lg">{this.state.public_key}</div>
-                            <Clipboard className="text-center col-3 bg-success border border-white rounded-right shadow-lg" option-text={this.getText} onSuccess={this.onSuccess}>
+                            <div className="text-center col-9 p-2 border-div rounded-left shadow-lg">{this.state.public_key}</div>
+                            <Clipboard className="text-center col-3 bg-warning font-weight-bold border border-warning rounded-right shadow-lg" option-text={this.getText} onSuccess={this.onSuccess}>
                                 Copy to clipboard
                             </Clipboard>
                         </div>
