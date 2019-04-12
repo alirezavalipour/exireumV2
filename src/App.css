@@ -86,3 +86,24 @@ input , textarea , .border-div , button
 }
 
 @keyframes right {0%{right: 0; background-color: #151d2e;} 100%{right: 5%; background-color: #ffc107;}}
+
+@media(max-width: 600px) {
+    .logo
+    {
+        background-position: center;
+        margin-bottom: 20px;
+    }
+
+    .menu
+    {
+        text-align: center !important;
+        border: 2px solid #ffc107;
+    }
+
+    .menu-in
+    {
+        display: block;
+        width: 90%;
+        margin-left: 0 !important;
+    }
+}

@@ -124,7 +124,7 @@ class App extends Component {
                                   <a className={'menu-in ml-4 text-light' + (window.location.pathname === '/Components/Orders' ? ' activation' : '')} href="#">Orders</a>
                               </div>
                           </div>
-                          <div className="user col-sm-3 col-12"></div>
+                          <div className="user col-sm-3 col-12 text-light"></div>
                       </div>
                   </div>;
       }
