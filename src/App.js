@@ -106,7 +106,7 @@ class App extends Component {
       let header="";
       if(window.location.pathname == "/Components/Login" || window.location.pathname == "/Components/Register" || window.location.pathname == "/Components/Verify" || window.location.pathname == "/Components/ConfirmPassword" || window.location.pathname == "/Components/Account")
       {
-          header = <div className="col-12 header mb-5">
+          header = <div className="col-12 header2 mb-5">
                       <div className="row">
                           <div className="logo col-sm-2 col-12"></div>
                           <div className="col-sm-10 col-12"></div>
@@ -115,7 +115,7 @@ class App extends Component {
       }
       else if(window.location.pathname == "/Components/Dashboard" || window.location.pathname == "/Components/ExchangeXir" || window.location.pathname == "/Components/ExchangeXlm" || window.location.pathname == "/Components/DepositXirWithIpg" || window.location.pathname == "/Components/DepositXirWithQr" || window.location.pathname == "/Components/DepositXlm" || window.location.pathname == "/Components/WithdrawedXirWithSheba" || window.location.pathname == "/Components/SendXir" || window.location.pathname == "/Components/SendXlm" || window.location.pathname == "/Components/PayingTheBill")
       {
-          header = <div className="col-12 header mb-5">
+          header = <div className="col-12 header1 mb-5">
                       <div className="row">
                           <div className="logo col-sm-2 col-12"></div>
                           <div className="menu col-sm-7 col-12">

@@ -95,7 +95,7 @@ class PayingTheBill extends Component {
         return axios.post(url, formData, config)
             .then(response =>{
                 this.setState({
-                    hash: response.data.extras.envelope_xdr
+                    hash: response.data.hash
                 })
             })
     }
