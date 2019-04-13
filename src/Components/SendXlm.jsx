@@ -30,6 +30,12 @@ class SendXlm extends Component {
         });
     }
 
+    componentWillMount() {
+        if (!(this.Auth.getToken())) {
+            window.location.replace('/Components/Login');
+        }
+    }
+
     handleFormSubmit(e) {
         e.preventDefault();
         var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');

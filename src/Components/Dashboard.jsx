@@ -6,12 +6,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Container, Row, Col } from 'bootstrap-4-react';
 import Register from "./Register";
+import AuthService from "./AuthService";
 
 class Dashboard extends Component {
 
     constructor() {
         super();
+        this.Auth = new AuthService();
         this.state = {}
+    }
+
+    componentWillMount() {
+        if (!(this.Auth.getToken())) {
+            window.location.replace('/Components/Login');
+        }
     }
 
     render() {

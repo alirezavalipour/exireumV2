@@ -87,6 +87,46 @@ input , textarea , .border-div , button
 
 @keyframes right {0%{right: 0; background-color: #151d2e;} 100%{right: 5%; background-color: #ffc107;}}
 
+.user
+{
+    line-height: 60px;
+}
+
+.sub-user-none
+{
+    display: none;
+}
+
+.sub-user
+{
+    line-height: 40px;
+    position: absolute !important;
+    background-color: #151d2e;
+    top: 98%;
+    box-shadow: 0px 3px 4px #000;
+    z-index: 2;
+}
+
+.sub-user a div
+{
+    border-radius: 20px;
+    border: 2px solid #ffc107;
+    cursor: pointer;
+}
+
+.sub-user a div:hover
+{
+    animation: bg-color 0.8s;
+    background-color: #ffc107;
+}
+
+@keyframes bg-color {0%{background-color: #151d2e;} 100%{background-color: #ffc107;}}
+
+.name-user , .icon-user
+{
+    cursor: pointer;
+}
+
 @media(max-width: 600px) {
     .logo
     {

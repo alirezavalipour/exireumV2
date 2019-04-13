@@ -31,6 +31,12 @@ class PayingTheBill extends Component {
     }
 
     componentWillMount() {
+        if (!(this.Auth.getToken())) {
+            window.location.replace('/Components/Login');
+        }
+    }
+
+    componentDidMount() {
         const url = this.Auth.getDomain() + '/user/account';
         const headers = {
             Accept: 'application/json',

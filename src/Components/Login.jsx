@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Container, Row, Col } from 'bootstrap-4-react';
 import AuthService from './AuthService.jsx';
+import Cookies from "universal-cookie";
+const cookie = new Cookies();
 
 class Login extends Component {
 
@@ -39,6 +41,7 @@ class Login extends Component {
             .then(res => res.json())
             .then(response =>   {
                 this.Auth.setToken(response.access_token);
+                cookie.set('reactUrl', 'true', { domain :'exireum.com' , path:'/' });
                 window.location.replace('/Components/Dashboard');
             })
             .catch((err) => {

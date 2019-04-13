@@ -221,9 +221,6 @@ export default class AuthService {
         // Clear user token and profile data from localStorage
         localStorage.removeItem('id_token');
         localStorage.removeItem('mobile');
-        localStorage.removeItem('profile');
-        localStorage.removeItem('public_key');
-        localStorage.removeItem('txId');
     }
 
     getProfile() {

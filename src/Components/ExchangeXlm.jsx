@@ -48,6 +48,12 @@ class ExchangeXir extends Component {
     }
 
     componentWillMount() {
+        if (!(this.Auth.getToken())) {
+            window.location.replace('/Components/Login');
+        }
+    }
+
+    componentDidMount() {
         const urlPublic = this.Auth.getDomain() + '/user/account';
         const headersPublic = {
             Accept: 'application/json',
