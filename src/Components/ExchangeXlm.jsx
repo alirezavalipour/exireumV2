@@ -66,29 +66,29 @@ class ExchangeXir extends Component {
                 this.setState({
                     public_key: response.data[0].public_key
                 });
-                console.log(this.state.public_key);
             });
     }
 
     handleFormSubmit(e) {
         e.preventDefault();
-        // const url = `${this.Auth.domain}/user/stellar/withdraw`;
-        // const formData = {
-        //     amount: this.state.amount,
-        //     public_key: this.state.public_key,
-        // };
-        // const headers = {
-        //     Accept: 'application/json',
-        //     'Content-Type': 'application/json',
-        //     Authorization: `Bearer ${this.Auth.getToken()}`,
-        // };
-        // var config = { headers };
-        // return axios.post(url, formData, config)
-        //     .then(response =>{
-        //         this.setState({
-        //             xdr: response.data.xdr
-        //         });
-        //     });
+        const url = `${this.Auth.domain}/user/stellar/exchange?type=XLMTOXIR`;
+        const formData = {
+            amount: this.state.amount,
+            public_key: this.state.public_key,
+        };
+        const headers = {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${this.Auth.getToken()}`,
+        };
+        var config = { headers };
+        return axios.post(url, formData, config)
+            .then(response =>{
+                this.setState({
+                    xdr: response.data.response
+                });
+                console.log(response);
+            });
     }
 
     handleForSignWithSecretKey(e){

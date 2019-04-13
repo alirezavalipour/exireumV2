@@ -74,8 +74,8 @@ class App extends Component {
   logOut(e){
       e.preventDefault();
       this.Auth.logout();
-      cookies.remove('reactUrl', { domain :'exireum.com' , path: '/' });
-      window.location.replace('https://exireum.com');
+      cookies.remove('reactUrl', { domain :'localhost' , path: '/' });
+      window.location.replace('http://localhost/exir_wallet');
   }
 
   render() {
@@ -127,7 +127,7 @@ class App extends Component {
       {
           header = <div className="col-12 header2 mb-5">
                       <div className="row">
-                          <a href="https://exireum.com" className="logo col-sm-2 col-12"></a>
+                          <a href="http://localhost/exir_wallet" className="logo col-sm-2 col-12"></a>
                           <div className="col-sm-10 col-12"></div>
                       </div>
                   </div>;
@@ -136,7 +136,7 @@ class App extends Component {
       {
           header = <div className="col-12 header1 mb-5">
                       <div className="row">
-                          <a href="https://exireum.com" className="logo col-sm-2 col-12"></a>
+                          <a href="http://localhost/exir_wallet" className="logo col-sm-2 col-12"></a>
                           <div className="menu col-sm-7 col-12">
                               <div className="row">
                                   <a className={'menu-in ml-3 text-light' + (window.location.pathname === '/Components/Dashboard' ? ' activation' : '')} href="/Components/Dashboard">Dashboard</a>

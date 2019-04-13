@@ -66,29 +66,28 @@ class ExchangeXir extends Component {
                 this.setState({
                     public_key: response.data[0].public_key
                 });
-                console.log(this.state.public_key);
             });
     }
 
     handleFormSubmit(e) {
         e.preventDefault();
-        // const url = `${this.Auth.domain}/user/stellar/withdraw`;
-        // const formData = {
-        //     amount: this.state.amount,
-        //     public_key: this.state.public_key,
-        // };
-        // const headers = {
-        //     Accept: 'application/json',
-        //     'Content-Type': 'application/json',
-        //     Authorization: `Bearer ${this.Auth.getToken()}`,
-        // };
-        // var config = { headers };
-        // return axios.post(url, formData, config)
-        //     .then(response =>{
-        //         this.setState({
-        //             xdr: response.data.xdr
-        //         });
-        //     });
+        const url = `${this.Auth.domain}/user/stellar/exchange?type=XIRTOXLM`;
+        const formData = {
+            amount: this.state.amount,
+            public_key: this.state.public_key,
+        };
+        const headers = {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${this.Auth.getToken()}`,
+        };
+        var config = { headers };
+        return axios.post(url, formData, config)
+            .then(response =>{
+                this.setState({
+                    xdr: response.data.response
+                });
+            });
     }
 
     handleForSignWithSecretKey(e){
@@ -114,7 +113,7 @@ class ExchangeXir extends Component {
         return axios.post(url, formData, config)
             .then(response =>{
                 this.setState({
-                    hash: response.data.extras.envelope_xdr
+                    hash: response.data.hash
                 })
                 if(response.status == 200){
                 }
@@ -135,7 +134,7 @@ class ExchangeXir extends Component {
                             <label className="col-12">
                                 <div className="row shadow-lg">
                                     <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Amount XIR (Exir)</span>
-                                    <input className="col-9 text-center rounded-right p-2" placeholder="" name="amount" minLength="5" type="tel" onChange={this.handleChange}/>
+                                    <input className="col-9 text-center rounded-right p-2" placeholder="" name="amount" type="tel" onChange={this.handleChange}/>
                                 </div>
                             </label>
                             <label className="col-12 mt-3">

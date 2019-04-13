@@ -49,7 +49,6 @@ class PayingTheBill extends Component {
                 this.setState({
                     public_key: response.data[56].public_key
                 })
-                console.log(this.state.public_key);
             })
     }
 
@@ -73,7 +72,6 @@ class PayingTheBill extends Component {
                     xdr: response.data.xdr,
                     billPaymentId: response
                 });
-                console.log(response);
             });
     }
 

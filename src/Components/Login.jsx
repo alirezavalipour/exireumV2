@@ -41,7 +41,7 @@ class Login extends Component {
             .then(res => res.json())
             .then(response =>   {
                 this.Auth.setToken(response.access_token);
-                cookie.set('reactUrl', 'true', { domain :'exireum.com' , path:'/' });
+                cookie.set('reactUrl', 'true', { domain :'localhost' , path:'/' });
                 window.location.replace('/Components/Dashboard');
             })
             .catch((err) => {
