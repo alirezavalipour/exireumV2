@@ -74,7 +74,7 @@ class WithdrawedXirWithSheba extends Component {
             axios.get(url, config)
                 .then(response => {
                     this.setState({
-                        sheba: response.data[0].sheba
+                        sheba: response.data[1].sheba
                     });
                 }),
             axios.get(urlPublic, configPublic)
@@ -131,11 +131,10 @@ class WithdrawedXirWithSheba extends Component {
         return axios.post(url, formData, config)
             .then(response =>{
                 this.setState({
-                    hash: response.data.extras.envelope_xdr
+                    hash: response.data.hash
                 })
                 if(response.status == 200){
                 }
-                console.log(response);
             });
     }
 

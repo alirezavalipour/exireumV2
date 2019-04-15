@@ -85,9 +85,9 @@ class ExchangeXir extends Component {
         return axios.post(url, formData, config)
             .then(response =>{
                 this.setState({
-                    xdr: response.data.response
+                    xdr: response.data.response,
+                    id: response.data.id
                 });
-                console.log(response);
             });
     }
 
@@ -101,9 +101,10 @@ class ExchangeXir extends Component {
         let transaction = new StellarSdk.Transaction(this.state.xdr);
         transaction.sign(keypair);
         let xdr = transaction.toEnvelope().toXDR('base64');
-        const url = `${this.Auth.domain}/user/stellar/withdraw/submit`;
+        const url = `${this.Auth.domain}/user/stellar/exchange/submit`;
         const formData = {
             xdr: xdr,
+            id: this.state.id
         };
         const headers = {
             Accept: 'application/json',
@@ -114,7 +115,7 @@ class ExchangeXir extends Component {
         return axios.post(url, formData, config)
             .then(response =>{
                 this.setState({
-                    hash: response.data.extras.envelope_xdr
+                    hash: response.data.hash
                 })
                 if(response.status == 200){
                 }

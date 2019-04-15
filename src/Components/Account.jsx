@@ -121,16 +121,14 @@ class Account extends Component {
         axios.post(urlAddAcceptAsset, formDataAddAcceptAsset, configAddAcceptAsset)
             .then(response =>{
                 if(response.status == 200){
-                    this.signXdr(response.data.xdr)
+                    this.signXdr(response.data.xdr);
                 }
             }),
-        ])
-        .then(response =>{
-            window.location.replace('/Components/Dashboard');
-        });
+
+        ]);
     }
 
-    signXdr (xdr){
+    signXdr(xdr){
         StellarSdk.Network.useTestNetwork();
         var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
         let keypair = StellarSdk.Keypair.fromSecret(this.state.secret_key);
@@ -152,8 +150,9 @@ class Account extends Component {
         return axios.post(url, formData, config)
             .then(response =>{
                 if(response.status == 200){
+                    window.location.replace('/Components/Dashboard');
                 }
-            });
+            })
     }
 
     changeCreateOrHaveAccount(e){

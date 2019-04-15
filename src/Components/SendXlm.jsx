@@ -44,8 +44,8 @@ class SendXlm extends Component {
         var destination = this.state.public_key_dest;
         var amount = this.state.amount;
         server.loadAccount(keypair.publicKey())
-            .then(function(source) {
-                var transaction = new StellarSdk.TransactionBuilder(source)
+            .then(result => {
+                var transaction = new StellarSdk.TransactionBuilder(result)
                     .addOperation(StellarSdk.Operation.payment({
                         destination,
                         amount,
@@ -55,41 +55,61 @@ class SendXlm extends Component {
                     .build();
                 transaction.sign(keypair);
                 server.submitTransaction(transaction)
-                    .then(function(result){
-                        console.log(result);
-                    })
+                    .then(result => {
+                        this.setState({
+                            hash: result.hash
+                        });
+                    });
             });
     }
 
     render() {
-        return(
-            <div className="col-sm-8 col-12 clearfix mx-auto">
-                <div className="row">
-                    <h2 className="col-12 text-light text-center font-weight-bold mb-5">Send XLM</h2>
-                    <form className="col-12" onSubmit={this.handleFormSubmit}>
-                        <label className="col-12">
-                            <div className="row shadow-lg">
-                                <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Amount XIR (Exir)</span>
-                                <input className="col-9 text-center rounded-right p-2" placeholder="" name="amount" type="tel" onChange={this.handleChange}/>
-                            </div>
-                        </label>
-                        <label className="col-12 mt-3">
-                            <div className="row shadow-lg">
-                                <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Source secret key</span>
-                                <input className="col-9 text-center rounded-right p-2" placeholder="SBFHY64P7A4UUONPZJFBUUCI76PCKJXYMA5AESBC4LAETUUOAS55GBI2" name="secret_key_source" type="text" onChange={this.handleChange}/>
-                            </div>
-                        </label>
-                        <label className="col-12 mt-3">
-                            <div className="row shadow-lg">
-                                <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Destination public_key</span>
-                                <input className="col-9 text-center rounded-right p-2" placeholder="GDNRPMNBJYNFDVTOBBPGWQBJORVPYVI2YP4G2MG6DNRXGJKQA5TG2PRO" name="public_key_dest" type="text" onChange={this.handleChange}/>
-                            </div>
-                        </label>
-                        <button className="col-12 bg-warning p-2 mt-3 rounded shadow-lg">Submit</button>
-                    </form>
+        if(!this.state.hash) {
+            return (
+                <div className="col-sm-8 col-12 clearfix mx-auto">
+                    <div className="row">
+                        <h2 className="col-12 text-light text-center font-weight-bold mb-5">Send XLM</h2>
+                        <form className="col-12" onSubmit={this.handleFormSubmit}>
+                            <label className="col-12">
+                                <div className="row shadow-lg">
+                                    <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Amount XIR (Exir)</span>
+                                    <input className="col-9 text-center rounded-right p-2" placeholder="" name="amount"
+                                           type="tel" onChange={this.handleChange}/>
+                                </div>
+                            </label>
+                            <label className="col-12 mt-3">
+                                <div className="row shadow-lg">
+                                    <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Source secret key</span>
+                                    <input className="col-9 text-center rounded-right p-2"
+                                           placeholder="SBFHY64P7A4UUONPZJFBUUCI76PCKJXYMA5AESBC4LAETUUOAS55GBI2"
+                                           name="secret_key_source" type="text" onChange={this.handleChange}/>
+                                </div>
+                            </label>
+                            <label className="col-12 mt-3">
+                                <div className="row shadow-lg">
+                                    <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Destination public_key</span>
+                                    <input className="col-9 text-center rounded-right p-2"
+                                           placeholder="GDNRPMNBJYNFDVTOBBPGWQBJORVPYVI2YP4G2MG6DNRXGJKQA5TG2PRO"
+                                           name="public_key_dest" type="text" onChange={this.handleChange}/>
+                                </div>
+                            </label>
+                            <button className="col-12 bg-warning p-2 mt-3 rounded shadow-lg">Submit</button>
+                        </form>
+                    </div>
                 </div>
-            </div>
-        );
+            );
+        }
+        else if(this.state.hash)
+        {
+            return(
+                <div className="col-sm-8 col-12 clearfix mx-auto">
+                    <div className="row">
+                        <h2 className="col-12 text-light text-center font-weight-bold mb-5">Send XLM</h2>
+                        <div className="col-12 text-center text-light p-2">Your order has been registred and will be processed whitin few minutes.</div>
+                    </div>
+                </div>
+            );
+        }
     }
 }
 export default SendXlm;

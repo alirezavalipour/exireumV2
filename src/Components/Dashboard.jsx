@@ -13,6 +13,7 @@ class Dashboard extends Component {
     constructor() {
         super();
         this.Auth = new AuthService();
+        this.assetAmount = this.assetAmount.bind(this);
         this.state = {}
     }
 
@@ -22,13 +23,49 @@ class Dashboard extends Component {
         }
     }
 
+    componentDidMount() {
+        const url = this.Auth.getDomain() + '/user/account';
+        const headers = {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${this.Auth.getToken()}`,
+        };
+        var config = { headers };
+        return axios.get(url, config)
+            .then(response => {
+                this.assetAmount(response.data[0].public_key);
+            });
+    }
+
+    assetAmount(public_key) {
+        const url = 'https://horizon-testnet.stellar.org/accounts/' + public_key;
+        return axios.get(url)
+            .then(res =>{
+                res.data.balances.map(elem =>{
+                    if(elem.asset_code=="XIR")
+                    {
+                        this.setState({
+                            xirBalance: elem.balance
+                        });
+                    }
+                    if(elem.asset_type=="native")
+                    {
+                        this.setState({
+                            xlmBalance: elem.balance
+                        });
+                    }
+                });
+            });
+    }
+
     render() {
         return (
             <div className="col-sm-8 col-12 clearfix mx-auto">
                 <div className="row">
                     <div className="col-sm-5 col-12 text-center">
                         <div className="row">
-                            <h2 className="col-12 mb-5 font-weight-bold text-light">XIR</h2>
+                            <h2 className="col-12 mb-2 font-weight-bold text-light">XIR</h2>
+                            <h5 className="col-12 mb-5 text-light">{this.state.xirBalance}</h5>
                             {/*<div className="col-12">*/}
                                 {/*<div className="row">*/}
                                     {/*<div className="col-6">Remind of XIR :</div>*/}
@@ -46,7 +83,8 @@ class Dashboard extends Component {
                     <div className="col-sm-2 col-12"></div>
                     <div className="col-sm-5 col-12 text-center">
                         <div className="row">
-                            <h2 className="col-12 mb-5 font-weight-bold text-light">XLM</h2>
+                            <h2 className="col-12 mb-2 font-weight-bold text-light">XLM</h2>
+                            <h5 className="col-12 mb-5 text-light">{this.state.xlmBalance}</h5>
                             {/*<div className="col-12">*/}
                                 {/*<div className="row">*/}
                                     {/*<div className="col-6">Remind of XLM :</div>*/}

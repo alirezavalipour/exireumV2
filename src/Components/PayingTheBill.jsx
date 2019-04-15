@@ -47,9 +47,9 @@ class PayingTheBill extends Component {
         return axios.get(url, config)
             .then(response => {
                 this.setState({
-                    public_key: response.data[56].public_key
-                })
-            })
+                    public_key: response.data[0].public_key
+                });
+            });
     }
 
     handleFormSubmit(e){
@@ -70,7 +70,7 @@ class PayingTheBill extends Component {
             .then(response => {
                 this.setState({
                     xdr: response.data.xdr,
-                    billPaymentId: response
+                    bill_payment_id: response.data.bill_payment_id
                 });
             });
     }
@@ -85,10 +85,10 @@ class PayingTheBill extends Component {
         let transaction = new StellarSdk.Transaction(this.state.xdr);
         transaction.sign(keypair);
         let xdr = transaction.toEnvelope().toXDR('base64');
-        console.log(xdr);
         const url = `${this.Auth.domain}/user/stellar/withdraw/submit`;
         const formData = {
             xdr: xdr,
+            bill_payment_id: this.state.bill_payment_id,
         };
         const headers = {
             Accept: 'application/json',
@@ -100,8 +100,8 @@ class PayingTheBill extends Component {
             .then(response =>{
                 this.setState({
                     hash: response.data.hash
-                })
-            })
+                });
+            });
     }
 
     render() {

@@ -123,7 +123,7 @@ class App extends Component {
     }
 
       let header="";
-      if(window.location.pathname == "/Components/Login" || window.location.pathname == "/Components/Register" || window.location.pathname == "/Components/Verify" || window.location.pathname == "/Components/ConfirmPassword" || window.location.pathname == "/Components/Account")
+      if(window.location.pathname == "/Components/Login" || window.location.pathname == "/Components/Register" || window.location.pathname == "/Components/Verify" || window.location.pathname == "/Components/Confirmpassword" || window.location.pathname == "/Components/Account")
       {
           header = <div className="col-12 header2 mb-5">
                       <div className="row">

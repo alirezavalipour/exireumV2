@@ -1,4 +1,5 @@
 import decode from 'jwt-decode';
+import axios from "axios";
 
 export default class AuthService {
     // Initializing important variables
@@ -104,22 +105,38 @@ export default class AuthService {
     sms(temporary_code) {
         // Get a token from api server using the fetch api
         var mobile = window.localStorage.getItem('mobile');
-        return this.fetch(`${this.domain}/auth/verify`, {
-            method: 'POST',
-            body: JSON.stringify({temporary_code, mobile}),
-        })
-            .then((res) => {
-                this.setToken(res.token);
+        const url = `${this.domain}/auth/verify`;
+        const formData = {
+            mobile: mobile,
+            temporary_code: temporary_code,
+        };
+        const headers = {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        };
+        var config = { headers };
+        return axios.post(url, formData, config)
+            .then(res =>{
+                this.setToken(res.data.token);
                 //console.log(res);
                 // Setting the token in localStorage
                 return Promise.resolve(res);
             });
+        // return this.fetch(`${this.domain}/auth/verify`, {
+        //     method: 'POST',
+        //     body: JSON.stringify({temporary_code, mobile}),
+        // })
+        //     .then((res) => {
+        //         this.setToken(res.token);
+        //         console.log(res);
+        //         // Setting the token in localStorage
+        //         return Promise.resolve(res);
+        //     });
     }
 
     resend() {
         // Get a token from api server using the fetch api
         var mobile = window.localStorage.getItem('mobile');
-        console.log(mobile);
         return this.fetch(`${this.domain}/auth/resend`, {
             method: 'POST',
             body: JSON.stringify({mobile}),
