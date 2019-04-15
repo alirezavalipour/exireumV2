@@ -15,9 +15,17 @@ class ConfirmPassword extends Component {
         this.Auth = new AuthService();
         this.handleChange = this.handleChange.bind(this);
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
+        this.showPlacholder = this.showPlacholder.bind(this);
         this.state = {
             err: ""
         }
+    }
+
+    showPlacholder(e)
+    {
+        e.preventDefault();
+        e.currentTarget.children[0].children[0].setAttribute("class", "enable text-left text-light placholder pr-2 pl-2");
+        e.currentTarget.children[0].children[1].removeAttribute("placeholder");
     }
 
     handleChange(e) {
@@ -52,8 +60,18 @@ class ConfirmPassword extends Component {
                     {equalpass}
                     <h2 className="col-12 text-light mb-5 text-center font-weight-bold">Set your password</h2>
                     <form  className="col-12" onSubmit={this.handleFormSubmit}>
-                        <input className="col-12 p-2 rounded shadow-lg" placeholder="New Password" name="password" minLength="8" required="required" type="password" onChange={this.handleChange}/>
-                        <input className="col-12 p-2 mt-3 rounded shadow-lg" placeholder="Confirm Password" name="password_confirmation" minLength="8" required="required" type="password" onChange={this.handleChange}/>
+                        <div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>
+                            <div className="row">
+                                <label className="disable" htmlFor="password">New Password</label>
+                                <input className="input-placeholder col-12 p-2 mt-3 rounded shadow-lg" placeholder="New Password" name="password" minLength="8" required="required" type="password" onChange={this.handleChange}/>
+                            </div>
+                        </div>
+                        <div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>
+                            <div className="row">
+                                <label className="disable" htmlFor="password_confirmation">Confirm Password</label>
+                                <input className="input-placeholder col-12 p-2 mt-3 rounded shadow-lg" placeholder="Confirm Password" name="password_confirmation" minLength="8" required="required" type="password" onChange={this.handleChange}/>
+                            </div>
+                        </div>
                         <input className="col-12 mt-3 p-2 bg-warning rounded shadow-lg" value="SUBMIT" type="submit"/>
                     </form>
                 </div>

@@ -8239,6 +8239,14 @@ react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.8.4.tgz#90f336a68c3a29a096a3d648ab80e87ec61482a2"
   integrity sha512-PVadd+WaUDOAciICm/J1waJaSvgq+4rHE/K70j0PFqKhkTBsPv/82UGQJNXAngz1fOQLLxI6z1sEDmJDQhCTAA==
 
+react-password-strength@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/react-password-strength/-/react-password-strength-2.4.0.tgz#07bdbe243d7c97b0a7732da898860beb76e02b8e"
+  integrity sha512-8ksh5zfF4uXRxJDGgleABu0dS5hN+mQSvzxLpVWEPVwWMxKikLEVUnB0mrbnBHul7mbjVD9QTjzQ78/wm5bewQ==
+  dependencies:
+    prop-types "^15.6.0"
+    zxcvbn "^4.3.0"
+
 react-router-dom@^4.4.0:
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-4.4.0.tgz#fad67b46375f7081a76d1c92a83a92d28b5abc35"
@@ -10504,3 +10512,8 @@ yargs@^11.0.0:
     which-module "^2.0.0"
     y18n "^3.2.1"
     yargs-parser "^9.0.2"
+
+zxcvbn@^4.3.0:
+  version "4.4.2"
+  resolved "https://registry.yarnpkg.com/zxcvbn/-/zxcvbn-4.4.2.tgz#28ec17cf09743edcab056ddd8b1b06262cc73c30"
+  integrity sha1-KOwXzwl0PtyrBW3dixsGJizHPDA=

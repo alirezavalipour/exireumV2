@@ -16,9 +16,17 @@ class Login extends Component {
         this.Auth = new AuthService();
         this.handleChange = this.handleChange.bind(this);
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
+        this.showPlacholder = this.showPlacholder.bind(this);
         this.state = {
             err: ""
         }
+    }
+
+    showPlacholder(e)
+    {
+        e.preventDefault();
+        e.currentTarget.children[0].children[0].setAttribute("class", "enable text-left text-light placholder pr-2 pl-2");
+        e.currentTarget.children[0].children[1].removeAttribute("placeholder");
     }
 
     componentWillMount() {
@@ -62,8 +70,18 @@ class Login extends Component {
                     {saman}
                     <h2 className="col-12 text-light text-center font-weight-bold mb-5">Login</h2>
                     <form className="col-12" onSubmit={this.handleFormSubmit}>
-                        <input className="col-12 p-2 rounded shadow-lg text-light" placeholder="phone number" name="mobile" required="required" type="text" pattern="^[0][9][0-3][0-9]{8,8}$" onChange={this.handleChange}/>
-                        <input className="col-12 mt-3 p-2 rounded shadow-lg" placeholder="Password" name="password" minLength="8" required="required" type="password" onChange={this.handleChange}/>
+                        <div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>
+                            <div className="row">
+                                <label className="disable" htmlFor="mobile">Phone number</label>
+                                <input className="input-placeholder col-12 p-2 mt-3 rounded shadow-lg text-light" placeholder="Phone number" name="mobile" required="required" type="text" pattern="^[0][9][0-3][0-9]{8,8}$" onChange={this.handleChange}/>
+                            </div>
+                        </div>
+                        <div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>
+                            <div className="row">
+                                <label className="disable" htmlFor="password">Password</label>
+                                <input className="input-placeholder col-12 mt-3 p-2 rounded shadow-lg" placeholder="Password" name="password" minLength="8" required="required" type="password" onChange={this.handleChange}/>
+                            </div>
+                        </div>
                         <input className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light" value="SUBMIT" type="submit"/>
                     </form>
                 </div>

@@ -14,10 +14,18 @@ class Register extends Component {
         this.Auth = new AuthService();
         this.handleChange = this.handleChange.bind(this);
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
+        this.showPlacholder = this.showPlacholder.bind(this);
         this.state = {
             err: "",
             change: "",
         }
+    }
+
+    showPlacholder(e)
+    {
+        e.preventDefault();
+        e.currentTarget.children[0].children[0].setAttribute("class", "enable text-left text-light placholder pr-2 pl-2");
+        e.currentTarget.children[0].children[1].removeAttribute("placeholder");
     }
 
     componentWillMount() {
@@ -60,13 +68,48 @@ class Register extends Component {
                     {error}
                     <h2 className="col-12 text-light text-center font-weight-bold mb-5">Register</h2>
                     <form className="col-12" onSubmit={this.handleFormSubmit}>
-                        <input className="col-12 p-2 rounded shadow-lg" placeholder="User name : js" name="username" minLength="3" required="required" type="text" onChange={this.handleChange}/>
-                        <input className="col-12 mt-3 p-2 rounded shadow-lg" placeholder="Email : js@gmail.com" name="email" required="required" type="email" onChange={this.handleChange}/>
-                        <input className="col-12 mt-3 p-2 rounded shadow-lg" placeholder="First name : John" name="first_name" minLength="3" required="required" type="text" onChange={this.handleChange}/>
-                        <input className="col-12 mt-3 p-2 rounded shadow-lg" placeholder="Last name : Smith" name="last_name" minLength="3" required="required" type="text" onChange={this.handleChange}/>
-                        <input className="col-12 mt-3 p-2 rounded shadow-lg" placeholder="National code : 0123456789" name="national_number" required="required" type="tel" pattern="^[0-9][0-9][0-9][0-9]{7,7}$" onChange={this.handleChange}/>
-                        <textarea className="col-12 mt-3 p-2 rounded shadow-lg" placeholder="Address : No1,2nd Street,Tehran,Iran" name="address" minLength="10" maxLength="100" required="required" type="text" onChange={this.handleChange}/>
-                        <input className="col-12 mt-3 p-2 rounded shadow-lg" placeholder="Phone : 09191000000" name="mobile" required="required" type="tel" pattern="^[0][9][0-3][0-9]{8,8}$" onChange={this.handleChange}/>
+                        <div className="col-12" onChange={this.showPlacholder} onClick={this.showPlacholder}>
+                            <div className="row">
+                                <label className="disable" htmlFor="username">User name</label>
+                                <input className="input-placeholder col-12 p-2 rounded shadow-lg mt-3" placeholder="User name : js" name="username" minLength="3" required="required" type="text" onChange={this.handleChange}/>
+                            </div>
+                        </div>
+                        <div className="col-12" onChange={this.showPlacholder} onClick={this.showPlacholder}>
+                            <div className="row">
+                                <label className="disable" htmlFor="Email">Email</label>
+                                <input className="input-placeholder col-12 mt-3 p-2 rounded shadow-lg" placeholder="Email : js@gmail.com" name="email" required="required" type="email" onChange={this.handleChange}/>
+                            </div>
+                        </div>
+                        <div className="col-12" onChange={this.showPlacholder} onClick={this.showPlacholder}>
+                            <div className="row">
+                                <label className="disable" htmlFor="first_name">First name</label>
+                                <input className="input-placeholder col-12 mt-3 p-2 rounded shadow-lg" placeholder="First name : John" name="first_name" minLength="3" required="required" type="text" onChange={this.handleChange}/>
+                            </div>
+                        </div>
+                        <div className="col-12" onChange={this.showPlacholder} onClick={this.showPlacholder}>
+                            <div className="row">
+                                <label className="disable" htmlFor="last_name">Last name</label>
+                                <input className="input-placeholder col-12 mt-3 p-2 rounded shadow-lg" placeholder="Last name : Smith" name="last_name" minLength="3" required="required" type="text" onChange={this.handleChange}/>
+                            </div>
+                        </div>
+                        <div className="col-12" onChange={this.showPlacholder} onClick={this.showPlacholder}>
+                            <div className="row">
+                                <label className="disable" htmlFor="national_number">National code</label>
+                                <input className="input-placeholder col-12 mt-3 p-2 rounded shadow-lg" placeholder="National code : 0123456789" name="national_number" required="required" type="tel" pattern="^[0-9][0-9][0-9][0-9]{7,7}$" onChange={this.handleChange}/>
+                            </div>
+                        </div>
+                        <div className="col-12" onChange={this.showPlacholder} onClick={this.showPlacholder}>
+                            <div className="row">
+                                <label className="disable" htmlFor="address">Address</label>
+                                <textarea className="input-placeholder col-12 mt-3 p-2 rounded shadow-lg" placeholder="Address : No1,2nd Street,Tehran,Iran" name="address" minLength="10" maxLength="100" required="required" type="text" onChange={this.handleChange}/>
+                            </div>
+                        </div>
+                        <div className="col-12" onChange={this.showPlacholder} onClick={this.showPlacholder}>
+                            <div className="row">
+                                <label className="disable" htmlFor="mobile">Mobile number</label>
+                                <input className="input-placeholder col-12 mt-3 p-2 rounded shadow-lg" placeholder="Mobile number : 09191000000" name="mobile" required="required" type="tel" pattern="^[0][9][0-3][0-9]{8,8}$" onChange={this.handleChange}/>
+                            </div>
+                        </div>
                         <input className="col-12 bg-warning p-2 rounded shadow-lg mt-3" value="SUBMIT" type="submit"/>
                     </form>
                 </div>

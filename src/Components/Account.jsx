@@ -27,6 +27,7 @@ class Account extends Component {
         this.changeCreateOrHaveAccount = this.changeCreateOrHaveAccount.bind(this);
         this.acceptTerm = this.acceptTerm.bind(this);
         this.signXdr = this.signXdr.bind(this);
+        this.showPlacholder = this.showPlacholder.bind(this);
         this.state = {
             err: "",
             change: "",
@@ -43,6 +44,13 @@ class Account extends Component {
                 }
             });
         }
+    }
+
+    showPlacholder(e)
+    {
+        e.preventDefault();
+        e.currentTarget.children[0].children[0].setAttribute("class", "enable text-left text-light placholder pr-2 pl-2");
+        e.currentTarget.children[0].children[1].removeAttribute("placeholder");
     }
 
     handleChange(e) {
@@ -183,32 +191,78 @@ class Account extends Component {
         let publicKey="";
         let d = this.props.d;
         if(this.state.change == "create"){
-            publicKey = <div className="col-12"><div className="row">
-                <input className="col-12 mt-2 p-2 bg-warning rounded shadow-lg" onClick={this.handleGenerate} value="Generate keypair" type="submit"/>
-                <input className="col-12 mt-3 p-2 rounded shadow-lg" placeholder="Generate Public key" name="generate_public_key"/>
-                <input className="col-12 mt-3 p-2 rounded shadow-lg" placeholder="Generate Secret key" name="generate_secret_key"/>
-            </div></div>;
-            if (this.state.newKeypair !== null) {
-                publicKey = <div className="col-12"><div className="row">
+            publicKey = <div className="col-12">
+                <div className="row">
                     <input className="col-12 mt-2 p-2 bg-warning rounded shadow-lg" onClick={this.handleGenerate} value="Generate keypair" type="submit"/>
-                    <input className="col-12 mt-3 p-2 rounded shadow-lg" placeholder="Generate Public key" name="generate_public_key" value={this.state.newKeypair.pubKey}/>
-                    <input className="col-12 mt-3 p-2 rounded shadow-lg" placeholder="Generate Secret key" name="generate_secret_key" value={this.state.newKeypair.secretKey}/>
-                </div></div>;
+                    <div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>
+                        <div className="row">
+                            <label className="disable" htmlFor="generate_public_key">Generate Public key</label>
+                            <input className="col-12 mt-3 p-2 rounded shadow-lg" placeholder="Generate Public key" name="generate_public_key"/>
+                        </div>
+                    </div>
+                    <div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>
+                        <div className="row">
+                            <label className="disable" htmlFor="generate_secret_key">Generate Secret key</label>
+                            <input className="col-12 mt-3 p-2 rounded shadow-lg" placeholder="Generate Secret key" name="generate_secret_key"/>
+                        </div>
+                    </div>
+                </div>
+            </div>;
+            if (this.state.newKeypair !== null) {
+                publicKey = <div className="col-12">
+                    <div className="row">
+                        <input className="col-12 mt-2 p-2 bg-warning rounded shadow-lg" onClick={this.handleGenerate} value="Generate keypair" type="submit"/>
+                        <div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>
+                            <div className="row">
+                                <label className="disable" htmlFor="generate_public_key">Generate Public key</label>
+                                <input className="col-12 mt-3 p-2 rounded shadow-lg" placeholder="Generate Public key" name="generate_public_key" value={this.state.newKeypair.pubKey}/>
+                            </div>
+                        </div>
+                        <div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>
+                            <div className="row">
+                                <label className="disable" htmlFor="generate_secret_key">Generate Secret key</label>
+                                <input className="col-12 mt-3 p-2 rounded shadow-lg" placeholder="Generate Secret key" name="generate_secret_key" value={this.state.newKeypair.secretKey}/>
+                            </div>
+                        </div>
+                    </div>
+                </div>;
             }
         }
         else if(this.state.change == "have"){
-            publicKey = <div className="col-12"><div className="row">
-                <input className="col-12 p-2 mt-2 rounded shadow-lg" placeholder="Public key : GDNRPMNBJYNFDVTOBBPGWQBJORVPYVI2YP4G2MG6DNRXGJKQA5TG2PRO" name="public_key" required="required" type="text" onChange={this.handleChange}/>
-                <input className="col-12 mt-3 p-2 rounded shadow-lg" placeholder="Secret key : SB3JKIKJ7ECA2GBB55KG55KRHUILGDHXZ5GZ5WBWYOFS7KU6JT73C7HX" name="secret_key" required="required" type="text" onChange={this.handleChange}/>
-            </div></div>;
+            publicKey = <div className="col-12">
+                <div className="row">
+                    <div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>
+                        <div className="row">
+                            <label className="disable" htmlFor="public_key">Public key</label>
+                            <input className="col-12 p-2 mt-2 mt-3 rounded shadow-lg" placeholder="Public key : GDNRPMNBJYNFDVTOBBPGWQBJORVPYVI2YP4G2MG6DNRXGJKQA5TG2PRO" name="public_key" required="required" type="text" onChange={this.handleChange}/>
+                        </div>
+                    </div>
+                    <div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>
+                        <div className="row">
+                            <label className="disable" htmlFor="secret_key">Secret key</label>
+                            <input className="col-12 mt-3 p-2 rounded shadow-lg" placeholder="Secret key : SB3JKIKJ7ECA2GBB55KG55KRHUILGDHXZ5GZ5WBWYOFS7KU6JT73C7HX" name="secret_key" required="required" type="text" onChange={this.handleChange}/>
+                        </div>
+                    </div>
+                </div>
+            </div>;
         }
         return (
             <div className="col-sm-6 col-12 clearfix mx-auto">
                 <div className="row">
                     <h2 className="col-12 text-light text-center font-weight-bold mb-5">Account</h2>
                     <form className="col-12" onSubmit={this.handleFormSubmit}>
-                        <input className="col-12 p-2 rounded shadow-lg" placeholder="Sheba : IR************************" name="sheba" required="required" type="text" onChange={this.handleChange} />
-                        <input className="col-12 mt-3 p-2 rounded shadow-lg" placeholder="Card number : **** **** **** ****" name="card" required="required" type="tel" onChange={this.handleChange} />
+                        <div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>
+                            <div className="row">
+                                <label className="disable" htmlFor="sheba">Sheba</label>
+                                <input className="col-12 p-2 mt-3 rounded shadow-lg" placeholder="Sheba : IR************************" name="sheba" required="required" type="text" onChange={this.handleChange} />
+                            </div>
+                        </div>
+                        <div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>
+                            <div className="row">
+                                <label className="disable" htmlFor="card">Card number</label>
+                                <input className="col-12 mt-3 p-2 rounded shadow-lg" placeholder="Card number : **** **** **** ****" name="card" required="required" type="tel" onChange={this.handleChange} />
+                            </div>
+                        </div>
                         <div className="p-2 mt-3 col-12">
                             <input type="radio" id="Choice1" name="account" value="create" onChange={this.changeCreateOrHaveAccount}/>
                             <label className="col-5 text-light" htmlFor="Choice1">Create New Account</label>
@@ -217,7 +271,7 @@ class Account extends Component {
                         </div>
                         {publicKey}
                         <div className="p-2 mt-3 col-12">
-                            <input type="radio" id="Choice3" name="accept" value="accept" onChange={this.acceptTerm}/>
+                            <input type="checkbox" id="Choice3" name="accept" value="accept" onChange={this.acceptTerm}/>
                             <label className="col-5 text-light" htmlFor="Choice3"><a href="#" className="text-light">Accept term and conditions</a></label>
                         </div>
                         {acceptShow}
