@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Container, Row, Col } from 'bootstrap-4-react';
 import AuthService from './AuthService.jsx';
+import Loader from 'react-loader-spinner';
 var StellarSdk = require('stellar-sdk');
 class WithdrawedXirWithSheba extends Component {
 
@@ -21,6 +22,8 @@ class WithdrawedXirWithSheba extends Component {
             secret_key:'',
             data: '',
             sam: '',
+            load1: false,
+            load2: false,
         }
     }
 
@@ -88,6 +91,9 @@ class WithdrawedXirWithSheba extends Component {
 
     handleFormSubmit(e) {
         e.preventDefault();
+        this.setState({
+            load1: !this.state.load1
+        });
         const url = `${this.Auth.domain}/user/stellar/withdraw`;
         const formData = {
             amount: this.state.amount,
@@ -105,11 +111,18 @@ class WithdrawedXirWithSheba extends Component {
                 this.setState({
                     xdr: response.data.xdr
                 });
-            });
+            }).catch(err =>{
+                this.setState({
+                    load1: false
+                })
+            })
     }
 
     handleForSignWithSecretKey(e){
         e.preventDefault();
+        this.setState({
+           load2:!this.state.load2
+        });
         StellarSdk.Network.useTestNetwork();
         var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
         let keypair = StellarSdk.Keypair.fromSecret(this.state.secret_key);
@@ -135,11 +148,48 @@ class WithdrawedXirWithSheba extends Component {
                 })
                 if(response.status == 200){
                 }
-            });
+            })
+            .catch(err =>{
+                this.setState({
+                    load2: false
+                })
+            })
     }
 
 
     render() {
+        let loader = "";
+        let loader2 ="";
+        if(this.state.load1 == false)
+        {
+            loader = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">SUBMIT</button>;
+        }
+        else if(this.state.load1 == true)
+        {
+            loader = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">
+                <Loader
+                    type="ThreeDots"
+                    color="#fff"
+                    height="20"
+                    width="40"
+                />
+            </button>;
+        }
+        if(this.state.load2 == false)
+        {
+            loader2 = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">SUBMIT</button>;
+        }
+        else if(this.state.load2 == true)
+        {
+            loader2 = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">
+                <Loader
+                    type="ThreeDots"
+                    color="#fff"
+                    height="20"
+                    width="40"
+                />
+            </button>;
+        }
 
         if(!this.state.xdr && !this.state.hash)
         {
@@ -166,7 +216,7 @@ class WithdrawedXirWithSheba extends Component {
                                     <div className="col-9 text-center rounded-right p-2 border-div">  {this.state.rial}  </div>
                                 </div>
                             </label>
-                            <button className="col-12 bg-warning p-2 mt-3 rounded shadow-lg">Submit</button>
+                            {loader}
                         </form>
                     </div>
                 </div>
@@ -185,7 +235,7 @@ class WithdrawedXirWithSheba extends Component {
                                     <input className="col-9 text-center rounded-right p-2" placeholder="SB3JKIKJ7ECA2GBB55KG55KRHUILGDHXZ5GZ5WBWYOFS7KU6JT73C7HX" name="secret_key" type="text" onChange={this.handleChange}/>
                                 </div>
                             </label>
-                            <button className="col-12 bg-warning p-2 mt-3 rounded shadow-lg">Submit</button>
+                            {loader2}
                         </form>
                     </div>
                 </div>

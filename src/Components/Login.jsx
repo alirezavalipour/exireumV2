@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Container, Row, Col } from 'bootstrap-4-react';
 import AuthService from './AuthService.jsx';
 import Cookies from "universal-cookie";
-import Loader from 'react-loader-spinner'
+import Loader from 'react-loader-spinner';
 const cookie = new Cookies();
 
 class Login extends Component {

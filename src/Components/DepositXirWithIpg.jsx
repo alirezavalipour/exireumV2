@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Container, Row, Col } from 'bootstrap-4-react';
 import AuthService from './AuthService.jsx';
+import Loader from 'react-loader-spinner';
 
 class DepositXirWithIpg extends Component {
 
@@ -18,7 +19,8 @@ class DepositXirWithIpg extends Component {
             price: null,
             secret_key:'',
             xdr: null,
-            public_key:''
+            public_key:'',
+            load: false
         }
     }
 
@@ -67,6 +69,9 @@ class DepositXirWithIpg extends Component {
 
     handleFormSubmit(e) {
         e.preventDefault();
+        this.setState({
+           load: !this.state.load
+        });
         const url = `${this.Auth.domain}/user/deposit`;
         const formData = {
             amount: this.state.amount,
@@ -83,7 +88,12 @@ class DepositXirWithIpg extends Component {
                 if(response.status == 200){
                     window.location.replace(this.Auth.getDomain()+"/user/order/pay/" + response.data.order_id );
                 }
-            });
+            })
+            .catch(err =>{
+                this.setState({
+                    load: false
+                })
+            })
     }
 
     render() {
@@ -103,6 +113,24 @@ class DepositXirWithIpg extends Component {
         // if (temp.length > 1) {
         //     data  = temp ;
         // }
+
+        let loader = "";
+        if(this.state.load == false)
+        {
+            loader = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">SUBMIT</button>;
+        }
+        else if(this.state.load == true)
+        {
+            loader = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">
+                <Loader
+                    type="ThreeDots"
+                    color="#fff"
+                    height="20"
+                    width="40"
+                />
+            </button>;
+        }
+
         return(
             <div className="col-sm-8 col-12 clearfix mx-auto">
                 <div className="row">
@@ -120,7 +148,7 @@ class DepositXirWithIpg extends Component {
                                 <div className="col-9 p-2 rounded-right border-div text-center">  {this.state.rial}  </div>
                             </div>
                         </label>
-                        <button className="col-12 bg-warning p-2 mt-3 rounded shadow-lg">Pay</button>
+                        {loader}
                     </form>
                 </div>
             </div>
