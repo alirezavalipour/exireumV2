@@ -234,7 +234,7 @@ class Account extends Component {
                     <div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>
                         <div className="row">
                             <label className="disable" htmlFor="public_key">Public key</label>
-                            <input className="col-12 p-2 mt-2 mt-3 rounded shadow-lg" placeholder="Public key : GDNRPMNBJYNFDVTOBBPGWQBJORVPYVI2YP4G2MG6DNRXGJKQA5TG2PRO" name="public_key" required="required" type="text" onChange={this.handleChange}/>
+                            <input className="col-12 p-2 mt-3 rounded shadow-lg" placeholder="Public key : GDNRPMNBJYNFDVTOBBPGWQBJORVPYVI2YP4G2MG6DNRXGJKQA5TG2PRO" name="public_key" required="required" type="text" onChange={this.handleChange}/>
                         </div>
                     </div>
                     <div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>

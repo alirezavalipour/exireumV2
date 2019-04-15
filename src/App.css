@@ -65,6 +65,13 @@ input , textarea , .border-div , button
     color: #fff;
 }
 
+.ReactPasswordStrength-input
+{
+    width: 100% !important;
+    font-size: 15px !important;
+    padding: 12px 10px !important;
+}
+
 .hover-div:hover
 {
     background-color: #ffc107;
