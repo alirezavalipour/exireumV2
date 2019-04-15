@@ -7,7 +7,7 @@ import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 import {Container, Row, Col} from 'bootstrap-4-react';
 import AuthService from './AuthService.jsx';
 import ReactPasswordStrength from 'react-password-strength';
-
+import Loader from 'react-loader-spinner';
 
 class ConfirmPassword extends Component {
 
@@ -18,7 +18,8 @@ class ConfirmPassword extends Component {
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.showPlacholder = this.showPlacholder.bind(this);
         this.state = {
-            err: ""
+            err: "",
+            load: false
         }
     }
 
@@ -37,7 +38,9 @@ class ConfirmPassword extends Component {
 
     handleFormSubmit(e) {
         e.preventDefault();
-        console.log(e);
+        this.setState({
+            load: !this.state.load,
+        });
         this.Auth.setpassword(this.state.password, this.state.password_confirmation)
             .then((res) => {
                 window.location.replace('/Components/Account');
@@ -45,6 +48,7 @@ class ConfirmPassword extends Component {
             .catch((err) => {
                 this.setState({
                     err: err,
+                    load: false
                 });
             });
     }
@@ -57,6 +61,23 @@ class ConfirmPassword extends Component {
                     confirm password are not match
                 </div>
             </div>;
+        }
+
+        let loader = "";
+        if(this.state.load == false)
+        {
+            loader = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">SUBMIT</button>;
+        }
+        else if(this.state.load == true)
+        {
+            loader = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">
+                <Loader
+                    type="ThreeDots"
+                    color="#fff"
+                    height="20"
+                    width="40"
+                />
+            </button>;
         }
         return (
             <div className="col-sm-6 col-12 clearfix mx-auto">
@@ -128,7 +149,7 @@ class ConfirmPassword extends Component {
                                 />
                             </div>
                         </div>
-                        <input className="col-12 mt-3 p-2 bg-warning rounded shadow-lg" value="SUBMIT" type="submit"/>
+                        {loader}
                     </form>
                 </div>
             </div>

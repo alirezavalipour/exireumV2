@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Container, Row, Col } from 'bootstrap-4-react';
 import AuthService from './AuthService.jsx';
+import Loader from 'react-loader-spinner';
 var StellarSdk = require('stellar-sdk');
 const isValidPublicKey = input => {
     try {
@@ -33,7 +34,8 @@ class Account extends Component {
             change: "",
             newKeypair: 'null',
             termsAccepted: false,
-            term:""
+            term:"",
+            load: false
         }
         this.handleGenerate = event => {
             let keypair = StellarSdk.Keypair.random();
@@ -66,7 +68,9 @@ class Account extends Component {
 
     handleFormSubmit(e) {
         e.preventDefault();
-
+        this.setState({
+           load: !this.state.load
+        });
         // start create account
         // const urlCreate = this.Auth.getDomain() + '/user/account/create';
         // const formDataCreate = {
@@ -131,6 +135,11 @@ class Account extends Component {
                 if(response.status == 200){
                     this.signXdr(response.data.xdr);
                 }
+            })
+            .catch(err =>{
+               this.setState({
+                   load: false,
+               })
             }),
 
         ]);
@@ -180,11 +189,27 @@ class Account extends Component {
     // }
 
     render() {
+        let loader = "";
+        if(this.state.load == false)
+        {
+            loader = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">SUBMIT</button>;
+        }
+        else if(this.state.load == true)
+        {
+            loader = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">
+                <Loader
+                    type="ThreeDots"
+                    color="#fff"
+                    height="20"
+                    width="40"
+                />
+            </button>;
+        }
         let accept;
         let acceptShow = <div className="col-12 p-2 mt-2 border-div rounded shadow-lg text-center">Submit</div>;
         if(this.state.term == "accept")
         {
-            acceptShow = <input className="col-12 bg-warning p-2 mt-2 rounded shadow-lg" value="SUBMIT" type="submit"/>;
+            acceptShow = loader;
         }
         let create;
         let have;

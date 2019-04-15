@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Container, Row, Col } from 'bootstrap-4-react';
 import AuthService from './AuthService.jsx';
 import Cookies from "universal-cookie";
+import Loader from 'react-loader-spinner'
 const cookie = new Cookies();
 
 class Login extends Component {
@@ -18,7 +19,8 @@ class Login extends Component {
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.showPlacholder = this.showPlacholder.bind(this);
         this.state = {
-            err: ""
+            err: "",
+            load: false
         }
     }
 
@@ -43,8 +45,11 @@ class Login extends Component {
     }
 
     handleFormSubmit(e) {
-
         e.preventDefault();
+        this.setState({
+            load: !this.state.load
+        });
+        console.log(e);
         this.Auth.login(this.state.mobile, this.state.password)
             .then(res => res.json())
             .then(response =>   {
@@ -55,6 +60,7 @@ class Login extends Component {
             .catch((err) => {
                 this.setState({
                     err : err,
+                    load: false
                 });
             });
     }
@@ -63,6 +69,23 @@ class Login extends Component {
         let saman ="";
         if(this.state.err != ""){
             saman = <div className="col-12"><div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">This phone number or password is incorrect</div></div>;
+        }
+
+        let loader = "";
+        if(this.state.load == false)
+        {
+            loader = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">SUBMIT</button>;
+        }
+        else if(this.state.load == true)
+        {
+            loader = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">
+                <Loader
+                type="ThreeDots"
+                color="#fff"
+                height="20"
+                width="40"
+                />
+            </button>;
         }
         return (
             <div className="col-sm-6 col-12 clearfix mx-auto">
@@ -82,7 +105,7 @@ class Login extends Component {
                                 <input className="input-placeholder col-12 mt-3 p-2 rounded shadow-lg" placeholder="Password" name="password" minLength="8" required="required" type="password" onChange={this.handleChange}/>
                             </div>
                         </div>
-                        <input className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light" value="SUBMIT" type="submit"/>
+                        {loader}
                     </form>
                 </div>
             </div>
