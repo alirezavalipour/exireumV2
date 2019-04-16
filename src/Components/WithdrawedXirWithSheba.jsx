@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Container, Row, Col } from 'bootstrap-4-react';
 import AuthService from './AuthService.jsx';
 import Loader from 'react-loader-spinner';
+import NumberFormat from 'react-number-format';
 var StellarSdk = require('stellar-sdk');
 class WithdrawedXirWithSheba extends Component {
 
@@ -35,7 +36,7 @@ class WithdrawedXirWithSheba extends Component {
 
 
         if(e.target.name == "amount"){
-            let amount =  e.target.value;
+            let amount =  parseFloat(e.target.value.replace(/,/g, ''));
             var url= `${this.Auth.domain}/user/convert?type=withdraw&amount=` + amount;
             const headers = {
                 Accept: 'application/json',
@@ -96,7 +97,7 @@ class WithdrawedXirWithSheba extends Component {
         });
         const url = `${this.Auth.domain}/user/stellar/withdraw`;
         const formData = {
-            amount: this.state.amount,
+            amount: parseFloat(this.state.amount.replace(/,/g, '')),
             public_key: this.state.public_key,
             sheba: this.state.sheba,
         };
@@ -201,7 +202,8 @@ class WithdrawedXirWithSheba extends Component {
                             <label className="col-12">
                                 <div className="row shadow-lg">
                                     <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Amount XIR (Exir)</span>
-                                    <input className="col-9 text-center rounded-right p-2" placeholder="" name="amount" minLength="5" type="tel" onChange={this.handleChange}/>
+                                    {/*<input className="col-9 text-center rounded-right p-2" placeholder="" name="amount" minLength="5" type="tel" onChange={this.handleChange}/>*/}
+                                    <NumberFormat className="col-9 text-center rounded-right p-2 text-light" thousandSeparator={true} minLength="5" name="amount" onChange={this.handleChange} />
                                 </div>
                             </label>
                             <label className="col-12 mt-3">

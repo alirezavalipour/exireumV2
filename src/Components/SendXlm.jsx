@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Container, Row, Col } from 'bootstrap-4-react';
 import AuthService from './AuthService.jsx';
 import Loader from 'react-loader-spinner';
+import NumberFormat from 'react-number-format';
 var StellarSdk = require('stellar-sdk');
 class SendXlm extends Component {
 
@@ -47,7 +48,7 @@ class SendXlm extends Component {
         StellarSdk.Network.useTestNetwork();
         var keypair = StellarSdk.Keypair.fromSecret(this.state.secret_key_source);
         var destination = this.state.public_key_dest;
-        var amount = this.state.amount;
+        var amount = parseFloat(this.state.amount.replace(/,/g, ''));
         server.loadAccount(keypair.publicKey())
             .then(result => {
                 var transaction = new StellarSdk.TransactionBuilder(result)
@@ -100,8 +101,8 @@ class SendXlm extends Component {
                             <label className="col-12">
                                 <div className="row shadow-lg">
                                     <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Amount XLM</span>
-                                    <input className="col-9 text-center rounded-right p-2" placeholder="" name="amount"
-                                           type="tel" onChange={this.handleChange}/>
+                                    {/*<input className="col-9 text-center rounded-right p-2" placeholder="" name="amount" type="tel" onChange={this.handleChange}/>*/}
+                                    <NumberFormat className="col-9 text-center rounded-right p-2 text-light" thousandSeparator={true} name="amount" onChange={this.handleChange} />
                                 </div>
                             </label>
                             <label className="col-12 mt-3">
