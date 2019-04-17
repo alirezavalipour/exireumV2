@@ -25,6 +25,7 @@ class WithdrawedXirWithSheba extends Component {
             sam: '',
             load1: false,
             load2: false,
+            sa: null
         }
     }
 
@@ -80,6 +81,7 @@ class WithdrawedXirWithSheba extends Component {
                     this.setState({
                         sheba: response.data[1].sheba
                     });
+                    this.shebaInfo(response.data[1].sheba);
                 }),
             axios.get(urlPublic, configPublic)
                 .then(response => {
@@ -88,6 +90,28 @@ class WithdrawedXirWithSheba extends Component {
                     });
                 })
         ]);
+    }
+
+    shebaInfo(x){
+        const url = this.Auth.getDomain() + '/user/bank/get-sheba-info';
+        const headers = {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${this.Auth.getToken()}`,
+        };
+
+        const formData = {
+            sheba: x,
+        };
+        var config = { headers };
+        return axios.get(url + "?sheba="+ x , config)
+            .then(response => {
+                this.setState({
+                    first_name: response.data.Data.AccountOwners[0].FirstName,
+                    last_name: response.data.Data.AccountOwners[0].LastName,
+
+                });
+            })
     }
 
     handleFormSubmit(e) {
@@ -230,11 +254,14 @@ class WithdrawedXirWithSheba extends Component {
                 <div className="col-sm-8 col-12 clearfix mx-auto">
                     <div className="row">
                         <h2 className="col-12 text-light text-center font-weight-bold mb-5">Withdrawed XIR with sheba</h2>
+                        <h5 className="col-12 text-center text-light font-size-bold">Sheba : {this.state.sheba}</h5>
+                        <h5 className="col-12 text-center text-light font-size-bold mt-3">First Name : {this.state.first_name}</h5>
+                        <h5 className="col-12 text-center text-light font-size-bold mt-3">Last Name : {this.state.last_name}</h5>
                         <form className="col-12" onSubmit={this.handleForSignWithSecretKey}>
                             <label className="col-12">
                                 <div className="row shadow-lg">
-                                    <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Secret key</span>
-                                    <input className="col-9 text-center rounded-right p-2" placeholder="SB3JKIKJ7ECA2GBB55KG55KRHUILGDHXZ5GZ5WBWYOFS7KU6JT73C7HX" name="secret_key" type="text" onChange={this.handleChange}/>
+                                    <span className="col-3 text-center text-light p-2 rounded-left bg-warning mt-3">Secret key</span>
+                                    <input className="col-9 text-center rounded-right p-2 mt-3" placeholder="SB3JKIKJ7ECA2GBB55KG55KRHUILGDHXZ5GZ5WBWYOFS7KU6JT73C7HX" name="secret_key" type="text" onChange={this.handleChange}/>
                                 </div>
                             </label>
                             {loader2}

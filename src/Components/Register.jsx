@@ -66,7 +66,7 @@ class Register extends Component {
         let error="";
         if(this.state.err != "")
         {
-            error = <div className="col-12"><div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-cente mb-5r">This phone number and email is incorrect</div></div>;
+            error = <div className="col-12"><div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-cente mb-5r">The phone number or email already exists</div></div>;
         }
 
         let loader = "";
@@ -89,7 +89,7 @@ class Register extends Component {
             <div className="col-sm-6 col-12 clearfix mx-auto">
                 <div className="row">
                     {error}
-                    <h2 className="col-12 text-light text-center font-weight-bold mb-5">Register</h2>
+                    <h2 className="col-12 text-light text-center font-weight-bold mb-5">Sign Up</h2>
                     <form className="col-12" onSubmit={this.handleFormSubmit}>
                         <div className="col-12" onChange={this.showPlacholder} onClick={this.showPlacholder}>
                             <div className="row">
