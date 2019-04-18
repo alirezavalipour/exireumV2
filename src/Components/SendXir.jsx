@@ -10,6 +10,26 @@ import Loader from 'react-loader-spinner';
 import NumberFormat from 'react-number-format';
 var StellarSdk = require('stellar-sdk');
 
+const isValidSecretKey = input => {
+    try {
+        StellarSdk.Keypair.fromSecret(input);
+        return true;
+    } catch (e) {
+        // console.error(e);
+        return false;
+    }
+};
+
+const isValidPublicKey = input => {
+    try {
+        StellarSdk.Keypair.fromPublicKey(input);
+        return true;
+    } catch (e) {
+        // console.error(e);
+        return false;
+    }
+};
+
 class SendXir extends Component {
 
     constructor() {
@@ -24,7 +44,9 @@ class SendXir extends Component {
             data: '',
             sam: '',
             hash: false,
-            load: false
+            load: false,
+            inValidSecretKey: false,
+            inValidPublicKey: false,
         }
     }
 
@@ -43,6 +65,13 @@ class SendXir extends Component {
 
     handleFormSubmit(e) {
         e.preventDefault();
+        if (!isValidSecretKey(this.state.secret_key_source)  && !isValidPublicKey(this.state.public_key_dest)) {
+            this.setState({
+                inValidSecretKey: true,
+                inValidPublicKey: true,
+            });
+            return true;
+        }
         this.setState({
             load: !this.state.load,
         });
@@ -50,7 +79,7 @@ class SendXir extends Component {
         StellarSdk.Network.useTestNetwork();
         var keypair = StellarSdk.Keypair.fromSecret(this.state.secret_key_source);
         var destination = this.state.public_key_dest;
-        var amount = parseFloat(this.state.amount.replace(/,/g, ''));
+        var amount = this.state.amount.replace(/,/g, '');
         var issuingKeys = StellarSdk.Keypair.fromSecret('SCWZO5OVQLGZ36BNDCDTQOZAYAXVDCHUKS6SFPQSPCPNDLLB6S6IU2NK');
         var XIR = new StellarSdk.Asset('XIR', issuingKeys.publicKey());
         server.loadAccount(keypair.publicKey())
@@ -67,19 +96,57 @@ class SendXir extends Component {
              server.submitTransaction(transaction)
                  .then( res => {
                     this.setState({
-                        hash: res.hash
+                        hash: res.hash,
                     });
+                    console.log(res);
                 })
                  .catch(err =>{
                      this.setState({
-                         load: false
-                     })
+                         load: false,
+                         failed: err.data.extras.result_codes.transaction
+                     });
+                     console.log(err.response);
                  })
         });
 
     }
 
     render() {
+        // let failTransaction = "";
+        // if(this.state.failed == 'tx_bad_auth')
+        // {
+        //     this.state.load2 = false;
+        //     failTransaction = <div className="col-12">
+        //         <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
+        //             This Secret key not belong to register stellar account
+        //         </div>
+        //     </div>;
+        // }
+        let valid = "";
+        if(this.state.inValidSecretKey == true && this.state.inValidPublicKey == false)
+        {
+            valid = <div className="col-12">
+                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
+                    Your Secret key invalid
+                </div>
+            </div>;
+        }
+        else if(this.state.inValidPublicKey == true && this.state.inValidSecretKey == false)
+        {
+            valid = <div className="col-12">
+                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
+                    Your Public key invalid
+                </div>
+            </div>;
+        }
+        else if(this.state.inValidPublicKey == true && this.state.inValidSecretKey == true)
+        {
+            valid = <div className="col-12">
+                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
+                    Your Public key and Secret key invalid
+                </div>
+            </div>;
+        }
         let loader = "";
         if(this.state.load == false)
         {
@@ -100,6 +167,8 @@ class SendXir extends Component {
             return (
                 <div className="col-sm-8 col-12 clearfix mx-auto">
                     <div className="row">
+                        {/*{failTransaction}*/}
+                        {valid}
                         <h2 className="col-12 text-light text-center font-weight-bold mb-5">Send XIR</h2>
                         <form className="col-12" onSubmit={this.handleFormSubmit}>
                             <label className="col-12">

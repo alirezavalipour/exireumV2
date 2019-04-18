@@ -1,13 +1,24 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import '../App.css';
 import axios from 'axios';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { Container, Row, Col } from 'bootstrap-4-react';
+import {library} from '@fortawesome/fontawesome-svg-core';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {BrowserRouter as Router, Route, Link} from "react-router-dom";
+import {Container, Row, Col} from 'bootstrap-4-react';
 import AuthService from './AuthService.jsx';
 import Loader from 'react-loader-spinner';
 var StellarSdk = require('stellar-sdk');
+
+const isValidSecretKey = input => {
+    try {
+        StellarSdk.Keypair.fromSecret(input);
+        return true;
+    } catch (e) {
+        // console.error(e);
+        return false;
+    }
+};
+
 class PayingTheBill extends Component {
 
     constructor() {
@@ -18,11 +29,12 @@ class PayingTheBill extends Component {
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.handleForSignWithSecretKey = this.handleForSignWithSecretKey.bind(this);
         this.state = {
-            public_key:'',
-            xdr:'',
-            hash:'',
+            public_key: '',
+            xdr: '',
+            hash: '',
             load1: false,
-            load2: false
+            load2: false,
+            inValidSecretKey: false,
         }
     }
 
@@ -33,171 +45,151 @@ class PayingTheBill extends Component {
             });
     }
 
-    checkBill(y)
-    {
+    checkBill(y) {
         let a = [];
         let b = [];
         let c = 0;
         let d = 0;
-        for(let i = 0;i < y.length;i++)
-        {
-            a[i] = parseInt((y / Math.pow(10,i)) % 10);
+        for (let i = 0; i < y.length; i++) {
+            a[i] = parseInt((y / Math.pow(10, i)) % 10);
         }
-        b[1] = a[1]*2;
-        b[2] = a[2]*3;
-        b[3] = a[3]*4;
-        b[4] = a[4]*5;
-        b[5] = a[5]*6;
+        b[1] = a[1] * 2;
+        b[2] = a[2] * 3;
+        b[3] = a[3] * 4;
+        b[4] = a[4] * 5;
+        b[5] = a[5] * 6;
         c = b[1] + b[2] + b[3] + b[4] + b[5];
-        if(a[6])
-        {
-            b[6] = a[6]*7;
+        if (a[6]) {
+            b[6] = a[6] * 7;
             c = b[1] + b[2] + b[3] + b[4] + b[5] + b[6];
         }
-        if(a[7])
-        {
-            b[6] = a[6]*7;
-            b[7] = a[7]*2;
+        if (a[7]) {
+            b[6] = a[6] * 7;
+            b[7] = a[7] * 2;
             c = b[1] + b[2] + b[3] + b[4] + b[5] + b[6] + b[7];
         }
-        if(a[8])
-        {
-            b[6] = a[6]*7;
-            b[7] = a[7]*2;
-            b[8] = a[8]*3;
+        if (a[8]) {
+            b[6] = a[6] * 7;
+            b[7] = a[7] * 2;
+            b[8] = a[8] * 3;
             c = b[1] + b[2] + b[3] + b[4] + b[5] + b[6] + b[7] + b[8];
         }
-        if(a[9])
-        {
-            b[6] = a[6]*7;
-            b[7] = a[7]*2;
-            b[8] = a[8]*3;
-            b[9] = a[9]*4;
+        if (a[9]) {
+            b[6] = a[6] * 7;
+            b[7] = a[7] * 2;
+            b[8] = a[8] * 3;
+            b[9] = a[9] * 4;
             c = b[1] + b[2] + b[3] + b[4] + b[5] + b[6] + b[7] + b[8] + b[9];
         }
-        if(a[10])
-        {
-            b[6] = a[6]*7;
-            b[7] = a[7]*2;
-            b[8] = a[8]*3;
-            b[9] = a[9]*4;
-            b[10] = a[10]*5;
+        if (a[10]) {
+            b[6] = a[6] * 7;
+            b[7] = a[7] * 2;
+            b[8] = a[8] * 3;
+            b[9] = a[9] * 4;
+            b[10] = a[10] * 5;
             c = b[1] + b[2] + b[3] + b[4] + b[5] + b[6] + b[7] + b[8] + b[9] + b[10];
         }
-        if(a[11])
-        {
-            b[6] = a[6]*7;
-            b[7] = a[7]*2;
-            b[8] = a[8]*3;
-            b[9] = a[9]*4;
-            b[10] = a[10]*5;
-            b[11] = a[11]*6;
+        if (a[11]) {
+            b[6] = a[6] * 7;
+            b[7] = a[7] * 2;
+            b[8] = a[8] * 3;
+            b[9] = a[9] * 4;
+            b[10] = a[10] * 5;
+            b[11] = a[11] * 6;
             c = b[1] + b[2] + b[3] + b[4] + b[5] + b[6] + b[7] + b[8] + b[9] + b[10] + b[11];
         }
-        if(a[12])
-        {
-            b[6] = a[6]*7;
-            b[7] = a[7]*2;
-            b[8] = a[8]*3;
-            b[9] = a[9]*4;
-            b[10] = a[10]*5;
-            b[11] = a[11]*6;
-            b[12] = a[12]*7;
+        if (a[12]) {
+            b[6] = a[6] * 7;
+            b[7] = a[7] * 2;
+            b[8] = a[8] * 3;
+            b[9] = a[9] * 4;
+            b[10] = a[10] * 5;
+            b[11] = a[11] * 6;
+            b[12] = a[12] * 7;
             c = b[1] + b[2] + b[3] + b[4] + b[5] + b[6] + b[7] + b[8] + b[9] + b[10] + b[11] + b[12];
         }
-        d = 11 - (c%11);
+        d = 11 - (c % 11);
         this.setState({
             bill: a[1],
             billValid: d,
             valid: a[0]
         });
-        if (d == a[0])
-        {
+        if (d == a[0]) {
             return true;
         }
         return false;
     }
 
-    checkPayment(x)
-    {
+    checkPayment(x) {
         let a = [];
         let b = [];
         let c = 0;
         let d = 0;
-        let e = parseInt(x/100000) * 1000;
-        for(let i = 0;i < x.length;i++)
-        {
-            a[i] = parseInt((x / Math.pow(10,i)) % 10);
+        let e = parseInt(x / 100000) * 1000;
+        for (let i = 0; i < x.length; i++) {
+            a[i] = parseInt((x / Math.pow(10, i)) % 10);
         }
-        b[2] = a[2]*2;
-        b[3] = a[3]*3;
-        b[4] = a[4]*4;
-        b[5] = a[5]*5;
+        b[2] = a[2] * 2;
+        b[3] = a[3] * 3;
+        b[4] = a[4] * 4;
+        b[5] = a[5] * 5;
         c = b[2] + b[3] + b[4] + b[5];
-        if(a[6])
-        {
-            b[6] = a[6]*6;
+        if (a[6]) {
+            b[6] = a[6] * 6;
             c = b[2] + b[3] + b[4] + b[5] + b[6];
         }
-        if(a[7])
-        {
-            b[6] = a[6]*6;
-            b[7] = a[7]*7;
+        if (a[7]) {
+            b[6] = a[6] * 6;
+            b[7] = a[7] * 7;
             c = b[2] + b[3] + b[4] + b[5] + b[6] + b[7];
         }
-        if(a[8])
-        {
-            b[6] = a[6]*6;
-            b[7] = a[7]*7;
-            b[8] = a[8]*2;
+        if (a[8]) {
+            b[6] = a[6] * 6;
+            b[7] = a[7] * 7;
+            b[8] = a[8] * 2;
             c = b[2] + b[3] + b[4] + b[5] + b[6] + b[7] + b[8];
         }
-        if(a[9])
-        {
-            b[6] = a[6]*6;
-            b[7] = a[7]*7;
-            b[8] = a[8]*2;
-            b[9] = a[9]*3;
+        if (a[9]) {
+            b[6] = a[6] * 6;
+            b[7] = a[7] * 7;
+            b[8] = a[8] * 2;
+            b[9] = a[9] * 3;
             c = b[2] + b[3] + b[4] + b[5] + b[6] + b[7] + b[8] + b[9];
         }
-        if(a[10])
-        {
-            b[6] = a[6]*6;
-            b[7] = a[7]*7;
-            b[8] = a[8]*2;
-            b[9] = a[9]*3;
-            b[10] = a[10]*4;
+        if (a[10]) {
+            b[6] = a[6] * 6;
+            b[7] = a[7] * 7;
+            b[8] = a[8] * 2;
+            b[9] = a[9] * 3;
+            b[10] = a[10] * 4;
             c = b[2] + b[3] + b[4] + b[5] + b[6] + b[7] + b[8] + b[9] + b[10];
         }
-        if(a[11])
-        {
-            b[6] = a[6]*6;
-            b[7] = a[7]*7;
-            b[8] = a[8]*2;
-            b[9] = a[9]*3;
-            b[10] = a[10]*4;
-            b[11] = a[11]*5;
+        if (a[11]) {
+            b[6] = a[6] * 6;
+            b[7] = a[7] * 7;
+            b[8] = a[8] * 2;
+            b[9] = a[9] * 3;
+            b[10] = a[10] * 4;
+            b[11] = a[11] * 5;
             c = b[2] + b[3] + b[4] + b[5] + b[6] + b[7] + b[8] + b[9] + b[10] + b[11];
         }
-        if(a[12])
-        {
-            b[6] = a[6]*6;
-            b[7] = a[7]*7;
-            b[8] = a[8]*2;
-            b[9] = a[9]*3;
-            b[10] = a[10]*4;
-            b[11] = a[11]*5;
-            b[12] = a[12]*6;
+        if (a[12]) {
+            b[6] = a[6] * 6;
+            b[7] = a[7] * 7;
+            b[8] = a[8] * 2;
+            b[9] = a[9] * 3;
+            b[10] = a[10] * 4;
+            b[11] = a[11] * 5;
+            b[12] = a[12] * 6;
             c = b[2] + b[3] + b[4] + b[5] + b[6] + b[7] + b[8] + b[9] + b[10] + b[11] + b[12];
         }
-        d = 11 - (c%11);
+        d = 11 - (c % 11);
         this.setState({
             payment: e,
             paymentValid: d,
             payValid: a[1]
         });
-        if (d == a[1])
-        {
+        if (d == a[1]) {
             return true;
         }
         return false;
@@ -216,7 +208,7 @@ class PayingTheBill extends Component {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${this.Auth.getToken()}`,
         };
-        var config = { headers };
+        var config = {headers};
         return axios.get(url, config)
             .then(response => {
                 this.setState({
@@ -225,9 +217,9 @@ class PayingTheBill extends Component {
             });
     }
 
-    handleFormSubmit(e){
+    handleFormSubmit(e) {
         e.preventDefault();
-        if(this.checkBill(this.state.billing_code) && this.checkPayment(this.state.payment_code)) {
+        if (this.checkBill(this.state.billing_code) && this.checkPayment(this.state.payment_code)) {
             this.setState({
                 load1: !this.state.load1
             });
@@ -258,8 +250,14 @@ class PayingTheBill extends Component {
         }
     }
 
-    handleForSignWithSecretKey(e){
+    handleForSignWithSecretKey(e) {
         e.preventDefault();
+        if (!isValidSecretKey(this.state.secret_key)) {
+            this.setState({
+                inValidSecretKey: true,
+            });
+            return true;
+        }
         this.setState({
             load2: !this.state.load2
         });
@@ -281,14 +279,15 @@ class PayingTheBill extends Component {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${this.Auth.getToken()}`,
         };
-        var config = { headers };
+        var config = {headers};
         return axios.post(url, formData, config)
-            .then(response =>{
+            .then(response => {
                 this.setState({
-                    hash: response.data.hash
+                    hash: response.data.hash,
+                    failed: response.data.extras.result_codes.transaction
                 });
             })
-            .catch(err =>{
+            .catch(err => {
                 this.setState({
                     load2: false
                 })
@@ -296,10 +295,32 @@ class PayingTheBill extends Component {
     }
 
     render() {
-        let error='';
-        if(!(this.state.billValid == this.state.valid && this.state.paymentValid == this.state.payValid))
+        let failTransaction = "";
+        if(this.state.failed == 'tx_bad_auth')
         {
-            error = <div className="col-12"><div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">This billing code or payment code is incorrect</div></div>
+            this.state.load2 = false;
+            failTransaction = <div className="col-12">
+                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
+                    This Secret key not belong to register stellar account
+                </div>
+            </div>;
+        }
+        let validSecret = "";
+        if(this.state.inValidSecretKey == true)
+        {
+            validSecret = <div className="col-12">
+                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
+                    Your Secret key invalid
+                </div>
+            </div>;
+        }
+        let error = '';
+        if (!(this.state.billValid == this.state.valid && this.state.paymentValid == this.state.payValid)) {
+            error = <div className="col-12">
+                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
+                    This billing code or payment code is incorrect
+                </div>
+            </div>
         }
         const project = () => {
             switch (this.state.bill) {
@@ -324,13 +345,10 @@ class PayingTheBill extends Component {
             }
         }
         let loader = "";
-        let loader2 ="";
-        if(this.state.load1 == false)
-        {
+        let loader2 = "";
+        if (this.state.load1 == false) {
             loader = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">SUBMIT</button>;
-        }
-        else if(this.state.load1 == true)
-        {
+        } else if (this.state.load1 == true) {
             loader = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">
                 <Loader
                     type="ThreeDots"
@@ -340,12 +358,9 @@ class PayingTheBill extends Component {
                 />
             </button>;
         }
-        if(this.state.load2 == false)
-        {
+        if (this.state.load2 == false) {
             loader2 = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">SUBMIT</button>;
-        }
-        else if(this.state.load2 == true)
-        {
+        } else if (this.state.load2 == true) {
             loader2 = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">
                 <Loader
                     type="ThreeDots"
@@ -365,13 +380,15 @@ class PayingTheBill extends Component {
                             <label className="col-12">
                                 <div className="row shadow-lg">
                                     <span className="col-3 bg-warning p-2 rounded-left text-center text-light">Billing code</span>
-                                    <input className="col-9 p-2 rounded-right text-center" placeholder="" name="billing_code" type="tel" onChange={this.handleChange}/>
+                                    <input className="col-9 p-2 rounded-right text-center" placeholder=""
+                                           name="billing_code" type="tel" onChange={this.handleChange}/>
                                 </div>
                             </label>
                             <label className="col-12 mt-3">
                                 <div className="row shadow-lg">
                                     <span className="col-3 bg-warning p-2 rounded-left text-center text-light">Payment code</span>
-                                    <input className="col-9 p-2 rounded-right text-center" placeholder="" name="payment_code" type="tel" onChange={this.handleChange}/>
+                                    <input className="col-9 p-2 rounded-right text-center" placeholder=""
+                                           name="payment_code" type="tel" onChange={this.handleChange}/>
                                 </div>
                             </label>
                             {loader}
@@ -383,6 +400,8 @@ class PayingTheBill extends Component {
             return (
                 <div className="col-sm-8 col-12 clearfix mx-auto">
                     <div className="row">
+                        {validSecret}
+                        {failTransaction}
                         <h2 className="col-12 text-light font-weight-bold mb-5 text-center">Paying the bill</h2>
                         <div className="col-12 text-cenetr text-light font-weight-bold">
                             {project()}
@@ -392,7 +411,9 @@ class PayingTheBill extends Component {
                             <label className="col-12">
                                 <div className="row shadow-lg">
                                     <span className="col-3 text-center text-light p-2 rounded-left bg-warning mt-3">Secret key</span>
-                                    <input className="col-9 text-center rounded-right p-2 mt-3" placeholder="SB3JKIKJ7ECA2GBB55KG55KRHUILGDHXZ5GZ5WBWYOFS7KU6JT73C7HX" name="secret_key" type="text" onChange={this.handleChange}/>
+                                    <input className="col-9 text-center rounded-right p-2 mt-3"
+                                           placeholder="SB3JKIKJ7ECA2GBB55KG55KRHUILGDHXZ5GZ5WBWYOFS7KU6JT73C7HX"
+                                           name="secret_key" type="text" onChange={this.handleChange}/>
                                 </div>
                             </label>
                             {loader2}
@@ -400,8 +421,8 @@ class PayingTheBill extends Component {
                     </div>
                 </div>
             );
-        } else if(this.state.hash){
-            return(
+        } else if (this.state.hash) {
+            return (
                 <div className="col-sm-8 col-12 clearfix mx-auto">
                     <div className="row">
                         <h2 className="col-12 text-light text-center font-weight-bold mb-5">Paying the bill</h2>
