@@ -9,6 +9,17 @@ import AuthService from './AuthService.jsx';
 import Loader from 'react-loader-spinner';
 import NumberFormat from 'react-number-format';
 var StellarSdk = require('stellar-sdk');
+
+const isValidSecretKey = input => {
+    try {
+        StellarSdk.Keypair.fromSecret(input);
+        return true;
+    } catch (e) {
+        // console.error(e);
+        return false;
+    }
+};
+
 class WithdrawedXirWithSheba extends Component {
 
     constructor() {
@@ -25,7 +36,7 @@ class WithdrawedXirWithSheba extends Component {
             sam: '',
             load1: false,
             load2: false,
-            sa: null
+            inValidSecretKey: false,
         }
     }
 
@@ -145,6 +156,12 @@ class WithdrawedXirWithSheba extends Component {
 
     handleForSignWithSecretKey(e){
         e.preventDefault();
+        if (!isValidSecretKey(this.state.secret_key)) {
+            this.setState({
+                inValidSecretKey: true,
+            });
+            return true;
+        }
         this.setState({
            load2:!this.state.load2
         });
@@ -169,7 +186,8 @@ class WithdrawedXirWithSheba extends Component {
         return axios.post(url, formData, config)
             .then(response =>{
                 this.setState({
-                    hash: response.data.hash
+                    hash: response.data.hash,
+                    failed: response.data.extras.result_codes.transaction
                 })
                 if(response.status == 200){
                 }
@@ -183,6 +201,26 @@ class WithdrawedXirWithSheba extends Component {
 
 
     render() {
+        let failTransaction = "";
+        if(this.state.failed == 'tx_bad_auth')
+        {
+            this.state.load2 = false;
+            this.state.inValidSecretKey = false;
+            failTransaction = <div className="col-12">
+                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
+                    This Secret key not belong to register stellar account
+                </div>
+            </div>;
+        }
+        let validSecret = "";
+        if(this.state.inValidSecretKey == true)
+        {
+            validSecret = <div className="col-12">
+                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
+                    Your Secret key invalid
+                </div>
+            </div>;
+        }
         let loader = "";
         let loader2 ="";
         if(this.state.load1 == false)
@@ -253,6 +291,8 @@ class WithdrawedXirWithSheba extends Component {
             return(
                 <div className="col-sm-8 col-12 clearfix mx-auto">
                     <div className="row">
+                        {validSecret}
+                        {failTransaction}
                         <h2 className="col-12 text-light text-center font-weight-bold mb-5">Withdrawed XIR with sheba</h2>
                         <h5 className="col-12 text-center text-light font-size-bold">Sheba : {this.state.sheba}</h5>
                         <h5 className="col-12 text-center text-light font-size-bold mt-3">First Name : {this.state.first_name}</h5>

@@ -65,7 +65,21 @@ class SendXir extends Component {
 
     handleFormSubmit(e) {
         e.preventDefault();
-        if (!isValidSecretKey(this.state.secret_key_source)  && !isValidPublicKey(this.state.public_key_dest)) {
+        if(!isValidSecretKey(this.state.secret_key_source)  && isValidPublicKey(this.state.public_key_dest))
+        {
+            this.setState({
+                inValidSecretKey: true,
+            });
+            return true;
+        }
+        else if(isValidSecretKey(this.state.secret_key_source)  && !isValidPublicKey(this.state.public_key_dest))
+        {
+            this.setState({
+                inValidPublicKey: true,
+            });
+            return true;
+        }
+        if (!(isValidSecretKey(this.state.secret_key_source)  && isValidPublicKey(this.state.public_key_dest))) {
             this.setState({
                 inValidSecretKey: true,
                 inValidPublicKey: true,
@@ -98,30 +112,53 @@ class SendXir extends Component {
                     this.setState({
                         hash: res.hash,
                     });
-                    console.log(res);
                 })
                  .catch(err =>{
+                     let datas = err.response;
                      this.setState({
                          load: false,
-                         failed: err.data.extras.result_codes.transaction
+                         failed: datas.data.extras.result_codes.operations[0]
                      });
-                     console.log(err.response);
                  })
         });
 
     }
 
     render() {
-        // let failTransaction = "";
-        // if(this.state.failed == 'tx_bad_auth')
-        // {
-        //     this.state.load2 = false;
-        //     failTransaction = <div className="col-12">
-        //         <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
-        //             This Secret key not belong to register stellar account
-        //         </div>
-        //     </div>;
-        // }
+        let failTransaction = "";
+        if(this.state.failed == 'op_underfunded')
+        {
+            this.state.load2 = false;
+            this.state.inValidPublicKey = false;
+            this.state.inValidSecretKey = false;
+            failTransaction = <div className="col-12">
+                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
+                    Your account doesn't have enough XIR to send
+                </div>
+            </div>;
+        }
+        else if(this.state.failed == 'op_no_trust')
+        {
+            this.state.load2 = false;
+            this.state.inValidPublicKey = false;
+            this.state.inValidSecretKey = false;
+            failTransaction = <div className="col-12">
+                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
+                    Receiver account doesn't have trust to XIR
+                </div>
+            </div>;
+        }
+        else if(this.state.failed == 'op_src_no_trust')
+        {
+            this.state.load2 = false;
+            this.state.inValidPublicKey = false;
+            this.state.inValidSecretKey = false;
+            failTransaction = <div className="col-12">
+                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
+                    Your account doesn't Have trust to XIR
+                </div>
+            </div>;
+        }
         let valid = "";
         if(this.state.inValidSecretKey == true && this.state.inValidPublicKey == false)
         {
@@ -167,7 +204,7 @@ class SendXir extends Component {
             return (
                 <div className="col-sm-8 col-12 clearfix mx-auto">
                     <div className="row">
-                        {/*{failTransaction}*/}
+                        {failTransaction}
                         {valid}
                         <h2 className="col-12 text-light text-center font-weight-bold mb-5">Send XIR</h2>
                         <form className="col-12" onSubmit={this.handleFormSubmit}>

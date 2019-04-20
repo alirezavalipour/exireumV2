@@ -8,15 +8,26 @@ import { Container, Row, Col } from 'bootstrap-4-react';
 import AuthService from './AuthService.jsx';
 import Loader from 'react-loader-spinner';
 var StellarSdk = require('stellar-sdk');
+
+const isValidSecretKey = input => {
+    try {
+        StellarSdk.Keypair.fromSecret(input);
+        return true;
+    } catch (e) {
+        // console.error(e);
+        return false;
+    }
+};
+
 const isValidPublicKey = input => {
     try {
         StellarSdk.Keypair.fromPublicKey(input);
         return true;
     } catch (e) {
-        //console.error(e);
+        // console.error(e);
         return false;
     }
-}
+};
 
 class Account extends Component {
 
@@ -35,7 +46,9 @@ class Account extends Component {
             newKeypair: 'null',
             termsAccepted: false,
             term:"",
-            load: false
+            load: false,
+            inValidSecretKey: false,
+            inValidPublicKey: false,
         }
         this.handleGenerate = event => {
             let keypair = StellarSdk.Keypair.random();
@@ -68,6 +81,27 @@ class Account extends Component {
 
     handleFormSubmit(e) {
         e.preventDefault();
+        if(!isValidSecretKey(this.state.secret_key)  && isValidPublicKey(this.state.public_key))
+        {
+            this.setState({
+                inValidSecretKey: true,
+            });
+            return true;
+        }
+        else if(isValidSecretKey(this.state.secret_key)  && !isValidPublicKey(this.state.public_key))
+        {
+            this.setState({
+                inValidPublicKey: true,
+            });
+            return true;
+        }
+        if (!(isValidSecretKey(this.state.secret_key)  && isValidPublicKey(this.state.public_key))) {
+            this.setState({
+                inValidSecretKey: true,
+                inValidPublicKey: true,
+            });
+            return true;
+        }
         this.setState({
            load: !this.state.load
         });
@@ -124,6 +158,10 @@ class Account extends Component {
             .then(response =>{
                 if(response.status == 200){
                 }
+                console.log(response);
+            })
+            .catch(err=>{
+                console.log(err.response);
             }),
         axios.post(urlAdd, formDataAdd, configAdd)
             .then(response =>{
@@ -167,7 +205,7 @@ class Account extends Component {
         return axios.post(url, formData, config)
             .then(response =>{
                 if(response.status == 200){
-                    window.location.replace('/Components/Dashboard');
+                    // window.location.replace('/Components/Dashboard');
                 }
             })
     }
@@ -189,6 +227,31 @@ class Account extends Component {
     // }
 
     render() {
+        let valid = "";
+        if(this.state.inValidSecretKey == true && this.state.inValidPublicKey == false)
+        {
+            valid = <div className="col-12">
+                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
+                    Your Secret key invalid
+                </div>
+            </div>;
+        }
+        else if(this.state.inValidPublicKey == true && this.state.inValidSecretKey == false)
+        {
+            valid = <div className="col-12">
+                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
+                    Your Public key invalid
+                </div>
+            </div>;
+        }
+        else if(this.state.inValidPublicKey == true && this.state.inValidSecretKey == true)
+        {
+            valid = <div className="col-12">
+                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
+                    Your Public key and Secret key invalid
+                </div>
+            </div>;
+        }
         let loader = "";
         if(this.state.load == false)
         {
@@ -274,6 +337,7 @@ class Account extends Component {
         return (
             <div className="col-sm-6 col-12 clearfix mx-auto">
                 <div className="row">
+                    {valid}
                     <h2 className="col-12 text-light text-center font-weight-bold mb-5">Account</h2>
                     <form className="col-12" onSubmit={this.handleFormSubmit}>
                         <div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>

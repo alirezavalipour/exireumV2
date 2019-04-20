@@ -56,13 +56,26 @@ class sms extends Component {
         });
         this.Auth.sms(this.state.temporary_code)
             .then((res) => {
-                window.location.replace('/Components/Confirmpassword');
+                this.setState({
+                    message2: res.data.message,
+                });
+                if(!this.state.message2)
+                {
+                    window.location.replace('/Components/Confirmpassword');
+                }
+                console.log(res);
             })
             .catch((err) => {
-                alert(err);
+                let mess = err.response;
                 this.setState({
                     load: false,
-                })
+                    message1: mess.data.message
+                });
+                if(!this.state.message1)
+                {
+                    window.location.replace('/Components/Confirmpassword');
+                }
+                console.log(err.response);
             });
     }
 
@@ -71,6 +84,15 @@ class sms extends Component {
     }
 
     render() {
+        let mes ='';
+        if (this.state.message1 || this.state.message2)
+        {
+            mes = <div className="col-12">
+                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
+                    The verification code is invalid
+                </div>
+            </div>;
+        }
 
         let loader = "";
         if(this.state.load == false)
@@ -91,6 +113,7 @@ class sms extends Component {
         return(
             <div className="col-sm-6 col-12 clearfix mx-auto">
                 <div className="row">
+                    {mes}
                     <h2 className="col-12 text-light text-center font-weight-bold mb-5">Verify</h2>
                     <div className="col-12 text-light text-center mb-5">Please enter the verification code sent to your phone by SMS</div>
                     <form  className="col-12" onSubmit={this.handleFormSubmit}>

@@ -43,30 +43,74 @@ class Register extends Component {
             });
     }
 
+    checkNationalNumber(x) {
+        let a = [];
+        let b = [];
+        let c = 0;
+        let d = 0;
+        for (let i = 0; i < x.length; i++) {
+            a[i] = parseInt((x / Math.pow(10, i)) % 10);
+        }
+        b[1] = a[1] * 2;
+        b[2] = a[2] * 3;
+        b[3] = a[3] * 4;
+        b[4] = a[4] * 5;
+        b[5] = a[5] * 6;
+        b[6] = a[6] * 7;
+        b[7] = a[7] * 8;
+        b[8] = a[8] * 9;
+        b[9] = a[9] * 10;
+        c = b[1] + b[2] + b[3] + b[4] + b[5] + b[6] + b[7] + b[8] + b[9];
+        d = 11 - (c % 11);
+        this.setState({
+            nationalNumberValid: d,
+            valid: a[0]
+        });
+        if (d == a[0]) {
+            return true;
+        }
+        return false;
+    }
+
+
     handleFormSubmit(e) {
         e.preventDefault();
-        this.setState({
-            load: !this.state.load
-        });
-        window.localStorage.setItem('mobile' , this.state.mobile);
-        this.Auth.register(this.state.username, this.state.email, this.state.first_name, this.state.last_name, this.state.national_number, this.state.address, this.state.mobile)
-            .then((res) => {
-                window.location.replace('/Components/Verify');
-            })
-            .catch((err) => {
-                this.setState({
-                    err : err,
-                    load: false
-                });
+        if (this.checkNationalNumber(this.state.national_number)) {
+            this.setState({
+                load: !this.state.load
             });
+            window.localStorage.setItem('mobile', this.state.mobile);
+            this.Auth.register(this.state.username, this.state.email, this.state.first_name, this.state.last_name, this.state.national_number, this.state.address, this.state.mobile)
+                .then((res) => {
+                    window.location.replace('/Components/Verify');
+                })
+                .catch((err) => {
+                    this.setState({
+                        err: err,
+                        load: false
+                    });
+                });
+        }
     }
 
     render() {
-
-        let error="";
+        let error = '';
+        if (!(this.state.nationalNumberValidValid == this.state.valid)) {
+            error = <div className="col-12">
+                <div className="col-12 bg-danger text-light p-2 rounded shadow-lg text-center mb-5">
+                    This national code is incorrect
+                </div>
+            </div>
+        }
+        let errors="";
         if(this.state.err != "")
         {
-            error = <div className="col-12"><div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-cente mb-5r">The phone number or email already exists</div></div>;
+            error="";
+            errors = <div className="col-12">
+                <div className="col-12 bg-danger text-light p-2 rounded shadow-lg text-center mb-5">
+                    The phone number or email already exists
+                </div>
+            </div>;
         }
 
         let loader = "";
@@ -89,6 +133,7 @@ class Register extends Component {
             <div className="col-sm-6 col-12 clearfix mx-auto">
                 <div className="row">
                     {error}
+                    {errors}
                     <h2 className="col-12 text-light text-center font-weight-bold mb-5">Sign Up</h2>
                     <form className="col-12" onSubmit={this.handleFormSubmit}>
                         <div className="col-12" onChange={this.showPlacholder} onClick={this.showPlacholder}>

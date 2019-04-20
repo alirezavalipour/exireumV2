@@ -214,6 +214,7 @@ class PayingTheBill extends Component {
                 this.setState({
                     public_key: response.data[0].public_key
                 });
+                console.log(this.state.public_key);
             });
     }
 
@@ -299,6 +300,7 @@ class PayingTheBill extends Component {
         if(this.state.failed == 'tx_bad_auth')
         {
             this.state.load2 = false;
+            this.state.inValidSecretKey = false;
             failTransaction = <div className="col-12">
                 <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
                     This Secret key not belong to register stellar account

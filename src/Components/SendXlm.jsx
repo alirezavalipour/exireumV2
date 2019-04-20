@@ -9,6 +9,27 @@ import AuthService from './AuthService.jsx';
 import Loader from 'react-loader-spinner';
 import NumberFormat from 'react-number-format';
 var StellarSdk = require('stellar-sdk');
+
+const isValidSecretKey = input => {
+    try {
+        StellarSdk.Keypair.fromSecret(input);
+        return true;
+    } catch (e) {
+        // console.error(e);
+        return false;
+    }
+};
+
+const isValidPublicKey = input => {
+    try {
+        StellarSdk.Keypair.fromPublicKey(input);
+        return true;
+    } catch (e) {
+        // console.error(e);
+        return false;
+    }
+};
+
 class SendXlm extends Component {
 
     constructor() {
@@ -23,7 +44,9 @@ class SendXlm extends Component {
             data: '',
             sam: '',
             hash:false,
-            load: false
+            load: false,
+            inValidSecretKey: false,
+            inValidPublicKey: false,
         }
     }
 
@@ -41,6 +64,27 @@ class SendXlm extends Component {
 
     handleFormSubmit(e) {
         e.preventDefault();
+        if(!isValidSecretKey(this.state.secret_key_source)  && isValidPublicKey(this.state.public_key_dest))
+        {
+            this.setState({
+                inValidSecretKey: true,
+            });
+            return true;
+        }
+        else if(isValidSecretKey(this.state.secret_key_source)  && !isValidPublicKey(this.state.public_key_dest))
+        {
+            this.setState({
+                inValidPublicKey: true,
+            });
+            return true;
+        }
+        if (!(isValidSecretKey(this.state.secret_key_source)  && isValidPublicKey(this.state.public_key_dest))) {
+            this.setState({
+                inValidSecretKey: true,
+                inValidPublicKey: true,
+            });
+            return true;
+        }
         this.setState({
             load: !this.state.loaed
         });
@@ -48,7 +92,7 @@ class SendXlm extends Component {
         StellarSdk.Network.useTestNetwork();
         var keypair = StellarSdk.Keypair.fromSecret(this.state.secret_key_source);
         var destination = this.state.public_key_dest;
-        var amount = parseFloat(this.state.amount.replace(/,/g, ''));
+        var amount = this.state.amount.replace(/,/g, '');
         server.loadAccount(keypair.publicKey())
             .then(result => {
                 var transaction = new StellarSdk.TransactionBuilder(result)
@@ -67,15 +111,75 @@ class SendXlm extends Component {
                         });
                     })
                     .catch(err =>{
+                        let datas = err.response;
                         this.setState({
-                            load: false
-                        })
+                            load: false,
+                            failed: datas.data.extras.result_codes.operations[0]
+                        });
                     })
             });
     }
 
     render() {
-
+        let failTransaction = "";
+        if(this.state.failed == 'op_underfunded')
+        {
+            this.state.load2 = false;
+            this.state.inValidPublicKey = false;
+            this.state.inValidSecretKey = false;
+            failTransaction = <div className="col-12">
+                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
+                    Your account doesn't have enough XLM to send
+                </div>
+            </div>;
+        }
+        else if(this.state.failed == 'op_no_trust')
+        {
+            this.state.load2 = false;
+            this.state.inValidPublicKey = false;
+            this.state.inValidSecretKey = false;
+            failTransaction = <div className="col-12">
+                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
+                    Receiver account doesn't have trust to XLM
+                </div>
+            </div>;
+        }
+        else if(this.state.failed == 'op_src_no_trust')
+        {
+            this.state.load2 = false;
+            this.state.inValidPublicKey = false;
+            this.state.inValidSecretKey = false;
+            failTransaction = <div className="col-12">
+                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
+                    Your account doesn't Have trust to XLM
+                </div>
+            </div>;
+        }
+        let valid = "";
+        if(this.state.inValidSecretKey == true && this.state.inValidPublicKey == false)
+        {
+            valid = <div className="col-12">
+                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
+                    Your Secret key invalid
+                </div>
+            </div>;
+        }
+        else if(this.state.inValidPublicKey == true && this.state.inValidSecretKey == false)
+        {
+            valid = <div className="col-12">
+                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
+                    Your Public key invalid
+                </div>
+            </div>;
+        }
+        else if(this.state.inValidPublicKey == true && this.state.inValidSecretKey == true)
+        {
+            valid = <div className="col-12">
+                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
+                    Your Public key and Secret key invalid
+                </div>
+            </div>;
+        }
         let loader = "";
         if(this.state.load == false)
         {
@@ -96,6 +200,8 @@ class SendXlm extends Component {
             return (
                 <div className="col-sm-8 col-12 clearfix mx-auto">
                     <div className="row">
+                        {failTransaction}
+                        {valid}
                         <h2 className="col-12 text-light text-center font-weight-bold mb-5">Send XLM</h2>
                         <form className="col-12" onSubmit={this.handleFormSubmit}>
                             <label className="col-12">

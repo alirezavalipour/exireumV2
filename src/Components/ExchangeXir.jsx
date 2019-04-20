@@ -9,6 +9,17 @@ import AuthService from './AuthService.jsx';
 import Loader from 'react-loader-spinner';
 import NumberFormat from 'react-number-format';
 var StellarSdk = require('stellar-sdk');
+
+const isValidSecretKey = input => {
+    try {
+        StellarSdk.Keypair.fromSecret(input);
+        return true;
+    } catch (e) {
+        // console.error(e);
+        return false;
+    }
+};
+
 class ExchangeXir extends Component {
 
     constructor() {
@@ -22,7 +33,8 @@ class ExchangeXir extends Component {
             public_key:null,
             secret_key:'',
             load1: false,
-            load2: false
+            load2: false,
+            inValidSecretKey: false,
         }
     }
 
@@ -105,6 +117,12 @@ class ExchangeXir extends Component {
 
     handleForSignWithSecretKey(e){
         e.preventDefault();
+        if (!isValidSecretKey(this.state.secret_key)) {
+            this.setState({
+                inValidSecretKey: true,
+            });
+            return true;
+        }
         this.setState({
             load2: !this.state.load2
         });
@@ -130,10 +148,9 @@ class ExchangeXir extends Component {
         return axios.post(url, formData, config)
             .then(response =>{
                 this.setState({
-                    hash: response.data.hash
-                })
-                if(response.status == 200){
-                }
+                    hash: response.data.hash,
+                    failed: response.data.extras.result_codes.transaction
+                });
             })
             .catch(err =>{
                 this.setState({
@@ -144,6 +161,26 @@ class ExchangeXir extends Component {
 
 
     render() {
+        let failTransaction = "";
+        if(this.state.failed == 'tx_bad_auth')
+        {
+            this.state.load2 = false;
+            this.state.inValidSecretKey = false;
+            failTransaction = <div className="col-12">
+                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
+                    This Secret key not belong to register stellar account
+                </div>
+            </div>;
+        }
+        let validSecret = "";
+        if(this.state.inValidSecretKey == true)
+        {
+            validSecret = <div className="col-12">
+                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
+                    Your Secret key invalid
+                </div>
+            </div>;
+        }
         let loader = "";
         let loader2 ="";
         if(this.state.load1 == false)
@@ -207,6 +244,8 @@ class ExchangeXir extends Component {
             return(
                 <div className="col-sm-8 col-12 clearfix mx-auto">
                     <div className="row">
+                        {validSecret}
+                        {failTransaction}
                         <h2 className="col-12 text-light text-center font-weight-bold mb-5">Exchange XIR to XLM</h2>
                         <form className="col-12" onSubmit={this.handleForSignWithSecretKey}>
                             <label className="col-12">
