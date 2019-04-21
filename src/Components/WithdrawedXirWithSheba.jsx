@@ -259,7 +259,7 @@ class WithdrawedXirWithSheba extends Component {
             return(
                 <div className="col-sm-8 col-12 clearfix mx-auto">
                     <div className="row">
-                        <h2 className="col-12 text-light text-center font-weight-bold mb-5">Withdrawed XIR with sheba</h2>
+                        <h2 className="col-12 text-light text-center font-weight-bold mb-5">Withdrawed XIR to bank account</h2>
                         <form className="col-12" onSubmit={this.handleFormSubmit}>
                             <label className="col-12">
                                 <div className="row shadow-lg">
@@ -270,7 +270,7 @@ class WithdrawedXirWithSheba extends Component {
                             </label>
                             <label className="col-12 mt-3">
                                 <div className="row shadow-lg">
-                                    <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Sheba</span>
+                                    <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Destination account (Sheba)</span>
                                     <input className="col-9 text-center rounded-right p-2 text-light" placeholder={this.state.sheba} name="sheba" type="text" onChange={this.handleChange}/>
                                 </div>
                             </label>
@@ -293,7 +293,7 @@ class WithdrawedXirWithSheba extends Component {
                     <div className="row">
                         {validSecret}
                         {failTransaction}
-                        <h2 className="col-12 text-light text-center font-weight-bold mb-5">Withdrawed XIR with sheba</h2>
+                        <h2 className="col-12 text-light text-center font-weight-bold mb-5">Withdrawed XIR to bank account</h2>
                         <h5 className="col-12 text-center text-light font-size-bold">Sheba : {this.state.sheba}</h5>
                         <h5 className="col-12 text-center text-light font-size-bold mt-3">First Name : {this.state.first_name}</h5>
                         <h5 className="col-12 text-center text-light font-size-bold mt-3">Last Name : {this.state.last_name}</h5>
@@ -315,7 +315,7 @@ class WithdrawedXirWithSheba extends Component {
             return(
                 <div className="col-sm-8 col-12 clearfix mx-auto">
                     <div className="row">
-                        <h2 className="col-12 text-light text-center font-weight-bold mb-5">Withdrawed XIR with sheba</h2>
+                        <h2 className="col-12 text-light text-center font-weight-bold mb-5">Withdrawed XIR to bank account</h2>
                         <div className="col-12 text-center text-light p-2">Your order has been registred and will be processed whitin few minutes.</div>
                     </div>
                 </div>

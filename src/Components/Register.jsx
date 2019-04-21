@@ -6,7 +6,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Container, Row, Col } from 'bootstrap-4-react';
 import AuthService from './AuthService.jsx';
-import Loader from 'react-loader-spinner'
+import Cookies from "universal-cookie";
+import Loader from 'react-loader-spinner';
+const cookie = new Cookies();
 
 class Register extends Component {
 
@@ -82,6 +84,7 @@ class Register extends Component {
             window.localStorage.setItem('mobile', this.state.mobile);
             this.Auth.register(this.state.username, this.state.email, this.state.first_name, this.state.last_name, this.state.national_number, this.state.address, this.state.mobile)
                 .then((res) => {
+                    cookie.set('reactUrl', 'true', { domain :'localhost' , path:'/' });
                     window.location.replace('/Components/Verify');
                 })
                 .catch((err) => {

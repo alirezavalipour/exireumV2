@@ -247,6 +247,8 @@ class ExchangeXir extends Component {
                         {validSecret}
                         {failTransaction}
                         <h2 className="col-12 text-light text-center font-weight-bold mb-5">Exchange XIR to XLM</h2>
+                        <div className="col-12 text-cenetr text-light mb-3">You are changing <div className="font-weight-bold">{this.state.amount}</div> XIR with <div className="font-weight-bold">{this.state.rial}</div> XLM</div>
+                        <div className="col-12 text-cenetr text-light mb-5">Please enter your Secret key to approve the transaction.</div>
                         <form className="col-12" onSubmit={this.handleForSignWithSecretKey}>
                             <label className="col-12">
                                 <div className="row shadow-lg">

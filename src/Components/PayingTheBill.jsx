@@ -327,23 +327,23 @@ class PayingTheBill extends Component {
         const project = () => {
             switch (this.state.bill) {
                 case 1:
-                    return <h4 className="col-12 text-center">Bill Type : Water Bill</h4>;
+                    return <div className="col-12 text-center">Bill Type : Water Bill</div>;
                 case 2:
-                    return <h4 className="col-12 text-center">Bill Type : Electric Bill</h4>;
+                    return <div className="col-12 text-center">Bill Type : Electric Bill</div>;
                 case 3:
-                    return <h4 className="col-12 text-center"> Bill Type : gas Bill</h4>;
+                    return <div className="col-12 text-center"> Bill Type : gas Bill</div>;
                 case 4:
-                    return <h4 className="col-12 text-center">Bill Type : Landline Bill</h4>;
+                    return <div className="col-12 text-center">Bill Type : Landline Bill</div>;
                 case 5:
-                    return <h4 className="col-12 text-center">Bill Type : Phone Bill</h4>;
+                    return <div className="col-12 text-center">Bill Type : Phone Bill</div>;
                 case 6:
-                    return <h4 className="col-12 text-center">Bill Type : Municipal Tax Complaint Bill</h4>;
+                    return <div className="col-12 text-center">Bill Type : Municipal Tax Complaint Bill</div>;
                 case 7:
-                    return <h4 className="col-12 text-center">Bill Type : Bill</h4>;
+                    return <div className="col-12 text-center">Bill Type : Bill</div>;
                 case 8:
-                    return <h4 className="col-12 text-center">Bill Type : Tax Bill</h4>;
+                    return <div className="col-12 text-center">Bill Type : Tax Bill</div>;
                 case 9:
-                    return <h4 className="col-12 text-center">Bill Type : Road traffic offenses Bill</h4>;
+                    return <div className="col-12 text-center">Bill Type : Road traffic offenses Bill</div>;
             }
         }
         let loader = "";
@@ -406,8 +406,12 @@ class PayingTheBill extends Component {
                         {failTransaction}
                         <h2 className="col-12 text-light font-weight-bold mb-5 text-center">Paying the bill</h2>
                         <div className="col-12 text-cenetr text-light font-weight-bold">
+                            <div className="col-12 text-center mb-3">You are paying a bill with this properties :</div>
+                            <div className="col-12 text-center mb-3">Billing code : {this.state.billing_code}</div>
+                            <div className="col-12 text-center mb-3">Payment code : {this.state.payment_code}</div>
                             {project()}
-                            <h4 className="col-12 text-center mt-3">Bill Amount : {this.state.payment} IRR</h4>
+                            <div className="col-12 text-center mt-3">Bill Amount : {this.state.payment} IRR</div>
+                            <div className="col-12 text-center mt-3">Please enter your Secret key to approve the transaction</div>
                         </div>
                         <form className="col-12" onSubmit={this.handleForSignWithSecretKey}>
                             <label className="col-12">
