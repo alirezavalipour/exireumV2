@@ -187,9 +187,12 @@ class WithdrawedXirWithSheba extends Component {
             .then(response =>{
                 this.setState({
                     hash: response.data.hash,
-                    failed: response.data.extras.result_codes.transaction
                 })
-                if(response.status == 200){
+                if(response.data.title)
+                {
+                    this.setState({
+                        failed: response.data.extras.result_codes.transaction
+                    });
                 }
             })
             .catch(err =>{
