@@ -37,6 +37,7 @@ class SendXlm extends Component {
         this.Auth = new AuthService();
         this.handleChange = this.handleChange.bind(this);
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
+        this.handleClickButton = this.handleClickButton.bind(this);
         this.state = {
             price: null,
             public_key:null,
@@ -47,6 +48,7 @@ class SendXlm extends Component {
             load: false,
             inValidSecretKey: false,
             inValidPublicKey: false,
+            button: false,
         }
     }
 
@@ -54,6 +56,20 @@ class SendXlm extends Component {
         this.setState({
             [e.target.name]: e.target.value,
         });
+    }
+
+    handleClickButton(e) {
+        e.preventDefault();
+        if(!isValidPublicKey(this.state.public_key_dest))
+        {
+            this.setState({
+                inValidPublicKey: true,
+            });
+            return true;
+        }
+        this.setState({
+            button: true,
+        })
     }
 
     componentWillMount() {
@@ -64,24 +80,10 @@ class SendXlm extends Component {
 
     handleFormSubmit(e) {
         e.preventDefault();
-        if(!isValidSecretKey(this.state.secret_key_source)  && isValidPublicKey(this.state.public_key_dest))
+        if(!isValidSecretKey(this.state.secret_key_source))
         {
             this.setState({
                 inValidSecretKey: true,
-            });
-            return true;
-        }
-        else if(isValidSecretKey(this.state.secret_key_source)  && !isValidPublicKey(this.state.public_key_dest))
-        {
-            this.setState({
-                inValidPublicKey: true,
-            });
-            return true;
-        }
-        if (!(isValidSecretKey(this.state.secret_key_source)  && isValidPublicKey(this.state.public_key_dest))) {
-            this.setState({
-                inValidSecretKey: true,
-                inValidPublicKey: true,
             });
             return true;
         }
@@ -156,7 +158,7 @@ class SendXlm extends Component {
             </div>;
         }
         let valid = "";
-        if(this.state.inValidSecretKey == true && this.state.inValidPublicKey == false)
+        if(this.state.inValidSecretKey == true)
         {
             valid = <div className="col-12">
                 <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
@@ -164,19 +166,12 @@ class SendXlm extends Component {
                 </div>
             </div>;
         }
-        else if(this.state.inValidPublicKey == true && this.state.inValidSecretKey == false)
+        let valids = "";
+        if(this.state.inValidPublicKey == true)
         {
-            valid = <div className="col-12">
+            valids = <div className="col-12">
                 <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
                     Your Public key invalid
-                </div>
-            </div>;
-        }
-        else if(this.state.inValidPublicKey == true && this.state.inValidSecretKey == true)
-        {
-            valid = <div className="col-12">
-                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
-                    Your Public key and Secret key invalid
                 </div>
             </div>;
         }
@@ -196,27 +191,18 @@ class SendXlm extends Component {
                 />
             </button>;
         }
-        if(!this.state.hash) {
+        if(!this.state.hash && !this.state.button) {
             return (
                 <div className="col-sm-8 col-12 clearfix mx-auto">
                     <div className="row">
-                        {failTransaction}
-                        {valid}
+                        {valids}
                         <h2 className="col-12 text-light text-center font-weight-bold mb-5">Send XLM</h2>
-                        <form className="col-12" onSubmit={this.handleFormSubmit}>
+                        <form className="col-12" onSubmit={this.handleClickButton}>
                             <label className="col-12">
                                 <div className="row shadow-lg">
                                     <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Amount XLM</span>
                                     {/*<input className="col-9 text-center rounded-right p-2" placeholder="" name="amount" type="tel" onChange={this.handleChange}/>*/}
                                     <NumberFormat className="col-9 text-center rounded-right p-2 text-light" thousandSeparator={true} name="amount" onChange={this.handleChange} />
-                                </div>
-                            </label>
-                            <label className="col-12 mt-3">
-                                <div className="row shadow-lg">
-                                    <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Source secret key</span>
-                                    <input className="col-9 text-center rounded-right p-2"
-                                           placeholder="SBFHY64P7A4UUONPZJFBUUCI76PCKJXYMA5AESBC4LAETUUOAS55GBI2"
-                                           name="secret_key_source" type="text" onChange={this.handleChange}/>
                                 </div>
                             </label>
                             <label className="col-12 mt-3">
@@ -233,7 +219,33 @@ class SendXlm extends Component {
                 </div>
             );
         }
-        else if(this.state.hash)
+        else if(!this.state.hash && this.state.button)
+        {
+            return(
+                <div className="col-sm-8 col-12 clearfix mx-auto">
+                    <div className="row">
+                        {failTransaction}
+                        {valid}
+                        <h2 className="col-12 text-light text-center font-weight-bold mb-5">Send XLM</h2>
+                        <div className="col-12 text-center text-light mb-3">You are sending {this.state.amount} XLM to the following address :</div>
+                        <div className="col-12 text-center text-light mb-3">{this.state.public_key_dest}</div>
+                        <div className="col-12 text-center text-light mb-5">Please enter your Secret key to approve the transaction.</div>
+                        <form className="col-12" onSubmit={this.handleFormSubmit}>
+                            <label className="col-12 mt-3">
+                                <div className="row shadow-lg">
+                                    <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Source secret key</span>
+                                    <input className="col-9 text-center rounded-right p-2"
+                                           placeholder="SBFHY64P7A4UUONPZJFBUUCI76PCKJXYMA5AESBC4LAETUUOAS55GBI2"
+                                           name="secret_key_source" type="text" onChange={this.handleChange}/>
+                                </div>
+                            </label>
+                            {loader}
+                        </form>
+                    </div>
+                </div>
+            );
+        }
+        else if(this.state.hash && this.state.button)
         {
             return(
                 <div className="col-sm-8 col-12 clearfix mx-auto">
