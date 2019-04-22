@@ -213,6 +213,7 @@ class ExchangeXir extends Component {
                 />
             </button>;
         }
+        let lumen = parseFloat(this.state.rial).toFixed(2);
         if(!this.state.xdr && !this.state.hash)
         {
             return(
@@ -230,7 +231,7 @@ class ExchangeXir extends Component {
                             <label className="col-12 mt-3">
                                 <div className="row shadow-lg">
                                     <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Amount will be XLM</span>
-                                    <div className="col-9 text-center rounded-right p-2 border-div">  {this.state.rial}  </div>
+                                    <div className="col-9 text-center rounded-right p-2 border-div">  {lumen}  </div>
                                 </div>
                             </label>
                             {loader}
@@ -247,8 +248,8 @@ class ExchangeXir extends Component {
                         {validSecret}
                         {failTransaction}
                         <h2 className="col-12 text-light text-center font-weight-bold mb-5">Exchange XIR to XLM</h2>
-                        <div className="col-12 text-cenetr text-light mb-3">You are changing <div className="font-weight-bold">{this.state.amount}</div> XIR with <div className="font-weight-bold">{this.state.rial}</div> XLM</div>
-                        <div className="col-12 text-cenetr text-light mb-5">Please enter your Secret key to approve the transaction.</div>
+                        <div className="col-12 text-center text-light mb-3">You are changing {this.state.amount} XIR with {lumen} XLM</div>
+                        <div className="col-12 text-center text-light mb-5">Please enter your Secret key to approve the transaction.</div>
                         <form className="col-12" onSubmit={this.handleForSignWithSecretKey}>
                             <label className="col-12">
                                 <div className="row shadow-lg">

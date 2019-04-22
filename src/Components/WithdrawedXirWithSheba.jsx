@@ -294,9 +294,10 @@ class WithdrawedXirWithSheba extends Component {
                         {validSecret}
                         {failTransaction}
                         <h2 className="col-12 text-light text-center font-weight-bold mb-5">Withdrawed XIR to bank account</h2>
-                        <h5 className="col-12 text-center text-light font-size-bold">Sheba : {this.state.sheba}</h5>
-                        <h5 className="col-12 text-center text-light font-size-bold mt-3">First Name : {this.state.first_name}</h5>
-                        <h5 className="col-12 text-center text-light font-size-bold mt-3">Last Name : {this.state.last_name}</h5>
+                        <div className="col-12 text-center text-light font-size-bold">Sheba : {this.state.sheba}</div>
+                        <div className="col-12 text-center text-light font-size-bold mt-3">First Name : {this.state.first_name}</div>
+                        <div className="col-12 text-center text-light font-size-bold mt-3">Last Name : {this.state.last_name}</div>
+                        <div className="col-12 text-center text-light mt-3 mb-5">Please enter your Secret key to approve the transaction.</div>
                         <form className="col-12" onSubmit={this.handleForSignWithSecretKey}>
                             <label className="col-12">
                                 <div className="row shadow-lg">

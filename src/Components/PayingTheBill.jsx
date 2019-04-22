@@ -214,7 +214,6 @@ class PayingTheBill extends Component {
                 this.setState({
                     public_key: response.data[0].public_key
                 });
-                console.log(this.state.public_key);
             });
     }
 
@@ -405,13 +404,13 @@ class PayingTheBill extends Component {
                         {validSecret}
                         {failTransaction}
                         <h2 className="col-12 text-light font-weight-bold mb-5 text-center">Paying the bill</h2>
-                        <div className="col-12 text-cenetr text-light font-weight-bold">
+                        <div className="col-12 text-cenetr text-light mb-5">
                             <div className="col-12 text-center mb-3">You are paying a bill with this properties :</div>
                             <div className="col-12 text-center mb-3">Billing code : {this.state.billing_code}</div>
                             <div className="col-12 text-center mb-3">Payment code : {this.state.payment_code}</div>
                             {project()}
                             <div className="col-12 text-center mt-3">Bill Amount : {this.state.payment} IRR</div>
-                            <div className="col-12 text-center mt-3">Please enter your Secret key to approve the transaction</div>
+                            <div className="col-12 text-center mt-3">Please enter your Secret key to approve the transaction.</div>
                         </div>
                         <form className="col-12" onSubmit={this.handleForSignWithSecretKey}>
                             <label className="col-12">

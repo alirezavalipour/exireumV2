@@ -81,6 +81,23 @@ class Account extends Component {
 
     handleFormSubmit(e) {
         e.preventDefault();
+        // start create account
+        // const urlCreate = this.Auth.getDomain() + '/user/account/create';
+        // const formDataCreate = {
+        //     public_key: this.state.newKeypair.pubKey,
+        // };
+        // const headersCreate = {
+        //     Accept: 'application/json',
+        //     'Content-Type': 'application/json',
+        //     Authorization: `Bearer ${this.Auth.getToken()}`,
+        // };
+        // var configCreate = { headersCreate };
+        // return axios.post(urlAdd, formDataAdd, configCreate)
+        //     .then(response =>{
+        //         if(response.status == 200){
+        //         }
+        //     });
+        // end create account
         if(!isValidSecretKey(this.state.secret_key)  && isValidPublicKey(this.state.public_key))
         {
             this.setState({
@@ -105,82 +122,70 @@ class Account extends Component {
         this.setState({
            load: !this.state.load
         });
-        // start create account
-        // const urlCreate = this.Auth.getDomain() + '/user/account/create';
-        // const formDataCreate = {
-        //     public_key: this.state.newKeypair.pubKey,
-        // };
-        // const headersCreate = {
-        //     Accept: 'application/json',
-        //     'Content-Type': 'application/json',
-        //     Authorization: `Bearer ${this.Auth.getToken()}`,
-        // };
-        // var configCreate = { headersCreate };
-        // return axios.post(urlAdd, formDataAdd, configCreate)
-        //     .then(response =>{
-        //         if(response.status == 200){
-        //         }
-        //     });
-        // end create account
-        const urlAdd = this.Auth.getDomain() + '/user/account/add';
-        const formDataAdd = {
-            public_key: this.state.public_key,
-        };
-        const headersAdd = {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${this.Auth.getToken()}`,
-        };
-        var configAdd = { headers: headersAdd };
-        const urlBank = this.Auth.getDomain() + '/user/bank-account';
-        const formDataBank = {
+        const url = this.Auth.getDomain() + '/user/bank-account';
+        const formData = {
             sheba: this.state.sheba,
             card: this.state.card,
         };
-        const headersBank = {
+        const headers = {
             Accept: 'application/json',
             'Content-Type': 'application/json',
             Authorization: `Bearer ${this.Auth.getToken()}`,
         };
-        var configBank = { headers: headersBank };
-        const urlAddAcceptAsset = this.Auth.getDomain() + '/user/stellar/asset/accept';
-        const formDataAddAcceptAsset = {
+        var config = { headers };
+        return axios.post(url, formData, config)
+            .then(response =>{
+                if(response.status == 200) {
+                    this.addAccount();
+                }
+            })
+            .catch(err =>{
+                this.state.load = false;
+                let res = err.response;
+                this.setState({
+                    inValidShebaCard: res.data.message
+                });
+            })
+    }
+
+    addAccount()
+    {
+        const url = this.Auth.getDomain() + '/user/account/add';
+        const formData = {
             public_key: this.state.public_key,
         };
-        const headersAddAcceptAsset = {
+        const headers = {
             Accept: 'application/json',
             'Content-Type': 'application/json',
             Authorization: `Bearer ${this.Auth.getToken()}`,
         };
-        var configAddAcceptAsset = { headers: headersAddAcceptAsset };
-        return axios.all([
-        axios.post(urlBank, formDataBank, configBank)
+        var config = { headers };
+        axios.post(url, formData, config)
             .then(response =>{
-                if(response.status == 200){
+                if(response.status == 200) {
+                    this.acceptAsset();
                 }
-                console.log(response);
-            })
-            .catch(err=>{
-                console.log(err.response);
-            }),
-        axios.post(urlAdd, formDataAdd, configAdd)
-            .then(response =>{
-                if(response.status == 200){
-                }
-            }),
-        axios.post(urlAddAcceptAsset, formDataAddAcceptAsset, configAddAcceptAsset)
+            });
+    }
+
+    acceptAsset()
+    {
+        const url = this.Auth.getDomain() + '/user/stellar/asset/accept';
+        const formData= {
+            public_key: this.state.public_key,
+        };
+        const headers = {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${this.Auth.getToken()}`,
+        };
+        var config = { headers };
+        axios.post(url, formData, config)
             .then(response =>{
                 if(response.status == 200){
                     this.signXdr(response.data.xdr);
                 }
-            })
-            .catch(err =>{
-               this.setState({
-                   load: false,
-               })
-            }),
-
-        ]);
+            });
     }
 
     signXdr(xdr){
@@ -205,7 +210,7 @@ class Account extends Component {
         return axios.post(url, formData, config)
             .then(response =>{
                 if(response.status == 200){
-                    // window.location.replace('/Components/Dashboard');
+                    window.location.replace('/Components/Dashboard');
                 }
             })
     }
@@ -227,6 +232,15 @@ class Account extends Component {
     // }
 
     render() {
+        let invalid= "";
+        if(this.state.inValidShebaCard)
+        {
+            invalid = <div className="col-12">
+                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
+                    Your Sheba or Card invalid
+                </div>
+            </div>;
+        }
         let valid = "";
         if(this.state.inValidSecretKey == true && this.state.inValidPublicKey == false)
         {
@@ -338,6 +352,7 @@ class Account extends Component {
             <div className="col-sm-6 col-12 clearfix mx-auto">
                 <div className="row">
                     {valid}
+                    {invalid}
                     <h2 className="col-12 text-light text-center font-weight-bold mb-5">Account</h2>
                     <form className="col-12" onSubmit={this.handleFormSubmit}>
                         <div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>
