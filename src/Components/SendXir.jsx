@@ -167,7 +167,7 @@ class SendXir extends Component {
         {
             valid = <div className="col-12">
                 <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
-                    Your Secret key invalid
+                    Your secret key invalid
                 </div>
             </div>;
         }
@@ -176,7 +176,7 @@ class SendXir extends Component {
         {
             valids = <div className="col-12">
                 <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
-                    Your Public key invalid
+                    Your public key invalid
                 </div>
             </div>;
         }
@@ -234,7 +234,7 @@ class SendXir extends Component {
                         <h2 className="col-12 text-light text-center font-weight-bold mb-5">Send XIR</h2>
                         <div className="col-12 text-center text-light mb-3">You are sending {this.state.amount} XIR to the following address :</div>
                         <div className="col-12 text-center text-light mb-3">{this.state.public_key_dest}</div>
-                        <div className="col-12 text-center text-light mb-5">Please enter your Secret key to approve the transaction.</div>
+                        <div className="col-12 text-center text-light mb-5">Please enter your secret key to approve the transaction.</div>
                         <form className="col-12" onSubmit={this.handleFormSubmit}>
                             <label className="col-12 mt-3">
                                 <div className="row shadow-lg">

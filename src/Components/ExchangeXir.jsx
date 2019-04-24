@@ -173,7 +173,7 @@ class ExchangeXir extends Component {
             this.state.inValidSecretKey = false;
             failTransaction = <div className="col-12">
                 <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
-                    This Secret key not belong to register stellar account
+                    This secret key not belong to register stellar account
                 </div>
             </div>;
         }
@@ -254,7 +254,7 @@ class ExchangeXir extends Component {
                         {failTransaction}
                         <h2 className="col-12 text-light text-center font-weight-bold mb-5">Exchange XIR to XLM</h2>
                         <div className="col-12 text-center text-light mb-3">You are changing {this.state.amount} XIR with {lumen} XLM</div>
-                        <div className="col-12 text-center text-light mb-5">Please enter your Secret key to approve the transaction.</div>
+                        <div className="col-12 text-center text-light mb-5">Please enter your secret key to approve the transaction.</div>
                         <form className="col-12" onSubmit={this.handleForSignWithSecretKey}>
                             <label className="col-12">
                                 <div className="row shadow-lg">

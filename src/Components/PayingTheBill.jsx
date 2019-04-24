@@ -309,7 +309,7 @@ class PayingTheBill extends Component {
             this.state.inValidSecretKey = false;
             failTransaction = <div className="col-12">
                 <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
-                    This Secret key not belong to register stellar account
+                    This secret key not belong to register stellar account
                 </div>
             </div>;
         }
@@ -318,7 +318,7 @@ class PayingTheBill extends Component {
         {
             validSecret = <div className="col-12">
                 <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
-                    Your Secret key invalid
+                    Your secret key invalid
                 </div>
             </div>;
         }
@@ -417,7 +417,7 @@ class PayingTheBill extends Component {
                             <div className="col-12 text-center mb-3">Payment code : {this.state.payment_code}</div>
                             {project()}
                             <div className="col-12 text-center mt-3">Bill Amount : {this.state.payment} IRR</div>
-                            <div className="col-12 text-center mt-3">Please enter your Secret key to approve the transaction.</div>
+                            <div className="col-12 text-center mt-3">Please enter your secret key to approve the transaction.</div>
                         </div>
                         <form className="col-12" onSubmit={this.handleForSignWithSecretKey}>
                             <label className="col-12">

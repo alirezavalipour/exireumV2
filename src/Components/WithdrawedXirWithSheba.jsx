@@ -72,13 +72,13 @@ class WithdrawedXirWithSheba extends Component {
     }
 
     componentDidMount() {
-        const url = this.Auth.getDomain() + '/user/bank-account';
-        const headers = {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${this.Auth.getToken()}`,
-        };
-        var config = { headers };
+        // const url = this.Auth.getDomain() + '/user/bank-account';
+        // const headers = {
+        //     Accept: 'application/json',
+        //     'Content-Type': 'application/json',
+        //     Authorization: `Bearer ${this.Auth.getToken()}`,
+        // };
+        // var config = { headers };
         const urlPublic = this.Auth.getDomain() + '/user/account';
         const headersPublic = {
             Accept: 'application/json',
@@ -87,13 +87,13 @@ class WithdrawedXirWithSheba extends Component {
         };
         var configPublic = { headers: headersPublic };
         return axios.all([
-            axios.get(url, config)
-                .then(response => {
-                    this.setState({
-                        sheba: response.data[1].sheba
-                    });
-                    this.shebaInfo(response.data[1].sheba);
-                }),
+            // axios.get(url, config)
+            //     .then(response => {
+            //         this.setState({
+            //             sheba: response.data[1].sheba
+            //         });
+            //         this.shebaInfo(response.data[1].sheba);
+            //     }),
             axios.get(urlPublic, configPublic)
                 .then(response => {
                     this.setState({
@@ -147,6 +147,7 @@ class WithdrawedXirWithSheba extends Component {
                     xdr: response.data.xdr,
                     withdraw_id: response.data.withdraw_id
                 });
+                this.shebaInfo(this.state.sheba);
             }).catch(err =>{
                 this.setState({
                     load1: false
@@ -213,7 +214,7 @@ class WithdrawedXirWithSheba extends Component {
             this.state.inValidSecretKey = false;
             failTransaction = <div className="col-12">
                 <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
-                    This Secret key not belong to register stellar account
+                    This secret key not belong to register stellar account
                 </div>
             </div>;
         }
@@ -222,7 +223,7 @@ class WithdrawedXirWithSheba extends Component {
         {
             validSecret = <div className="col-12">
                 <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
-                    Your Secret key invalid
+                    Your secret key invalid
                 </div>
             </div>;
         }
@@ -276,7 +277,7 @@ class WithdrawedXirWithSheba extends Component {
                             <label className="col-12 mt-3">
                                 <div className="row shadow-lg">
                                     <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Destination account (Sheba)</span>
-                                    <input className="col-9 text-center rounded-right p-2 text-light" placeholder={this.state.sheba} name="sheba" type="text" onChange={this.handleChange}/>
+                                    <input className="col-9 text-center rounded-right p-2 text-light" name="sheba" type="text" onChange={this.handleChange}/>
                                 </div>
                             </label>
                             <label className="col-12 mt-3">
@@ -302,7 +303,7 @@ class WithdrawedXirWithSheba extends Component {
                         <div className="col-12 text-center text-light font-size-bold">Sheba : {this.state.sheba}</div>
                         <div className="col-12 text-center text-light font-size-bold mt-3">First Name : {this.state.first_name}</div>
                         <div className="col-12 text-center text-light font-size-bold mt-3">Last Name : {this.state.last_name}</div>
-                        <div className="col-12 text-center text-light mt-3 mb-5">Please enter your Secret key to approve the transaction.</div>
+                        <div className="col-12 text-center text-light mt-3 mb-5">Please enter your secret key to approve the transaction.</div>
                         <form className="col-12" onSubmit={this.handleForSignWithSecretKey}>
                             <label className="col-12">
                                 <div className="row shadow-lg">
