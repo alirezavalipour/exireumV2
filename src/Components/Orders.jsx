@@ -22,7 +22,7 @@ class Orders extends Component {
     }
 
     componentDidMount() {
-        const url = this.Auth.getDomain() + '/user/order';
+        const url = this.Auth.getDomain() + '/user/bank/bill-payment';
         const headers = {
             Accept: 'application/json',
             'Content-Type': 'application/json',
@@ -35,6 +35,7 @@ class Orders extends Component {
                     data: response.data.data,
                     currentPage: response.data.current_page
                 });
+                console.log(response);
                 if (response.data.next_page_url) {
                     this.setState({
                         nextPage: response.data.next_page_url,
@@ -161,40 +162,50 @@ class Orders extends Component {
         if (this.state.data) {
             signers = this.state.data.map((elem , index) => {
                 let id = elem.id;
-                let amount = elem.price;
-                let type = elem.type;
-                const request = () => {
-                    switch (type) {
-                        case 0:
-                            return <div>Order type : Create account</div>;
-                        case 1:
-                            return <div>Order type : Add account</div>;
-                        case 2:
-                            return <div>Order type : Deposit</div>;
-                        case 3:
-                            return <div>Order type : Exchange</div>;
-                        case 4:
-                            return <div>Order type : Bill payment</div>;
-                        case 5:
-                            return <div>Order type : Withdraw</div>;
-                        case 6:
-                            return <div>Order type : Withdraw</div>;
-                    }
-                };
-                let status = elem.status.value;
-                if (status == 0)
+                let amount = elem.amount;
+                let billing_code = elem.billing_code;
+                let payment_code = elem.payment_code;
+                // let type = elem.type;
+                // const request = () => {
+                //     switch (type) {
+                //         case 0:
+                //             return <div>Order type : Create account</div>;
+                //         case 1:
+                //             return <div>Order type : Add account</div>;
+                //         case 2:
+                //             return <div>Order type : Deposit</div>;
+                //         case 3:
+                //             return <div>Order type : Exchange</div>;
+                //         case 4:
+                //             return <div>Order type : Bill payment</div>;
+                //         case 5:
+                //             return <div>Order type : Withdraw</div>;
+                //         case 6:
+                //             return <div>Order type : Withdraw</div>;
+                //     }
+                // };
+                let status = elem.hash;
+                if (!status)
                 {
                     status = 'Rejected';
                 }
-                else if (status == 1)
+                else if (status)
                 {
                     status = 'successfull';
                 }
                 return <div key={index} className="row" style={{backgroundColor: (index%2 === 0 ? '#ffc107' : '#151d2e')}}>
-                    <div className="col-4 text-center text-light pt-2 pb-2">Status : {status}</div>
+                    <div className="col-3 text-center text-light pt-2 pb-2">Status</div>
                     {/*<div className="col-4 text-center text-light pt-2 pb-2">{request()}</div>*/}
-                    <div className="col-4 text-center text-light pt-2 pb-2">Amount : {amount}</div>
-                    <div className="col-4 text-center text-light pt-2 pb-2">Id : {id}</div>
+                    <div className="col-3 text-center text-light pt-2 pb-2">Billing code</div>
+                    <div className="col-2 text-center text-light pt-2 pb-2">Payment code</div>
+                    <div className="col-2 text-center text-light pt-2 pb-2">Amount</div>
+                    <div className="col-2 text-center text-light pt-2 pb-2">Id</div>
+                    <div className="col-3 text-center text-light pt-2 pb-2">{status}</div>
+                    {/*<div className="col-4 text-center text-light pt-2 pb-2">{request()}</div>*/}
+                    <div className="col-3 text-center text-light pt-2 pb-2">{billing_code}</div>
+                    <div className="col-2 text-center text-light pt-2 pb-2">{payment_code}</div>
+                    <div className="col-2 text-center text-light pt-2 pb-2">{amount}</div>
+                    <div className="col-2 text-center text-light pt-2 pb-2">{id}</div>
                 </div>;
             });
         }
