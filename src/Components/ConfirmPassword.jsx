@@ -17,6 +17,7 @@ class ConfirmPassword extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.showPlacholder = this.showPlacholder.bind(this);
+        this.khar = this.khar.bind(this);
         this.state = {
             err: "",
             load: false
@@ -53,6 +54,10 @@ class ConfirmPassword extends Component {
             });
     }
 
+    khar(e) {
+        console.log(e)
+    }
+
     render() {
         let equalpass = "";
         if (this.state.err != "") {
@@ -64,12 +69,9 @@ class ConfirmPassword extends Component {
         }
 
         let loader = "";
-        if(this.state.load == false)
-        {
+        if (this.state.load == false) {
             loader = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">SUBMIT</button>;
-        }
-        else if(this.state.load == true)
-        {
+        } else if (this.state.load == true) {
             loader = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">
                 <Loader
                     type="ThreeDots"
@@ -84,7 +86,7 @@ class ConfirmPassword extends Component {
                 <div className="row">
                     {equalpass}
                     <h2 className="col-12 text-light mb-5 text-center font-weight-bold">Set your password</h2>
-                    <form className="col-12" onSubmit={this.handleFormSubmit}>
+                    <form autoComplete='nope' className="col-12" onSubmit={this.handleFormSubmit}>
                         <div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>
                             <div className="row">
                                 <label className="disable" htmlFor="password">New Password</label>
@@ -98,18 +100,23 @@ class ConfirmPassword extends Component {
                                     }}
                                     minLength={4}
                                     minScore={0}
+                                    value=""
                                     scoreWords={[]}
                                     changeCallback={(e) => {
                                         this.setState({
-                                                password: e.password
-                                            });
+                                            password: e.password
+                                        });
                                     }}
                                     inputProps={{
                                         className: "col-12",
-                                        autoComplete: "off",
+                                        autoComplete: "new-password",
                                         name: "password",
                                         placeholder: 'password',
                                         required: "required",
+                                        onBlur: function () {
+                                            console.log('ad')
+                                        },
+                                        value: "1234" ,
                                         type: "password",
                                         onChange: 'this.handleChange'
                                     }}
@@ -134,12 +141,12 @@ class ConfirmPassword extends Component {
                                     changeCallback={(e) => {
                                         console.log(e)
                                         this.setState({
-                                                password_confirmation: e.password
-                                            });
+                                            password_confirmation: e.password
+                                        });
                                     }}
                                     inputProps={{
                                         className: "col-12",
-                                        autoComplete: "off",
+                                        autoComplete: "nope",
                                         name: "password_confirmation",
                                         placeholder: 'Confirm password',
                                         required: "required",

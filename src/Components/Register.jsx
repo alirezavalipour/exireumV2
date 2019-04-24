@@ -45,6 +45,13 @@ class Register extends Component {
             });
     }
 
+    // componentDidUpdate () {
+    //     const element = ReactDOM.findDOMNode(this);
+    //     if (element != null) {
+    //         window.scrollTo(0, this.scrollPosition)
+    //     }
+    // }
+
     checkNationalNumber(x) {
         let a = [];
         let b = [];
@@ -93,6 +100,7 @@ class Register extends Component {
                         load: false
                     });
                 });
+            window.scrollTo(0, -100);
         }
     }
 
@@ -103,7 +111,7 @@ class Register extends Component {
                 <div className="col-12 bg-danger text-light p-2 rounded shadow-lg text-center mb-5">
                     This national code is incorrect
                 </div>
-            </div>
+            </div>;
         }
         let errors="";
         if(this.state.err != "")
@@ -133,10 +141,10 @@ class Register extends Component {
             </button>;
         }
         return (
-            <div className="col-sm-6 col-12 clearfix mx-auto">
+            <div id="test" className="col-sm-6 col-12 clearfix mx-auto">
                 <div className="row">
-                    {error}
                     {errors}
+                    {error}
                     <h2 className="col-12 text-light text-center font-weight-bold mb-5">Sign Up</h2>
                     <form className="col-12" onSubmit={this.handleFormSubmit}>
                         <div className="col-12" onChange={this.showPlacholder} onClick={this.showPlacholder}>
@@ -163,7 +171,7 @@ class Register extends Component {
                                 <input className="input-placeholder col-12 mt-3 p-2 rounded shadow-lg" placeholder="Last name : Smith" name="last_name" minLength="3" required="required" type="text" onChange={this.handleChange}/>
                             </div>
                         </div>
-                        <div className="col-12" onChange={this.showPlacholder} onClick={this.showPlacholder}>
+                        <div className="col-12 position-relative" onChange={this.showPlacholder} onClick={this.showPlacholder}>
                             <div className="row">
                                 <label className="disable" htmlFor="national_number">National code</label>
                                 <input className="input-placeholder col-12 mt-3 p-2 rounded shadow-lg" placeholder="National code : 0123456789" name="national_number" required="required" type="tel" pattern="^[0-9][0-9][0-9][0-9]{7,7}$" onChange={this.handleChange}/>
