@@ -130,7 +130,7 @@ class DepositXirWithIpg extends Component {
                 />
             </button>;
         }
-
+        let exir = parseInt(this.state.rial);
         return(
             <div className="col-sm-8 col-12 clearfix mx-auto">
                 <div className="row">
@@ -146,7 +146,7 @@ class DepositXirWithIpg extends Component {
                         <label className="col-12 mt-3">
                             <div className="row shadow-lg">
                                 <span className="col-3 bg-warning p-2 rounded-left text-center text-light">Amount will be IRR (Rial)</span>
-                                <div className="col-9 p-2 rounded-right border-div text-center">  {this.state.rial}  </div>
+                                <div className="col-9 p-2 rounded-right border-div text-center">  {exir}  </div>
                             </div>
                         </label>
                         {loader}

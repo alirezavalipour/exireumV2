@@ -269,7 +269,7 @@ class PayingTheBill extends Component {
         let transaction = new StellarSdk.Transaction(this.state.xdr);
         transaction.sign(keypair);
         let xdr = transaction.toEnvelope().toXDR('base64');
-        const url = `${this.Auth.domain}/user/stellar/withdraw/submit`;
+        const url = `${this.Auth.domain}/user/bank/bill-payment/submit`;
         const formData = {
             xdr: xdr,
             bill_payment_id: this.state.bill_payment_id,
@@ -438,7 +438,8 @@ class PayingTheBill extends Component {
                 <div className="col-sm-8 col-12 clearfix mx-auto">
                     <div className="row">
                         <h2 className="col-12 text-light text-center font-weight-bold mb-5">Paying the bill</h2>
-                        <div className="col-12 text-center text-light p-2">Your bill has been registred.</div>
+                        <div className="col-12 text-center text-light p-2">Your transaction has been done successfully.</div>
+                        <div className="col-12 text-center text-light p-2 mt-3">Your transaction hash : {this.state.hash}</div>
                     </div>
                 </div>
             );

@@ -218,7 +218,7 @@ class ExchangeXir extends Component {
                 />
             </button>;
         }
-        let exir = parseFloat(this.state.rial).toFixed(2);
+        let exir = parseInt(this.state.rial);
         if(!this.state.xdr && !this.state.hash)
         {
             return(
@@ -274,7 +274,8 @@ class ExchangeXir extends Component {
                 <div className="col-sm-8 col-12 clearfix mx-auto">
                     <div className="row">
                         <h2 className="col-12 text-light text-center font-weight-bold mb-5">Exchange XLM to XIR</h2>
-                        <div className="col-12 text-light text-center p-2">Your order has been registred and will be processed whitin few minutes.</div>
+                        <div className="col-12 text-center text-light p-2">Your transaction has been done successfully.</div>
+                        <div className="col-12 text-center text-light p-2 mt-3">Your transaction hash : {this.state.hash}</div>
                     </div>
                 </div>
             );

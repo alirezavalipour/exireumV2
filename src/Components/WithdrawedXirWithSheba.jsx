@@ -265,7 +265,7 @@ class WithdrawedXirWithSheba extends Component {
             return(
                 <div className="col-sm-8 col-12 clearfix mx-auto">
                     <div className="row">
-                        <h2 className="col-12 text-light text-center font-weight-bold mb-5">Withdrawed XIR to bank account</h2>
+                        <h2 className="col-12 text-light text-center font-weight-bold mb-5">Withdraw XIR to bank account</h2>
                         <form className="col-12" onSubmit={this.handleFormSubmit}>
                             <label className="col-12">
                                 <div className="row shadow-lg">
@@ -299,7 +299,7 @@ class WithdrawedXirWithSheba extends Component {
                     <div className="row">
                         {validSecret}
                         {failTransaction}
-                        <h2 className="col-12 text-light text-center font-weight-bold mb-5">Withdrawed XIR to bank account</h2>
+                        <h2 className="col-12 text-light text-center font-weight-bold mb-5">Withdraw XIR to bank account</h2>
                         <div className="col-12 text-center text-light font-size-bold">Sheba : {this.state.sheba}</div>
                         <div className="col-12 text-center text-light font-size-bold mt-3">First Name : {this.state.first_name}</div>
                         <div className="col-12 text-center text-light font-size-bold mt-3">Last Name : {this.state.last_name}</div>
@@ -322,8 +322,9 @@ class WithdrawedXirWithSheba extends Component {
             return(
                 <div className="col-sm-8 col-12 clearfix mx-auto">
                     <div className="row">
-                        <h2 className="col-12 text-light text-center font-weight-bold mb-5">Withdrawed XIR to bank account</h2>
-                        <div className="col-12 text-center text-light p-2">Your order has been registred and will be processed whitin few minutes.</div>
+                        <h2 className="col-12 text-light text-center font-weight-bold mb-5">Withdraw XIR to bank account</h2>
+                        <div className="col-12 text-center text-light p-2">Your transaction has been done successfully.</div>
+                        <div className="col-12 text-center text-light p-2 mt-3">Your transaction hash : {this.state.hash}</div>
                     </div>
                 </div>
             );
@@ -331,3 +332,5 @@ class WithdrawedXirWithSheba extends Component {
     }
 }
 export default WithdrawedXirWithSheba;
+
+// Your order has been registred and will be processed whitin few minutes.
