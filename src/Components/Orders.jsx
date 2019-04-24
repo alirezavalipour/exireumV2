@@ -166,19 +166,19 @@ class Orders extends Component {
                 const request = () => {
                     switch (type) {
                         case 0:
-                            return <div>Create account</div>;
+                            return <div>Order type : Create account</div>;
                         case 1:
-                            return <div>Add account</div>;
+                            return <div>Order type : Add account</div>;
                         case 2:
-                            return <div>Deposit</div>;
+                            return <div>Order type : Deposit</div>;
                         case 3:
-                            return <div>Exchange</div>;
+                            return <div>Order type : Exchange</div>;
                         case 4:
-                            return <div>Bill payment</div>;
+                            return <div>Order type : Bill payment</div>;
                         case 5:
-                            return <div>Withdraw</div>;
+                            return <div>Order type : Withdraw</div>;
                         case 6:
-                            return <div>Withdraw</div>;
+                            return <div>Order type : Withdraw</div>;
                     }
                 };
                 let status = elem.status.value;
@@ -188,13 +188,13 @@ class Orders extends Component {
                 }
                 else if (status == 1)
                 {
-                    status = 'Accepted';
+                    status = 'successfull';
                 }
-                return <div key={index} className="row">
-                    <div className="col-3 text-center text-light border-bottom border-warning pt-2 pb-2">{status}</div>
-                    <div className="col-3 text-center text-light border-left border-bottom border-warning pt-2 pb-2">{request()}</div>
-                    <div className="col-3 text-center text-light border-left border-bottom border-warning pt-2 pb-2">{amount}</div>
-                    <div className="col-3 text-center text-light border-left border-bottom border-warning pt-2 pb-2">{id}</div>
+                return <div key={index} className="row" style={{backgroundColor: (index%2 === 0 ? '#ffc107' : '#151d2e')}}>
+                    <div className="col-4 text-center text-light pt-2 pb-2">Status : {status}</div>
+                    {/*<div className="col-4 text-center text-light pt-2 pb-2">{request()}</div>*/}
+                    <div className="col-4 text-center text-light pt-2 pb-2">Amount : {amount}</div>
+                    <div className="col-4 text-center text-light pt-2 pb-2">Id : {id}</div>
                 </div>;
             });
         }
@@ -202,17 +202,25 @@ class Orders extends Component {
             <div className="col-sm-8 col-12 clearfix mx-auto">
                 <div className="row">
                     <h2 className="col-12 text-light text-center font-weight-bold mb-5">Orders</h2>
-                    <div className="col-12 border-top border-right border-left border-warning rounded shadow-lg">
+                    <div className="col-12 border-right border-left border-bottom border-warning rounded shadow-lg">
                         <div className="row">
-                            <div className="col-12 text-center text-light border-bottom border-warning">
-                                <div className="row">
-                                    <div className="col-3 pt-2 pb-2 font-weight-bold">Status</div>
-                                    <div className="col-3 border-left border-warning pt-2 pb-2 font-weight-bold">Request type</div>
-                                    <div className="col-3 border-left border-warning pt-2 pb-2 font-weight-bold">Amount</div>
-                                    <div className="col-3 border-left border-warning pt-2 pb-2 font-weight-bold">Id</div>
+                            <div className="col-12 col-12 text-center text-light">
+                                <div className="row ">
+                                    <div className="col-3 border-top border-right border-warning pt-3 pb-3 font-weight-bold rounded-top">Exchange</div>
+                                    <div className="col-3 border-top border-right border-left border-bottom border-warning pt-3 pb-3 font-weight-bold rounded-top">Deposit</div>
+                                    <div className="col-3 border-top border-right border-left border-bottom border-warning pt-3 pb-3 font-weight-bold rounded-top">Withdraw</div>
+                                    <div className="col-3 border-top border-left border-bottom border-warning pt-3 pb-3 font-weight-bold rounded-top">Bill payment</div>
                                 </div>
                             </div>
-                            <div className="col-12">{signers}</div>
+                            {/*<div className="col-12 text-center text-light border-bottom border-warning">*/}
+                                {/*<div className="row">*/}
+                                    {/*<div className="col-3 pt-2 pb-2 font-weight-bold">Status</div>*/}
+                                    {/*<div className="col-3 border-left border-warning pt-2 pb-2 font-weight-bold">Order type</div>*/}
+                                    {/*<div className="col-3 border-left border-warning pt-2 pb-2 font-weight-bold">Amount</div>*/}
+                                    {/*<div className="col-3 border-left border-warning pt-2 pb-2 font-weight-bold">Id</div>*/}
+                                {/*</div>*/}
+                            {/*</div>*/}
+                            <div className="col-12"><div className="col-12 mt-4 mb-4">{signers}</div></div>
                         </div>
                     </div>
                     <div className="col-12 mt-3 text-center text-light mb-3">
