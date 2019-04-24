@@ -120,7 +120,6 @@ class WithdrawedXirWithSheba extends Component {
                 this.setState({
                     first_name: response.data.Data.AccountOwners[0].FirstName,
                     last_name: response.data.Data.AccountOwners[0].LastName,
-
                 });
             })
     }
@@ -145,13 +144,15 @@ class WithdrawedXirWithSheba extends Component {
         return axios.post(url, formData, config)
             .then(response =>{
                 this.setState({
-                    xdr: response.data.xdr
+                    xdr: response.data.xdr,
+                    withdraw_id: response.data.withdraw_id
                 });
             }).catch(err =>{
                 this.setState({
                     load1: false
                 })
             })
+
     }
 
     handleForSignWithSecretKey(e){
@@ -176,6 +177,7 @@ class WithdrawedXirWithSheba extends Component {
         const url = `${this.Auth.domain}/user/stellar/withdraw/submit`;
         const formData = {
             xdr: xdr,
+            withdraw_id: this.state.withdraw_id,
         };
         const headers = {
             Accept: 'application/json',

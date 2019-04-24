@@ -291,11 +291,13 @@ class PayingTheBill extends Component {
                         failed: response.data.extras.result_codes.transaction
                     });
                 }
+                console.log(response);
             })
             .catch(err => {
                 this.setState({
                     load2: false
                 })
+                console.log(err.response);
             })
     }
 

@@ -105,7 +105,7 @@ class ExchangeXir extends Component {
             .then(response =>{
                 this.setState({
                     xdr: response.data.response,
-                    id: response.data.id
+                    id: response.data.exchange_id
                 });
             })
             .catch(err =>{
@@ -137,7 +137,7 @@ class ExchangeXir extends Component {
         const url = `${this.Auth.domain}/user/stellar/exchange/submit`;
         const formData = {
             xdr: xdr,
-            id: this.state.id
+            exchange_id: this.state.id
         };
         const headers = {
             Accept: 'application/json',

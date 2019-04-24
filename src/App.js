@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
-import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Container, Row, Col } from 'bootstrap-4-react';
@@ -22,8 +20,9 @@ import PayingTheBill from './Components/PayingTheBill.jsx';
 import Account from './Components/Account.jsx';
 import Dashboard from './Components/Dashboard.jsx';
 import Orders from './Components/Orders.jsx';
+import Profile from './Components/Profile.jsx';
 import Cookies from 'universal-cookie';
-import { faUser , faAngleUp , faAngleDown} from '@fortawesome/free-solid-svg-icons';
+import { faUser , faAngleUp , faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import AuthService from "./Components/AuthService";
 const cookies = new Cookies();
 
@@ -84,7 +83,7 @@ class App extends Component {
     let item = <div className="sub-user-none col-12">
       <div className="row">
         <a className="col-6 text-center"><div className="col-12 font-weight-bold">Logout</div></a>
-        <a className="col-6 text-center"><div className="col-12 font-weight-bold">Profile</div></a>
+        <a href="http://localhost:3000/Components/Profile" className="col-6 text-center text-light text-decoration-none"><div className="col-12 font-weight-bold">Profile</div></a>
       </div>
     </div>;
     if(this.state.key == false)
@@ -92,7 +91,7 @@ class App extends Component {
       item = <div className="sub-user-none col-12 d-none">
         <div className="row">
           <a className="col-6 text-center"><div className="col-12 font-weight-bold">Logout</div></a>
-          <a className="col-6 text-center"><div className="col-12 font-weight-bold">Profile</div></a>
+          <a href="http://localhost:3000/Components/Profile" className="col-6 text-center text-light text-decoration-none"><div className="col-12 font-weight-bold">Profile</div></a>
         </div>
       </div>;
     }else
@@ -100,7 +99,7 @@ class App extends Component {
       item = <div className="sub-user col-12 pr-5 pl-5 pt-3 pb-3">
         <div className="row">
           <a className="col-6 text-center" onClick={this.logOut}><div className="col-12 font-weight-bold">Logout</div></a>
-          <a className="col-6 text-center"><div className="col-12 font-weight-bold">Profile</div></a>
+          <a href="http://localhost:3000/Components/Profile" className="col-6 text-center text-light text-decoration-none"><div className="col-12 font-weight-bold">Profile</div></a>
         </div>
       </div>;
     }
@@ -133,7 +132,7 @@ class App extends Component {
                       </div>
                   </div>;
       }
-      else if(window.location.pathname == "/Components/Dashboard" || window.location.pathname == "/Components/ExchangeXir" || window.location.pathname == "/Components/ExchangeXlm" || window.location.pathname == "/Components/DepositXirWithIpg" || window.location.pathname == "/Components/DepositXirWithQr" || window.location.pathname == "/Components/DepositXlm" || window.location.pathname == "/Components/WithdrawedXirWithSheba" || window.location.pathname == "/Components/SendXir" || window.location.pathname == "/Components/SendXlm" || window.location.pathname == "/Components/PayingTheBill" || window.location.pathname == "/Components/Orders")
+      else if(window.location.pathname == "/Components/Dashboard" || window.location.pathname == "/Components/ExchangeXir" || window.location.pathname == "/Components/ExchangeXlm" || window.location.pathname == "/Components/DepositXirWithIpg" || window.location.pathname == "/Components/DepositXirWithQr" || window.location.pathname == "/Components/DepositXlm" || window.location.pathname == "/Components/WithdrawedXirWithSheba" || window.location.pathname == "/Components/SendXir" || window.location.pathname == "/Components/SendXlm" || window.location.pathname == "/Components/PayingTheBill" || window.location.pathname == "/Components/Orders" || window.location.pathname == "/Components/Profile")
       {
           header = <div className="col-12 header1 mb-5">
                       <div className="row">
@@ -177,6 +176,7 @@ class App extends Component {
                 <Route path="/Components/SendXlm" component={SendXlm}/>
                 <Route path="/Components/PayingTheBill" component={PayingTheBill}/>
                 <Route path="/Components/Orders" component={Orders}/>
+                <Route path="/Components/Profile" component={Profile}/>
              </div>
            </div>
           </Router>
