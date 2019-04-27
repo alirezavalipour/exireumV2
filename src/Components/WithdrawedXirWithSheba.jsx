@@ -324,7 +324,7 @@ class WithdrawedXirWithSheba extends Component {
                     <div className="row">
                         <h2 className="col-12 text-light text-center font-weight-bold mb-5">Withdraw XIR to bank account</h2>
                         <div className="col-12 text-center text-light p-2">Your transaction has been done successfully.</div>
-                        <div className="col-12 text-center text-light p-2 mt-3">Your transaction hash : {this.state.hash}</div>
+                        <div className="col-12 text-center text-light p-2 mt-3">Your transaction hash : <a target='_blank' href={'https://horizon-testnet.stellar.org/transactions/' + this.state.hash}>{this.state.hash}</a></div>
                     </div>
                 </div>
             );
