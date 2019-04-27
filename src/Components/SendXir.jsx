@@ -79,6 +79,47 @@ class SendXir extends Component {
         }
     }
 
+    componentDidMount() {
+        const urlPublic = this.Auth.getDomain() + '/user/account';
+        const headersPublic = {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${this.Auth.getToken()}`,
+        };
+        var configPublic = { headers: headersPublic };
+        return axios.get(urlPublic, configPublic)
+                .then(response => {
+                    this.setState({
+                        public_key: response.data[0].public_key
+                    });
+                    this.assetAmount(this.state.public_key);
+                });
+    }
+
+    assetAmount(public_key) {
+        const url = 'https://horizon-testnet.stellar.org/accounts/' + public_key;
+        return axios.get(url)
+            .then(res =>{
+                this.setState({
+                    entry: res.data.subentry_count,
+                });
+                res.data.balances.map(elem =>{
+                    if(elem.asset_code=="XIR")
+                    {
+                        this.setState({
+                            xirBalance: elem.balance
+                        });
+                    }
+                    if(elem.asset_type=="native")
+                    {
+                        this.setState({
+                            xlmBalance: elem.balance
+                        });
+                    }
+                });
+            });
+    }
+
     handleFormSubmit(e) {
         e.preventDefault();
         if(!isValidSecretKey(this.state.secret_key_source))
@@ -127,6 +168,11 @@ class SendXir extends Component {
     }
 
     render() {
+        let priceXlm = '';
+        if(this.state.xlmBalance)
+        {
+            priceXlm = ((this.state.xlmBalance) - (0.5 * this.state.entry) - 1) + ' XLM';
+        }
         let failTransaction = "";
         if(this.state.failed == 'op_underfunded')
         {
@@ -201,7 +247,8 @@ class SendXir extends Component {
                 <div className="col-sm-8 col-12 clearfix mx-auto">
                     <div className="row">
                         {valids}
-                        <h2 className="col-12 text-light text-center font-weight-bold mb-5">Send XIR</h2>
+                        <h2 className="col-12 text-light text-center font-weight-bold mb-2">Send XIR</h2>
+                        <div className='col-12 text-center text-light mb-5'>{priceXlm}</div>
                         <form className="col-12" onSubmit={this.handleClickButton}>
                             <label className="col-12">
                                 <div className="row shadow-lg">

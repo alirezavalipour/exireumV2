@@ -468,8 +468,8 @@ class Orders extends Component {
                     order_status = 'Rejected'
                 }
                 return <div key={index} className="row" style={{backgroundColor: (index%2 === 0 ? '#ffc107' : '#151d2e')}}>
-                    <a href={"https://horizon-testnet.stellar.org/transactions/" + hash_paid} className="col-1 text-center text-light pt-2 pb-2"><FontAwesomeIcon className="" icon={faEye}/></a>
-                    <a href={"https://horizon-testnet.stellar.org/transactions/" + hash} className="col-1 text-center text-light pt-2 pb-2"><FontAwesomeIcon className="" icon={faEye}/></a>
+                    <a target='_blank' href={"https://horizon-testnet.stellar.org/transactions/" + hash_paid} className="col-1 text-center text-light pt-2 pb-2"><FontAwesomeIcon className="" icon={faEye}/></a>
+                    <a target='_blank' href={"https://horizon-testnet.stellar.org/transactions/" + hash} className="col-1 text-center text-light pt-2 pb-2"><FontAwesomeIcon className="" icon={faEye}/></a>
                     <div className="col-1 text-center text-light pt-2 pb-2">{order_status}</div>
                     <div className="col-1 text-center text-light pt-2 pb-2">{status}</div>
                     <div className="col-2 text-center text-light pt-2 pb-2">{receive_amount}</div>
@@ -576,8 +576,8 @@ class Orders extends Component {
                     order_status = 'Rejected'
                 }
                 return <div key={index} className="row" style={{backgroundColor: (index%2 === 0 ? '#ffc107' : '#151d2e')}}>
-                    <a href={"https://horizon-testnet.stellar.org/transactions/" + hash_paid} className="col-1 text-center text-light pt-2 pb-2"><FontAwesomeIcon className="" icon={faEye}/></a>
-                    <a href={"https://horizon-testnet.stellar.org/transactions/" + hash} className="col-1 text-center text-light pt-2 pb-2"><FontAwesomeIcon className="" icon={faEye}/></a>
+                    <a target='_blank' href={"https://horizon-testnet.stellar.org/transactions/" + hash_paid} className="col-1 text-center text-light pt-2 pb-2"><FontAwesomeIcon className="" icon={faEye}/></a>
+                    <a target='_blank' href={"https://horizon-testnet.stellar.org/transactions/" + hash} className="col-1 text-center text-light pt-2 pb-2"><FontAwesomeIcon className="" icon={faEye}/></a>
                     <div className="col-1 text-center text-light pt-2 pb-2">{order_status}</div>
                     <div className="col-1 text-center text-light pt-2 pb-2">{status}</div>
                     <div className="col-2 text-center text-light pt-2 pb-2">{bank_account}</div>
@@ -639,8 +639,8 @@ class Orders extends Component {
                     order_status = 'Rejected'
                 }
                 return <div key={index} className="row" style={{backgroundColor: (index%2 === 0 ? '#ffc107' : '#151d2e')}}>
-                    <a href={"https://horizon-testnet.stellar.org/transactions/" + hash_paid} className="col-1 text-center text-light pt-2 pb-2"><FontAwesomeIcon className="" icon={faEye}/></a>
-                    <a href={"https://horizon-testnet.stellar.org/transactions/" + hash} className="col-1 text-center text-light pt-2 pb-2"><FontAwesomeIcon className="" icon={faEye}/></a>
+                    <a target='_blank' href={"https://horizon-testnet.stellar.org/transactions/" + hash_paid} className="col-1 text-center text-light pt-2 pb-2"><FontAwesomeIcon className="" icon={faEye}/></a>
+                    <a target='_blank' href={"https://horizon-testnet.stellar.org/transactions/" + hash} className="col-1 text-center text-light pt-2 pb-2"><FontAwesomeIcon className="" icon={faEye}/></a>
                     <div className="col-1 text-center text-light pt-2 pb-2">{order_status}</div>
                     <div className="col-2 text-center text-light pt-2 pb-2">{status}</div>
                     <div className="col-2 text-center text-light pt-2 pb-2">{billing_code}</div>

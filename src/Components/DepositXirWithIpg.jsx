@@ -20,7 +20,10 @@ class DepositXirWithIpg extends Component {
             secret_key:'',
             xdr: null,
             public_key:'',
-            load: false
+            load: false,
+            xirBalance: '',
+            xlmBalance: '',
+            entry: '',
         }
     }
 
@@ -63,8 +66,33 @@ class DepositXirWithIpg extends Component {
             .then(response => {
                 this.setState({
                     public_key: response.data[0].public_key
-                })
+                });
+                this.assetAmount(this.state.public_key);
             })
+    }
+
+    assetAmount(public_key) {
+        const url = 'https://horizon-testnet.stellar.org/accounts/' + public_key;
+        return axios.get(url)
+            .then(res =>{
+                this.setState({
+                   entry: res.data.subentry_count,
+                });
+                res.data.balances.map(elem =>{
+                    if(elem.asset_code=="XIR")
+                    {
+                        this.setState({
+                            xirBalance: elem.balance
+                        });
+                    }
+                    if(elem.asset_type=="native")
+                    {
+                        this.setState({
+                            xlmBalance: elem.balance
+                        });
+                    }
+                });
+            });
     }
 
     handleFormSubmit(e) {
@@ -97,6 +125,11 @@ class DepositXirWithIpg extends Component {
     }
 
     render() {
+        let priceXlm = '';
+        if(this.state.xlmBalance)
+        {
+            priceXlm = ((this.state.xlmBalance) - (0.5 * this.state.entry) - 1) + ' XLM';
+        }
         // let account = this.props.d.session.account;
         // let allBalances = account.getSortedBalances();
         // let  temp = allBalances.map(elem =>{
@@ -134,7 +167,8 @@ class DepositXirWithIpg extends Component {
         return(
             <div className="col-sm-8 col-12 clearfix mx-auto">
                 <div className="row">
-                    <h2 className="col-12 text-light text-center font-weight-bold mb-5">Deposit XIR With IPG</h2>
+                    <h2 className="col-12 text-light text-center font-weight-bold mb-2">Deposit XIR With IPG</h2>
+                    <div className='col-12 text-center text-light mb-5'>{priceXlm}</div>
                     <form className="col-12" onSubmit={this.handleFormSubmit}>
                         <label className="col-12">
                             <div className="row shadow-lg">
