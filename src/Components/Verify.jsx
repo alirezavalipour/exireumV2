@@ -8,12 +8,11 @@ import { Container, Row, Col } from 'bootstrap-4-react';
 import AuthService from './AuthService.jsx';
 import Countdown from 'react-countdown-now';
 import Loader from 'react-loader-spinner';
-const Completionist = () => <span></span>;
 const renderer = ({ minutes, seconds, completed }) => {
     if (completed) {
-        return <Completionist/>;
+        return true;
     } else {
-        return <span>{minutes}:{seconds}</span>;
+        return <span>0{minutes}:{seconds}</span>;
     }
 };
 
@@ -28,6 +27,7 @@ class sms extends Component {
         this.unResendClick = this.unResendClick.bind(this);
         this.state = {
             load:false,
+            time: Date.now() + 120000
         }
     }
 
@@ -122,7 +122,7 @@ class sms extends Component {
                     </form>
                     <div className="text-center text-light col-12 mt-3 fontSize">
                         <Countdown
-                        date={Date.now() + 120000}
+                        date={this.state.time}
                         onComplete={this.activeClick}
                         renderer={renderer}
                         />

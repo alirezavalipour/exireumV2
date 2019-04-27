@@ -6,6 +6,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 import {Container, Row, Col} from 'bootstrap-4-react';
 import AuthService from './AuthService.jsx';
+import {faSearch} from '@fortawesome/free-solid-svg-icons';
 import Loader from 'react-loader-spinner';
 import NumberFormat from 'react-number-format';
 var StellarSdk = require('stellar-sdk');
@@ -36,6 +37,7 @@ class SendXir extends Component {
         super();
         this.Auth = new AuthService();
         this.handleChange = this.handleChange.bind(this);
+        this.showPass = this.showPass.bind(this);
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.handleClickButton = this.handleClickButton.bind(this);
         this.state = {
@@ -49,6 +51,21 @@ class SendXir extends Component {
             inValidSecretKey: false,
             inValidPublicKey: false,
             button: false,
+            key: 0,
+        }
+    }
+
+    showPass(e){
+        e.preventDefault();
+        this.setState({
+            key: !this.state.key,
+        });
+        if(this.state.key == 0) {
+            document.getElementById('showOrHidden').setAttribute("type", "text");
+        }
+        else
+        {
+            document.getElementById('showOrHidden').setAttribute("type", "password");
         }
     }
 
@@ -286,7 +303,8 @@ class SendXir extends Component {
                             <label className="col-12 mt-3">
                                 <div className="row shadow-lg">
                                     <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Source secret key</span>
-                                    <input className="col-9 text-center rounded-right p-2" placeholder="SBFHY64P7A4UUONPZJFBUUCI76PCKJXYMA5AESBC4LAETUUOAS55GBI2" name="secret_key_source" type="text" onChange={this.handleChange}/>
+                                    <input id='showOrHidden' className="col-8 text-center p-2" placeholder="SBFHY64P7A4UUONPZJFBUUCI76PCKJXYMA5AESBC4LAETUUOAS55GBI2" name="secret_key_source" type="password" onChange={this.handleChange}/>
+                                    <a className='col-1 text-center bg-warning rounded-right text-light' onClick={this.showPass}><FontAwesomeIcon className="mt-3 col-12 pr-0 pl-0" icon={faSearch}/></a>
                                 </div>
                             </label>
                             {loader}
