@@ -239,9 +239,7 @@ class SendXir extends Component {
                             <label className="col-12 mt-3">
                                 <div className="row shadow-lg">
                                     <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Source secret key</span>
-                                    <input className="col-9 text-center rounded-right p-2"
-                                           placeholder="SBFHY64P7A4UUONPZJFBUUCI76PCKJXYMA5AESBC4LAETUUOAS55GBI2"
-                                           name="secret_key_source" type="text" onChange={this.handleChange}/>
+                                    <input className="col-9 text-center rounded-right p-2" placeholder="SBFHY64P7A4UUONPZJFBUUCI76PCKJXYMA5AESBC4LAETUUOAS55GBI2" name="secret_key_source" type="text" onChange={this.handleChange}/>
                                 </div>
                             </label>
                             {loader}

@@ -301,6 +301,11 @@ class PayingTheBill extends Component {
             })
     }
 
+    fixEscape(str)
+    {
+        return escape(str).replace( "+", "%2B" );
+    }
+
     render() {
         let failTransaction = "";
         if(this.state.failed == 'tx_bad_auth')
@@ -423,10 +428,8 @@ class PayingTheBill extends Component {
                             <label className="col-12">
                                 <div className="row shadow-lg">
                                     <span className="col-3 text-center text-light p-2 rounded-left bg-warning mt-3">Secret key</span>
-                                    <input className="col-9 text-center rounded-right p-2 mt-3"
-                                           placeholder="SB3JKIKJ7ECA2GBB55KG55KRHUILGDHXZ5GZ5WBWYOFS7KU6JT73C7HX"
-                                           name="secret_key" type="text" onChange={this.handleChange}/>
-                                </div>
+                                    <input className="col-8 text-center rounded-right p-2 mt-3" placeholder="SB3JKIKJ7ECA2GBB55KG55KRHUILGDHXZ5GZ5WBWYOFS7KU6JT73C7HX" name="secret_key" type="text" onChange={this.handleChange}/>
+                                    <a target='_blank' href={'https://www.stellar.org/laboratory/#xdr-viewer?input=' + this.fixEscape(this.state.xdr)} className='col-1 text-center text-light pr-0 mt-3'><div className='col-12  pt-2 pb-2 rounded  bg-warning border border-warning pr-0 pl-0'>XDR</div></a>                                </div>
                             </label>
                             {loader2}
                         </form>
