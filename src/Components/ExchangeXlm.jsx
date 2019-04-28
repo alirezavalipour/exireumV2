@@ -220,7 +220,27 @@ class ExchangeXir extends Component {
             priceXlm = ((this.state.xlmBalance) - (0.5 * this.state.entry) - 1) + ' XLM';
         }
         let failTransaction = "";
-        if(this.state.failed == 'tx_bad_auth')
+        if(this.state.failed == 'tx_failed')
+        {
+            this.state.load2 = false;
+            this.state.inValidSecretKey = false;
+            failTransaction = <div className="col-12">
+                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
+                    Your account doesn't have enough XIR to send
+                </div>
+            </div>;
+        }
+        if(this.state.failed == 'tx_failed')
+        {
+            this.state.load2 = false;
+            this.state.inValidSecretKey = false;
+            failTransaction = <div className="col-12">
+                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
+                    Your account doesn't have enough XLM to send
+                </div>
+            </div>;
+        }
+        else if(this.state.failed == 'tx_bad_auth')
         {
             this.state.load2 = false;
             this.state.inValidSecretKey = false;
@@ -310,7 +330,7 @@ class ExchangeXir extends Component {
                         {validSecret}
                         {failTransaction}
                         <h2 className="col-12 text-light text-center font-weight-bold mb-5">Exchange XLM to XIR</h2>
-                        <div className="col-12 text-center text-light mb-3">You are changing {this.state.amount} XIR with {exir} XLM</div>
+                        <div className="col-12 text-center text-light mb-3">You are changing {this.state.amount} XLM with {exir} XIR</div>
                         <div className="col-12 text-center text-light mb-5">Please enter your secret key to approve the transaction.</div>
                         <form className="col-12" onSubmit={this.handleForSignWithSecretKey}>
                             <label className="col-12">

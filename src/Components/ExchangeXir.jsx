@@ -218,7 +218,17 @@ class ExchangeXir extends Component {
             priceXlm = ((this.state.xlmBalance) - (0.5 * this.state.entry) - 1) + ' XLM';
         }
         let failTransaction= '';
-        if(this.state.failed == 'tx_bad_auth')
+        if(this.state.failed == 'tx_failed')
+        {
+            this.state.load2 = false;
+            this.state.inValidSecretKey = false;
+            failTransaction = <div className="col-12">
+                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
+                    Your account doesn't have enough XIR to send
+                </div>
+            </div>;
+        }
+        else if(this.state.failed == 'tx_bad_auth')
         {
             this.state.load2 = false;
             this.state.inValidSecretKey = false;

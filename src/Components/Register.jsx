@@ -84,6 +84,7 @@ class Register extends Component {
 
     handleFormSubmit(e) {
         e.preventDefault();
+        window.scrollTo(0, -100);
         if (this.checkNationalNumber(this.state.national_number)) {
             this.setState({
                 load: !this.state.load
@@ -100,13 +101,12 @@ class Register extends Component {
                         load: false
                     });
                 });
-            // window.scrollTo(0, -100);
         }
     }
 
     render() {
         let error = '';
-        if (!(this.state.nationalNumberValidValid == this.state.valid)) {
+        if (!(this.state.nationalNumberValid == this.state.valid)) {
             error = <div className="col-12">
                 <div className="col-12 bg-danger text-light p-2 rounded shadow-lg text-center mb-5">
                     This national code is incorrect

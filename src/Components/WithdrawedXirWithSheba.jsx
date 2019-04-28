@@ -145,37 +145,12 @@ class WithdrawedXirWithSheba extends Component {
             });
     }
 
-    shebaInfo(x){
-        const url = this.Auth.getDomain() + '/user/bank/get-sheba-info';
-        const headers = {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${this.Auth.getToken()}`,
-        };
-
-        const formData = {
-            sheba: x,
-        };
-        var config = { headers };
-        return axios.get(url + "?sheba="+ x , config)
-            .then(response => {
-                this.setState({
-                    first_name: response.data.Data.AccountOwners[0].FirstName,
-                    last_name: response.data.Data.AccountOwners[0].LastName,
-                });
-            })
-    }
-
-    handleFormSubmit(e) {
-        e.preventDefault();
-        this.setState({
-            load1: !this.state.load1
-        });
+    withdrawInfo(x){
         const url = `${this.Auth.domain}/user/stellar/withdraw`;
         const formData = {
             amount: parseFloat(this.state.amount.replace(/,/g, '')),
             public_key: this.state.public_key,
-            sheba: this.state.sheba,
+            sheba: x,
         };
         const headers = {
             Accept: 'application/json',
@@ -189,13 +164,36 @@ class WithdrawedXirWithSheba extends Component {
                     xdr: response.data.xdr,
                     withdraw_id: response.data.withdraw_id
                 });
-                this.shebaInfo(this.state.sheba);
             }).catch(err =>{
-                this.setState({
-                    load1: false
-                })
             })
+    }
 
+    handleFormSubmit(e) {
+        e.preventDefault();
+        this.setState({
+            load1: !this.state.load1
+        });
+        const url = this.Auth.getDomain() + '/user/bank/get-sheba-info';
+        const headers = {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${this.Auth.getToken()}`,
+        };
+        var config = { headers };
+        return axios.get(url + "?sheba="+ this.state.sheba , config)
+            .then(response => {
+                this.setState({
+                    first_name: response.data.Data.AccountOwners[0].FirstName,
+                    last_name: response.data.Data.AccountOwners[0].LastName,
+                });
+                this.withdrawInfo(this.state.sheba);
+            })
+            .catch(err =>{
+                this.setState({
+                    sheba_error: err.response.data.message,
+                    load1: false
+                });
+            });
     }
 
     handleForSignWithSecretKey(e){
@@ -253,13 +251,32 @@ class WithdrawedXirWithSheba extends Component {
     }
 
     render() {
+        let error = '';
+        if(this.state.sheba_error)
+        {
+            error = <div className="col-12">
+                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
+                    Your bank account invalid
+                </div>
+            </div>;
+        }
         let priceXlm = '';
         if(this.state.xlmBalance)
         {
             priceXlm = ((this.state.xlmBalance) - (0.5 * this.state.entry) - 1) + ' XLM';
         }
         let failTransaction = "";
-        if(this.state.failed == 'tx_bad_auth')
+        if(this.state.failed == 'tx_failed')
+        {
+            this.state.load2 = false;
+            this.state.inValidSecretKey = false;
+            failTransaction = <div className="col-12">
+                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
+                    Your account doesn't have enough XIR to send
+                </div>
+            </div>;
+        }
+        else if(this.state.failed == 'tx_bad_auth')
         {
             this.state.load2 = false;
             this.state.inValidSecretKey = false;
@@ -316,6 +333,7 @@ class WithdrawedXirWithSheba extends Component {
             return(
                 <div className="col-sm-8 col-12 clearfix mx-auto">
                     <div className="row">
+                        {error}
                         <h2 className="col-12 text-light text-center font-weight-bold mb-2">Withdraw XIR to bank account</h2>
                         <div className='col-12 text-center text-light mb-5'>{priceXlm}</div>
                         <form className="col-12" onSubmit={this.handleFormSubmit}>
