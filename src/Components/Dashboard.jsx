@@ -45,13 +45,13 @@ class Dashboard extends Component {
                     if(elem.asset_code=="XIR")
                     {
                         this.setState({
-                            xirBalance: elem.balance
+                            xirBalance: (parseFloat(elem.balance).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
                         });
                     }
                     if(elem.asset_type=="native")
                     {
                         this.setState({
-                            xlmBalance: elem.balance
+                            xlmBalance: (parseFloat(elem.balance).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
                         });
                     }
                 });
