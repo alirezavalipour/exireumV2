@@ -355,6 +355,7 @@ class ExchangeXir extends Component {
                         <h2 className="col-12 text-light text-center font-weight-bold mb-5">Exchange XLM to XIR</h2>
                         <div className="col-12 text-center text-light p-2">Your transaction has been done successfully.</div>
                         <div className="col-12 text-center text-light p-2 mt-3">Your transaction hash : <a target='_blank' href={'https://horizon-testnet.stellar.org/transactions/' + this.state.hash}>{this.state.hash}</a></div>
+                        <a href="../Components/Dashboard" className='col-sm-4 col-12 text-center text-light pt-2 pb-2 mt-3 bg-warning mx-auto rounded shadow-lg'>Back to dashboard</a>
                     </div>
                 </div>
             );
