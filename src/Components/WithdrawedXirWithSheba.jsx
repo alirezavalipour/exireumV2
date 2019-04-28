@@ -76,7 +76,7 @@ class WithdrawedXirWithSheba extends Component {
             return axios.get(url, config)
                 .then(response =>{
                     this.setState({
-                        rial: response.data.result
+                        rial: response.data.result.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
                     })
                 });
         }

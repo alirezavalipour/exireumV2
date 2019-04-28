@@ -281,7 +281,7 @@ class ExchangeXir extends Component {
         }
         let lumen = '';
         if(this.state.rial) {
-            lumen = parseFloat(this.state.rial).toFixed(2);
+            lumen = (parseFloat(this.state.rial).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
         if(!this.state.xdr && !this.state.hash)
         {

@@ -163,7 +163,10 @@ class DepositXirWithIpg extends Component {
                 />
             </button>;
         }
-        let exir = parseInt(this.state.rial);
+        let exir = '';
+        if(this.state.rial) {
+            exir = this.state.rial.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
         return(
             <div className="col-sm-8 col-12 clearfix mx-auto">
                 <div className="row">

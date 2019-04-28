@@ -293,7 +293,7 @@ class ExchangeXir extends Component {
         }
         let exir = '';
         if(this.state.rial) {
-            exir = parseInt(this.state.rial);
+            exir = (parseInt(this.state.rial)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
         if(!this.state.xdr && !this.state.hash)
         {
