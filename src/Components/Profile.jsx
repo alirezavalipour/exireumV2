@@ -50,6 +50,7 @@ class Profile extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
+        window.scrollTo(0, -100);
         const url = this.Auth.getDomain() + '/user/profile';
         const formData = {
             username: this.state.user_name,

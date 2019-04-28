@@ -34,6 +34,7 @@ class App extends Component {
     this.Auth = new AuthService();
     this.checkedItem = this.checkedItem.bind(this);
     this.logOut = this.logOut.bind(this);
+    this.goProfile = this.goProfile.bind(this);
     this.state = {
       // listDataFromChild: null
       name: null,
@@ -48,6 +49,13 @@ class App extends Component {
   //     listDataFromChild: dataFromChild
   //   });
   // }
+
+    goProfile(e)
+    {
+        e.preventDefault();
+        window.location.replace('/Components/Profile');
+
+    }
 
   componentDidMount() {
     const url = this.Auth.getDomain() + '/user/profile';
@@ -84,7 +92,7 @@ class App extends Component {
     let item = <div className="sub-user-none col-12">
       <div className="row">
         <a className="col-6 text-center"><div className="col-12 font-weight-bold">Logout</div></a>
-        <a href="http://localhost:3000/Components/Profile" className="col-6 text-center text-light text-decoration-none"><div className="col-12 font-weight-bold">Profile</div></a>
+        <a className="col-6 text-center text-light text-decoration-none"><div className="col-12 font-weight-bold">Profile</div></a>
       </div>
     </div>;
     if(this.state.key == false)
@@ -92,7 +100,7 @@ class App extends Component {
       item = <div className="sub-user-none col-12 d-none">
         <div className="row">
           <a className="col-6 text-center"><div className="col-12 font-weight-bold">Logout</div></a>
-          <a href="http://localhost:3000/Components/Profile" className="col-6 text-center text-light text-decoration-none"><div className="col-12 font-weight-bold">Profile</div></a>
+          <a className="col-6 text-center text-light text-decoration-none"><div className="col-12 font-weight-bold">Profile</div></a>
         </div>
       </div>;
     }else
@@ -100,7 +108,7 @@ class App extends Component {
       item = <div className="sub-user col-12 pr-5 pl-5 pt-3 pb-3">
         <div className="row">
           <a className="col-6 text-center" onClick={this.logOut}><div className="col-12 font-weight-bold">Logout</div></a>
-          <a href="http://localhost:3000/Components/Profile" className="col-6 text-center text-light text-decoration-none"><div className="col-12 font-weight-bold">Profile</div></a>
+          <a onClick={this.goProfile} className="col-6 text-center text-light text-decoration-none"><div className="col-12 font-weight-bold">Profile</div></a>
         </div>
       </div>;
     }
