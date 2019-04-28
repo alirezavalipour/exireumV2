@@ -451,14 +451,14 @@ class PayingTheBill extends Component {
                             <label className="col-12">
                                 <div className="row shadow-lg">
                                     <span className="col-3 bg-warning p-2 rounded-left text-center text-light">Billing code</span>
-                                    <input className="col-9 p-2 rounded-right text-center" placeholder=""
+                                    <input required='required' className="col-9 p-2 rounded-right text-center" placeholder=""
                                            name="billing_code" type="tel" onChange={this.handleChange}/>
                                 </div>
                             </label>
                             <label className="col-12 mt-3">
                                 <div className="row shadow-lg">
                                     <span className="col-3 bg-warning p-2 rounded-left text-center text-light">Payment code</span>
-                                    <input className="col-9 p-2 rounded-right text-center" placeholder=""
+                                    <input required='required' className="col-9 p-2 rounded-right text-center" placeholder=""
                                            name="payment_code" type="tel" onChange={this.handleChange}/>
                                 </div>
                             </label>
@@ -486,7 +486,7 @@ class PayingTheBill extends Component {
                             <label className="col-12">
                                 <div className="row shadow-lg">
                                     <span className="col-3 text-center text-light p-2 rounded-left bg-warning mt-3">Secret key</span>
-                                    <input id='showOrHidden' className="col-7 text-center p-2 mt-3" placeholder="SB3JKIKJ7ECA2GBB55KG55KRHUILGDHXZ5GZ5WBWYOFS7KU6JT73C7HX" name="secret_key" type="password" onChange={this.handleChange}/>
+                                    <input required='required' id='showOrHidden' className="col-7 text-center p-2 mt-3" placeholder="SB3JKIKJ7ECA2GBB55KG55KRHUILGDHXZ5GZ5WBWYOFS7KU6JT73C7HX" name="secret_key" type="password" onChange={this.handleChange}/>
                                     <a className='col-1 text-center bg-warning rounded-right text-light mt-3' onClick={this.showPass}><FontAwesomeIcon className="mt-3 col-12 pr-0 pl-0" icon={faSearch}/></a>
                                     <a target='_blank' href={'https://www.stellar.org/laboratory/#xdr-viewer?input=' + this.fixEscape(this.state.xdr)} className='col-1 text-center text-light pr-0 mt-3'><div className='col-12  pt-2 pb-2 rounded  bg-warning border border-warning pr-0 pl-0'>XDR</div></a>                                </div>
                             </label>

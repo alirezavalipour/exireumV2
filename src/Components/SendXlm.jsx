@@ -266,13 +266,13 @@ class SendXlm extends Component {
                                 <div className="row shadow-lg">
                                     <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Amount XLM</span>
                                     {/*<input className="col-9 text-center rounded-right p-2" placeholder="" name="amount" type="tel" onChange={this.handleChange}/>*/}
-                                    <NumberFormat className="col-9 text-center rounded-right p-2 text-light" thousandSeparator={true} name="amount" onChange={this.handleChange} />
+                                    <NumberFormat required='required' className="col-9 text-center rounded-right p-2 text-light" thousandSeparator={true} name="amount" onChange={this.handleChange} />
                                 </div>
                             </label>
                             <label className="col-12 mt-3">
                                 <div className="row shadow-lg">
                                     <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Destination public_key</span>
-                                    <input className="col-9 text-center rounded-right p-2"
+                                    <input required='required' className="col-9 text-center rounded-right p-2"
                                            placeholder="GDNRPMNBJYNFDVTOBBPGWQBJORVPYVI2YP4G2MG6DNRXGJKQA5TG2PRO"
                                            name="public_key_dest" type="text" onChange={this.handleChange}/>
                                 </div>
@@ -298,7 +298,7 @@ class SendXlm extends Component {
                             <label className="col-12 mt-3">
                                 <div className="row shadow-lg">
                                     <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Source secret key</span>
-                                    <input id='showOrHidden' className="col-8 text-center p-2" placeholder="SBFHY64P7A4UUONPZJFBUUCI76PCKJXYMA5AESBC4LAETUUOAS55GBI2" name="secret_key_source" type="password" onChange={this.handleChange}/>
+                                    <input required='required' id='showOrHidden' className="col-8 text-center p-2" placeholder="SBFHY64P7A4UUONPZJFBUUCI76PCKJXYMA5AESBC4LAETUUOAS55GBI2" name="secret_key_source" type="password" onChange={this.handleChange}/>
                                     <a className='col-1 text-center bg-warning rounded-right text-light' onClick={this.showPass}><FontAwesomeIcon className="mt-3 col-12 pr-0 pl-0" icon={faSearch}/></a>
                                 </div>
                             </label>

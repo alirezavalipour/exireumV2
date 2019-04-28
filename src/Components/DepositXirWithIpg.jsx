@@ -177,7 +177,7 @@ class DepositXirWithIpg extends Component {
                             <div className="row shadow-lg">
                                 <span className="col-3 bg-warning p-2 rounded-left text-center text-light">Amount XIR (Exir)</span>
                                 {/*<input className="col-9 p-2 rounded-right text-center" placeholder="" name="amount" minLength="5" type="tel" onChange={this.handleChange}/>*/}
-                                <NumberFormat className="col-9 text-center rounded-right p-2 text-light" thousandSeparator={true} minLength="5" name="amount" onChange={this.handleChange} />
+                                <NumberFormat required='required' className="col-9 text-center rounded-right p-2 text-light" thousandSeparator={true} minLength="5" name="amount" onChange={this.handleChange} />
                             </div>
                         </label>
                         <label className="col-12 mt-3">
