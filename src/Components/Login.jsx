@@ -49,7 +49,6 @@ class Login extends Component {
         this.setState({
             load: !this.state.load
         });
-        console.log(e);
         this.Auth.login(this.state.mobile, this.state.password)
             .then(res => res.json())
             .then(response =>   {
@@ -66,9 +65,9 @@ class Login extends Component {
     }
 
     render() {
-        let saman ="";
+        let error ="";
         if(this.state.err != ""){
-            saman = <div className="col-12"><div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">This phone number or password is incorrect</div></div>;
+            error = <div className="col-12"><div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">This phone number or password is incorrect</div></div>;
         }
 
         let loader = "";
@@ -90,13 +89,13 @@ class Login extends Component {
         return (
             <div className="col-sm-6 col-12 clearfix mx-auto">
                 <div className="row">
-                    {saman}
+                    {error}
                     <h2 className="col-12 text-light text-center font-weight-bold mb-5">Login</h2>
                     <form className="col-12" onSubmit={this.handleFormSubmit}>
                         <div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>
                             <div className="row">
                                 <label className="disable" htmlFor="mobile">Phone number</label>
-                                <input className="input-placeholder col-12 p-2 mt-3 rounded shadow-lg text-light" placeholder="Phone number" name="mobile" required="required" type="text" pattern="^[0][9][0-3][0-9]{8,8}$" onChange={this.handleChange}/>
+                                <input className="input-placeholder col-12 p-2 mt-3 rounded shadow-lg text-light" placeholder="Phone number" name="mobile" required="required" type="tel" pattern="^[0][9][0-3][0-9]{8,8}$" onChange={this.handleChange}/>
                             </div>
                         </div>
                         <div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>
@@ -107,6 +106,7 @@ class Login extends Component {
                         </div>
                         {loader}
                     </form>
+                    <a href='../Components/ResetPassword' className="col-12 text-light text-center pt-2 pb-2 mt-2 font-weight-bold">Forget your password!</a>
                 </div>
             </div>
         );

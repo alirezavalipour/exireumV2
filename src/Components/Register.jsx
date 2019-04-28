@@ -186,7 +186,7 @@ class Register extends Component {
                         <div className="col-12" onChange={this.showPlacholder} onClick={this.showPlacholder}>
                             <div className="row">
                                 <label className="disable" htmlFor="mobile">Mobile number</label>
-                                <input className="input-placeholder col-12 mt-3 p-2 rounded shadow-lg" placeholder="Mobile number : 09191000000" name="mobile" required="required" type="tel" pattern="^[0][9][0-3][0-9]{8,8}$" onChange={this.handleChange}/>
+                                <input className="input-placeholder col-12 mt-3 p-2 rounded shadow-lg" placeholder="Phone number : 09191000000" name="mobile" required="required" type="tel" pattern="^[0][9][0-3][0-9]{8,8}$" onChange={this.handleChange}/>
                             </div>
                         </div>
                         {loader}

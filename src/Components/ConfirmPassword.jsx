@@ -17,7 +17,6 @@ class ConfirmPassword extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.showPlacholder = this.showPlacholder.bind(this);
-        this.khar = this.khar.bind(this);
         this.state = {
             err: "",
             load: false
@@ -52,10 +51,6 @@ class ConfirmPassword extends Component {
                     load: false
                 });
             });
-    }
-
-    khar(e) {
-        console.log(e)
     }
 
     render() {

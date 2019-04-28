@@ -20,6 +20,7 @@ import PayingTheBill from './Components/PayingTheBill.jsx';
 import Account from './Components/Account.jsx';
 import Dashboard from './Components/Dashboard.jsx';
 import Orders from './Components/Orders.jsx';
+import ResetPassword from './Components/ResetPassword.jsx';
 import Profile from './Components/Profile.jsx';
 import Cookies from 'universal-cookie';
 import { faUser , faAngleUp , faAngleDown } from '@fortawesome/free-solid-svg-icons';
@@ -123,7 +124,7 @@ class App extends Component {
     }
 
       let header="";
-      if(window.location.pathname == "/Components/Login" || window.location.pathname == "/Components/Register" || window.location.pathname == "/Components/Verify" || window.location.pathname == "/Components/Confirmpassword" || window.location.pathname == "/Components/Account")
+      if(window.location.pathname == "/Components/Login" || window.location.pathname == "/Components/ResetPassword" || window.location.pathname == "/Components/Register" || window.location.pathname == "/Components/Verify" || window.location.pathname == "/Components/Confirmpassword" || window.location.pathname == "/Components/Account")
       {
           header = <div className="col-12 header2 mb-5">
                       <div className="row">
@@ -177,6 +178,7 @@ class App extends Component {
                 <Route path="/Components/PayingTheBill" component={PayingTheBill}/>
                 <Route path="/Components/Orders" component={Orders}/>
                 <Route path="/Components/Profile" component={Profile}/>
+                <Route path="/Components/ResetPassword" component={ResetPassword}/>
              </div>
            </div>
           </Router>

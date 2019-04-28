@@ -137,12 +137,18 @@ export default class AuthService {
     resend() {
         // Get a token from api server using the fetch api
         var mobile = window.localStorage.getItem('mobile');
-        return this.fetch(`${this.domain}/auth/resend`, {
-            method: 'POST',
-            body: JSON.stringify({mobile}),
-        })
-            .then((res) => {
-                this.setToken(res.token);
+        const url = `${this.domain}/auth/resend`;
+        const formData = {
+            mobile: mobile,
+        };
+        const headers = {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        };
+        var config = { headers };
+        return axios.post(url, formData, config)
+            .then(res =>{
+                this.setToken(res.data.token);
                 //console.log(res);
                 // Setting the token in localStorage
                 return Promise.resolve(res);
