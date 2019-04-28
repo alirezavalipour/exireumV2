@@ -139,7 +139,7 @@ input , textarea , .border-div , button
     left: 5%;
     width: auto;
     position: absolute !important;
-    z-index: 2;
+    z-index: 1;
     top: 10%;
     background-color: #151d2e !important;
     font-size: 14px;

@@ -8,6 +8,8 @@ import { Container, Row, Col } from 'bootstrap-4-react';
 import AuthService from './AuthService.jsx';
 import Cookies from "universal-cookie";
 import Loader from 'react-loader-spinner';
+import IntlTelInput from 'react-intl-tel-input';
+import 'react-intl-tel-input/dist/main.css';
 const cookie = new Cookies();
 
 class Login extends Component {
@@ -95,7 +97,21 @@ class Login extends Component {
                         <div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>
                             <div className="row">
                                 <label className="disable" htmlFor="mobile">Phone number</label>
-                                <input className="input-placeholder col-12 p-2 mt-3 rounded shadow-lg text-light" placeholder="Phone number" name="mobile" required="required" type="tel" pattern="^[0][9][0-3][0-9]{8,8}$" onChange={this.handleChange}/>
+                                {/*<input className="input-placeholder col-12 p-2 mt-3 rounded shadow-lg text-light" placeholder="Phone number" name="mobile" required="required" type="tel" pattern="^[0][9][0-3][0-9]{8,8}$" onChange={this.handleChange}/>*/}
+                                <IntlTelInput
+                                    containerClassName="input-placeholder intl-tel-input col-12 pr-0 pl-0 mt-3"
+                                    inputClassName="col-12 pt-2 pb-2 rounded shadow-lg"
+                                    preferredCountries={['ir' , 'ca' , 'de']}
+                                    onPhoneNumberChange={ (e , f , g , h , i) => {
+                                        this.setState({
+                                            mobile: '+' + h.replace(/\D/g, '')
+                                        });
+                                    }}
+                                    // onPhoneNumberBlur={}
+                                    fieldName='mobile'
+                                    placeholder='Phone number : 09191000000'
+                                    autoComplete='off'
+                                />
                             </div>
                         </div>
                         <div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>

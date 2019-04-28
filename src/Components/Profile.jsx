@@ -128,12 +128,12 @@ class Profile extends Component {
                                 <textarea className="col-9 text-center rounded-right p-2 text-light" type="text" name="address" onChange={this.handleChange} value={this.state.address}></textarea>
                             </div>
                         </label>
-                        <label className="col-12 mt-3">
-                            <div className="row shadow-lg">
-                                <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Mobile number</span>
-                                <input className="col-9 text-center rounded-right p-2 text-light" type="text" name="mobile" value={this.state.mobile} onChange={this.handleChange}/>
-                            </div>
-                        </label>
+                        {/*<label className="col-12 mt-3">*/}
+                            {/*<div className="row shadow-lg">*/}
+                                {/*<span className="col-3 text-center text-light p-2 rounded-left bg-warning">Mobile number</span>*/}
+                                {/*<input className="col-9 text-center rounded-right p-2 text-light" type="text" name="mobile" value={this.state.mobile} onChange={this.handleChange}/>*/}
+                            {/*</div>*/}
+                        {/*</label>*/}
                         <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">UPDATE</button>
                     </form>
                 </div>
