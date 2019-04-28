@@ -83,7 +83,7 @@ class App extends Component {
   logOut(e){
       e.preventDefault();
       this.Auth.logout();
-      cookies.remove('reactUrl', { domain :'localhost' , path: '/' });
+      cookies.remove('reactUrl', { domain :'https://exireum.com' , path: '/' });
       window.location.replace('https://exireum.com');
   }
 
