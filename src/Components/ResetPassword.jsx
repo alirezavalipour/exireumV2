@@ -111,7 +111,6 @@ class ResetPassword extends Component {
                 {
                     // window.location.replace('/Components/Confirmpassword');
                 }
-                console.log(res);
             })
             .catch((err) => {
                 let mess = err.response;
@@ -123,7 +122,6 @@ class ResetPassword extends Component {
                 {
                     // window.location.replace('/Components/Confirmpassword');
                 }
-                console.log(err.response);
             });
     }
 
@@ -147,7 +145,6 @@ class ResetPassword extends Component {
             .then((res) => {
                 cookie.set('reactUrl', 'true', { domain :'https://exireum.com' , path:'/' });
                 window.location.replace('/Components/Dashboard');
-                console.log(res)
             })
             .catch((err) => {
                 this.setState({
