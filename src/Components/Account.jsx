@@ -35,30 +35,52 @@ class Account extends Component {
         super();
         this.Auth = new AuthService();
         this.handleChange = this.handleChange.bind(this);
-        this.handleFormSubmit = this.handleFormSubmit.bind(this);
-        // this.changeCreateOrHaveAccount = this.changeCreateOrHaveAccount.bind(this);
+        this.handleFormSubmit1 = this.handleFormSubmit1.bind(this);
+        this.handleFormSubmit2 = this.handleFormSubmit2.bind(this);
         this.acceptTerm = this.acceptTerm.bind(this);
         this.signXdr = this.signXdr.bind(this);
+        this.changeForm1 = this.changeForm1.bind(this);
+        this.changeForm2 = this.changeForm2.bind(this);
         this.showPlacholder = this.showPlacholder.bind(this);
         this.state = {
             err: "",
             change: "",
-            // newKeypair: 'null',
+            newKeypair: 'null',
             termsAccepted: false,
             term:"",
             load: false,
             inValidSecretKey: false,
             inValidPublicKey: false,
+            change1: true,
+            change2: false
         }
-        // this.handleGenerate = event => {
-        //     let keypair = StellarSdk.Keypair.random();
-        //     this.setState({
-        //         newKeypair: {
-        //             pubKey: keypair.publicKey(),
-        //             secretKey: keypair.secret(),
-        //         }
-        //     });
-        // }
+        this.handleGenerate = event => {
+            let keypair = StellarSdk.Keypair.random();
+            this.setState({
+                newKeypair: {
+                    pubKey: keypair.publicKey(),
+                    secretKey: keypair.secret(),
+                }
+            });
+        }
+    }
+
+    changeForm1(e)
+    {
+        e.preventDefault();
+        this.setState({
+            change1: true,
+            change2: false
+        });
+    }
+
+    changeForm2(e)
+    {
+        e.preventDefault();
+        this.setState({
+            change2: true,
+            change1: false
+        });
     }
 
     showPlacholder(e)
@@ -79,49 +101,8 @@ class Account extends Component {
         // this.someFn(this.state.public_key);
     }
 
-    handleFormSubmit(e) {
+    handleFormSubmit1(e) {
         e.preventDefault();
-        // start create account
-        // const urlCreate = this.Auth.getDomain() + '/user/account/create';
-        // const formDataCreate = {
-        //     public_key: this.state.newKeypair.pubKey,
-        // };
-        // const headersCreate = {
-        //     Accept: 'application/json',
-        //     'Content-Type': 'application/json',
-        //     Authorization: `Bearer ${this.Auth.getToken()}`,
-        // };
-        // var configCreate = { headersCreate };
-        // return axios.post(urlAdd, formDataAdd, configCreate)
-        //     .then(response =>{
-        //         if(response.status == 200){
-        //         }
-        //     });
-        // end create account
-        // const url = this.Auth.getDomain() + '/user/bank-account';
-        // const formData = {
-        //     sheba: this.state.sheba,
-        //     card: this.state.card,
-        // };
-        // const headers = {
-        //     Accept: 'application/json',
-        //     'Content-Type': 'application/json',
-        //     Authorization: `Bearer ${this.Auth.getToken()}`,
-        // };
-        // var config = { headers };
-        // return axios.post(url, formData, config)
-        //     .then(response =>{
-        //         if(response.status == 200) {
-        //             this.addAccount();
-        //         }
-        //     })
-        //     .catch(err =>{
-        //         this.state.load = false;
-        //         let res = err.response;
-        //         this.setState({
-        //             inValidShebaCard: res.data.message
-        //         });
-        //     })
         if(!isValidSecretKey(this.state.secret_key)  && isValidPublicKey(this.state.public_key))
         {
             this.setState({
@@ -159,16 +140,39 @@ class Account extends Component {
         axios.post(url, formData, config)
             .then(response =>{
                 if(response.status == 200) {
-                    this.acceptAsset();
+                    this.acceptAsset(this.state.public_key);
                 }
             });
     }
 
-    acceptAsset()
+    handleFormSubmit2(e) {
+        e.preventDefault();
+        const url = this.Auth.getDomain() + '/user/account/create';
+        const formData = {
+            public_key: this.state.newKeypair.pubKey,
+        };
+        const headers = {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${this.Auth.getToken()}`,
+        };
+        var config = { headers };
+        return axios.post(url, formData, config)
+            .then(response =>{
+                if(response.status == 200){
+                    this.setState({
+                        order: response.data.order_id
+                    });
+                    window.location.replace(this.Auth.getDomain()+"/user/order/pay/" +  this.state.order);
+                }
+            });
+    }
+
+    acceptAsset(x)
     {
         const url = this.Auth.getDomain() + '/user/stellar/asset/accept';
         const formData= {
-            public_key: this.state.public_key,
+            public_key: x,
         };
         const headers = {
             Accept: 'application/json',
@@ -211,11 +215,6 @@ class Account extends Component {
             })
     }
 
-    // changeCreateOrHaveAccount(e){
-    //     this.setState( {
-    //         change: e.target.value,
-    //     });
-    // }
     acceptTerm(e){
         this.setState( {
             term: e.target.value,
@@ -228,15 +227,6 @@ class Account extends Component {
     // }
 
     render() {
-        // let invalid= "";
-        // if(this.state.inValidShebaCard)
-        // {
-        //     invalid = <div className="col-12">
-        //         <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
-        //             Your Sheba or Card invalid
-        //         </div>
-        //     </div>;
-        // }
         let valid = "";
         if(this.state.inValidSecretKey == true && this.state.inValidPublicKey == false)
         {
@@ -284,93 +274,8 @@ class Account extends Component {
         {
             acceptShow = loader;
         }
-        // let create;
-        // let have;
-        // let publicKey="";
-        // let d = this.props.d;
-        // if(this.state.change == "create"){
-        //     publicKey = <div className="col-12">
-        //         <div className="row">
-        //             <input className="col-12 mt-2 p-2 bg-warning rounded shadow-lg" onClick={this.handleGenerate} value="Generate keypair" type="submit"/>
-        //             <div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>
-        //                 <div className="row">
-        //                     <label className="disable" htmlFor="generate_public_key">Generate Public key</label>
-        //                     <input className="col-12 mt-3 p-2 rounded shadow-lg" placeholder="Generate Public key" name="generate_public_key"/>
-        //                 </div>
-        //             </div>
-        //             <div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>
-        //                 <div className="row">
-        //                     <label className="disable" htmlFor="generate_secret_key">Generate Secret key</label>
-        //                     <input className="col-12 mt-3 p-2 rounded shadow-lg" placeholder="Generate Secret key" name="generate_secret_key"/>
-        //                 </div>
-        //             </div>
-        //         </div>
-        //     </div>;
-        //     if (this.state.newKeypair !== null) {
-        //         publicKey = <div className="col-12">
-        //             <div className="row">
-        //                 <input className="col-12 mt-2 p-2 bg-warning rounded shadow-lg" onClick={this.handleGenerate} value="Generate keypair" type="submit"/>
-        //                 <div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>
-        //                     <div className="row">
-        //                         <label className="disable" htmlFor="generate_public_key">Generate Public key</label>
-        //                         <input className="col-12 mt-3 p-2 rounded shadow-lg" placeholder="Generate Public key" name="generate_public_key" value={this.state.newKeypair.pubKey}/>
-        //                     </div>
-        //                 </div>
-        //                 <div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>
-        //                     <div className="row">
-        //                         <label className="disable" htmlFor="generate_secret_key">Generate Secret key</label>
-        //                         <input className="col-12 mt-3 p-2 rounded shadow-lg" placeholder="Generate Secret key" name="generate_secret_key" value={this.state.newKeypair.secretKey}/>
-        //                     </div>
-        //                 </div>
-        //             </div>
-        //         </div>;
-        //     }
-        // }
-        // else if(this.state.change == "have"){
-        //     publicKey = <div className="col-12">
-        //         <div className="row">
-        //             <div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>
-        //                 <div className="row">
-        //                     <label className="disable" htmlFor="public_key">Public key</label>
-        //                     <input className="col-12 p-2 mt-3 rounded shadow-lg" placeholder="Public key : GDNRPMNBJYNFDVTOBBPGWQBJORVPYVI2YP4G2MG6DNRXGJKQA5TG2PRO" name="public_key" required="required" type="text" onChange={this.handleChange}/>
-        //                 </div>
-        //             </div>
-        //             <div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>
-        //                 <div className="row">
-        //                     <label className="disable" htmlFor="secret_key">Secret key</label>
-        //                     <input className="col-12 mt-3 p-2 rounded shadow-lg" placeholder="Secret key : SB3JKIKJ7ECA2GBB55KG55KRHUILGDHXZ5GZ5WBWYOFS7KU6JT73C7HX" name="secret_key" required="required" type="text" onChange={this.handleChange}/>
-        //                 </div>
-        //             </div>
-        //         </div>
-        //     </div>;
-        // }
-        return (
-            <div className="col-sm-6 col-12 clearfix mx-auto">
-                <div className="row">
-                    {valid}
-                    {/*{invalid}*/}
-                    <h2 className="col-12 text-light text-center font-weight-bold mb-5">Stellar account</h2>
-                    <form autoComplete='off' className="col-12" onSubmit={this.handleFormSubmit}>
-                        {/*<div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>*/}
-                            {/*<div className="row">*/}
-                                {/*<label className="disable" htmlFor="sheba">Sheba</label>*/}
-                                {/*<input className="col-12 p-2 mt-3 rounded shadow-lg" placeholder="Sheba : IR************************" name="sheba" required="required" type="text" onChange={this.handleChange} />*/}
-                            {/*</div>*/}
-                        {/*</div>*/}
-                        {/*<div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>*/}
-                            {/*<div className="row">*/}
-                                {/*<label className="disable" htmlFor="card">Card number</label>*/}
-                                {/*<input className="col-12 mt-3 p-2 rounded shadow-lg" placeholder="Card number : **** **** **** ****" name="card" required="required" type="tel" onChange={this.handleChange} />*/}
-                            {/*</div>*/}
-                        {/*</div>*/}
-                        {/*<div className="p-2 mt-3 col-12">*/}
-                            {/*<input type="radio" id="Choice1" name="account" value="create" onChange={this.changeCreateOrHaveAccount}/>*/}
-                            {/*<label className="col-5 text-light" htmlFor="Choice1">Create New Account</label>*/}
-                            {/*<input type="radio" id="Choice2" name="account" value="have" onChange={this.changeCreateOrHaveAccount}/>*/}
-                            {/*<label className="col-5 text-light" htmlFor="Choice2">I Already Have An Account</label>*/}
-                        {/*</div>*/}
-
-                        <div className="col-12 text-light text-center mb-4">I Already Have An Account</div>
+        let d = this.props.d;
+        let account = <form autoComplete='off' className="col-12" onSubmit={this.handleFormSubmit1}>
                         <div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>
                             <div className="row">
                                 <label className="disable" htmlFor="public_key">Public key</label>
@@ -388,8 +293,65 @@ class Account extends Component {
                             <label className="col-5 text-light" htmlFor="Choice3"><a href="#" className="text-light">Accept term and conditions</a></label>
                         </div>
                         {acceptShow}
-                    </form>
-                    <div className="col-12 text-light text-center mt-3"><a href="#" className="text-light">Create new account if you do not have an account</a></div>
+                    </form>;
+        if(this.state.change1 && !this.state.change2)
+        {
+            account =<form autoComplete='off' className="col-12" onSubmit={this.handleFormSubmit1}>
+                <div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>
+                    <div className="row">
+                        <label className="disable" htmlFor="public_key">Public key</label>
+                        <input className="col-12 mt-3 p-2 rounded shadow-lg" placeholder="Public key : GDNRPMNBJYNFDVTOBBPGWQBJORVPYVI2YP4G2MG6DNRXGJKQA5TG2PRO" name="public_key" required="required" type="text" onChange={this.handleChange}/>
+                    </div>
+                </div>
+                <div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>
+                    <div className="row">
+                        <label className="disable" htmlFor="secret_key">Secret key</label>
+                        <input className="col-12 mt-3 p-2 rounded shadow-lg" placeholder="Secret key : SB3JKIKJ7ECA2GBB55KG55KRHUILGDHXZ5GZ5WBWYOFS7KU6JT73C7HX" name="secret_key" required="required" type="text" onChange={this.handleChange}/>
+                    </div>
+                </div>
+                <div className="p-2 mt-3 col-12">
+                    <input type="checkbox" id="Choice3" name="accept" value="accept" onChange={this.acceptTerm}/>
+                    <label className="col-5 text-light" htmlFor="Choice3"><a href="#" className="text-light">Accept term and conditions</a></label>
+                </div>
+                {acceptShow}
+            </form>;
+        }
+        if(!this.state.change1 && this.state.change2)
+        {
+            account = <form autoComplete='off' className="col-12" onSubmit={this.handleFormSubmit2}>
+                <input className="col-12 mt-2 p-2 bg-warning rounded shadow-lg" onClick={this.handleGenerate} value="Generate keypair"/>
+                <div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>
+                    <div className="row">
+                        <label className="disable" htmlFor="generate_public_key">Generate Public key</label>
+                        <input className="col-12 mt-3 p-2 rounded shadow-lg" placeholder="Generate Public key" name="generate_public_key" value={this.state.newKeypair.pubKey}/>
+                    </div>
+                </div>
+                <div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>
+                    <div className="row">
+                        <label className="disable" htmlFor="generate_secret_key">Generate Secret key</label>
+                        <input className="col-12 mt-3 p-2 rounded shadow-lg" placeholder="Generate Secret key" name="generate_secret_key" value={this.state.newKeypair.secretKey}/>
+                    </div>
+                </div>
+                <div className="p-2 mt-3 col-12">
+                    <input type="checkbox" id="Choice3" name="accept" value="accept" onChange={this.acceptTerm}/>
+                    <label className="col-5 text-light" htmlFor="Choice3"><a href="#" className="text-light">Accept term and conditions</a></label>
+                </div>
+                {acceptShow}
+            </form>;
+        }
+        return (
+            <div className="col-sm-6 col-12 clearfix mx-auto">
+                <div className="row">
+                    {valid}
+                    {/*{invalid}*/}
+                    <h2 className="col-12 text-light text-center font-weight-bold mb-5">Stellar account</h2>
+                    <div className="col-12">
+                        <div className="row">
+                            <a onClick={this.changeForm1} className="col-6 text-light text-center mb-4">I Already Have An Account</a>
+                            <a onClick={this.changeForm2} className="col-6 text-light text-center mb-4">Create new account</a>
+                        </div>
+                    </div>
+                    {account}
                 </div>
             </div>
         );
@@ -397,3 +359,22 @@ class Account extends Component {
 }
 
 export default Account;
+
+{/*<div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>*/}
+{/*<div className="row">*/}
+{/*<label className="disable" htmlFor="sheba">Sheba</label>*/}
+{/*<input className="col-12 p-2 mt-3 rounded shadow-lg" placeholder="Sheba : IR************************" name="sheba" required="required" type="text" onChange={this.handleChange} />*/}
+{/*</div>*/}
+{/*</div>*/}
+{/*<div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>*/}
+{/*<div className="row">*/}
+{/*<label className="disable" htmlFor="card">Card number</label>*/}
+{/*<input className="col-12 mt-3 p-2 rounded shadow-lg" placeholder="Card number : **** **** **** ****" name="card" required="required" type="tel" onChange={this.handleChange} />*/}
+{/*</div>*/}
+{/*</div>*/}
+{/*<div className="p-2 mt-3 col-12">*/}
+{/*<input type="radio" id="Choice1" name="account" value="create" onChange={this.changeCreateOrHaveAccount}/>*/}
+{/*<label className="col-5 text-light" htmlFor="Choice1">Create New Account</label>*/}
+{/*<input type="radio" id="Choice2" name="account" value="have" onChange={this.changeCreateOrHaveAccount}/>*/}
+{/*<label className="col-5 text-light" htmlFor="Choice2">I Already Have An Account</label>*/}
+{/*</div>*/}
