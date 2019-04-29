@@ -110,7 +110,7 @@ class Dashboard extends Component {
                     <div className="col-12">
                         <div className="col-12 mx-auto">
                             <div className="row">
-                                <div className="col-sm-5 col-12 mt-3 mb-3">
+                                <div className="col-sm-5 col-12 mt-3 mb-5">
                                     <div className="col-12">
                                         <div className="row">
                                             <input className="col-6 pt-2 pb-2 rounded-left text-center" name="amount" type="text" onChange={this.handleConvertRate}/>
@@ -122,8 +122,8 @@ class Dashboard extends Component {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-sm-2 col-12 mt-3 mb-3 text-center text-light pt-2">Convert rate</div>
-                                <div className="col-sm-5 col-12 mt-3 mb-3">
+                                <div className="col-sm-2 col-12 mt-3 mb-5 text-center text-light pt-2">Convert rate</div>
+                                <div className="col-sm-5 col-12 mt-3 mb-5">
                                     <div className="col-12">
                                         <div className="row">
                                             <div className="col-6 pt-2 pb-2 rounded-left text-center border-div text-light" style={{height: '44px'}}>{this.state.price}</div>
