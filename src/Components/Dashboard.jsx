@@ -105,6 +105,31 @@ class Dashboard extends Component {
     }
 
     render() {
+    let option = <select className="col-6 pt-2 pb-2 rounded-right bg-warning text-center border border-warning text-light" name="type" onChange={this.handleChange2}>
+            <option type="0">XLM</option>
+            <option type="1">XIR</option>
+        </select>;
+        if(this.state.formSelect1 == 'XLM')
+        {
+            option = <select className="col-6 pt-2 pb-2 rounded-right bg-warning text-center border border-warning text-light" name="type" onChange={this.handleChange2}>
+                <option type="1">XIR</option>
+                <option type="2">IRR</option>
+            </select>;
+        }
+        if(this.state.formSelect1 == 'XIR')
+        {
+            option = <select className="col-6 pt-2 pb-2 rounded-right bg-warning text-center border border-warning text-light" name="type" onChange={this.handleChange2}>
+                <option type="0">XLM</option>
+                <option type="2">IRR</option>
+            </select>;
+        }
+        if(this.state.formSelect1 == 'IRR')
+        {
+            option = <select className="col-6 pt-2 pb-2 rounded-right bg-warning text-center border border-warning text-light" name="type" onChange={this.handleChange2}>
+                <option type="0">XLM</option>
+                <option type="1">XIR</option>
+            </select>;
+        }
         return (
             <div className="col-sm-8 col-12 clearfix mx-auto">
                 <div className="row">
@@ -129,11 +154,7 @@ class Dashboard extends Component {
                                     <div className="col-12">
                                         <div className="row">
                                             <div className="col-6 pt-2 pb-2 rounded-left text-center border-div text-light" style={{height: '44px'}}>{this.state.price}</div>
-                                            <select className="col-6 pt-2 pb-2 rounded-right bg-warning text-center border border-warning text-light" name="type" onChange={this.handleChange2}>
-                                                <option type="0">XLM</option>
-                                                <option type="1">XIR</option>
-                                                <option type="2">IRR</option>
-                                            </select>
+                                            {option}
                                         </div>
                                     </div>
                                 </div>
