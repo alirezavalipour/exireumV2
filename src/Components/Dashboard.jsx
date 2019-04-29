@@ -4,6 +4,7 @@ import axios from 'axios';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import {faExchangeAlt} from '@fortawesome/free-solid-svg-icons';
 import { Container, Row, Col } from 'bootstrap-4-react';
 import Register from "./Register";
 import AuthService from "./AuthService";
@@ -110,6 +111,7 @@ class Dashboard extends Component {
                     <div className="col-12">
                         <div className="col-12 mx-auto">
                             <div className="row">
+                                <h5 className="col-12 text-center text-light">Convert rate</h5>
                                 <div className="col-sm-5 col-12 mt-3 mb-5">
                                     <div className="col-12">
                                         <div className="row">
@@ -122,7 +124,7 @@ class Dashboard extends Component {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-sm-2 col-12 mt-3 mb-5 text-center text-light pt-2">Convert rate</div>
+                                <div className="col-sm-2 col-12 mt-3 mb-5 text-center text-light pt-2 font-weight-bold"><FontAwesomeIcon className="" icon={faExchangeAlt}/></div>
                                 <div className="col-sm-5 col-12 mt-3 mb-5">
                                     <div className="col-12">
                                         <div className="row">
