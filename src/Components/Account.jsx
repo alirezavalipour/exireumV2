@@ -72,6 +72,8 @@ class Account extends Component {
             change1: true,
             change2: false
         });
+        e.currentTarget.setAttribute("class", "col-6 text-light text-center font-weight-bold rounded-top border-top border-right border-left border-warning pt-3 pb-3");
+        document.getElementById('create').setAttribute("class","col-6 text-light text-center font-weight-bold rounded-top border-bottom border-warning pt-3 pb-3");
     }
 
     changeForm2(e)
@@ -81,6 +83,8 @@ class Account extends Component {
             change2: true,
             change1: false
         });
+        e.currentTarget.setAttribute("class", "col-6 text-light text-center font-weight-bold rounded-top border-top border-right border-left border-warning pt-3 pb-3");
+        document.getElementById('add').setAttribute("class","col-6 text-light text-center font-weight-bold rounded-top border-bottom border-warning pt-3 pb-3");
     }
 
     showPlacholder(e)
@@ -255,11 +259,11 @@ class Account extends Component {
         let loader = "";
         if(this.state.load == false)
         {
-            loader = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">SUBMIT</button>;
+            loader = <button className="mb-3 col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">SUBMIT</button>;
         }
         else if(this.state.load == true)
         {
-            loader = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">
+            loader = <button className="mb-3 col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">
                 <Loader
                     type="ThreeDots"
                     color="#fff"
@@ -269,17 +273,17 @@ class Account extends Component {
             </button>;
         }
         let accept;
-        let acceptShow = <div className="col-12 p-2 mt-2 border-div rounded shadow-lg text-center">Submit</div>;
+        let acceptShow = <div className="mb-3 col-12 p-2 mt-2 border-div rounded shadow-lg text-center">Submit</div>;
         if(this.state.term == "accept")
         {
             acceptShow = loader;
         }
         let d = this.props.d;
-        let account = <form autoComplete='off' className="col-12" onSubmit={this.handleFormSubmit1}>
+        let account = <form autoComplete='off' className="col-12 border-bottom border-right border-left border-warning" onSubmit={this.handleFormSubmit1}>
                         <div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>
                             <div className="row">
                                 <label className="disable" htmlFor="public_key">Public key</label>
-                                <input className="col-12 mt-3 p-2 rounded shadow-lg" placeholder="Public key : GDNRPMNBJYNFDVTOBBPGWQBJORVPYVI2YP4G2MG6DNRXGJKQA5TG2PRO" name="public_key" required="required" type="text" onChange={this.handleChange}/>
+                                <input className="col-12 mt-4 p-2 rounded shadow-lg" placeholder="Public key : GDNRPMNBJYNFDVTOBBPGWQBJORVPYVI2YP4G2MG6DNRXGJKQA5TG2PRO" name="public_key" required="required" type="text" onChange={this.handleChange}/>
                             </div>
                         </div>
                         <div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>
@@ -296,11 +300,11 @@ class Account extends Component {
                     </form>;
         if(this.state.change1 && !this.state.change2)
         {
-            account =<form autoComplete='off' className="col-12" onSubmit={this.handleFormSubmit1}>
+            account =<form autoComplete='off' className="col-12 border-bottom border-right border-left border-warning" onSubmit={this.handleFormSubmit1}>
                 <div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>
                     <div className="row">
                         <label className="disable" htmlFor="public_key">Public key</label>
-                        <input className="col-12 mt-3 p-2 rounded shadow-lg" placeholder="Public key : GDNRPMNBJYNFDVTOBBPGWQBJORVPYVI2YP4G2MG6DNRXGJKQA5TG2PRO" name="public_key" required="required" type="text" onChange={this.handleChange}/>
+                        <input className="col-12 mt-4 p-2 rounded shadow-lg" placeholder="Public key : GDNRPMNBJYNFDVTOBBPGWQBJORVPYVI2YP4G2MG6DNRXGJKQA5TG2PRO" name="public_key" required="required" type="text" onChange={this.handleChange}/>
                     </div>
                 </div>
                 <div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>
@@ -318,8 +322,8 @@ class Account extends Component {
         }
         if(!this.state.change1 && this.state.change2)
         {
-            account = <form autoComplete='off' className="col-12" onSubmit={this.handleFormSubmit2}>
-                <input className="col-12 mt-2 p-2 bg-warning rounded shadow-lg" onClick={this.handleGenerate} value="Generate keypair"/>
+            account = <form autoComplete='off' className="col-12 border-bottom border-right border-left border-warning" onSubmit={this.handleFormSubmit2}>
+                <input className="col-12 mt-4 p-2 bg-warning rounded shadow-lg" onClick={this.handleGenerate} value="Generate keypair"/>
                 <div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>
                     <div className="row">
                         <label className="disable" htmlFor="generate_public_key">Generate Public key</label>
@@ -347,8 +351,8 @@ class Account extends Component {
                     <h2 className="col-12 text-light text-center font-weight-bold mb-5">Stellar account</h2>
                     <div className="col-12">
                         <div className="row">
-                            <a onClick={this.changeForm1} className="col-6 text-light text-center mb-4">I Already Have An Account</a>
-                            <a onClick={this.changeForm2} className="col-6 text-light text-center mb-4">Create new account</a>
+                            <a id='add' onClick={this.changeForm1} className="col-6 text-light text-center font-weight-bold rounded-top border-top border-right border-left border-warning pt-3 pb-3">I Already Have An Account</a>
+                            <a id='create' onClick={this.changeForm2} className="col-6 text-light text-center font-weight-bold border-bottom border-warning pt-3 pb-3">Create new account</a>
                         </div>
                     </div>
                     {account}
