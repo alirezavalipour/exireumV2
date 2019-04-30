@@ -87,6 +87,9 @@ class Dashboard extends Component {
         const url = 'https://horizon-testnet.stellar.org/accounts/' + public_key;
         return axios.get(url)
             .then(res =>{
+                this.setState({
+                    entry: res.data.subentry_count,
+                });
                 res.data.balances.map(elem =>{
                     if(elem.asset_code=="XIR")
                     {
@@ -97,6 +100,7 @@ class Dashboard extends Component {
                     if(elem.asset_type=="native")
                     {
                         this.setState({
+                            xlmBalances: elem.balance,
                             xlmBalance: (parseFloat(elem.balance).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
                         });
                     }
@@ -105,6 +109,11 @@ class Dashboard extends Component {
     }
 
     render() {
+    let priceXlm = '';
+    if(this.state.xlmBalance)
+    {
+        priceXlm = (parseFloat((this.state.xlmBalances) - (0.5 * this.state.entry) - 1).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' XLM';
+    }
     let option = <select className="col-6 pt-2 pb-2 rounded-right bg-warning text-center border border-warning text-light" name="type" onChange={this.handleChange2}>
             <option type="0">XLM</option>
             <option type="1">XIR</option>
@@ -164,7 +173,8 @@ class Dashboard extends Component {
                     <div className="col-sm-5 col-12 text-center">
                         <div className="row">
                             <h2 className="col-12 mb-2 font-weight-bold text-light">XIR</h2>
-                            <h5 className="col-12 mb-5 text-light">{this.state.xirBalance}</h5>
+                            <h5 className="col-12 mb-2 text-light">balance : {this.state.xirBalance}</h5>
+                            <div className="col-12 mb-5 text-light">available : {this.state.xirBalance}</div>
                             {/*<div className="col-12">*/}
                                 {/*<div className="row">*/}
                                     {/*<div className="col-6">Remind of XIR :</div>*/}
@@ -183,7 +193,8 @@ class Dashboard extends Component {
                     <div className="col-sm-5 col-12 text-center">
                         <div className="row">
                             <h2 className="col-12 mb-2 font-weight-bold text-light">XLM</h2>
-                            <h5 className="col-12 mb-5 text-light">{this.state.xlmBalance}</h5>
+                            <h5 className="col-12 mb-2 text-light">balance : {this.state.xlmBalance}</h5>
+                            <div className="col-12 mb-5 text-light">available : {priceXlm}</div>
                             {/*<div className="col-12">*/}
                                 {/*<div className="row">*/}
                                     {/*<div className="col-6">Remind of XLM :</div>*/}

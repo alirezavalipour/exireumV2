@@ -129,11 +129,11 @@ class Register extends Component {
         let loader = "";
         if(this.state.load == false)
         {
-            loader = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">SUBMIT</button>;
+            loader = <button className="mb-5 col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">SUBMIT</button>;
         }
         else if(this.state.load == true)
         {
-            loader = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">
+            loader = <button className="mb-5 col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">
                 <Loader
                     type="ThreeDots"
                     color="#fff"
