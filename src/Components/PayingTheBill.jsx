@@ -4,7 +4,7 @@ import axios from 'axios';
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {BrowserRouter as Router, Route, Link} from "react-router-dom";
-import {faSearch} from '@fortawesome/free-solid-svg-icons';
+import {faEye} from '@fortawesome/free-solid-svg-icons';
 import {Container, Row, Col} from 'bootstrap-4-react';
 import AuthService from './AuthService.jsx';
 import Loader from 'react-loader-spinner';
@@ -446,7 +446,7 @@ class PayingTheBill extends Component {
                     <div className="row">
                         {error}
                         <h2 className="col-12 text-light text-center font-weight-bold mb-2">Paying the bill</h2>
-                        <div className='col-12 text-center text-light mb-5'>{priceXlm}</div>
+                        <div className='col-12 text-center text-light mb-5'>Available : {priceXlm}</div>
                         <form className="col-12" onSubmit={this.handleFormSubmit}>
                             <label className="col-12">
                                 <div className="row shadow-lg">
@@ -487,7 +487,7 @@ class PayingTheBill extends Component {
                                 <div className="row shadow-lg">
                                     <span className="col-3 text-center text-light p-2 rounded-left bg-warning mt-3">Secret key</span>
                                     <input required='required' id='showOrHidden' className="col-7 text-center p-2 mt-3" placeholder="SB3JKIKJ7ECA2GBB55KG55KRHUILGDHXZ5GZ5WBWYOFS7KU6JT73C7HX" name="secret_key" type="password" onChange={this.handleChange}/>
-                                    <a className='col-1 text-center bg-warning rounded-right text-light mt-3' onClick={this.showPass}><FontAwesomeIcon className="mt-3 col-12 pr-0 pl-0" icon={faSearch}/></a>
+                                    <a className='col-1 text-center bg-warning rounded-right text-light mt-3' onClick={this.showPass}><FontAwesomeIcon className="mt-3 col-12 pr-0 pl-0" icon={faEye}/></a>
                                     <a target='_blank' href={'https://www.stellar.org/laboratory/#xdr-viewer?input=' + this.fixEscape(this.state.xdr)} className='col-1 text-center text-light pr-0 mt-3'><div className='col-12  pt-2 pb-2 rounded  bg-warning border border-warning pr-0 pl-0'>XDR</div></a>                                </div>
                             </label>
                             {loader2}

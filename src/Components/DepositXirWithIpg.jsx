@@ -171,7 +171,7 @@ class DepositXirWithIpg extends Component {
             <div className="col-sm-8 col-12 clearfix mx-auto">
                 <div className="row">
                     <h2 className="col-12 text-light text-center font-weight-bold mb-2">Deposit XIR With IPG</h2>
-                    <div className='col-12 text-center text-light mb-5'>{priceXlm}</div>
+                    <div className='col-12 text-center text-light mb-5'>Available : {priceXlm}</div>
                     <form className="col-12" onSubmit={this.handleFormSubmit}>
                         <label className="col-12">
                             <div className="row shadow-lg">

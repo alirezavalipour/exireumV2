@@ -4,7 +4,7 @@ import axios from 'axios';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import {faExchangeAlt} from '@fortawesome/free-solid-svg-icons';
+import {faLongArrowAltRight} from '@fortawesome/free-solid-svg-icons';
 import { Container, Row, Col } from 'bootstrap-4-react';
 import Register from "./Register";
 import AuthService from "./AuthService";
@@ -18,9 +18,10 @@ class Dashboard extends Component {
         this.handleChange1 = this.handleChange1.bind(this);
         this.handleChange2 = this.handleChange2.bind(this);
         this.handleConvertRate = this.handleConvertRate.bind(this);
+        this.convert = this.convert.bind(this);
         this.state = {
-            formSelect1: 'XLM',
-            formSelect2: 'XLM',
+            formSelect1: '',
+            formSelect2: '',
         }
     }
 
@@ -29,7 +30,6 @@ class Dashboard extends Component {
         this.setState({
             formSelect1: e.target.value,
         });
-        console.log(this.state.formSelect1);
     }
 
     handleChange2(e)
@@ -37,7 +37,6 @@ class Dashboard extends Component {
         this.setState({
             formSelect2: e.target.value,
         });
-        console.log(this.state.formSelect2);
     }
 
     handleConvertRate(e)
@@ -45,22 +44,25 @@ class Dashboard extends Component {
         this.setState({
             [e.target.name]:e.target.value,
         });
-        if(e.target.name == "amount") {
-            let amount = e.target.value;
-            var url = `${this.Auth.domain}/user/convert?type=` + this.state.formSelect1 + `TO` + this.state.formSelect2 + `&amount=` + amount;
-            const headers = {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${this.Auth.getToken()}`,
-            };
-            var config = {headers};
-            return axios.get(url, config)
-                .then(response => {
-                    this.setState({
-                        price: parseFloat(response.data.result).toFixed(2)
-                    });
+    }
+
+    convert(e)
+    {
+        e.preventDefault();
+        var url = `${this.Auth.domain}/user/convert?type=` + this.state.formSelect1 + `TO` + this.state.formSelect2 + `&amount=` + this.state.amount;
+        console.log(url);
+        const headers = {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${this.Auth.getToken()}`,
+        };
+        var config = {headers};
+        return axios.get(url, config)
+            .then(response => {
+                this.setState({
+                    price: parseFloat(response.data.result).toFixed(2)
                 });
-        }
+            });
     }
 
     componentWillMount() {
@@ -114,27 +116,32 @@ class Dashboard extends Component {
     {
         priceXlm = (parseFloat((this.state.xlmBalances) - (0.5 * this.state.entry) - 1).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' XLM';
     }
-    let option = <select className="col-6 pt-2 pb-2 rounded-right bg-warning text-center border border-warning text-light" name="type" onChange={this.handleChange2}>
+    let option = <select className="col-4 pt-2 pb-2 rounded-right bg-warning text-center border border-warning text-light" name="type" onChange={this.handleChange2}>
+            <option>Select</option>
             <option type="0">XLM</option>
             <option type="1">XIR</option>
+            <option type="2">IRR</option>
         </select>;
         if(this.state.formSelect1 == 'XLM')
         {
-            option = <select className="col-6 pt-2 pb-2 rounded-right bg-warning text-center border border-warning text-light" name="type" onChange={this.handleChange2}>
+            option = <select className="col-4 pt-2 pb-2 rounded-right bg-warning text-center border border-warning text-light" name="type" onChange={this.handleChange2}>
+                <option>Select</option>
                 <option type="1">XIR</option>
                 <option type="2">IRR</option>
             </select>;
         }
         if(this.state.formSelect1 == 'XIR')
         {
-            option = <select className="col-6 pt-2 pb-2 rounded-right bg-warning text-center border border-warning text-light" name="type" onChange={this.handleChange2}>
+            option = <select className="col-4 pt-2 pb-2 rounded-right bg-warning text-center border border-warning text-light" name="type" onChange={this.handleChange2}>
+                <option>Select</option>
                 <option type="0">XLM</option>
                 <option type="2">IRR</option>
             </select>;
         }
         if(this.state.formSelect1 == 'IRR')
         {
-            option = <select className="col-6 pt-2 pb-2 rounded-right bg-warning text-center border border-warning text-light" name="type" onChange={this.handleChange2}>
+            option = <select className="col-4 pt-2 pb-2 rounded-right bg-warning text-center border border-warning text-light" name="type" onChange={this.handleChange2}>
+                <option>Select</option>
                 <option type="0">XLM</option>
                 <option type="1">XIR</option>
             </select>;
@@ -149,8 +156,10 @@ class Dashboard extends Component {
                                 <div className="col-sm-5 col-12 mt-3 mb-5">
                                     <div className="col-12">
                                         <div className="row">
-                                            <input className="col-6 pt-2 pb-2 rounded-left text-center" name="amount" type="text" onChange={this.handleConvertRate}/>
-                                            <select className="col-6 pt-2 pb-2 rounded-right bg-warning text-center border border-warning text-light" name="type" onChange={this.handleChange1}>
+                                            <div className="col-3 pt-2 pb-2 text-center text-light border-div rounded-left pr-1 pl-1">Base asset</div>
+                                            <input className="col-5 pt-2 pb-2 text-center" name="amount" type="text" onChange={this.handleConvertRate}/>
+                                            <select className="col-4 pt-2 pb-2 rounded-right bg-warning text-center border border-warning text-light" name="type" onChange={this.handleChange1}>
+                                                <option>Select</option>
                                                 <option type="0">XLM</option>
                                                 <option type="1">XIR</option>
                                                 <option type="2">IRR</option>
@@ -158,11 +167,12 @@ class Dashboard extends Component {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-sm-2 col-12 mt-3 mb-5 text-center text-light pt-2 font-weight-bold"><FontAwesomeIcon className="" icon={faExchangeAlt}/></div>
+                                <a onClick={this.convert} className="col-sm-2 col-12 mt-3 mb-5 text-center text-light pt-2 pb-2 font-weight-bold bg-warning rounded"><FontAwesomeIcon className="font-weight-bold pt-2 mt-1" style={{fontSize: '35px'}} icon={faLongArrowAltRight}/></a>
                                 <div className="col-sm-5 col-12 mt-3 mb-5">
                                     <div className="col-12">
                                         <div className="row">
-                                            <div className="col-6 pt-2 pb-2 rounded-left text-center border-div text-light" style={{height: '44px'}}>{this.state.price}</div>
+                                            <div className="col-3 pt-2 pb-2 text-center text-light border-div rounded-left pr-1 pl-1">Counter asset</div>
+                                            <div className="col-5 pt-2 pb-2 text-center border-div text-light pt-3"><div className="pt-1">{this.state.price}</div></div>
                                             {option}
                                         </div>
                                     </div>
@@ -173,8 +183,8 @@ class Dashboard extends Component {
                     <div className="col-sm-5 col-12 text-center">
                         <div className="row">
                             <h2 className="col-12 mb-2 font-weight-bold text-light">XIR</h2>
-                            <h5 className="col-12 mb-2 text-light">balance : {this.state.xirBalance}</h5>
-                            <div className="col-12 mb-5 text-light">available : {this.state.xirBalance}</div>
+                            <h5 className="col-12 mb-2 text-light">Balance : {this.state.xirBalance}</h5>
+                            <div className="col-12 mb-5 text-light">Available : {this.state.xirBalance}</div>
                             {/*<div className="col-12">*/}
                                 {/*<div className="row">*/}
                                     {/*<div className="col-6">Remind of XIR :</div>*/}
@@ -193,8 +203,8 @@ class Dashboard extends Component {
                     <div className="col-sm-5 col-12 text-center">
                         <div className="row">
                             <h2 className="col-12 mb-2 font-weight-bold text-light">XLM</h2>
-                            <h5 className="col-12 mb-2 text-light">balance : {this.state.xlmBalance}</h5>
-                            <div className="col-12 mb-5 text-light">available : {priceXlm}</div>
+                            <h5 className="col-12 mb-2 text-light">Balance : {this.state.xlmBalance}</h5>
+                            <div className="col-12 mb-5 text-light">Available : {priceXlm}</div>
                             {/*<div className="col-12">*/}
                                 {/*<div className="row">*/}
                                     {/*<div className="col-6">Remind of XLM :</div>*/}

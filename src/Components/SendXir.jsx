@@ -6,7 +6,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 import {Container, Row, Col} from 'bootstrap-4-react';
 import AuthService from './AuthService.jsx';
-import {faSearch} from '@fortawesome/free-solid-svg-icons';
+import {faEye} from '@fortawesome/free-solid-svg-icons';
 import Loader from 'react-loader-spinner';
 import NumberFormat from 'react-number-format';
 var StellarSdk = require('stellar-sdk');
@@ -265,7 +265,7 @@ class SendXir extends Component {
                     <div className="row">
                         {valids}
                         <h2 className="col-12 text-light text-center font-weight-bold mb-2">Send XIR</h2>
-                        <div className='col-12 text-center text-light mb-5'>{priceXlm}</div>
+                        <div className='col-12 text-center text-light mb-5'>Available : {priceXlm}</div>
                         <form className="col-12" onSubmit={this.handleClickButton}>
                             <label className="col-12">
                                 <div className="row shadow-lg">
@@ -304,7 +304,7 @@ class SendXir extends Component {
                                 <div className="row shadow-lg">
                                     <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Source secret key</span>
                                     <input required='required' id='showOrHidden' className="col-8 text-center p-2" placeholder="SBFHY64P7A4UUONPZJFBUUCI76PCKJXYMA5AESBC4LAETUUOAS55GBI2" name="secret_key_source" type="password" onChange={this.handleChange}/>
-                                    <a className='col-1 text-center bg-warning rounded-right text-light' onClick={this.showPass}><FontAwesomeIcon className="mt-3 col-12 pr-0 pl-0" icon={faSearch}/></a>
+                                    <a className='col-1 text-center bg-warning rounded-right text-light' onClick={this.showPass}><FontAwesomeIcon className="mt-3 col-12 pr-0 pl-0" icon={faEye}/></a>
                                 </div>
                             </label>
                             {loader}
