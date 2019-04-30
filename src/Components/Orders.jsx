@@ -89,6 +89,7 @@ class Orders extends Component {
                     this.setState({
                         nextPage: response.data.next_page_url,
                     });
+                    console.log(this.state.nextPage);
                 }
                 else
                 {
@@ -100,6 +101,7 @@ class Orders extends Component {
                     this.setState({
                         prevPage: response.data.prev_page_url,
                     });
+                    console.log(this.state.prevPage);
                 }
                 else
                 {
@@ -258,10 +260,34 @@ class Orders extends Component {
         var config = {headers};
         return axios.get(url, config)
             .then(response => {
-                this.setState({
-                    data: response.data.data,
-                    currentPage: response.data.current_page
-                });
+                if(this.state.currentTab == 1)
+                {
+                    this.setState({
+                        currentPage: response.data.current_page,
+                        data1: response.data.data,
+                    });
+                }
+                if(this.state.currentTab == 2)
+                {
+                    this.setState({
+                        currentPage: response.data.current_page,
+                        data2: response.data.data,
+                    });
+                }
+                if(this.state.currentTab == 3)
+                {
+                    this.setState({
+                        currentPage: response.data.current_page,
+                        data3: response.data.data,
+                    });
+                }
+                if(this.state.currentTab == 4)
+                {
+                    this.setState({
+                        currentPage: response.data.current_page,
+                        data4: response.data.data,
+                    });
+                }
                 if (response.data.next_page_url) {
                     this.setState({
                         nextPage: response.data.next_page_url,
@@ -299,10 +325,34 @@ class Orders extends Component {
         var config = {headers};
         return axios.get(url, config)
             .then(response => {
-                this.setState({
-                    data: response.data.data,
-                    currentPage: response.data.current_page
-                });
+                if(this.state.currentTab == 1)
+                {
+                    this.setState({
+                        currentPage: response.data.current_page,
+                        data1: response.data.data,
+                    });
+                }
+                if(this.state.currentTab == 2)
+                {
+                    this.setState({
+                        currentPage: response.data.current_page,
+                        data2: response.data.data,
+                    });
+                }
+                if(this.state.currentTab == 3)
+                {
+                    this.setState({
+                        currentPage: response.data.current_page,
+                        data3: response.data.data,
+                    });
+                }
+                if(this.state.currentTab == 4)
+                {
+                    this.setState({
+                        currentPage: response.data.current_page,
+                        data4: response.data.data,
+                    });
+                }
                 if (response.data.next_page_url) {
                     this.setState({
                         nextPage: response.data.next_page_url,

@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Container, Row, Col } from 'bootstrap-4-react';
 import AuthService from './AuthService.jsx';
 import Loader from 'react-loader-spinner';
-import {faSearch} from "@fortawesome/free-solid-svg-icons";
+import {faEye} from "@fortawesome/free-solid-svg-icons";
 var StellarSdk = require('stellar-sdk');
 
 const isValidSecretKey = input => {
@@ -29,6 +29,7 @@ class Trust extends Component {
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.showPlacholder = this.showPlacholder.bind(this);
         this.showPass = this.showPass.bind(this);
+        this.hiddenPass = this.hiddenPass.bind(this);
         this.state = {
             load: false,
             inValidSecretKey: false,
@@ -38,16 +39,12 @@ class Trust extends Component {
 
     showPass(e){
         e.preventDefault();
-        this.setState({
-            key: !this.state.key,
-        });
-        if(this.state.key == 0) {
-            document.getElementById('showOrHidden').setAttribute("type", "text");
-        }
-        else
-        {
-            document.getElementById('showOrHidden').setAttribute("type", "password");
-        }
+        document.getElementById('showOrHidden').setAttribute("type", "text");
+    }
+
+    hiddenPass(e){
+        e.preventDefault();
+        document.getElementById('showOrHidden').setAttribute("type", "password");
     }
 
     showPlacholder(e)
@@ -173,8 +170,8 @@ class Trust extends Component {
                         <div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>
                             <div className="row">
                                 <label className="disable" htmlFor="secret_key">Secret key</label>
-                                <input id='showOrHidden' className="col-11 mt-3 p-2 rounded-left shadow-lg text-center" placeholder="Secret key : SB3JKIKJ7ECA2GBB55KG55KRHUILGDHXZ5GZ5WBWYOFS7KU6JT73C7HX" name="secret_key" required="required" type="password" onChange={this.handleChange}/>
-                                <a className='col-1 text-center bg-warning rounded-right text-light mt-3' onClick={this.showPass}><FontAwesomeIcon className="mt-3 col-12 pr-0 pl-0" icon={faSearch}/></a>
+                                <input id='showOrHidden' className="col-sm-11 col-12 mt-3 p-2 rounded-left shadow-lg text-center" placeholder="Secret key : SB3JKIKJ7ECA2GBB55KG55KRHUILGDHXZ5GZ5WBWYOFS7KU6JT73C7HX" name="secret_key" required="required" type="password" onChange={this.handleChange}/>
+                                <a className='col-sm-1 col-12 text-center bg-warning rounded-right text-light mt-3' onMouseDown={this.showPass} onMouseUp={this.hiddenPass}><FontAwesomeIcon className="mt-3 col-12 pr-0 pl-0" icon={faEye}/></a>
                             </div>
                         </div>
                         {loader}
