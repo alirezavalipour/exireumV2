@@ -28,6 +28,7 @@ class WithdrawedXirWithSheba extends Component {
         this.Auth = new AuthService();
         this.handleChange = this.handleChange.bind(this);
         this.showPass = this.showPass.bind(this);
+        this.hidePass = this.hidePass.bind(this);
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.handleForSignWithSecretKey = this.handleForSignWithSecretKey.bind(this);
         this.state = {
@@ -45,16 +46,13 @@ class WithdrawedXirWithSheba extends Component {
 
     showPass(e){
         e.preventDefault();
-        this.setState({
-            key: !this.state.key,
-        });
-        if(this.state.key == 0) {
-            document.getElementById('showOrHidden').setAttribute("type", "text");
-        }
-        else
-        {
-            document.getElementById('showOrHidden').setAttribute("type", "password");
-        }
+        document.getElementById('showOrHidden').setAttribute("type", "text");
+    }
+
+    hidePass(e)
+    {
+        e.preventDefault();
+        document.getElementById('showOrHidden').setAttribute("type", "password");
     }
 
     handleChange(e) {
@@ -379,7 +377,7 @@ class WithdrawedXirWithSheba extends Component {
                                 <div className="row shadow-lg">
                                     <span className="col-3 text-center text-light p-2 rounded-left bg-warning mt-3">Secret key</span>
                                     <input required='required' id='showOrHidden' className="col-7 text-center p-2 mt-3" placeholder="SB3JKIKJ7ECA2GBB55KG55KRHUILGDHXZ5GZ5WBWYOFS7KU6JT73C7HX" name="secret_key" type="password" onChange={this.handleChange}/>
-                                    <a className='col-1 text-center bg-warning rounded-right text-light mt-3' onClick={this.showPass}><FontAwesomeIcon className="mt-3 col-12 pr-0 pl-0" icon={faEye}/></a>
+                                    <a className='col-1 text-center bg-warning rounded-right text-light mt-3' onMouseDown={this.showPass} onMouseUp={this.hidePass}><FontAwesomeIcon className="mt-3 col-12 pr-0 pl-0" icon={faEye}/></a>
                                     <a target='_blank' href={'https://www.stellar.org/laboratory/#xdr-viewer?input=' + this.fixEscape(this.state.xdr)} className='col-1 text-center text-light pr-0 mt-3'><div className='col-12  pt-2 pb-2 rounded  bg-warning border border-warning pr-0 pl-0'>XDR</div></a>
                                 </div>
                             </label>

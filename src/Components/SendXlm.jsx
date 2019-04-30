@@ -38,6 +38,7 @@ class SendXlm extends Component {
         this.Auth = new AuthService();
         this.handleChange = this.handleChange.bind(this);
         this.showPass = this.showPass.bind(this);
+        this.hidePass = this.hidePass.bind(this);
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.handleClickButton = this.handleClickButton.bind(this);
         this.state = {
@@ -57,16 +58,13 @@ class SendXlm extends Component {
 
     showPass(e){
         e.preventDefault();
-        this.setState({
-            key: !this.state.key,
-        });
-        if(this.state.key == 0) {
-            document.getElementById('showOrHidden').setAttribute("type", "text");
-        }
-        else
-        {
-            document.getElementById('showOrHidden').setAttribute("type", "password");
-        }
+        document.getElementById('showOrHidden').setAttribute("type", "text");
+    }
+
+    hidePass(e)
+    {
+        e.preventDefault();
+        document.getElementById('showOrHidden').setAttribute("type", "password");
     }
 
     handleChange(e) {
@@ -299,7 +297,7 @@ class SendXlm extends Component {
                                 <div className="row shadow-lg">
                                     <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Source secret key</span>
                                     <input required='required' id='showOrHidden' className="col-8 text-center p-2" placeholder="SBFHY64P7A4UUONPZJFBUUCI76PCKJXYMA5AESBC4LAETUUOAS55GBI2" name="secret_key_source" type="password" onChange={this.handleChange}/>
-                                    <a className='col-1 text-center bg-warning rounded-right text-light' onClick={this.showPass}><FontAwesomeIcon className="mt-3 col-12 pr-0 pl-0" icon={faEye}/></a>
+                                    <a className='col-1 text-center bg-warning rounded-right text-light' onMouseDown={this.showPass} onMouseUp={this.hidePass}><FontAwesomeIcon className="mt-3 col-12 pr-0 pl-0" icon={faEye}/></a>
                                 </div>
                             </label>
                             {loader}
