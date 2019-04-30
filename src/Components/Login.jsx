@@ -111,6 +111,7 @@ class Login extends Component {
                                     fieldName='mobile'
                                     placeholder='Phone number : 09191000000'
                                     autoComplete='off'
+                                    separateDialCode='true'
                                 />
                             </div>
                         </div>

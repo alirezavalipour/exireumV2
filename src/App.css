@@ -166,3 +166,8 @@ input , textarea , .border-div , button
         margin-left: 0 !important;
     }
 }
+
+.selected-dial-code
+{
+    color: #fff;
+}

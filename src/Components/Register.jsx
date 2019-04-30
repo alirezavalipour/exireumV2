@@ -193,15 +193,16 @@ class Register extends Component {
                                     containerClassName="input-placeholder intl-tel-input col-12 pr-0 pl-0 mt-3"
                                     inputClassName="col-12 pt-2 pb-2 rounded shadow-lg"
                                     preferredCountries={['ir' , 'ca' , 'de']}
-                                    onPhoneNumberChange={ (e , f , g , h , i) => {
+                                    onPhoneNumberChange={ (e , f , g , h ) => {
                                         this.setState({
-                                            mobile: '+' + h.replace(/\D/g, '')
+                                            mobile: '+' + h.replace(/\D/g, ''),
                                         });
                                     }}
                                     // onPhoneNumberBlur={}
                                     fieldName='mobile'
                                     placeholder='Phone number : 09191000000'
                                     autoComplete='off'
+                                    separateDialCode='true'
                                 />
                             </div>
                         </div>
