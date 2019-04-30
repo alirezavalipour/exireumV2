@@ -39,6 +39,7 @@ class Account extends Component {
         this.handleFormSubmit2 = this.handleFormSubmit2.bind(this);
         this.acceptTerm = this.acceptTerm.bind(this);
         this.acceptTerm2 = this.acceptTerm2.bind(this);
+        this.acceptTerm3 = this.acceptTerm3.bind(this);
         this.signXdr = this.signXdr.bind(this);
         this.changeForm1 = this.changeForm1.bind(this);
         this.changeForm2 = this.changeForm2.bind(this);
@@ -50,6 +51,7 @@ class Account extends Component {
             termsAccepted: false,
             term1: false,
             term2: false,
+            term3: false,
             load: false,
             inValidSecretKey: false,
             inValidPublicKey: false,
@@ -224,12 +226,22 @@ class Account extends Component {
     acceptTerm(e){
         this.setState( {
             term1: !this.state.term1,
+            term2: false,
+            term3: false,
         });
     }
 
     acceptTerm2(e){
         this.setState( {
             term2: !this.state.term2,
+            term1: false,
+        });
+    }
+
+    acceptTerm3(e){
+        this.setState( {
+            term3: !this.state.term3,
+            term1: false,
         });
     }
 
@@ -281,12 +293,12 @@ class Account extends Component {
             </button>;
         }
         let acceptShow1 = <div className="mb-3 col-12 p-2 mt-2 border-div rounded shadow-lg text-center">Submit</div>;
-        if(this.state.term1)
+        if(this.state.term1 && !this.state.term3 && !this.state.term2)
         {
             acceptShow1 = loader;
         }
         let acceptShow2 = <div className="mb-3 col-12 p-2 mt-2 border-div rounded shadow-lg text-center">Submit</div>;
-        if(this.state.term1 && this.state.term2)
+        if(!this.state.term1 && this.state.term3 && this.state.term2)
         {
             acceptShow2 = loader;
         }
@@ -352,7 +364,7 @@ class Account extends Component {
                     <label className=" text-light" htmlFor="Choice4"><div href="#" className="text-light col-12">I have written done my public key and secret key</div></label>
                 </div>
                 <div className="p-2 col-12">
-                    <input type="checkbox" id="Choice3" name="accept" value="accept" onChange={this.acceptTerm}/>
+                    <input type="checkbox" id="Choice3" name="accept" value="accept" onChange={this.acceptTerm3}/>
                     <label className=" text-light" htmlFor="Choice3"><a href="#" className="text-light col-12">Accept term and conditions</a></label>
                 </div>
                 {acceptShow2}
