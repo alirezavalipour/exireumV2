@@ -140,7 +140,7 @@ class Dashboard extends Component {
         }
         if(this.state.formSelect1 == 'IRR')
         {
-            option = <select className="font-weight-bold col-4 pt-2 pb-2 rounded-right bg-warning text-center border border-warning text-light pr-1 pl-1" name="type" onChange={this.handleChange2}>
+            option = <select className="font-weight-bold col-3 pt-2 pb-2 rounded-right bg-warning text-center border border-warning text-light pr-1 pl-1" name="type" onChange={this.handleChange2}>
                 <option>-</option>
                 <option type="0">XLM</option>
                 <option type="1">XIR</option>
