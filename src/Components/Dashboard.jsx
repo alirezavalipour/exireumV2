@@ -116,32 +116,32 @@ class Dashboard extends Component {
     {
         priceXlm = (parseFloat((this.state.xlmBalances) - (0.5 * this.state.entry) - 1).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' XLM';
     }
-    let option = <select className="col-4 pt-2 pb-2 rounded-right bg-warning text-center border border-warning text-light" name="type" onChange={this.handleChange2}>
-            <option>Select</option>
+    let option = <select className="font-weight-bold col-3 pt-2 pb-2 rounded-right bg-warning text-center border border-warning text-light pr-1 pl-1" name="type" onChange={this.handleChange2}>
+            <option>-</option>
             <option type="0">XLM</option>
             <option type="1">XIR</option>
             <option type="2">IRR</option>
         </select>;
         if(this.state.formSelect1 == 'XLM')
         {
-            option = <select className="col-4 pt-2 pb-2 rounded-right bg-warning text-center border border-warning text-light" name="type" onChange={this.handleChange2}>
-                <option>Select</option>
+            option = <select className="font-weight-bold col-3 pt-2 pb-2 rounded-right bg-warning text-center border border-warning text-light pr-1 pl-1" name="type" onChange={this.handleChange2}>
+                <option>-</option>
                 <option type="1">XIR</option>
                 <option type="2">IRR</option>
             </select>;
         }
         if(this.state.formSelect1 == 'XIR')
         {
-            option = <select className="col-4 pt-2 pb-2 rounded-right bg-warning text-center border border-warning text-light" name="type" onChange={this.handleChange2}>
-                <option>Select</option>
+            option = <select className="font-weight-bold col-3 pt-2 pb-2 rounded-right bg-warning text-center border border-warning text-light pr-1 pl-1" name="type" onChange={this.handleChange2}>
+                <option>-</option>
                 <option type="0">XLM</option>
                 <option type="2">IRR</option>
             </select>;
         }
         if(this.state.formSelect1 == 'IRR')
         {
-            option = <select className="col-4 pt-2 pb-2 rounded-right bg-warning text-center border border-warning text-light" name="type" onChange={this.handleChange2}>
-                <option>Select</option>
+            option = <select className="font-weight-bold col-4 pt-2 pb-2 rounded-right bg-warning text-center border border-warning text-light pr-1 pl-1" name="type" onChange={this.handleChange2}>
+                <option>-</option>
                 <option type="0">XLM</option>
                 <option type="1">XIR</option>
             </select>;
@@ -156,10 +156,10 @@ class Dashboard extends Component {
                                 <div className="col-sm-5 col-12 mt-3 mb-5">
                                     <div className="col-12">
                                         <div className="row">
-                                            <div className="col-3 pt-2 pb-2 text-center text-light border-div rounded-left pr-1 pl-1">Base asset</div>
+                                            <div className="col-4 pt-2 pb-2 text-center text-light border-div rounded-left pr-1 pl-1">Base asset</div>
                                             <input className="col-5 pt-2 pb-2 text-center" name="amount" type="text" onChange={this.handleConvertRate}/>
-                                            <select className="col-4 pt-2 pb-2 rounded-right bg-warning text-center border border-warning text-light" name="type" onChange={this.handleChange1}>
-                                                <option>Select</option>
+                                            <select className="font-weight-bold col-3 pt-2 pb-2 rounded-right bg-warning text-center border border-warning text-light pr-1 pl-1" name="type" onChange={this.handleChange1}>
+                                                <option>-</option>
                                                 <option type="0">XLM</option>
                                                 <option type="1">XIR</option>
                                                 <option type="2">IRR</option>
@@ -167,12 +167,12 @@ class Dashboard extends Component {
                                         </div>
                                     </div>
                                 </div>
-                                <a onClick={this.convert} className="col-sm-2 col-12 mt-3 mb-5 text-center text-light pt-2 pb-2 font-weight-bold bg-warning rounded"><FontAwesomeIcon className="font-weight-bold pt-2 mt-1" style={{fontSize: '35px'}} icon={faLongArrowAltRight}/></a>
+                                <a onClick={this.convert} className="col-sm-2 col-12 mt-3 mb-5 text-center text-light pt-2 pb-2 font-weight-bold bg-warning rounded"><FontAwesomeIcon className="font-weight-bold mt-1" style={{fontSize: '20px'}} icon={faLongArrowAltRight}/></a>
                                 <div className="col-sm-5 col-12 mt-3 mb-5">
                                     <div className="col-12">
                                         <div className="row">
-                                            <div className="col-3 pt-2 pb-2 text-center text-light border-div rounded-left pr-1 pl-1">Counter asset</div>
-                                            <div className="col-5 pt-2 pb-2 text-center border-div text-light pt-3"><div className="pt-1">{this.state.price}</div></div>
+                                            <div className="col-4 pt-2 pb-2 text-center text-light border-div rounded-left pr-1 pl-1">Counter asset</div>
+                                            <div className="col-5 pt-2 pb-2 text-center border-div text-light">{this.state.price}</div>
                                             {option}
                                         </div>
                                     </div>
