@@ -517,7 +517,7 @@ class Orders extends Component {
                 {
                     order_status = 'Rejected'
                 }
-                return <div key={index} className="row" style={{backgroundColor: (index%2 === 0 ? '#ffc107' : '#151d2e')}}>
+                return <div key={index} className="row" style={{backgroundColor: (index%2 === 0 ? 'rgb(47, 61, 86)' : '#151d2e')}}>
                     <div className="col-1 text-center text-light pt-2 pb-2">{id}</div>
                     <div className="col-2 text-center text-light pt-2 pb-2">{date}</div>
                     <div className="col-1 text-center text-light pt-2 pb-2">{amount}</div>
@@ -564,7 +564,7 @@ class Orders extends Component {
                 {
                     status = 'Successful';
                 }
-                return <div key={index} className="row" style={{backgroundColor: (index%2 === 0 ? '#ffc107' : '#151d2e')}}>
+                return <div key={index} className="row" style={{backgroundColor: (index%2 === 0 ? 'rgb(47, 61, 86)' : '#151d2e')}}>
                     {/*<div className="col-4 text-center text-light pt-2 pb-2">{request()}</div>*/}
                     <div className="col-3 text-center text-light pt-2 pb-2">{id}</div>
                     <div className="col-3 text-center text-light pt-2 pb-2">{amount}</div>
@@ -625,7 +625,7 @@ class Orders extends Component {
                 {
                     order_status = 'Rejected'
                 }
-                return <div key={index} className="row" style={{backgroundColor: (index%2 === 0 ? '#ffc107' : '#151d2e')}}>
+                return <div key={index} className="row" style={{backgroundColor: (index%2 === 0 ? 'rgb(47, 61, 86)' : '#151d2e')}}>
                     <div className="col-1 text-center text-light pt-2 pb-2">{id}</div>
                     <div className="col-2 text-center text-light pt-2 pb-2">{date}</div>
                     <div className="col-1 text-center text-light pt-2 pb-2">{amount}</div>
@@ -688,7 +688,7 @@ class Orders extends Component {
                 {
                     order_status = 'Rejected'
                 }
-                return <div key={index} className="row" style={{backgroundColor: (index%2 === 0 ? '#ffc107' : '#151d2e')}}>
+                return <div key={index} className="row" style={{backgroundColor: (index%2 === 0 ? 'rgb(47, 61, 86)' : '#151d2e')}}>
                     <div className="col-1 text-center text-light pt-2 pb-2">{id}</div>
                     <div className="col-2 text-center text-light pt-2 pb-2">{date}</div>
                     <div className="col-1 text-center text-light pt-2 pb-2">{amount}</div>

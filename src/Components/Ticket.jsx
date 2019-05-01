@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import '../App.css';
 import axios from 'axios';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import { faEye} from '@fortawesome/free-solid-svg-icons';
+import { faEye, faAngleLeft} from '@fortawesome/free-solid-svg-icons';
 import {Container, Row, Col} from 'bootstrap-4-react';
 import AuthService from './AuthService.jsx';
 import Loader from 'react-loader-spinner';
@@ -15,6 +15,8 @@ class Ticket extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.createTicket = this.createTicket.bind(this);
         this.response = this.response.bind(this);
+        this.addText = this.addText.bind(this);
+        this.return = this.return.bind(this);
         this.state = {
             load: false,
             ticket: false,
@@ -95,8 +97,10 @@ class Ticket extends Component {
            ticket2: true,
         });
         let tag = e.currentTarget.dataset.id;
+        this.setState({
+            tags : tag
+        });
         const url = `${this.Auth.domain}/user/ticket/` + tag;
-        console.log(url);
         const headers = {
             Accept: 'application/json',
             'Content-Type': 'application/json',
@@ -107,8 +111,38 @@ class Ticket extends Component {
             .then(response => {
                 this.setState({
                     data2: response.data.data
-                })
+                });
             })
+    }
+
+    addText(e)
+    {
+        e.preventDefault();
+        const url = `${this.Auth.domain}/user/ticket/` + this.state.tags;
+        const formData = {
+            text: this.state.text
+        };
+        const headers = {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${this.Auth.getToken()}`,
+        };
+        var config = { headers };
+        return axios.post(url, formData, config)
+            .then(response => {
+                this.setState({
+                    messag: response.data.message
+                });
+                setTimeout(function() {
+                    window.location.replace('/Components/Ticket');
+                }.bind(this), 2000)
+            })
+    }
+
+    return(e)
+    {
+        e.preventDefault();
+        window.location.replace('/Components/Ticket');
     }
 
     render() {
@@ -156,7 +190,7 @@ class Ticket extends Component {
                 {
                     message = 'Suspend';
                 }
-                return <div key={index} className="row" style={{backgroundColor: (index%2 === 0 ? '#ffc107' : '#151d2e')}}>
+                return <div key={index} className="row" style={{backgroundColor: (index%2 === 0 ? 'rgb(47, 61, 86)' : '#151d2e')}}>
                     <div className="col-sm-1 col-12 text-center text-light pt-2 pb-2">{id}</div>
                     <div className="col-sm-3 col-12 text-center text-light pt-2 pb-2">{date}</div>
                     <div className="col-sm-3 col-12 text-center text-light pt-2 pb-2">{title}</div>
@@ -165,14 +199,15 @@ class Ticket extends Component {
                 </div>
             })
         }
+        let signers2;
         if (this.state.data2) {
-            signers = this.state.data2.map((elem , index) => {
+            signers2 = this.state.data2.map((elem , index) => {
                 let date = elem.created_at;
                 let text = elem.text;
                 let user = elem.user_type;
                 return <div key={index} className="row border border-warning rounded shadow-lg mt-3">
                     {/*<div className="col-sm-1 col-12 text-center text-light pt-2 pb-2">{id}</div>*/}
-                    <div className="col-sm-6 col-12 text-left text-light pt-2 pb-2 border-bottom border-warning">Type : {user}</div>
+                    <div className="col-sm-6 col-12 text-left text-light pt-2 pb-2 border-bottom border-warning">Author : {user}</div>
                     <div className="col-sm-6 col-12 text-left text-light pt-2 pb-2 border-bottom border-warning">Date : {date}</div>
                     <div className="col-12 text-left text-light pt-2 pb-2">Comment : {text}</div>
                 </div>
@@ -183,7 +218,16 @@ class Ticket extends Component {
         {
             mess = <div className="col-12">
                 <div className="col-12 bg-success text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
-                    Your message submited
+                    Your ticket has been submited
+                </div>
+            </div>;
+        }
+        let messag = '';
+        if(this.state.messag)
+        {
+            messag = <div className="col-12">
+                <div className="col-12 bg-success text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
+                    Your ticket has been submited
                 </div>
             </div>;
         }
@@ -228,6 +272,11 @@ class Ticket extends Component {
                     <div className="row">
                         {mess}
                         <h2 className="col-12 text-light text-center font-weight-bold mb-5">Support</h2>
+                        <a className="col-12" onClick={this.return}>
+                            <div className="col-3 bg-warning font-weight-bold text-center rounded shadow-lg text-light pt-2 pb-2">
+                                RETURN
+                            </div>
+                        </a>
                         <form className="col-12" onSubmit={this.handleSubmit}>
                             <label className="col-12 mt-3">
                                 <div className="row shadow-lg">
@@ -252,8 +301,14 @@ class Ticket extends Component {
             return(
                 <div className="col-sm-8 col-12 clearfix mx-auto">
                     <div className="row">
+                        {messag}
                         <h2 className="col-12 text-light text-center font-weight-bold mb-5">Support</h2>
                         <div className="col-12">
+                            <a className="col-12" onClick={this.return}>
+                                <div className="col-3 bg-warning font-weight-bold text-center rounded shadow-lg text-light pt-2 pb-2">
+                                    RETURN
+                                </div>
+                            </a>
                             <form className="col-12 border border-warning rounded shadow-lg" onSubmit={this.addText}>
                                 <label className="col-12 mt-3">
                                     <div className="row shadow-lg">
@@ -265,7 +320,7 @@ class Ticket extends Component {
                             </form>
                         </div>
                         <div className="col-12">
-                            <div className="col-12">{signers}</div>
+                            <div className="col-12">{signers2}</div>
                         </div>
                     </div>
                 </div>
