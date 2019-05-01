@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import '../App.css';
 import axios from 'axios';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import { faEye, faAngleLeft} from '@fortawesome/free-solid-svg-icons';
+import {faEye, faAngleLeft, faAngleRight} from '@fortawesome/free-solid-svg-icons';
 import {Container, Row, Col} from 'bootstrap-4-react';
 import AuthService from './AuthService.jsx';
 import Loader from 'react-loader-spinner';
@@ -14,6 +14,8 @@ class Ticket extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.createTicket = this.createTicket.bind(this);
+        this.clickPrevButton = this.clickPrevButton.bind(this);
+        this.clickNextButton = this.clickNextButton.bind(this);
         this.response = this.response.bind(this);
         this.addText = this.addText.bind(this);
         this.return = this.return.bind(this);
@@ -42,8 +44,31 @@ class Ticket extends Component {
         return axios.get(url, config)
             .then(response => {
                 this.setState({
-                   data: response.data.data
+                    data: response.data.data,
+                    currentPage: response.data.current_page
                 });
+                if (response.data.next_page_url) {
+                    this.setState({
+                        nextPage: response.data.next_page_url,
+                    });
+                }
+                else
+                {
+                    this.setState({
+                        nextPage: null,
+                    });
+                }
+                if (response.data.prev_page_url) {
+                    this.setState({
+                        prevPage: response.data.prev_page_url,
+                    });
+                }
+                else
+                {
+                    this.setState({
+                        prevPage: null,
+                    });
+                }
             })
     }
 
@@ -145,7 +170,103 @@ class Ticket extends Component {
         window.location.replace('/Components/Ticket');
     }
 
+    clickNextButton(e)
+    {
+        e.preventDefault();
+        const url = this.state.nextPage;
+        const headers = {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${this.Auth.getToken()}`,
+        };
+        var config = {headers};
+        return axios.get(url, config)
+            .then(response => {
+                this.setState({
+                    currentPage: response.data.current_page,
+                    data: response.data.data,
+                });
+                if (response.data.next_page_url) {
+                    this.setState({
+                        nextPage: response.data.next_page_url,
+                    });
+                }
+                else
+                {
+                    this.setState({
+                        nextPage: null,
+                    });
+                }
+                if (response.data.prev_page_url) {
+                    this.setState({
+                        prevPage: response.data.prev_page_url,
+                    });
+                }
+                else
+                {
+                    this.setState({
+                        prevPage: null,
+                    });
+                }
+            });
+    }
+
+    clickPrevButton(e)
+    {
+        e.preventDefault();
+        const url = this.state.prevPage;
+        const headers = {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${this.Auth.getToken()}`,
+        };
+        var config = {headers};
+        return axios.get(url, config)
+            .then(response => {
+                this.setState({
+                    currentPage: response.data.current_page,
+                    data: response.data.data,
+                });
+                if (response.data.next_page_url) {
+                    this.setState({
+                        nextPage: response.data.next_page_url,
+                    });
+                }
+                else
+                {
+                    this.setState({
+                        nextPage: null,
+                    });
+                }
+                if (response.data.prev_page_url) {
+                    this.setState({
+                        prevPage: response.data.prev_page_url,
+                    });
+                }
+                else
+                {
+                    this.setState({
+                        prevPage: null,
+                    });
+                }
+            });
+    }
+
     render() {
+        let leftButton= "";
+        if(this.state.nextPage)
+        {
+            leftButton = <button onClick={this.clickNextButton} className="rounded shadow-lg border border-warning">
+                <FontAwesomeIcon className="" icon={faAngleLeft}/>
+            </button>;
+        }
+        let rightButton= "";
+        if(this.state.prevPage)
+        {
+            rightButton = <button onClick={this.clickPrevButton} className="rounded shadow-lg border border-warning">
+                <FontAwesomeIcon className="" icon={faAngleRight}/>
+            </button>;
+        }
         let loader = "";
         if(this.state.load == false)
         {
@@ -241,7 +362,7 @@ class Ticket extends Component {
                                 <a className="col-12" onClick={this.createTicket}>
                                     <div class="col-12 col-sm-3 bg-warning pt-2 pb-2 text-center text-light rounded shadow-lg mx-auto">CREATE TICKET</div>
                                 </a>
-                                <div className="col-12 border border-warning mt-3 rounded shadow-lg mb-5">
+                                <div className="col-12 border border-warning mt-3 rounded shadow-lg mb-2">
                                     <div className="row mt-3 mb-3">
                                         <div className="col-12">
                                             <div className="col-12">
@@ -257,6 +378,13 @@ class Ticket extends Component {
                                         <div className="col-12">
                                             <div className="col-12">{signers}</div>
                                         </div>
+                                    </div>
+                                </div>
+                                <div className="col-12 text-center text-light mb-5">
+                                    <div className="row">
+                                        <div className="col-5 text-right">{leftButton}</div>
+                                        <div className="col-2 text-center border border-warning rounded shadow-lg pr-0 pl-0">{this.state.currentPage}</div>
+                                        <div className="col-5 text-left">{rightButton}</div>
                                     </div>
                                 </div>
                             </div>
