@@ -292,12 +292,12 @@ class Account extends Component {
                 />
             </button>;
         }
-        let acceptShow1 = <div className="mb-3 col-12 p-2 mt-2 border-div rounded shadow-lg text-center">Submit</div>;
+        let acceptShow1 = <div className="mb-3 col-12 p-2 mt-2 border-div rounded shadow-lg text-center">SUBMIT</div>;
         if(this.state.term1 && !this.state.term3 && !this.state.term2)
         {
             acceptShow1 = loader;
         }
-        let acceptShow2 = <div className="mb-3 col-12 p-2 mt-2 border-div rounded shadow-lg text-center">Submit</div>;
+        let acceptShow2 = <div className="mb-3 col-12 p-2 mt-2 border-div rounded shadow-lg text-center">SUBMIT</div>;
         if(!this.state.term1 && this.state.term3 && this.state.term2)
         {
             acceptShow2 = loader;

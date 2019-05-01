@@ -394,67 +394,67 @@ class Orders extends Component {
             </button>;
         }
         let attr = <div className="row">
-            <div className="col-2 text-center text-light pt-2 pb-2 pr-1 pl-1">Paid transaction</div>
-            <div className="col-1 text-center text-light pt-2 pb-2 pr-1 pl-1">Transaction</div>
-            <div className="col-1 text-center text-light pt-2 pb-2 pr-1 pl-1">Order status</div>
-            <div className="col-1 text-center text-light pt-2 pb-2 pr-1 pl-1">Payment status</div>
-            <div className="col-1 text-center text-light pt-2 pb-2 pr-1 pl-1">Receive amount</div>
-            <div className="col-1 text-center text-light pt-2 pb-2 pr-1 pl-1">Counter asset</div>
-            <div className="col-1 text-center text-light pt-2 pb-2 pr-1 pl-1">Base asset</div>
-            <div className="col-1 text-center text-light pt-2 pb-2 pr-1 pl-1">Amount</div>
-            <div className="col-2 text-center text-light pt-2 pb-2 pr-1 pl-1">Date</div>
             <div className="col-1 text-center text-light pt-2 pb-2 pr-1 pl-1">Id</div>
+            <div className="col-2 text-center text-light pt-2 pb-2 pr-1 pl-1">Date</div>
+            <div className="col-1 text-center text-light pt-2 pb-2 pr-1 pl-1">Amount</div>
+            <div className="col-1 text-center text-light pt-2 pb-2 pr-1 pl-1">Base asset</div>
+            <div className="col-1 text-center text-light pt-2 pb-2 pr-1 pl-1">Counter asset</div>
+            <div className="col-1 text-center text-light pt-2 pb-2 pr-1 pl-1">Receive amount</div>
+            <div className="col-1 text-center text-light pt-2 pb-2 pr-1 pl-1">Payment status</div>
+            <div className="col-1 text-center text-light pt-2 pb-2 pr-1 pl-1">Order status</div>
+            <div className="col-1 text-center text-light pt-2 pb-2 pr-1 pl-1">Transaction</div>
+            <div className="col-2 text-center text-light pt-2 pb-2 pr-1 pl-1">Paid transaction</div>
         </div>;
         if(this.state.currentTab == 1)
         {
             attr = <div className="row">
-                <div className="col-1 text-center text-light pt-2 pb-2 pr-1 pl-1">Paid transaction</div>
-                <div className="col-1 text-center text-light pt-2 pb-2 pr-1 pl-1">Transaction</div>
-                <div className="col-1 text-center text-light pt-2 pb-2 pr-1 pl-1">Order status</div>
-                <div className="col-1 text-center text-light pt-2 pb-2 pr-1 pl-1">Payment status</div>
-                <div className="col-2 text-center text-light pt-2 pb-2 pr-1 pl-1">Receive amount</div>
-                <div className="col-1 text-center text-light pt-2 pb-2 pr-1 pl-1">Counter asset</div>
-                <div className="col-1 text-center text-light pt-2 pb-2 pr-1 pl-1">Base asset</div>
-                <div className="col-1 text-center text-light pt-2 pb-2 pr-1 pl-1">Amount</div>
-                <div className="col-2 text-center text-light pt-2 pb-2 pr-1 pl-1">Date</div>
                 <div className="col-1 text-center text-light pt-2 pb-2 pr-1 pl-1">Id</div>
+                <div className="col-2 text-center text-light pt-2 pb-2 pr-1 pl-1">Date</div>
+                <div className="col-1 text-center text-light pt-2 pb-2 pr-1 pl-1">Amount</div>
+                <div className="col-1 text-center text-light pt-2 pb-2 pr-1 pl-1">Base asset</div>
+                <div className="col-1 text-center text-light pt-2 pb-2 pr-1 pl-1">Counter asset</div>
+                <div className="col-2 text-center text-light pt-2 pb-2 pr-1 pl-1">Receive amount</div>
+                <div className="col-1 text-center text-light pt-2 pb-2 pr-1 pl-1">Payment status</div>
+                <div className="col-1 text-center text-light pt-2 pb-2 pr-1 pl-1">Order status</div>
+                <div className="col-1 text-center text-light pt-2 pb-2 pr-1 pl-1">Transaction</div>
+                <div className="col-1 text-center text-light pt-2 pb-2 pr-1 pl-1">Paid transaction</div>
             </div>;
         }
         if(this.state.currentTab == 2)
         {
             attr = <div className="row">
-                <div className="col-3 text-center text-light pt-2 pb-2">Status</div>
-                <div className="col-3 text-center text-light pt-2 pb-2">Price</div>
-                <div className="col-3 text-center text-light pt-2 pb-2">Amount</div>
                 <div className="col-3 text-center text-light pt-2 pb-2">Id</div>
+                <div className="col-3 text-center text-light pt-2 pb-2">Amount</div>
+                <div className="col-3 text-center text-light pt-2 pb-2">Price</div>
+                <div className="col-3 text-center text-light pt-2 pb-2">Status</div>
             </div>;
         }
         if(this.state.currentTab == 3)
         {
             attr = <div className="row">
-                <div className="col-1 text-center text-light pt-2 pb-2">Tracking code</div>
-                <div className="col-1 text-center text-light pt-2 pb-2">transaction</div>
-                <div className="col-1 text-center text-light pt-2 pb-2">Order status</div>
-                <div className="col-1 text-center text-light pt-2 pb-2">Payment status</div>
-                <div className="col-2 text-center text-light pt-2 pb-2">Bank account</div>
-                <div className="col-2 text-center text-light pt-2 pb-2">Receive amount</div>
-                <div className="col-1 text-center text-light pt-2 pb-2">Amount</div>
-                <div className="col-2 text-center text-light pt-2 pb-2">Date</div>
                 <div className="col-1 text-center text-light pt-2 pb-2">Id</div>
+                <div className="col-2 text-center text-light pt-2 pb-2">Date</div>
+                <div className="col-1 text-center text-light pt-2 pb-2">Amount</div>
+                <div className="col-1 text-center text-light pt-2 pb-2">Receive amount</div>
+                <div className="col-3 text-center text-light pt-2 pb-2">Bank account</div>
+                <div className="col-1 text-center text-light pt-2 pb-2">Payment status</div>
+                <div className="col-1 text-center text-light pt-2 pb-2">Order status</div>
+                <div className="col-1 text-center text-light pt-2 pb-2">transaction</div>
+                <div className="col-1 text-center text-light pt-2 pb-2">Tracking code</div>
             </div>;
         }
         if(this.state.currentTab == 4)
         {
             attr = <div className="row">
-                <div className="col-1 text-center text-light pt-2 pb-2">Tracking code</div>
-                <div className="col-1 text-center text-light pt-2 pb-2">transaction</div>
-                <div className="col-1 text-center text-light pt-2 pb-2">Order status</div>
-                <div className="col-2 text-center text-light pt-2 pb-2">Payment status</div>
-                <div className="col-2 text-center text-light pt-2 pb-2">Billing code</div>
-                <div className="col-1 text-center text-light pt-2 pb-2">Payment code</div>
-                <div className="col-1 text-center text-light pt-2 pb-2">Amount</div>
-                <div className="col-2 text-center text-light pt-2 pb-2">Date</div>
                 <div className="col-1 text-center text-light pt-2 pb-2">Id</div>
+                <div className="col-2 text-center text-light pt-2 pb-2">Date</div>
+                <div className="col-1 text-center text-light pt-2 pb-2">Amount</div>
+                <div className="col-1 text-center text-light pt-2 pb-2">Payment code</div>
+                <div className="col-2 text-center text-light pt-2 pb-2">Billing code</div>
+                <div className="col-2 text-center text-light pt-2 pb-2">Payment status</div>
+                <div className="col-1 text-center text-light pt-2 pb-2">Order status</div>
+                <div className="col-1 text-center text-light pt-2 pb-2">transaction</div>
+                <div className="col-1 text-center text-light pt-2 pb-2">Tracking code</div>
             </div>;
         }
         let signers = null;
@@ -468,11 +468,11 @@ class Orders extends Component {
                 let receive_amount = elem.receive_amount;
                 if(base_asset == 'XIR')
                 {
-                    receive_amount = parseFloat(receive_amount).toFixed(2);
+                    receive_amount = parseInt(receive_amount).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                 }
                 else
                 {
-                    receive_amount = parseInt(receive_amount);
+                    receive_amount = (parseFloat(receive_amount).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                 }
                 // let type = elem.type;
                 // const request = () => {
@@ -518,16 +518,16 @@ class Orders extends Component {
                     order_status = 'Rejected'
                 }
                 return <div key={index} className="row" style={{backgroundColor: (index%2 === 0 ? '#ffc107' : '#151d2e')}}>
-                    <a target='_blank' href={"https://horizon-testnet.stellar.org/transactions/" + hash_paid} className="col-1 text-center text-light pt-2 pb-2"><FontAwesomeIcon className="" icon={faEye}/></a>
-                    <a target='_blank' href={"https://horizon-testnet.stellar.org/transactions/" + hash} className="col-1 text-center text-light pt-2 pb-2"><FontAwesomeIcon className="" icon={faEye}/></a>
-                    <div className="col-1 text-center text-light pt-2 pb-2">{order_status}</div>
-                    <div className="col-1 text-center text-light pt-2 pb-2">{status}</div>
-                    <div className="col-2 text-center text-light pt-2 pb-2">{receive_amount}</div>
-                    <div className="col-1 text-center text-light pt-2 pb-2">{counter_asset}</div>
-                    <div className="col-1 text-center text-light pt-2 pb-2">{base_asset}</div>
-                    <div className="col-1 text-center text-light pt-2 pb-2">{amount}</div>
-                    <div className="col-2 text-center text-light pt-2 pb-2">{date}</div>
                     <div className="col-1 text-center text-light pt-2 pb-2">{id}</div>
+                    <div className="col-2 text-center text-light pt-2 pb-2">{date}</div>
+                    <div className="col-1 text-center text-light pt-2 pb-2">{amount}</div>
+                    <div className="col-1 text-center text-light pt-2 pb-2">{base_asset}</div>
+                    <div className="col-1 text-center text-light pt-2 pb-2">{counter_asset}</div>
+                    <div className="col-2 text-center text-light pt-2 pb-2">{receive_amount}</div>
+                    <div className="col-1 text-center text-light pt-2 pb-2">{status}</div>
+                    <div className="col-1 text-center text-light pt-2 pb-2">{order_status}</div>
+                    <a target='_blank' href={"https://horizon-testnet.stellar.org/transactions/" + hash} className="col-1 text-center text-light pt-2 pb-2"><FontAwesomeIcon className="" icon={faEye}/></a>
+                    <a target='_blank' href={"https://horizon-testnet.stellar.org/transactions/" + hash_paid} className="col-1 text-center text-light pt-2 pb-2"><FontAwesomeIcon className="" icon={faEye}/></a>
                 </div>;
             });
         }
@@ -565,21 +565,21 @@ class Orders extends Component {
                     status = 'Successful';
                 }
                 return <div key={index} className="row" style={{backgroundColor: (index%2 === 0 ? '#ffc107' : '#151d2e')}}>
-                    <div className="col-3 text-center text-light pt-2 pb-2">{status}</div>
                     {/*<div className="col-4 text-center text-light pt-2 pb-2">{request()}</div>*/}
-                    <div className="col-3 text-center text-light pt-2 pb-2">{price}</div>
-                    <div className="col-3 text-center text-light pt-2 pb-2">{amount}</div>
                     <div className="col-3 text-center text-light pt-2 pb-2">{id}</div>
+                    <div className="col-3 text-center text-light pt-2 pb-2">{amount}</div>
+                    <div className="col-3 text-center text-light pt-2 pb-2">{price}</div>
+                    <div className="col-3 text-center text-light pt-2 pb-2">{status}</div>
                 </div>;
             });
         }
         if (this.state.data3 && this.state.currentTab == 3) {
             signers = this.state.data3.map((elem , index) => {
                 let id = elem.id;
-                let amount = elem.amount;
+                let amount = (elem.amount).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                 let billing_code = elem.billing_code;
                 let payment_code = elem.payment_code;
-                let receive_amount = elem.price;
+                let receive_amount = (elem.price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                 // let type = elem.type;
                 // const request = () => {
                 //     switch (type) {
@@ -626,15 +626,15 @@ class Orders extends Component {
                     order_status = 'Rejected'
                 }
                 return <div key={index} className="row" style={{backgroundColor: (index%2 === 0 ? '#ffc107' : '#151d2e')}}>
-                    <a target='_blank' href={"https://horizon-testnet.stellar.org/transactions/" + hash_paid} className="col-1 text-center text-light pt-2 pb-2"><FontAwesomeIcon className="" icon={faEye}/></a>
-                    <a target='_blank' href={"https://horizon-testnet.stellar.org/transactions/" + hash} className="col-1 text-center text-light pt-2 pb-2"><FontAwesomeIcon className="" icon={faEye}/></a>
-                    <div className="col-1 text-center text-light pt-2 pb-2">{order_status}</div>
-                    <div className="col-1 text-center text-light pt-2 pb-2">{status}</div>
-                    <div className="col-2 text-center text-light pt-2 pb-2">{bank_account}</div>
-                    <div className="col-2 text-center text-light pt-2 pb-2">{receive_amount}</div>
-                    <div className="col-1 text-center text-light pt-2 pb-2">{amount}</div>
-                    <div className="col-2 text-center text-light pt-2 pb-2">{date}</div>
                     <div className="col-1 text-center text-light pt-2 pb-2">{id}</div>
+                    <div className="col-2 text-center text-light pt-2 pb-2">{date}</div>
+                    <div className="col-1 text-center text-light pt-2 pb-2">{amount}</div>
+                    <div className="col-1 text-center text-light pt-2 pb-2">{receive_amount}</div>
+                    <div className="col-3 text-center text-light pt-2 pb-2">{bank_account}</div>
+                    <div className="col-1 text-center text-light pt-2 pb-2">{status}</div>
+                    <div className="col-1 text-center text-light pt-2 pb-2">{order_status}</div>
+                    <a target='_blank' href={"https://horizon-testnet.stellar.org/transactions/" + hash} className="col-1 text-center text-light pt-2 pb-2"><FontAwesomeIcon className="" icon={faEye}/></a>
+                    <a target='_blank' href={"https://horizon-testnet.stellar.org/transactions/" + hash_paid} className="col-1 text-center text-light pt-2 pb-2"><FontAwesomeIcon className="" icon={faEye}/></a>
                 </div>;
             });
         }
@@ -689,15 +689,15 @@ class Orders extends Component {
                     order_status = 'Rejected'
                 }
                 return <div key={index} className="row" style={{backgroundColor: (index%2 === 0 ? '#ffc107' : '#151d2e')}}>
-                    <a target='_blank' href={"https://horizon-testnet.stellar.org/transactions/" + hash_paid} className="col-1 text-center text-light pt-2 pb-2"><FontAwesomeIcon className="" icon={faEye}/></a>
-                    <a target='_blank' href={"https://horizon-testnet.stellar.org/transactions/" + hash} className="col-1 text-center text-light pt-2 pb-2"><FontAwesomeIcon className="" icon={faEye}/></a>
-                    <div className="col-1 text-center text-light pt-2 pb-2">{order_status}</div>
-                    <div className="col-2 text-center text-light pt-2 pb-2">{status}</div>
-                    <div className="col-2 text-center text-light pt-2 pb-2">{billing_code}</div>
-                    <div className="col-1 text-center text-light pt-2 pb-2">{payment_code}</div>
-                    <div className="col-1 text-center text-light pt-2 pb-2">{amount}</div>
-                    <div className="col-2 text-center text-light pt-2 pb-2">{date}</div>
                     <div className="col-1 text-center text-light pt-2 pb-2">{id}</div>
+                    <div className="col-2 text-center text-light pt-2 pb-2">{date}</div>
+                    <div className="col-1 text-center text-light pt-2 pb-2">{amount}</div>
+                    <div className="col-1 text-center text-light pt-2 pb-2">{payment_code}</div>
+                    <div className="col-2 text-center text-light pt-2 pb-2">{billing_code}</div>
+                    <div className="col-2 text-center text-light pt-2 pb-2">{status}</div>
+                    <div className="col-1 text-center text-light pt-2 pb-2">{order_status}</div>
+                    <a target='_blank' href={"https://horizon-testnet.stellar.org/transactions/" + hash} className="col-1 text-center text-light pt-2 pb-2"><FontAwesomeIcon className="" icon={faEye}/></a>
+                    <a target='_blank' href={"https://horizon-testnet.stellar.org/transactions/" + hash_paid} className="col-1 text-center text-light pt-2 pb-2"><FontAwesomeIcon className="" icon={faEye}/></a>
                 </div>;
             });
         }

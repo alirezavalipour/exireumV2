@@ -123,7 +123,7 @@ class Login extends Component {
                         </div>
                         {loader}
                     </form>
-                    <a href='../Components/ResetPassword' className="col-12 text-light text-center pt-2 pb-2 mt-2 font-weight-bold">Forget your password!</a>
+                    <a href='../Components/ResetPassword' className="col-12 text-light text-center pt-2 pb-2 mt-2 font-weight-bold">Forgot password?</a>
                 </div>
             </div>
         );

@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import {faLongArrowAltRight} from '@fortawesome/free-solid-svg-icons';
 import { Container, Row, Col } from 'bootstrap-4-react';
 import Register from "./Register";
+import NumberFormat from 'react-number-format';
 import AuthService from "./AuthService";
 
 class Dashboard extends Component {
@@ -49,8 +50,7 @@ class Dashboard extends Component {
     convert(e)
     {
         e.preventDefault();
-        var url = `${this.Auth.domain}/user/convert?type=` + this.state.formSelect1 + `TO` + this.state.formSelect2 + `&amount=` + this.state.amount;
-        console.log(url);
+        var url = `${this.Auth.domain}/user/convert?type=` + this.state.formSelect1 + `TO` + this.state.formSelect2 + `&amount=` + this.state.amount.replace(/,/g, '');
         const headers = {
             Accept: 'application/json',
             'Content-Type': 'application/json',
@@ -60,7 +60,7 @@ class Dashboard extends Component {
         return axios.get(url, config)
             .then(response => {
                 this.setState({
-                    price: parseFloat(response.data.result).toFixed(2)
+                    price: (parseFloat(response.data.result).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
                 });
             });
     }
@@ -96,7 +96,7 @@ class Dashboard extends Component {
                     if(elem.asset_code=="XIR")
                     {
                         this.setState({
-                            xirBalance: (parseFloat(elem.balance).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                            xirBalance: (parseInt(elem.balance)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
                         });
                     }
                     if(elem.asset_type=="native")
@@ -156,8 +156,8 @@ class Dashboard extends Component {
                                 <div className="col-sm-5 col-12 mt-3 mb-5">
                                     <div className="col-12">
                                         <div className="row">
-                                            <div className="col-4 pt-2 pb-2 text-center text-light border-div rounded-left pr-1 pl-1">Base asset</div>
-                                            <input className="col-5 pt-2 pb-2 text-center" name="amount" type="text" onChange={this.handleConvertRate}/>
+                                            <div className="col-4 pt-2 pb-2 text-center text-light border-div rounded-left pr-1 pl-1 bg-warning">Base asset</div>
+                                            <NumberFormat thousandSeparator={true} className="col-5 pt-2 pb-2 text-center" name="amount" type="text" onChange={this.handleConvertRate}/>
                                             <select className="font-weight-bold col-3 pt-2 pb-2 rounded-right bg-warning text-center border border-warning text-light pr-1 pl-1" name="type" onChange={this.handleChange1}>
                                                 <option>-</option>
                                                 <option type="0">XLM</option>
@@ -167,11 +167,11 @@ class Dashboard extends Component {
                                         </div>
                                     </div>
                                 </div>
-                                <a onClick={this.convert} className="col-sm-2 col-12 mt-3 mb-5 text-center text-light pt-2 pb-2 font-weight-bold bg-warning rounded"><FontAwesomeIcon className="font-weight-bold mt-1" style={{fontSize: '20px'}} icon={faLongArrowAltRight}/></a>
+                                <a onClick={this.convert} className="col-sm-2 col-12 mt-3 mb-5 text-center text-light font-weight-bold rounded"><div className="col-6 pt-2 pb-2 rounded bg-warning mx-auto" style={{height: '100%'}}><FontAwesomeIcon className="font-weight-bold bg-warning" style={{fontSize: '26px', width: '100%'}} icon={faLongArrowAltRight}/></div></a>
                                 <div className="col-sm-5 col-12 mt-3 mb-5">
                                     <div className="col-12">
                                         <div className="row">
-                                            <div className="col-4 pt-2 pb-2 text-center text-light border-div rounded-left pr-1 pl-1">Counter asset</div>
+                                            <div className="col-4 pt-2 pb-2 text-center text-light border-div rounded-left pr-1 pl-1 bg-warning">Counter asset</div>
                                             <div className="col-5 pt-2 pb-2 text-center border-div text-light">{this.state.price}</div>
                                             {option}
                                         </div>
