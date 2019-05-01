@@ -23,6 +23,7 @@ import Orders from './Components/Orders.jsx';
 import ResetPassword from './Components/ResetPassword.jsx';
 import Profile from './Components/Profile.jsx';
 import Trust from './Components/Trust.jsx';
+import Ticket from './Components/Ticket.jsx';
 import Cookies from 'universal-cookie';
 import { faUser , faAngleUp , faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import AuthService from "./Components/AuthService";
@@ -142,7 +143,7 @@ class App extends Component {
                       </div>
                   </div>;
       }
-      else if(window.location.pathname == "/Components/Dashboard" || window.location.pathname == "/Components/ExchangeXir" || window.location.pathname == "/Components/ExchangeXlm" || window.location.pathname == "/Components/DepositXirWithIpg" || window.location.pathname == "/Components/DepositXirWithQr" || window.location.pathname == "/Components/DepositXlm" || window.location.pathname == "/Components/WithdrawedXirWithSheba" || window.location.pathname == "/Components/SendXir" || window.location.pathname == "/Components/SendXlm" || window.location.pathname == "/Components/PayingTheBill" || window.location.pathname == "/Components/Orders" || window.location.pathname == "/Components/Profile")
+      else if(window.location.pathname == "/Components/Dashboard" || window.location.pathname == "/Components/Ticket" || window.location.pathname == "/Components/ExchangeXir" || window.location.pathname == "/Components/ExchangeXlm" || window.location.pathname == "/Components/DepositXirWithIpg" || window.location.pathname == "/Components/DepositXirWithQr" || window.location.pathname == "/Components/DepositXlm" || window.location.pathname == "/Components/WithdrawedXirWithSheba" || window.location.pathname == "/Components/SendXir" || window.location.pathname == "/Components/SendXlm" || window.location.pathname == "/Components/PayingTheBill" || window.location.pathname == "/Components/Orders" || window.location.pathname == "/Components/Profile")
       {
           header = <div className="col-12 header1 mb-5">
                       <div className="row">
@@ -151,6 +152,7 @@ class App extends Component {
                               <div className="row">
                                   <a className={'menu-in ml-3 text-light' + (window.location.pathname === '/Components/Dashboard' ? ' activation' : '')} href="/Components/Dashboard">Dashboard</a>
                                   <a className={'menu-in ml-4 text-light' + (window.location.pathname === '/Components/Orders' ? ' activation' : '')} href="/Components/Orders">Orders</a>
+                                  <a className={'menu-in ml-4 text-light' + (window.location.pathname === '/Components/Ticket' ? ' activation' : '')} href="/Components/Ticket">Support</a>
                               </div>
                           </div>
                           <a className="user col-sm-3 col-12 text-light text-right" onClick={this.checkedItem}>
@@ -189,6 +191,7 @@ class App extends Component {
                 <Route path="/Components/Profile" component={Profile}/>
                 <Route path="/Components/ResetPassword" component={ResetPassword}/>
                 <Route path="/Components/Trust" component={Trust}/>
+                <Route path="/Components/Ticket" component={Ticket}/>
              </div>
            </div>
           </Router>
