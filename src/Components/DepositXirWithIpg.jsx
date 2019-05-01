@@ -126,9 +126,9 @@ class DepositXirWithIpg extends Component {
 
     render() {
         let priceXlm = '';
-        if(this.state.xlmBalance)
+        if(this.state.xirBalance)
         {
-            priceXlm = (parseFloat((this.state.xlmBalance) - (0.5 * this.state.entry) - 1).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' XLM';
+            priceXlm = parseInt(this.state.xirBalance).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' XIR';
         }
         // let account = this.props.d.session.account;
         // let allBalances = account.getSortedBalances();
