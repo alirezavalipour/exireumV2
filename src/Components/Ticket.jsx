@@ -311,13 +311,14 @@ class Ticket extends Component {
                 {
                     message = 'Suspend';
                 }
-                return <div key={index} className="row" style={{backgroundColor: (index%2 === 0 ? 'rgb(47, 61, 86)' : '#151d2e')}}>
-                    <div className="col-sm-1 col-12 text-center text-light pt-2 pb-2">{id}</div>
-                    <div className="col-sm-3 col-12 text-center text-light pt-2 pb-2">{date}</div>
-                    <div className="col-sm-3 col-12 text-center text-light pt-2 pb-2">{title}</div>
-                    <div className="col-sm-3 col-12 text-center text-light pt-2 pb-2">{message}</div>
-                    <a  className="col-sm-2 col-12 text-center text-light pt-2 pb-2" data-id={id} onClick={this.response }><FontAwesomeIcon className="" icon={faEye}/></a>
-                </div>
+                return <a key={index} className="" data-id={id} onClick={this.response}>
+                    <div className="row" style={{backgroundColor: (index%2 === 0 ? 'rgb(47, 61, 86)' : '#151d2e')}}>
+                        <div className="col-sm-3 col-12 text-center text-light pt-2 pb-2">{id}</div>
+                        <div className="col-sm-3 col-12 text-center text-light pt-2 pb-2">{date}</div>
+                        <div className="col-sm-3 col-12 text-center text-light pt-2 pb-2">{title}</div>
+                        <div className="col-sm-3 col-12 text-center text-light pt-2 pb-2">{message}</div>
+                    </div>
+                </a>
             })
         }
         let signers2;
@@ -367,11 +368,10 @@ class Ticket extends Component {
                                         <div className="col-12">
                                             <div className="col-12">
                                                 <div className="row">
-                                                    <div className="col-sm-1 col-12 text-center text-light pt-2 pb-2">Id</div>
+                                                    <div className="col-sm-3 col-12 text-center text-light pt-2 pb-2">Id</div>
                                                     <div className="col-sm-3 col-12 text-center text-light pt-2 pb-2">Date</div>
                                                     <div className="col-sm-3 col-12 text-center text-light pt-2 pb-2">Title</div>
                                                     <div className="col-sm-3 col-12 text-center text-light pt-2 pb-2">Status</div>
-                                                    <div className="col-sm-2 col-12 text-center text-light pt-2 pb-2">View</div>
                                                 </div>
                                             </div>
                                         </div>
