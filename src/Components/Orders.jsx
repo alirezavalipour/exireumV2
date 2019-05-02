@@ -177,7 +177,6 @@ class Orders extends Component {
                     currentTab: 3,
                     currentPage: response.data.current_page
                 });
-                console.log(response);
                 if (response.data.next_page_url) {
                     this.setState({
                         nextPage: response.data.next_page_url,
@@ -541,6 +540,7 @@ class Orders extends Component {
                 //             return <div>Order type : Withdraw</div>;
                 //     }
                 // };
+                let track = elem.tracking_code;
                 let hash = elem.hash;
                 let hash_paid = elem.paid_hash;
                 let status = hash;
@@ -570,8 +570,8 @@ class Orders extends Component {
                     <div className="col-2 text-center text-light pt-2 pb-2">{date}</div>
                     <div className="col-2 text-center text-light pt-2 pb-2">{price}</div>
                     <div className="col-2 text-center text-light pt-2 pb-2">{amount}</div>
-                    <div className="col-3 text-center text-light pt-2 pb-2">{status} <a target='_blank' href={"https://horizon-testnet.stellar.org/transactions/" + hash} className="text-center text-light pt-2 pb-2 ml-2"><FontAwesomeIcon className="" icon={faExternalLinkSquareAlt}/></a></div>
-                    <div className="col-3 text-center text-light pt-2 pb-2">{status} <a target='_blank' href={"https://horizon-testnet.stellar.org/transactions/"} className="text-center text-light pt-2 pb-2 ml-2"><FontAwesomeIcon className="" icon={faExternalLinkSquareAlt}/></a></div>
+                    <div className="col-3 text-center text-light pt-2 pb-2">{status} <a target='_blank' href={"https://horizon-testnet.stellar.org/transactions/" + hash_paid} className="text-center text-light pt-2 pb-2 ml-2"><FontAwesomeIcon className="" icon={faExternalLinkSquareAlt}/></a></div>
+                    <div className="col-3 text-center text-light pt-2 pb-2">{track}</div>
                 </div>;
             });
         }
@@ -579,6 +579,7 @@ class Orders extends Component {
             signers = this.state.data3.map((elem , index) => {
                 let amount = (elem.amount).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                 let receive_amount = (elem.price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                let track = elem.tracking_code;
                 // let type = elem.type;
                 // const request = () => {
                 //     switch (type) {
@@ -630,13 +631,15 @@ class Orders extends Component {
                     <div className="col-2 text-center text-light pt-2 pb-2">{receive_amount}</div>
                     <div className="col-3 text-center text-light pt-2 pb-2">{bank_account}</div>
                     <div className="col-1 text-center text-light pt-2 pb-2">{status} <a target='_blank' href={"https://horizon-testnet.stellar.org/transactions/" + hash} className="text-center text-light pt-2 pb-2 ml-2"><FontAwesomeIcon className="" icon={faExternalLinkSquareAlt}/></a></div>
-                    <div className="col-2 text-center text-light pt-2 pb-2">{order_status}                     <a target='_blank' href={"https://horizon-testnet.stellar.org/transactions/" + hash_paid} className="text-center text-light pt-2 pb-2 ml-2"><FontAwesomeIcon className="" icon={faExternalLinkSquareAlt}/></a></div>
+                    <div className="col-2 text-center text-light pt-2 pb-2">{track}</div>
+                    {/*<a target='_blank' href={"https://horizon-testnet.stellar.org/transactions/" + hash_paid} className="text-center text-light pt-2 pb-2 ml-2"><FontAwesomeIcon className="" icon={faExternalLinkSquareAlt}/></a>*/}
                 </div>;
             });
         }
         if (this.state.data4 && this.state.currentTab == 4) {
             signers = this.state.data4.map((elem , index) => {
                 let id = elem.id;
+                let track = elem.tracking_code;
                 let amount = elem.amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");;
                 let price = (parseInt((elem.payment_code)/100000)*1000).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");;
                 let billing_code = elem.billing_code;
@@ -692,7 +695,8 @@ class Orders extends Component {
                     <div className="col-2 text-center text-light pt-2 pb-2">{billing_code}</div>
                     <div className="col-2 text-center text-light pt-2 pb-2">{payment_code}</div>
                     <div className="col-2 text-center text-light pt-2 pb-2">{status} <a target='_blank' href={"https://horizon-testnet.stellar.org/transactions/" + hash} className="text-center text-light pt-2 pb-2 ml-2"><FontAwesomeIcon className="" icon={faExternalLinkSquareAlt}/></a></div>
-                    <div className="col-2 text-center text-light pt-2 pb-2">{order_status} <a target='_blank' href={"https://horizon-testnet.stellar.org/transactions/" + hash_paid} className="text-center text-light pt-2 pb-2 ml-2"><FontAwesomeIcon className="" icon={faExternalLinkSquareAlt}/></a></div>
+                    <div className="col-2 text-center text-light pt-2 pb-2">{track}</div>
+                    {/*<a target='_blank' href={"https://horizon-testnet.stellar.org/transactions/" + hash_paid} className="text-center text-light pt-2 pb-2 ml-2"><FontAwesomeIcon className="" icon={faExternalLinkSquareAlt}/></a>*/}
                 </div>;
             });
         }
