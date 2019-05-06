@@ -420,7 +420,7 @@ class Orders extends Component {
                 <div className="col-2 text-center text-light pt-2 pb-2 pr-1 pl-1">Base Amount (IRR)</div>
                 <div className="col-2 text-center text-light pt-2 pb-2 pr-1 pl-1">Counter Amount (XIR)</div>
                 <div className="col-3 text-center text-light pt-2 pb-2 pr-1 pl-1">Payment Status</div>
-                <div className="col-3 text-center text-light pt-2 pb-2 pr-1 pl-1">Settlement Status</div>
+                <div className="col-3 text-center text-light pt-2 pb-2 pr-1 pl-1">Settlement Ref.</div>
             </div>;
         }
         if(this.state.currentTab == 3)
