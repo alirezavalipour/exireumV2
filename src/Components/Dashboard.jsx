@@ -183,8 +183,8 @@ class Dashboard extends Component {
                     <div className="col-sm-5 col-12 text-center">
                         <div className="row">
                             <h2 className="col-12 mb-2 font-weight-bold text-light">XIR</h2>
-                            <h5 className="col-12 mb-2 text-light">Balance : {this.state.xirBalance}</h5>
-                            <div className="col-12 mb-5 text-light">Available : {this.state.xirBalance}</div>
+                            <h5 className="col-12 mb-2 text-light">Balance : {this.state.xirBalance} XIR</h5>
+                            <div className="col-12 mb-5 text-light">Available : {this.state.xirBalance} XIR</div>
                             {/*<div className="col-12">*/}
                                 {/*<div className="row">*/}
                                     {/*<div className="col-6">Remind of XIR :</div>*/}
@@ -203,7 +203,7 @@ class Dashboard extends Component {
                     <div className="col-sm-5 col-12 text-center">
                         <div className="row">
                             <h2 className="col-12 mb-2 font-weight-bold text-light">XLM</h2>
-                            <h5 className="col-12 mb-2 text-light">Balance : {this.state.xlmBalance}</h5>
+                            <h5 className="col-12 mb-2 text-light">Balance : {this.state.xlmBalance} XLM</h5>
                             <div className="col-12 mb-5 text-light">Available : {priceXlm}</div>
                             {/*<div className="col-12">*/}
                                 {/*<div className="row">*/}
