@@ -4,7 +4,7 @@ import axios from "axios";
 export default class AuthService {
     // Initializing important variables
     constructor(domain) {
-        this.domain = domain || 'https://exireum.homearan.com/api'; // API server domain
+        this.domain = domain || 'https://api.exireum.com/api'; // API server domain
         this.fetch = this.fetch.bind(this); // React binding stuff
         this.login = this.login.bind(this);
         this.getProfile = this.getProfile.bind(this);
