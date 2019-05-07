@@ -59,6 +59,19 @@ class App extends Component {
 
     }
 
+    componentWillMount() {
+      if(window.location.href == "https://my.exireum.com/")
+      {
+          if (this.Auth.loggedIn()) {
+              window.location.replace('/Components/Dashboard');
+          }
+          else
+          {
+              window.location.replace('/Components/Login');
+          }
+      }
+    }
+
   componentDidMount() {
     const url = this.Auth.getDomain() + '/user/profile';
     const headers = {
@@ -117,19 +130,19 @@ class App extends Component {
 
     let icon = <div className="icon-user col-4 text-left">
       <FontAwesomeIcon className="" icon={faUser}/>
-      <FontAwesomeIcon className="ml-2" icon={faAngleUp}/>
+      <FontAwesomeIcon className="ml-2" icon={faAngleDown}/>
     </div>;
     if(this.state.key == false)
     {
       icon = <div className="icon-user col-4 text-left">
         <FontAwesomeIcon className="" icon={faUser}/>
-        <FontAwesomeIcon className="ml-2" icon={faAngleUp}/>
+        <FontAwesomeIcon className="ml-2" icon={faAngleDown}/>
       </div>;
     }else
     {
       icon = <div className="icon-user col-4 text-left">
         <FontAwesomeIcon className="" icon={faUser}/>
-        <FontAwesomeIcon className="ml-2" icon={faAngleDown}/>
+        <FontAwesomeIcon className="ml-2" icon={faAngleUp}/>
       </div>
     }
 
@@ -147,7 +160,7 @@ class App extends Component {
       {
           header = <div className="col-12 header1 mb-5">
                       <div className="row">
-                          <a href="https://exireum.com" className="logo col-sm-2 col-12"></a>
+                          <a href="/Components/Dashboard" className="logo col-sm-2 col-12"></a>
                           <div className="menu col-sm-7 col-12">
                               <div className="row">
                                   <a className={'menu-in ml-3 text-light' + (window.location.pathname === '/Components/Dashboard' ? ' activation' : '')} href="/Components/Dashboard">Dashboard</a>

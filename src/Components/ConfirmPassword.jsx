@@ -23,6 +23,12 @@ class ConfirmPassword extends Component {
         }
     }
 
+    componentWillMount() {
+        if (!this.Auth.loggedIn()) {
+            window.location.replace('/Components/Login');
+        }
+    }
+
     showPlacholder(e) {
         e.preventDefault();
         e.currentTarget.children[0].children[0].setAttribute("class", "enable text-left text-light placholder pr-2 pl-2");

@@ -53,6 +53,7 @@ class SendXlm extends Component {
             inValidPublicKey: false,
             button: false,
             key: 0,
+            userAmount: false,
         }
     }
 
@@ -82,9 +83,18 @@ class SendXlm extends Component {
             });
             return true;
         }
-        this.setState({
-            button: true,
-        })
+        if(parseFloat(this.state.amount.replace(/,/g, '')) >= 0 && parseFloat(this.state.amount.replace(/,/g, '')) <= parseFloat((this.state.xlmBalance) - (0.5 * this.state.entry) - 1).toFixed(2))
+        {
+            this.setState({
+                button: true,
+            })
+        }
+        else
+        {
+            this.setState({
+                userAmount: true
+            })
+        }
     }
 
     componentWillMount() {
@@ -184,6 +194,15 @@ class SendXlm extends Component {
         {
             priceXlm = (parseFloat((this.state.xlmBalance) - (0.5 * this.state.entry) - 1).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' XLM';
         }
+        let failAmount= '';
+        if(this.state.userAmount == true)
+        {
+            failAmount = <div className="col-12">
+                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
+                    Your amount should be between 10000 and {priceXlm}
+                </div>
+            </div>;
+        }
         let failTransaction = "";
         if(this.state.failed == 'op_underfunded')
         {
@@ -257,6 +276,7 @@ class SendXlm extends Component {
                 <div className="col-sm-8 col-12 clearfix mx-auto">
                     <div className="row">
                         {valids}
+                        {failAmount}
                         <h2 className="col-12 text-light text-center font-weight-bold mb-2">Send XLM</h2>
                         <div className='col-12 text-center text-light mb-5'>Available : {priceXlm}</div>
                         <form className="col-12" onSubmit={this.handleClickButton}>

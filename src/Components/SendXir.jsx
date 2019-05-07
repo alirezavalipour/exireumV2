@@ -53,6 +53,7 @@ class SendXir extends Component {
             inValidPublicKey: false,
             button: false,
             key: 0,
+            userAmount: false,
         }
     }
 
@@ -83,9 +84,17 @@ class SendXir extends Component {
             });
             return true;
         }
-        this.setState({
-            button: true,
-        });
+        if(parseFloat(this.state.amount.replace(/,/g, '')) >= 10000 && parseFloat(this.state.amount.replace(/,/g, '')) <= this.state.xirBalance) {
+            this.setState({
+                button: true,
+            });
+        }
+        else
+        {
+            this.setState({
+                userAmount: true
+            })
+        }
     }
 
     componentWillMount() {
@@ -170,6 +179,7 @@ class SendXir extends Component {
                     this.setState({
                         hash: res.hash,
                     });
+                    console.log(res);
                 })
                  .catch(err =>{
                      let datas = err.response;
@@ -177,6 +187,7 @@ class SendXir extends Component {
                          load: false,
                          failed: datas.data.extras.result_codes.operations[0]
                      });
+                     console.log(datas);
                  })
         });
 
@@ -187,6 +198,15 @@ class SendXir extends Component {
         if(this.state.xirBalance)
         {
             priceXlm = parseInt(this.state.xirBalance).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' XIR';
+        }
+        let failAmount= '';
+        if(this.state.userAmount == true)
+        {
+            failAmount = <div className="col-12">
+                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
+                    Your amount should be between 10000 and {priceXlm}
+                </div>
+            </div>;
         }
         let failTransaction = "";
         if(this.state.failed == 'op_underfunded')
@@ -262,6 +282,7 @@ class SendXir extends Component {
                 <div className="col-sm-8 col-12 clearfix mx-auto">
                     <div className="row">
                         {valids}
+                        {failAmount}
                         <h2 className="col-12 text-light text-center font-weight-bold mb-2">Send XIR</h2>
                         <div className='col-12 text-center text-light mb-5'>Available : {priceXlm}</div>
                         <form className="col-12" onSubmit={this.handleClickButton}>

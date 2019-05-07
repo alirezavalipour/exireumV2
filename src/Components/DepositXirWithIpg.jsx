@@ -24,6 +24,7 @@ class DepositXirWithIpg extends Component {
             xirBalance: '',
             xlmBalance: '',
             entry: '',
+            userAmount: false,
         }
     }
 
@@ -97,31 +98,40 @@ class DepositXirWithIpg extends Component {
 
     handleFormSubmit(e) {
         e.preventDefault();
-        this.setState({
-           load: !this.state.load
-        });
-        const url = `${this.Auth.domain}/user/deposit`;
-        const formData = {
-            amount: parseFloat(this.state.amount.replace(/,/g, '')),
-            public_key: this.state.public_key,
-        };
-        const headers = {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${this.Auth.getToken()}`,
-        };
-        var config = { headers };
-        return axios.post(url, formData, config)
-            .then(response =>{
-                if(response.status == 200){
-                    window.location.replace(this.Auth.getDomain()+"/user/order/pay/" + response.data.order_id );
-                }
-            })
-            .catch(err =>{
-                this.setState({
-                    load: false
+        if(parseFloat(this.state.amount.replace(/,/g, '')) >= 10000 && parseFloat(this.state.amount.replace(/,/g, '')) <= this.state.xirBalance)
+        {
+            this.setState({
+               load: !this.state.load
+            });
+            const url = `${this.Auth.domain}/user/deposit`;
+            const formData = {
+                amount: parseFloat(this.state.amount.replace(/,/g, '')),
+                public_key: this.state.public_key,
+            };
+            const headers = {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${this.Auth.getToken()}`,
+            };
+            var config = { headers };
+            return axios.post(url, formData, config)
+                .then(response =>{
+                    if(response.status == 200){
+                        window.location.replace(this.Auth.getDomain()+"/user/order/pay/" + response.data.order_id );
+                    }
                 })
+                .catch(err =>{
+                    this.setState({
+                        load: false
+                    })
+                })
+        }
+        else
+        {
+            this.setState({
+                userAmount: true
             })
+        }
     }
 
     render() {
@@ -146,7 +156,15 @@ class DepositXirWithIpg extends Component {
         // if (temp.length > 1) {
         //     data  = temp ;
         // }
-
+        let failAmount= '';
+        if(this.state.userAmount == true)
+        {
+            failAmount = <div className="col-12">
+                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
+                    Your amount should be between 10000 and {priceXlm}
+                </div>
+            </div>;
+        }
         let loader = "";
         if(this.state.load == false)
         {
@@ -170,6 +188,7 @@ class DepositXirWithIpg extends Component {
         return(
             <div className="col-sm-8 col-12 clearfix mx-auto">
                 <div className="row">
+                    {failAmount}
                     <h2 className="col-12 text-light text-center font-weight-bold mb-2">Deposit XIR With IPG</h2>
                     <div className='col-12 text-center text-light mb-5'>Available : {priceXlm}</div>
                     <form className="col-12" onSubmit={this.handleFormSubmit}>

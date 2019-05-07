@@ -38,6 +38,12 @@ class sms extends Component {
             });
     }
 
+    componentWillMount() {
+        if (this.Auth.loggedIn()) {
+            window.location.replace('/Components/Dashboard');
+        }
+    }
+
     unResendClick(e){
         e.preventDefault();
         this.Auth.resend()

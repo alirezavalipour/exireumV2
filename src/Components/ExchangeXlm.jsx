@@ -40,6 +40,7 @@ class ExchangeXir extends Component {
             inValidSecretKey: false,
             xdr: '',
             key: 0,
+            userAmount: false,
         }
     }
 
@@ -128,33 +129,43 @@ class ExchangeXir extends Component {
 
     handleFormSubmit(e) {
         e.preventDefault();
-        this.setState({
-            load1: !this.state.load1
-        });
-        const url = `${this.Auth.domain}/user/stellar/exchange?type=XLMTOXIR`;
-        const formData = {
-            amount: parseFloat(this.state.amount.replace(/,/g, '')),
-            public_key: this.state.public_key,
-        };
-        const headers = {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${this.Auth.getToken()}`,
-        };
-        var config = { headers };
-        return axios.post(url, formData, config)
-            .then(response =>{
-                this.setState({
-                    xdr: response.data.response,
-                    id: response.data.exchange_id
-                });
-                console.log(response);
-            })
-            .catch(err =>{
-                this.setState({
-                    load1: false
+        if(parseFloat(this.state.amount.replace(/,/g, '')) >= 0 && parseFloat(this.state.amount.replace(/,/g, '')) <= parseFloat((this.state.xlmBalance) - (0.5 * this.state.entry) - 1).toFixed(2))
+        {
+            this.setState({
+                load1: !this.state.load1,
+                userAmount: false
+            });
+            const url = `${this.Auth.domain}/user/stellar/exchange?type=XLMTOXIR`;
+            const formData = {
+                amount: parseFloat(this.state.amount.replace(/,/g, '')),
+                public_key: this.state.public_key,
+            };
+            const headers = {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${this.Auth.getToken()}`,
+            };
+            var config = { headers };
+            return axios.post(url, formData, config)
+                .then(response =>{
+                    this.setState({
+                        xdr: response.data.response,
+                        id: response.data.exchange_id
+                    });
+                    console.log(response);
                 })
+                .catch(err =>{
+                    this.setState({
+                        load1: false
+                    })
+                })
+        }
+        else
+        {
+            this.setState({
+                userAmount: true
             })
+        }
     }
 
     handleForSignWithSecretKey(e){
@@ -162,6 +173,7 @@ class ExchangeXir extends Component {
         if (!isValidSecretKey(this.state.secret_key)) {
             this.setState({
                 inValidSecretKey: true,
+                failed: '',
             });
             return true;
         }
@@ -195,7 +207,8 @@ class ExchangeXir extends Component {
                 if(response.data.title)
                 {
                     this.setState({
-                        failed: response.data.extras.result_codes.transaction
+                        failed: response.data.extras.result_codes.transaction,
+                        load2: false
                     });
                 }
             })
@@ -217,21 +230,18 @@ class ExchangeXir extends Component {
         {
             priceXlm = (parseFloat((this.state.xlmBalance) - (0.5 * this.state.entry) - 1).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' XLM';
         }
-        let failTransaction = "";
-        if(this.state.failed == 'tx_failed')
+        let failAmount= '';
+        if(this.state.userAmount == true)
         {
-            this.state.load2 = false;
-            this.state.inValidSecretKey = false;
-            failTransaction = <div className="col-12">
+            failAmount = <div className="col-12">
                 <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
-                    Your account doesn't have enough XIR to send
+                    Your amount should be between 10000 and {priceXlm}
                 </div>
             </div>;
         }
+        let failTransaction = "";
         if(this.state.failed == 'tx_failed')
         {
-            this.state.load2 = false;
-            this.state.inValidSecretKey = false;
             failTransaction = <div className="col-12">
                 <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
                     Your account doesn't have enough XLM to send
@@ -240,18 +250,15 @@ class ExchangeXir extends Component {
         }
         else if(this.state.failed == 'tx_bad_auth')
         {
-            this.state.load2 = false;
-            this.state.inValidSecretKey = false;
             failTransaction = <div className="col-12">
                 <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
                     This secret key not belong to register stellar account
                 </div>
             </div>;
         }
-        let validSecret = "";
-        if(this.state.inValidSecretKey == true)
+        else if(this.state.inValidSecretKey == true)
         {
-            validSecret = <div className="col-12">
+            failTransaction = <div className="col-12">
                 <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
                     Your secret key invalid
                 </div>
@@ -298,6 +305,7 @@ class ExchangeXir extends Component {
             return(
                 <div className="col-sm-8 col-12 clearfix mx-auto">
                     <div className="row">
+                        {failAmount}
                         <h2 className="col-12 text-light text-center font-weight-bold mb-2">Exchange XLM to XIR</h2>
                         <div className='col-12 text-center text-light mb-5'>Available : {priceXlm}</div>
                         <form className="col-12" onSubmit={this.handleFormSubmit}>
@@ -325,7 +333,6 @@ class ExchangeXir extends Component {
             return(
                 <div className="col-sm-8 col-12 clearfix mx-auto">
                     <div className="row">
-                        {validSecret}
                         {failTransaction}
                         <h2 className="col-12 text-light text-center font-weight-bold mb-5">Exchange XLM to XIR</h2>
                         <div className="col-12 text-center text-light mb-3">You are changing {this.state.amount} XLM with {exir} XIR</div>

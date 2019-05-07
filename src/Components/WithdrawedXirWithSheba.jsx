@@ -41,6 +41,7 @@ class WithdrawedXirWithSheba extends Component {
             load2: false,
             inValidSecretKey: false,
             key: 0,
+            userAmount: false,
         }
     }
 
@@ -168,30 +169,39 @@ class WithdrawedXirWithSheba extends Component {
 
     handleFormSubmit(e) {
         e.preventDefault();
-        this.setState({
-            load1: !this.state.load1
-        });
-        const url = this.Auth.getDomain() + '/user/bank/get-sheba-info';
-        const headers = {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${this.Auth.getToken()}`,
-        };
-        var config = { headers };
-        return axios.get(url + "?sheba="+ this.state.sheba , config)
-            .then(response => {
-                this.setState({
-                    first_name: response.data.Data.AccountOwners[0].FirstName,
-                    last_name: response.data.Data.AccountOwners[0].LastName,
-                });
-                this.withdrawInfo(this.state.sheba);
-            })
-            .catch(err =>{
-                this.setState({
-                    sheba_error: err.response.data.message,
-                    load1: false
-                });
+        if(parseFloat(this.state.amount.replace(/,/g, '')) >= 10000 && parseFloat(this.state.amount.replace(/,/g, '')) <= this.state.xirBalance)
+        {
+            this.setState({
+                load1: !this.state.load1
             });
+            const url = this.Auth.getDomain() + '/user/bank/get-sheba-info';
+            const headers = {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${this.Auth.getToken()}`,
+            };
+            var config = { headers };
+            return axios.get(url + "?sheba="+ this.state.sheba , config)
+                .then(response => {
+                    this.setState({
+                        first_name: response.data.Data.AccountOwners[0].FirstName,
+                        last_name: response.data.Data.AccountOwners[0].LastName,
+                    });
+                    this.withdrawInfo(this.state.sheba);
+                })
+                .catch(err =>{
+                    this.setState({
+                        sheba_error: err.response.data.message,
+                        load1: false
+                    });
+                });
+        }
+        else
+        {
+            this.setState({
+                userAmount: true
+            })
+        }
     }
 
     handleForSignWithSecretKey(e){
@@ -199,6 +209,7 @@ class WithdrawedXirWithSheba extends Component {
         if (!isValidSecretKey(this.state.secret_key)) {
             this.setState({
                 inValidSecretKey: true,
+                failed: ''
             });
             return true;
         }
@@ -232,7 +243,8 @@ class WithdrawedXirWithSheba extends Component {
                 if(response.data.title)
                 {
                     this.setState({
-                        failed: response.data.extras.result_codes.transaction
+                        failed: response.data.extras.result_codes.transaction,
+                        load2: false
                     });
                 }
             })
@@ -263,11 +275,18 @@ class WithdrawedXirWithSheba extends Component {
         {
             priceXlm = parseInt(this.state.xirBalance).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' XIR';
         }
+        let failAmount= '';
+        if(this.state.userAmount == true)
+        {
+            failAmount = <div className="col-12">
+                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
+                    Your amount should be between 10000 and {priceXlm}
+                </div>
+            </div>;
+        }
         let failTransaction = "";
         if(this.state.failed == 'tx_failed')
         {
-            this.state.load2 = false;
-            this.state.inValidSecretKey = false;
             failTransaction = <div className="col-12">
                 <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
                     Your account doesn't have enough XIR to send
@@ -276,18 +295,15 @@ class WithdrawedXirWithSheba extends Component {
         }
         else if(this.state.failed == 'tx_bad_auth')
         {
-            this.state.load2 = false;
-            this.state.inValidSecretKey = false;
             failTransaction = <div className="col-12">
                 <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
                     This secret key not belong to register stellar account
                 </div>
             </div>;
         }
-        let validSecret = "";
-        if(this.state.inValidSecretKey == true)
+        else if(this.state.inValidSecretKey == true)
         {
-            validSecret = <div className="col-12">
+            failTransaction = <div className="col-12">
                 <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
                     Your secret key invalid
                 </div>
@@ -332,6 +348,7 @@ class WithdrawedXirWithSheba extends Component {
                 <div className="col-sm-8 col-12 clearfix mx-auto">
                     <div className="row">
                         {error}
+                        {failAmount}
                         <h2 className="col-12 text-light text-center font-weight-bold mb-2">Withdraw XIR to bank account</h2>
                         <div className='col-12 text-center text-light mb-5'>Available : {priceXlm}</div>
                         <form className="col-12" onSubmit={this.handleFormSubmit}>
@@ -365,7 +382,6 @@ class WithdrawedXirWithSheba extends Component {
             return(
                 <div className="col-sm-8 col-12 clearfix mx-auto">
                     <div className="row">
-                        {validSecret}
                         {failTransaction}
                         <h2 className="col-12 text-light text-center font-weight-bold mb-5">Withdraw XIR to bank account</h2>
                         <div className="col-12 text-center text-light font-size-bold">Sheba : {this.state.sheba}</div>
