@@ -143,7 +143,7 @@ class ResetPassword extends Component {
         var config = { headers };
         return axios.post(url, formData, config)
             .then((res) => {
-                // cookie.set('reactUrl', 'true', { domain :'https://exireum.com' , path:'/' });
+                cookie.set('reactUrl', 'true', { path:'/' });
                 window.location.replace('/Components/Dashboard');
             })
             .catch((err) => {

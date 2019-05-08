@@ -55,10 +55,8 @@ class Login extends Component {
             .then(res => res.json())
             .then(response =>   {
                 this.Auth.setToken(response.access_token);
-                console.log("khar");
-                cookie.set('reactUrl', 'true', { domain :'https://exireum.com' , secure : true , sameSite : 'lax' , path:'/' });
-                console.log("olagh");
-                // window.location.replace('/Components/Dashboard');
+                cookie.set('reactUrl', 'true', {  path:'/' });
+                window.location.replace('/Components/Dashboard');
             })
             .catch((err) => {
                 this.setState({
