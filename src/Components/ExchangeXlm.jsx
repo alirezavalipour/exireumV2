@@ -31,7 +31,7 @@ class ExchangeXir extends Component {
         this.hidePass = this.hidePass.bind(this);
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.handleForSignWithSecretKey = this.handleForSignWithSecretKey.bind(this);
-        this.return = this.return.bind(this);
+        // this.return = this.return.bind(this);
         this.state = {
             price: null,
             public_key:null,
@@ -45,11 +45,11 @@ class ExchangeXir extends Component {
         }
     }
 
-    return(e)
-    {
-        e.preventDefault();
-        window.location.replace('/Components/ExchangeXlm');
-    }
+    // return(e)
+    // {
+    //     e.preventDefault();
+    //     window.location.replace('/Components/ExchangeXlm');
+    // }
 
     showPass(e){
         e.preventDefault();
@@ -344,11 +344,11 @@ class ExchangeXir extends Component {
                         <h2 className="col-12 text-light text-center font-weight-bold mb-5">Exchange XLM to XIR</h2>
                         <div className="col-12 text-center text-light mb-3">You are changing {this.state.amount} XLM with {exir} XIR</div>
                         <div className="col-12 text-center text-light mb-5">Please enter your secret key to approve the transaction.</div>
-                        <a className="col-12 mb-3" onClick={this.return}>
-                            <div className="col-3 bg-warning text-center rounded shadow-lg text-light pt-2 pb-2">
-                                RETURN
-                            </div>
-                        </a>
+                        {/*<a className="col-12 mb-3" onClick={this.return}>*/}
+                            {/*<div className="col-3 bg-warning text-center rounded shadow-lg text-light pt-2 pb-2">*/}
+                                {/*RETURN*/}
+                            {/*</div>*/}
+                        {/*</a>*/}
                         <form className="col-12" onSubmit={this.handleForSignWithSecretKey}>
                             <label className="col-12">
                                 <div className="row shadow-lg">

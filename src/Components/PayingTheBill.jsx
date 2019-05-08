@@ -31,7 +31,7 @@ class PayingTheBill extends Component {
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.handleForSignWithSecretKey = this.handleForSignWithSecretKey.bind(this);
-        this.return = this.return.bind(this);
+        // this.return = this.return.bind(this);
         this.state = {
             public_key: '',
             xdr: '',
@@ -43,11 +43,11 @@ class PayingTheBill extends Component {
         }
     }
 
-    return(e)
-    {
-        e.preventDefault();
-        window.location.replace('/Components/PayingTheBill');
-    }
+    // return(e)
+    // {
+    //     e.preventDefault();
+    //     window.location.replace('/Components/PayingTheBill');
+    // }
 
     showPass(e){
         e.preventDefault();
@@ -481,11 +481,11 @@ class PayingTheBill extends Component {
                             <div className="col-12 text-center mt-3">Bill Amount : {this.state.payment} IRR</div>
                             <div className="col-12 text-center mt-3">Please enter your secret key to approve the transaction.</div>
                         </div>
-                        <a className="col-12" onClick={this.return}>
-                            <div className="col-3 bg-warning text-center rounded shadow-lg text-light pt-2 pb-2">
-                                RETURN
-                            </div>
-                        </a>
+                        {/*<a className="col-12" onClick={this.return}>*/}
+                            {/*<div className="col-3 bg-warning text-center rounded shadow-lg text-light pt-2 pb-2">*/}
+                                {/*RETURN*/}
+                            {/*</div>*/}
+                        {/*</a>*/}
                         <form className="col-12" onSubmit={this.handleForSignWithSecretKey}>
                             <label className="col-12">
                                 <div className="row shadow-lg">

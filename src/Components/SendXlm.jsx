@@ -41,7 +41,7 @@ class SendXlm extends Component {
         this.hidePass = this.hidePass.bind(this);
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.handleClickButton = this.handleClickButton.bind(this);
-        this.return = this.return.bind(this);
+        // this.return = this.return.bind(this);
         this.state = {
             price: null,
             public_key:null,
@@ -58,11 +58,11 @@ class SendXlm extends Component {
         }
     }
 
-    return(e)
-    {
-        e.preventDefault();
-        window.location.replace('/Components/SendXlm');
-    }
+    // return(e)
+    // {
+    //     e.preventDefault();
+    //     window.location.replace('/Components/SendXlm');
+    // }
 
     showPass(e){
         e.preventDefault();
@@ -320,11 +320,11 @@ class SendXlm extends Component {
                         <div className="col-12 text-center text-light mb-3">You are sending {this.state.amount} XLM to the following address :</div>
                         <div className="col-12 text-center text-light mb-3">{this.state.public_key_dest}</div>
                         <div className="col-12 text-center text-light mb-5">Please enter your secret key to approve the transaction.</div>
-                        <a className="col-12" onClick={this.return}>
-                            <div className="col-3 bg-warning text-center rounded shadow-lg text-light pt-2 pb-2">
-                                RETURN
-                            </div>
-                        </a>
+                        {/*<a className="col-12" onClick={this.return}>*/}
+                            {/*<div className="col-3 bg-warning text-center rounded shadow-lg text-light pt-2 pb-2">*/}
+                                {/*RETURN*/}
+                            {/*</div>*/}
+                        {/*</a>*/}
                         <form className="col-12" onSubmit={this.handleFormSubmit}>
                             <label className="col-12 mt-3">
                                 <div className="row shadow-lg">
