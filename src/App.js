@@ -27,6 +27,7 @@ import Ticket from './Components/Ticket.jsx';
 import Cookies from 'universal-cookie';
 import { faUser , faAngleUp , faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import AuthService from "./Components/AuthService";
+import { Offline, Online } from "react-detect-offline";
 const cookies = new Cookies();
 
 class App extends Component {
@@ -60,7 +61,7 @@ class App extends Component {
     }
 
     componentWillMount() {
-      if(window.location.href == "https://my.exireum.com/")
+      if(window.location.href == "https://my.exireum.com/" || window.location.href == "http://localhost:3000/")
       {
           if (this.Auth.loggedIn()) {
               window.location.replace('/Components/Dashboard');
@@ -182,6 +183,9 @@ class App extends Component {
     return (
         <div className="App">
             {header}
+            <div className="text-center text-light col-8 mx-auto">
+                <Offline><div className="col-12 mb-5 bg-danger pt-2 pb-2 rounded shadow-lg">Network error you are offline</div></Offline>
+            </div>
           <Router>
            <div className="col-12">
              <div className="row">
