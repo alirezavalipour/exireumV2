@@ -15,7 +15,7 @@ class TransactionFailed extends Component {
             <div className="col-sm-8 col-12 clearfix mx-auto">
                 <div className="row">
                     <h2 className="col-12 text-center text-light mb-5 font-weight-bold">Transaction Failed</h2>
-                    <div className="col-12 text-center text-light p-2">Your transaction has been done failly.</div>
+                    <div className="col-12 text-center text-danger p-2">Your transaction has been done failly.</div>
                     <a href="../Components/DepositXirWithIpg" className='col-sm-4 col-12 text-center text-light pt-2 pb-2 mt-3 bg-warning mx-auto rounded shadow-lg'>Back to deposit</a>
                 </div>
             </div>
