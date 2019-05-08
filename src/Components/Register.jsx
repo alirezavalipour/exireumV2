@@ -94,7 +94,7 @@ class Register extends Component {
             window.localStorage.setItem('mobile', this.state.mobile);
             this.Auth.register(this.state.username, this.state.email, this.state.first_name, this.state.last_name, this.state.national_number, this.state.address, this.state.mobile)
                 .then((res) => {
-                    cookie.set('reactUrl', 'true', { domain :'https://exireum.com' , path:'/' });
+                    // cookie.set('reactUrl', 'true', { domain :'https://exireum.com' , path:'/' });
                     window.location.replace('/Components/Verify');
                 })
                 .catch((err) => {
