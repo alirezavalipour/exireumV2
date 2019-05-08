@@ -150,6 +150,7 @@ class SendXir extends Component {
         {
             this.setState({
                 inValidSecretKey: true,
+                failed: '',
             });
             return true;
         }
@@ -179,7 +180,6 @@ class SendXir extends Component {
                     this.setState({
                         hash: res.hash,
                     });
-                    console.log(res);
                 })
                  .catch(err =>{
                      let datas = err.response;
@@ -187,7 +187,6 @@ class SendXir extends Component {
                          load: false,
                          failed: datas.data.extras.result_codes.operations[0]
                      });
-                     console.log(datas);
                  })
         });
 

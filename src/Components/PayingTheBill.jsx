@@ -295,6 +295,7 @@ class PayingTheBill extends Component {
         if (!isValidSecretKey(this.state.secret_key)) {
             this.setState({
                 inValidSecretKey: true,
+                failed: ''
             });
             return true;
         }
@@ -328,16 +329,15 @@ class PayingTheBill extends Component {
                 if(response.data.title)
                 {
                     this.setState({
-                        failed: response.data.extras.result_codes.transaction
+                        failed: response.data.extras.result_codes.transaction,
+                        load2: false
                     });
                 }
-                console.log(response);
             })
             .catch(err => {
                 this.setState({
                     load2: false
                 })
-                console.log(err.response);
             })
     }
 
@@ -355,8 +355,6 @@ class PayingTheBill extends Component {
         let failTransaction = "";
         if(this.state.failed == 'tx_failed')
         {
-            this.state.load2 = false;
-            this.state.inValidSecretKey = false;
             failTransaction = <div className="col-12">
                 <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
                     Your account doesn't have enough XIR to send
@@ -365,18 +363,15 @@ class PayingTheBill extends Component {
         }
         else if(this.state.failed == 'tx_bad_auth')
         {
-            this.state.load2 = false;
-            this.state.inValidSecretKey = false;
             failTransaction = <div className="col-12">
                 <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
                     This secret key not belong to register stellar account
                 </div>
             </div>;
         }
-        let validSecret = "";
         if(this.state.inValidSecretKey == true)
         {
-            validSecret = <div className="col-12">
+            failTransaction = <div className="col-12">
                 <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
                     Your secret key invalid
                 </div>
@@ -469,7 +464,6 @@ class PayingTheBill extends Component {
             return (
                 <div className="col-sm-8 col-12 clearfix mx-auto">
                     <div className="row">
-                        {validSecret}
                         {failTransaction}
                         <h2 className="col-12 text-light font-weight-bold mb-5 text-center">Paying the bill</h2>
                         <div className="col-12 text-cenetr text-light mb-5">

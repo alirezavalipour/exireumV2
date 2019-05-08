@@ -150,6 +150,7 @@ class SendXlm extends Component {
         {
             this.setState({
                 inValidSecretKey: true,
+                failed: ''
             });
             return true;
         }
