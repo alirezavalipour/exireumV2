@@ -34,7 +34,7 @@ class DepositXirWithIpg extends Component {
                 [e.target.name]: e.target.value,
             });
         let amount =  parseFloat(e.target.value.replace(/,/g, ''));
-        var url= `${this.Auth.domain}/user/convert?type=deposit&amount=` + amount;
+        var url= `${this.Auth.domain}/user/convert?type=IRRTOXIR&amount=` + amount;
         const headers = {
             Accept: 'application/json',
             'Content-Type': 'application/json',

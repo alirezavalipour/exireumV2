@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import '../App.css';
 import axios from 'axios';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import { faAngleLeft , faAngleRight , faExternalLinkAlt , faExternalLinkSquareAlt } from '@fortawesome/free-solid-svg-icons';
+import { faAngleLeft , faAngleRight , faExternalLinkSquareAlt } from '@fortawesome/free-solid-svg-icons';
 import {Container, Row, Col} from 'bootstrap-4-react';
 import AuthService from './AuthService.jsx';
 

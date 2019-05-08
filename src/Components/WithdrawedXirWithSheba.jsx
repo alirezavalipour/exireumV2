@@ -72,7 +72,7 @@ class WithdrawedXirWithSheba extends Component {
 
         if(e.target.name == "amount"){
             let amount =  parseFloat(e.target.value.replace(/,/g, ''));
-            var url= `${this.Auth.domain}/user/convert?type=withdraw&amount=` + amount;
+            var url= `${this.Auth.domain}/user/convert?type=XIRTOIRR&amount=` + amount;
             const headers = {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',

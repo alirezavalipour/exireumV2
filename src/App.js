@@ -24,6 +24,9 @@ import ResetPassword from './Components/ResetPassword.jsx';
 import Profile from './Components/Profile.jsx';
 import Trust from './Components/Trust.jsx';
 import Ticket from './Components/Ticket.jsx';
+import TrustFailed from './Components/TrustFailed.jsx';
+import TransactionFailed from './Components/TransactionFailed.jsx';
+import TransactionSuccess from './Components/TransactionSuccess.jsx';
 import Cookies from 'universal-cookie';
 import { faUser , faAngleUp , faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import AuthService from "./Components/AuthService";
@@ -148,7 +151,7 @@ class App extends Component {
     }
 
       let header="";
-      if(window.location.pathname == "/Components/Login" || window.location.pathname == "/Components/Trust" || window.location.pathname == "/Components/ResetPassword" || window.location.pathname == "/Components/Register" || window.location.pathname == "/Components/Verify" || window.location.pathname == "/Components/Confirmpassword" || window.location.pathname == "/Components/Account")
+      if(window.location.pathname == "/Components/Login" || window.location.pathname == "/Components/TrustFailed" || window.location.pathname == "/Components/Trust" || window.location.pathname == "/Components/ResetPassword" || window.location.pathname == "/Components/Register" || window.location.pathname == "/Components/Verify" || window.location.pathname == "/Components/Confirmpassword" || window.location.pathname == "/Components/Account")
       {
           header = <div className="col-12 header2 mb-5">
                       <div className="row">
@@ -157,7 +160,7 @@ class App extends Component {
                       </div>
                   </div>;
       }
-      else if(window.location.pathname == "/Components/Dashboard" || window.location.pathname == "/Components/Ticket" || window.location.pathname == "/Components/ExchangeXir" || window.location.pathname == "/Components/ExchangeXlm" || window.location.pathname == "/Components/DepositXirWithIpg" || window.location.pathname == "/Components/DepositXirWithQr" || window.location.pathname == "/Components/DepositXlm" || window.location.pathname == "/Components/WithdrawedXirWithSheba" || window.location.pathname == "/Components/SendXir" || window.location.pathname == "/Components/SendXlm" || window.location.pathname == "/Components/PayingTheBill" || window.location.pathname == "/Components/Orders" || window.location.pathname == "/Components/Profile")
+      else if(window.location.pathname == "/Components/Dashboard" || window.location.pathname == "/Components/TransactionSuccess" || window.location.pathname == "/Components/TransactionFailed" || window.location.pathname == "/Components/Ticket" || window.location.pathname == "/Components/ExchangeXir" || window.location.pathname == "/Components/ExchangeXlm" || window.location.pathname == "/Components/DepositXirWithIpg" || window.location.pathname == "/Components/DepositXirWithQr" || window.location.pathname == "/Components/DepositXlm" || window.location.pathname == "/Components/WithdrawedXirWithSheba" || window.location.pathname == "/Components/SendXir" || window.location.pathname == "/Components/SendXlm" || window.location.pathname == "/Components/PayingTheBill" || window.location.pathname == "/Components/Orders" || window.location.pathname == "/Components/Profile")
       {
           header = <div className="col-12 header1 mb-5">
                       <div className="row">
@@ -208,7 +211,10 @@ class App extends Component {
                 <Route path="/Components/Profile" component={Profile}/>
                 <Route path="/Components/ResetPassword" component={ResetPassword}/>
                 <Route path="/Components/Trust" component={Trust}/>
+                <Route path="/Components/TrustFailed" component={TrustFailed}/>
                 <Route path="/Components/Ticket" component={Ticket}/>
+                <Route path="/Components/TransactionSuccess" component={TransactionSuccess}/>
+                <Route path="/Components/TransactionFailed" component={TransactionFailed}/>
              </div>
            </div>
           </Router>
