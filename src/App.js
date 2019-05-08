@@ -99,7 +99,7 @@ class App extends Component {
   logOut(e){
       e.preventDefault();
       this.Auth.logout();
-      cookies.remove('reactUrl', { domain :'https://exireum.com' , path: '/' });
+      cookies.remove('reactUrl');
       window.location.replace('https://exireum.com');
   }
 
@@ -161,7 +161,7 @@ class App extends Component {
       {
           header = <div className="col-12 header1 mb-5">
                       <div className="row">
-                          <a href="/Components/Dashboard" className="logo col-sm-2 col-12"></a>
+                          <a href="https://exireum.com" className="logo col-sm-2 col-12"></a>
                           <div className="menu col-sm-7 col-12">
                               <div className="row">
                                   <a className={'menu-in ml-3 text-light' + (window.location.pathname === '/Components/Dashboard' ? ' activation' : '')} href="/Components/Dashboard">Dashboard</a>
