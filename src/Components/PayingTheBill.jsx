@@ -376,7 +376,7 @@ class PayingTheBill extends Component {
                 </div>
             </div>;
         }
-        if(this.state.inValidSecretKey == true)
+        else if(this.state.inValidSecretKey == true)
         {
             failTransaction = <div className="col-12">
                 <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
