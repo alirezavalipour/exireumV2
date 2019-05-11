@@ -640,7 +640,7 @@ class Orders extends Component {
             signers = this.state.data4.map((elem , index) => {
                 let id = elem.id;
                 let track = elem.tracking_code;
-                let amount = elem.amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");;
+                let amount = parseInt(elem.amount).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");;
                 let price = (parseInt((elem.payment_code)/100000)*1000).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");;
                 let billing_code = elem.billing_code;
                 let payment_code = elem.payment_code;
