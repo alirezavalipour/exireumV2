@@ -149,11 +149,11 @@ class Dashboard extends Component {
         return (
             <div className="col-sm-8 col-12 clearfix mx-auto">
                 <div className="row">
-                    <div className="col-12">
+                    <div className="col-12 pr-0 pl-0">
                         <div className="col-12 mx-auto">
                             <div className="row">
-                                <h5 className="col-12 text-center text-light">Convert rate</h5>
-                                <div className="col-sm-5 col-12 mt-3 mb-5">
+                                <h5 className="col-12 text-center text-light font-weight-bold mb-5">Convert rate</h5>
+                                <div className="col-sm-5 col-12 mb-5 pr-0 pl-0">
                                     <div className="col-12">
                                         <div className="row">
                                             <div className="col-4 pt-2 pb-2 text-center text-light border-div rounded-left pr-1 pl-1 bg-warning">Base asset</div>
@@ -167,8 +167,8 @@ class Dashboard extends Component {
                                         </div>
                                     </div>
                                 </div>
-                                <a onClick={this.convert} className="col-sm-2 col-12 mt-3 mb-5 text-center text-light font-weight-bold rounded"><div className="col-6 pt-2 pb-2 rounded bg-warning mx-auto" style={{height: '100%'}}><FontAwesomeIcon className="font-weight-bold bg-warning mt-1" style={{fontSize: '22px', width: '100%'}} icon={faArrowCircleRight}/></div></a>
-                                <div className="col-sm-5 col-12 mt-3 mb-5">
+                                <a onClick={this.convert} className="col-sm-2 col-12 mb-5 text-center text-light font-weight-bold rounded"><div className="col-6 pt-2 pb-2 rounded bg-warning mx-auto" style={{height: '100%'}}><FontAwesomeIcon className="font-weight-bold bg-warning mt-1" style={{fontSize: '22px', width: '100%'}} icon={faArrowCircleRight}/></div></a>
+                                <div className="col-sm-5 col-12 mb-5 pr-0 pl-0">
                                     <div className="col-12">
                                         <div className="row">
                                             <div className="col-4 pt-2 pb-2 text-center text-light border-div rounded-left pr-1 pl-1 bg-warning">Counter asset</div>
@@ -180,17 +180,11 @@ class Dashboard extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="col-sm-5 col-12 text-center">
+                    <div className="col-sm-5 col-12 text-center mb-5">
                         <div className="row">
                             <h2 className="col-12 mb-2 font-weight-bold text-light">XIR</h2>
                             <h5 className="col-12 mb-2 text-light">Balance : {this.state.xirBalance} XIR</h5>
                             <div className="col-12 mb-5 text-light">Available : {this.state.xirBalance} XIR</div>
-                            {/*<div className="col-12">*/}
-                                {/*<div className="row">*/}
-                                    {/*<div className="col-6">Remind of XIR :</div>*/}
-                                    {/*<div className="col-6">10000</div>*/}
-                                {/*</div>*/}
-                            {/*</div>*/}
                             <a href="/Components/ExchangeXir" className="hover-div col-12 border-div p-2 rounded shadow-lg">Exchange XIR to XLM</a>
                             <a href="/Components/DepositXirWithQr" className="hover-div col-12 border-div p-2 mt-3 rounded shadow-lg">Deposit XIR with QR</a>
                             <a href="/Components/DepositXirWithIpg" className="hover-div col-12 border-div p-2 mt-3 rounded shadow-lg">Deposit XIR With IPG</a>
@@ -205,12 +199,6 @@ class Dashboard extends Component {
                             <h2 className="col-12 mb-2 font-weight-bold text-light">XLM</h2>
                             <h5 className="col-12 mb-2 text-light">Balance : {this.state.xlmBalance} XLM</h5>
                             <div className="col-12 mb-5 text-light">Available : {priceXlm}</div>
-                            {/*<div className="col-12">*/}
-                                {/*<div className="row">*/}
-                                    {/*<div className="col-6">Remind of XLM :</div>*/}
-                                    {/*<div className="col-6">10000</div>*/}
-                                {/*</div>*/}
-                            {/*</div>*/}
                             <a href="/Components/ExchangeXlm" className="div-hover col-12 border-div p-2 rounded shadow-lg">Exchange XLM to XIR</a>
                             <a href="/Components/DepositXlm" className="div-hover col-12 border-div p-2 mt-3 rounded shadow-lg">Deposit XLM</a>
                             <a href="/Components/SendXlm" className="div-hover col-12 border-div p-2 mt-3 rounded shadow-lg">Send XLM</a>
