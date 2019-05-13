@@ -145,6 +145,11 @@ input , textarea , .border-div , button
     font-size: 14px;
 }
 
+.hover-tab:hover
+{
+    background-color: #ffc107;
+    cursor: pointer;
+}
 
 @media(max-width: 600px) {
     .logo

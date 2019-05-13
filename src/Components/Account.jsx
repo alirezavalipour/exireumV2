@@ -100,7 +100,7 @@ class Account extends Component {
             change2: false
         });
         e.currentTarget.setAttribute("class", "col-6 text-light text-center font-weight-bold rounded-top border-top border-right border-left border-warning pt-3 pb-3");
-        document.getElementById('create').setAttribute("class","col-6 text-light text-center font-weight-bold rounded-top border-bottom border-warning pt-3 pb-3");
+        document.getElementById('create').setAttribute("class","col-6 text-light text-center font-weight-bold rounded-top border-bottom border-warning pt-3 pb-3 hover-tab");
     }
 
     changeForm2(e)
@@ -111,7 +111,7 @@ class Account extends Component {
             change1: false
         });
         e.currentTarget.setAttribute("class", "col-6 text-light text-center font-weight-bold rounded-top border-top border-right border-left border-warning pt-3 pb-3");
-        document.getElementById('add').setAttribute("class","col-6 text-light text-center font-weight-bold rounded-top border-bottom border-warning pt-3 pb-3");
+        document.getElementById('add').setAttribute("class","col-6 text-light text-center font-weight-bold rounded-top border-bottom border-warning pt-3 pb-3 hover-tab");
     }
 
     showPlacholder(e)
@@ -402,7 +402,7 @@ class Account extends Component {
                     <div className="col-12">
                         <div className="row">
                             <a id='add' onClick={this.changeForm1} className="col-6 text-light text-center font-weight-bold rounded-top border-top border-right border-left border-warning pt-3 pb-3">I Already Have An Account</a>
-                            <a id='create' onClick={this.changeForm2} className="col-6 text-light text-center font-weight-bold border-bottom border-warning pt-3 pb-3">Create a new account</a>
+                            <a id='create' onClick={this.changeForm2} className="col-6 text-light text-center font-weight-bold border-bottom border-warning pt-3 pb-3 hover-tab rounded-top">Create a new account</a>
                         </div>
                     </div>
                     {account}

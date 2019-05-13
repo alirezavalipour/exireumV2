@@ -68,9 +68,9 @@ class Orders extends Component {
     handleExchange(e) {
         e.preventDefault();
         e.currentTarget.setAttribute("class", "col-3 border-top border-right border-left border-warning pt-3 pb-3 font-weight-bold rounded-top");
-        document.getElementById('bill').setAttribute("class","col-3 border-bottom border-warning pt-3 pb-3 font-weight-bold");
-        document.getElementById('deposit').setAttribute("class","col-3 border-bottom border-warning pt-3 pb-3 font-weight-bold");
-        document.getElementById('withdraw').setAttribute("class","col-3 border-bottom border-warning pt-3 pb-3 font-weight-bold");
+        document.getElementById('bill').setAttribute("class","col-3 border-bottom border-warning pt-3 pb-3 font-weight-bold rounded-top hover-tab");
+        document.getElementById('deposit').setAttribute("class","col-3 border-bottom border-warning pt-3 pb-3 font-weight-bold rounded-top hover-tab");
+        document.getElementById('withdraw').setAttribute("class","col-3 border-bottom border-warning pt-3 pb-3 font-weight-bold rounded-top hover-tab");
         const url = this.Auth.getDomain() + '/user/stellar/exchange';
         const headers = {
             Accept: 'application/json',
@@ -115,9 +115,9 @@ class Orders extends Component {
     handleDeposit(e) {
         e.preventDefault();
         e.currentTarget.setAttribute("class", "col-3 border-top border-right border-left border-warning pt-3 pb-3 font-weight-bold rounded-top");
-        document.getElementById('exchange').setAttribute("class","col-3 border-bottom border-warning pt-3 pb-3 font-weight-bold");
-        document.getElementById('bill').setAttribute("class","col-3 border-bottom border-warning pt-3 pb-3 font-weight-bold");
-        document.getElementById('withdraw').setAttribute("class","col-3 border-bottom border-warning pt-3 pb-3 font-weight-bold");
+        document.getElementById('exchange').setAttribute("class","col-3 border-bottom border-warning pt-3 pb-3 font-weight-bold hover-tab rounded-top");
+        document.getElementById('bill').setAttribute("class","col-3 border-bottom border-warning pt-3 pb-3 font-weight-bold hover-tab rounded-top");
+        document.getElementById('withdraw').setAttribute("class","col-3 border-bottom border-warning pt-3 pb-3 font-weight-bold hover-tab rounded-top");
         const url = this.Auth.getDomain() + '/user/deposit';
         const headers = {
             Accept: 'application/json',
@@ -160,9 +160,9 @@ class Orders extends Component {
     handleWithdraw(e) {
         e.preventDefault();
         e.currentTarget.setAttribute("class", "col-3 border-top border-right border-left border-warning pt-3 pb-3 font-weight-bold rounded-top");
-        document.getElementById('exchange').setAttribute("class","col-3 border-bottom border-warning pt-3 pb-3 font-weight-bold");
-        document.getElementById('deposit').setAttribute("class","col-3 border-bottom border-warning pt-3 pb-3 font-weight-bold");
-        document.getElementById('bill').setAttribute("class","col-3 border-bottom border-warning pt-3 pb-3 font-weight-bold");
+        document.getElementById('exchange').setAttribute("class","col-3 border-bottom border-warning pt-3 pb-3 font-weight-bold hover-tab rounded-top");
+        document.getElementById('deposit').setAttribute("class","col-3 border-bottom border-warning pt-3 pb-3 font-weight-bold hover-tab rounded-top");
+        document.getElementById('bill').setAttribute("class","col-3 border-bottom border-warning pt-3 pb-3 font-weight-bold hover-tab rounded-top");
         const url = this.Auth.getDomain() + '/user/stellar/withdraw';
         const headers = {
             Accept: 'application/json',
@@ -205,9 +205,9 @@ class Orders extends Component {
     handleBill(e) {
         e.preventDefault();
         e.currentTarget.setAttribute("class", "col-3 border-top border-right border-left border-warning pt-3 pb-3 font-weight-bold rounded-top");
-        document.getElementById('exchange').setAttribute("class","col-3 border-bottom border-warning pt-3 pb-3 font-weight-bold");
-        document.getElementById('deposit').setAttribute("class","col-3 border-bottom border-warning pt-3 pb-3 font-weight-bold");
-        document.getElementById('withdraw').setAttribute("class","col-3 border-bottom border-warning pt-3 pb-3 font-weight-bold");
+        document.getElementById('exchange').setAttribute("class","col-3 border-bottom border-warning pt-3 pb-3 font-weight-bold hover-tab rounded-top");
+        document.getElementById('deposit').setAttribute("class","col-3 border-bottom border-warning pt-3 pb-3 font-weight-bold hover-tab rounded-top");
+        document.getElementById('withdraw').setAttribute("class","col-3 border-bottom border-warning pt-3 pb-3 font-weight-bold hover-tab rounded-top");
         const url = this.Auth.getDomain() + '/user/bank/bill-payment';
         const headers = {
             Accept: 'application/json',
@@ -709,9 +709,9 @@ class Orders extends Component {
                             <div className="col-12 col-12 text-center text-light">
                                 <div className="row ">
                                     <a id="exchange" onClick={this.handleExchange} className="col-3 border-top border-right border-left border-warning pt-3 pb-3 font-weight-bold rounded-top">Exchange</a>
-                                    <a id="deposit" onClick={this.handleDeposit} className="col-3 border-bottom border-warning pt-3 pb-3 font-weight-bold">Deposit</a>
-                                    <a id="withdraw" onClick={this.handleWithdraw} className="col-3 border-bottom border-warning pt-3 pb-3 font-weight-bold">Withdraw</a>
-                                    <a id="bill" onClick={this.handleBill} className="col-3 border-bottom border-warning pt-3 pb-3 font-weight-bold">Bill payment</a>
+                                    <a id="deposit" onClick={this.handleDeposit} className="col-3 border-bottom border-warning pt-3 pb-3 font-weight-bold hover-tab rounded-top">Deposit</a>
+                                    <a id="withdraw" onClick={this.handleWithdraw} className="col-3 border-bottom border-warning pt-3 pb-3 font-weight-bold hover-tab rounded-top">Withdraw</a>
+                                    <a id="bill" onClick={this.handleBill} className="col-3 border-bottom border-warning pt-3 pb-3 font-weight-bold hover-tab rounded-top">Bill payment</a>
                                 </div>
                             </div>
                             {/*<div className="col-12 text-center text-light border-bottom border-warning">*/}
