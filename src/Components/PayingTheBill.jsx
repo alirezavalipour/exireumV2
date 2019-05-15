@@ -291,7 +291,8 @@ class PayingTheBill extends Component {
                 })
                 .catch(err => {
                     this.setState({
-                        load1: false
+                        load1: false,
+                        max: err.response.data.error,
                     })
                 })
         }
@@ -392,6 +393,15 @@ class PayingTheBill extends Component {
                 </div>
             </div>
         }
+        let failOrder= '';
+        if(this.state.max)
+        {
+            failOrder = <div className="col-12">
+                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
+                    {this.state.max}
+                </div>
+            </div>;
+        }
         const project = () => {
             switch (this.state.bill) {
                 case 1:
@@ -445,6 +455,7 @@ class PayingTheBill extends Component {
                 <div className="col-sm-8 col-12 clearfix mx-auto">
                     <div className="row">
                         {error}
+                        {failOrder}
                         <h2 className="col-12 text-light text-center font-weight-bold mb-2">Paying the bill</h2>
                         <div className='col-12 text-center text-light mb-5'>Available : {priceXlm}</div>
                         <form className="col-12" onSubmit={this.handleFormSubmit}>

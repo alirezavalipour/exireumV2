@@ -171,6 +171,10 @@ class WithdrawedXirWithSheba extends Component {
                     withdraw_id: response.data.withdraw_id
                 });
             }).catch(err =>{
+                this.setState({
+                    load1: false,
+                    max: err.response.data.error,
+                });
             })
     }
 
@@ -206,7 +210,7 @@ class WithdrawedXirWithSheba extends Component {
         else
         {
             this.setState({
-                userAmount: true
+                userAmount: true,
             })
         }
     }
@@ -291,6 +295,15 @@ class WithdrawedXirWithSheba extends Component {
                 </div>
             </div>;
         }
+        let failOrder= '';
+        if(this.state.max)
+        {
+            failOrder = <div className="col-12">
+                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
+                    {this.state.max}
+                </div>
+            </div>;
+        }
         let failTransaction = "";
         if(this.state.failed == 'tx_failed')
         {
@@ -356,6 +369,7 @@ class WithdrawedXirWithSheba extends Component {
                     <div className="row">
                         {error}
                         {failAmount}
+                        {failOrder}
                         <h2 className="col-12 text-light text-center font-weight-bold mb-2">Withdraw XIR to bank account</h2>
                         <div className='col-12 text-center text-light mb-5'>Available : {priceXlm}</div>
                         <form className="col-12" onSubmit={this.handleFormSubmit}>
