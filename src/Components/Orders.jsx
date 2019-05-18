@@ -541,14 +541,14 @@ class Orders extends Component {
                 //     }
                 // };
                 let track = elem.tracking_code;
-                let hash = elem.hash;
                 let hash_paid = elem.paid_hash;
+                let hash = elem.order.status.value;
                 let status = hash;
-                if (!status)
+                if (status == 0)
                 {
                     status = 'Rejected';
                 }
-                else if (status)
+                else if (status == 1)
                 {
                     status = 'Successful';
                 }
@@ -570,8 +570,8 @@ class Orders extends Component {
                     <div className="col-2 text-center text-light pt-2 pb-2">{date}</div>
                     <div className="col-2 text-center text-light pt-2 pb-2">{price}</div>
                     <div className="col-2 text-center text-light pt-2 pb-2">{amount}</div>
-                    <div className="col-3 text-center text-light pt-2 pb-2">{status} <a target='_blank' href={"https://horizon-testnet.stellar.org/transactions/" + hash_paid} className="text-center text-light pt-2 pb-2 ml-2"><FontAwesomeIcon className="" icon={faExternalLinkSquareAlt}/></a></div>
                     <div className="col-3 text-center text-light pt-2 pb-2">{track}</div>
+                    <div className="col-3 text-center text-light pt-2 pb-2">{status} <a target='_blank' href={"https://horizon-testnet.stellar.org/transactions/" + hash_paid} className="text-center text-light pt-2 pb-2 ml-2"><FontAwesomeIcon className="" icon={faExternalLinkSquareAlt}/></a></div>
                 </div>;
             });
         }

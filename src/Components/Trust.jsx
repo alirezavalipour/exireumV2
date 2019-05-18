@@ -50,10 +50,25 @@ class Trust extends Component {
         var configPublic = { headers: headersPublic };
         return axios.get(urlPublic, configPublic)
             .then(response => {
+                this.assetAmount(response.data[0].public_key);
+            });
+    }
+
+    assetAmount(public_key) {
+        const url = 'https://horizon-testnet.stellar.org/accounts/' + public_key;
+        return axios.get(url)
+            .then(res =>{
                 this.setState({
-                    public_key: response.data[0].public_key
+                    entry: res.data.subentry_count,
                 });
-                if (this.state.public_key)
+                let trustFlag = false;
+                res.data.balances.map(elem =>{
+                    if(elem.asset_code == 'XIR')
+                    {
+                        trustFlag = true;
+                    }
+                });
+                if (trustFlag)
                 {
                     window.location.replace('/Components/Dashboard');
                 }

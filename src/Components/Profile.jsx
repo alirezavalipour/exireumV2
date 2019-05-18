@@ -3,6 +3,17 @@ import '../App.css';
 import axios from 'axios';
 import {Container, Row, Col} from 'bootstrap-4-react';
 import AuthService from './AuthService.jsx';
+var StellarSdk = require('stellar-sdk');
+
+const isValidPublicKey = input => {
+    try {
+        StellarSdk.Keypair.fromPublicKey(input);
+        return true;
+    } catch (e) {
+        // console.error(e);
+        return false;
+    }
+};
 
 class Profile extends Component {
     constructor(props) {
@@ -10,7 +21,9 @@ class Profile extends Component {
         this.Auth = new AuthService();
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        this.state = {};
+        this.state = {
+            inValidPublicKey: false,
+        };
     }
 
     componentWillMount() {
@@ -27,18 +40,33 @@ class Profile extends Component {
             Authorization: `Bearer ${this.Auth.getToken()}`,
         };
         var config = { headers };
-        return axios.get(url, config)
-            .then(response => {
-                this.setState({
-                    user_name: response.data.username,
-                    email: response.data.email,
-                    first_name: response.data.first_name,
-                    last_name: response.data.last_name,
-                    national_number: response.data.national_number,
-                    address: response.data.address,
-                    mobile: response.data.mobile,
-                });
-            });
+        const urlPublic = this.Auth.getDomain() + '/user/account';
+        const headersPublic = {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${this.Auth.getToken()}`,
+        };
+        var configPublic = { headers: headersPublic };
+        return axios.all ([
+            axios.get(url, config)
+                .then(response => {
+                    this.setState({
+                        user_name: response.data.username,
+                        email: response.data.email,
+                        first_name: response.data.first_name,
+                        last_name: response.data.last_name,
+                        national_number: response.data.national_number,
+                        address: response.data.address,
+                        mobile: response.data.mobile,
+                    });
+                }),
+            axios.get(urlPublic, configPublic)
+                .then(response => {
+                    this.setState({
+                        public_key: response.data[0].public_key
+                    });
+                })
+        ]);
     }
 
     handleChange(e) {
@@ -51,6 +79,14 @@ class Profile extends Component {
     handleSubmit(e) {
         e.preventDefault();
         window.scrollTo(0, -100);
+        if(!isValidPublicKey(this.state.public_key))
+        {
+            this.setState({
+                inValidPublicKey: true,
+                message: ''
+            });
+            return true;
+        }
         const url = this.Auth.getDomain() + '/user/profile';
         const formData = {
             username: this.state.user_name,
@@ -67,12 +103,30 @@ class Profile extends Component {
             Authorization: `Bearer ${this.Auth.getToken()}`,
         };
         var config = { headers };
-        return axios.post(url, formData, config)
-            .then(response =>{
-                this.setState({
-                    message: response.data.message,
-                })
-            })
+        const urlPublic = this.Auth.getDomain() + '/user/account/add';
+        const formDataPublic = {
+            public_key: this.state.public_key,
+        };
+        const headersPublic = {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${this.Auth.getToken()}`,
+        };
+        var configPublic = { headers: headersPublic };
+        return axios.all ([
+            axios.post(url, formData, config)
+                .then(response =>{
+                    this.setState({
+                        inValidPublicKey: false,
+                        message: response.data.message,
+                    })
+                }),
+            axios.post(urlPublic, formDataPublic, configPublic)
+                .then(response =>{
+                    this.setState({
+                    });
+                }),
+        ])
     }
 
     render() {
@@ -85,7 +139,14 @@ class Profile extends Component {
                 </div>
             </div>;
         }
-
+        if(this.state.inValidPublicKey == true)
+        {
+            messages = <div className="col-12">
+                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
+                    Your public key invalid
+                </div>
+            </div>;
+        }
         return (
             <div className="col-sm-8 col-12 clearfix mx-auto">
                 <div className="row">
@@ -128,12 +189,12 @@ class Profile extends Component {
                                 <textarea className="col-9 text-center rounded-right p-2 text-light" type="text" name="address" onChange={this.handleChange} value={this.state.address}></textarea>
                             </div>
                         </label>
-                        {/*<label className="col-12 mt-3">*/}
-                            {/*<div className="row shadow-lg">*/}
-                                {/*<span className="col-3 text-center text-light p-2 rounded-left bg-warning">Mobile number</span>*/}
-                                {/*<input className="col-9 text-center rounded-right p-2 text-light" type="text" name="mobile" value={this.state.mobile} onChange={this.handleChange}/>*/}
-                            {/*</div>*/}
-                        {/*</label>*/}
+                        <label className="col-12 mt-3">
+                            <div className="row shadow-lg">
+                                <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Public key</span>
+                                <input className="col-9 text-center rounded-right p-2 text-light" type="text" name="public_key" value={this.state.public_key} onChange={this.handleChange}/>
+                            </div>
+                        </label>
                         <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">UPDATE</button>
                     </form>
                 </div>

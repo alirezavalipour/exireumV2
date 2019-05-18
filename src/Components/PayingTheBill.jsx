@@ -351,7 +351,7 @@ class PayingTheBill extends Component {
 
     fixEscape(str)
     {
-        return escape(str).replace( "+", "%2B" );
+        return encodeURIComponent(str) ;
     }
 
     render() {

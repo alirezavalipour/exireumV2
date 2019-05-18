@@ -92,9 +92,11 @@ class Dashboard extends Component {
                 this.setState({
                     entry: res.data.subentry_count,
                 });
+                let trustFlag = false;
                 res.data.balances.map(elem =>{
                     if(elem.asset_code=="XIR")
                     {
+                        trustFlag = true;
                         this.setState({
                             xirBalance: (parseInt(elem.balance)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
                         });
@@ -107,6 +109,10 @@ class Dashboard extends Component {
                         });
                     }
                 });
+                if (!trustFlag)
+                {
+                    window.location.replace('/Components/Trust');
+                }
             });
     }
 
