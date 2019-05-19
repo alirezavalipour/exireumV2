@@ -410,22 +410,3 @@ class Account extends Component {
 }
 
 export default Account;
-
-{/*<div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>*/}
-{/*<div className="row">*/}
-{/*<label className="disable" htmlFor="sheba">Sheba</label>*/}
-{/*<input className="col-12 p-2 mt-3 rounded shadow-lg" placeholder="Sheba : IR************************" name="sheba" required="required" type="text" onChange={this.handleChange} />*/}
-{/*</div>*/}
-{/*</div>*/}
-{/*<div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>*/}
-{/*<div className="row">*/}
-{/*<label className="disable" htmlFor="card">Card number</label>*/}
-{/*<input className="col-12 mt-3 p-2 rounded shadow-lg" placeholder="Card number : **** **** **** ****" name="card" required="required" type="tel" onChange={this.handleChange} />*/}
-{/*</div>*/}
-{/*</div>*/}
-{/*<div className="p-2 mt-3 col-12">*/}
-{/*<input type="radio" id="Choice1" name="account" value="create" onChange={this.changeCreateOrHaveAccount}/>*/}
-{/*<label className="col-5 text-light" htmlFor="Choice1">Create New Account</label>*/}
-{/*<input type="radio" id="Choice2" name="account" value="have" onChange={this.changeCreateOrHaveAccount}/>*/}
-{/*<label className="col-5 text-light" htmlFor="Choice2">I Already Have An Account</label>*/}
-{/*</div>*/}
