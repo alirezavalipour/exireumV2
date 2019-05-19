@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import '../App.css';
 import axios from 'axios';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { Container, Row, Col } from 'bootstrap-4-react';
+import {} from 'bootstrap-4-react';
 import AuthService from './AuthService.jsx';
 import Countdown from 'react-countdown-now';
 import Loader from 'react-loader-spinner';
@@ -177,11 +174,11 @@ class ResetPassword extends Component {
             </div>;
         }
         let loader1 = "";
-        if(this.state.load1 == false)
+        if(this.state.load1 === false)
         {
             loader1 = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">SUBMIT</button>;
         }
-        else if(this.state.load1 == true)
+        else if(this.state.load1 === true)
         {
             loader1 = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">
                 <Loader
@@ -193,11 +190,11 @@ class ResetPassword extends Component {
             </button>;
         }
         let loader2 = "";
-        if(this.state.load2 == false)
+        if(this.state.load2 === false)
         {
             loader2 = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">SUBMIT</button>;
         }
-        else if(this.state.load2 == true)
+        else if(this.state.load2 === true)
         {
             loader2 = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">
                 <Loader
@@ -209,11 +206,11 @@ class ResetPassword extends Component {
             </button>;
         }
         let loader3 = "";
-        if(this.state.load3 == false)
+        if(this.state.load3 === false)
         {
             loader3 = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">SUBMIT</button>;
         }
-        else if(this.state.load3 == true)
+        else if(this.state.load3 === true)
         {
             loader3 = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">
                 <Loader

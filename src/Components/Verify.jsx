@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import '../App.css';
-import axios from 'axios';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { Container, Row, Col } from 'bootstrap-4-react';
+import {} from 'bootstrap-4-react';
 import AuthService from './AuthService.jsx';
 import Countdown from 'react-countdown-now';
 import Loader from 'react-loader-spinner';
@@ -101,11 +97,11 @@ class sms extends Component {
         }
 
         let loader = "";
-        if(this.state.load == false)
+        if(this.state.load === false)
         {
             loader = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">SUBMIT</button>;
         }
-        else if(this.state.load == true)
+        else if(this.state.load === true)
         {
             loader = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">
                 <Loader

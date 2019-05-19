@@ -1,11 +1,9 @@
 import React, {Component} from 'react';
 import '../App.css';
 import axios from 'axios';
-import {library} from '@fortawesome/fontawesome-svg-core';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 import {faEye} from '@fortawesome/free-solid-svg-icons';
-import {Container, Row, Col} from 'bootstrap-4-react';
+import {} from 'bootstrap-4-react';
 import AuthService from './AuthService.jsx';
 import Loader from 'react-loader-spinner';
 var StellarSdk = require('stellar-sdk');
@@ -136,7 +134,7 @@ class PayingTheBill extends Component {
             billValid: d,
             valid: a[0]
         });
-        if (d == a[0]) {
+        if (d === a[0]) {
             return true;
         }
         return false;
@@ -211,7 +209,7 @@ class PayingTheBill extends Component {
             paymentValid: d,
             payValid: a[1]
         });
-        if (d == a[1]) {
+        if (d === a[1]) {
             return true;
         }
         return false;
@@ -248,18 +246,19 @@ class PayingTheBill extends Component {
                     entry: res.data.subentry_count,
                 });
                 res.data.balances.map(elem =>{
-                    if(elem.asset_code=="XIR")
+                    if(elem.asset_code === "XIR")
                     {
                         this.setState({
                             xirBalance: elem.balance
                         });
                     }
-                    if(elem.asset_type=="native")
+                    if(elem.asset_type === "native")
                     {
                         this.setState({
                             xlmBalance: elem.balance
                         });
                     }
+                    return true;
                 });
             });
     }
@@ -361,7 +360,7 @@ class PayingTheBill extends Component {
             priceXlm = parseInt(this.state.xirBalance).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' XIR';
         }
         let failTransaction = "";
-        if(this.state.failed == 'tx_failed')
+        if(this.state.failed === 'tx_failed')
         {
             failTransaction = <div className="col-12">
                 <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
@@ -369,7 +368,7 @@ class PayingTheBill extends Component {
                 </div>
             </div>;
         }
-        else if(this.state.failed == 'tx_bad_auth')
+        else if(this.state.failed === 'tx_bad_auth')
         {
             failTransaction = <div className="col-12">
                 <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
@@ -377,7 +376,7 @@ class PayingTheBill extends Component {
                 </div>
             </div>;
         }
-        else if(this.state.inValidSecretKey == true)
+        else if(this.state.inValidSecretKey === true)
         {
             failTransaction = <div className="col-12">
                 <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
@@ -386,7 +385,7 @@ class PayingTheBill extends Component {
             </div>;
         }
         let error = '';
-        if (!(this.state.billValid == this.state.valid && this.state.paymentValid == this.state.payValid)) {
+        if (!(this.state.billValid === this.state.valid && this.state.paymentValid === this.state.payValid)) {
             error = <div className="col-12">
                 <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
                     This billing code or payment code is incorrect
@@ -426,9 +425,9 @@ class PayingTheBill extends Component {
         }
         let loader = "";
         let loader2 = "";
-        if (this.state.load1 == false) {
+        if (this.state.load1 === false) {
             loader = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">SUBMIT</button>;
-        } else if (this.state.load1 == true) {
+        } else if (this.state.load1 === true) {
             loader = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">
                 <Loader
                     type="ThreeDots"
@@ -438,9 +437,9 @@ class PayingTheBill extends Component {
                 />
             </button>;
         }
-        if (this.state.load2 == false) {
+        if (this.state.load2 === false) {
             loader2 = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">SUBMIT</button>;
-        } else if (this.state.load2 == true) {
+        } else if (this.state.load2 === true) {
             loader2 = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">
                 <Loader
                     type="ThreeDots"

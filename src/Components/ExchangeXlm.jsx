@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import '../App.css';
 import axios from 'axios';
-import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import {faEye} from '@fortawesome/free-solid-svg-icons';
-import { Container, Row, Col } from 'bootstrap-4-react';
+import {} from 'bootstrap-4-react';
 import AuthService from './AuthService.jsx';
 import Loader from 'react-loader-spinner';
 import NumberFormat from 'react-number-format';
@@ -118,18 +116,19 @@ class ExchangeXir extends Component {
                     entry: res.data.subentry_count,
                 });
                 res.data.balances.map(elem =>{
-                    if(elem.asset_code=="XIR")
+                    if(elem.asset_code === "XIR")
                     {
                         this.setState({
                             xirBalance: elem.balance
                         });
                     }
-                    if(elem.asset_type=="native")
+                    if(elem.asset_type === "native")
                     {
                         this.setState({
                             xlmBalance: elem.balance
                         });
                     }
+                    return true;
                 });
             });
     }
@@ -238,7 +237,7 @@ class ExchangeXir extends Component {
             priceXlm = (parseFloat((this.state.xlmBalance) - (0.5 * this.state.entry) - 1).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' XLM';
         }
         let failAmount= '';
-        if(this.state.userAmount == true)
+        if(this.state.userAmount === true)
         {
             failAmount = <div className="col-12">
                 <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
@@ -247,7 +246,7 @@ class ExchangeXir extends Component {
             </div>;
         }
         let failTransaction = "";
-        if(this.state.failed == 'tx_failed')
+        if(this.state.failed === 'tx_failed')
         {
             failTransaction = <div className="col-12">
                 <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
@@ -255,7 +254,7 @@ class ExchangeXir extends Component {
                 </div>
             </div>;
         }
-        else if(this.state.failed == 'tx_bad_auth')
+        else if(this.state.failed === 'tx_bad_auth')
         {
             failTransaction = <div className="col-12">
                 <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
@@ -263,7 +262,7 @@ class ExchangeXir extends Component {
                 </div>
             </div>;
         }
-        else if(this.state.inValidSecretKey == true)
+        else if(this.state.inValidSecretKey === true)
         {
             failTransaction = <div className="col-12">
                 <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
@@ -273,11 +272,11 @@ class ExchangeXir extends Component {
         }
         let loader = "";
         let loader2 ="";
-        if(this.state.load1 == false)
+        if(this.state.load1 === false)
         {
             loader = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">SUBMIT</button>;
         }
-        else if(this.state.load1 == true)
+        else if(this.state.load1 === true)
         {
             loader = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">
                 <Loader
@@ -288,11 +287,11 @@ class ExchangeXir extends Component {
                 />
             </button>;
         }
-        if(this.state.load2 == false)
+        if(this.state.load2 === false)
         {
             loader2 = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">SUBMIT</button>;
         }
-        else if(this.state.load2 == true)
+        else if(this.state.load2 === true)
         {
             loader2 = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">
                 <Loader

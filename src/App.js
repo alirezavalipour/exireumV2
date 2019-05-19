@@ -3,7 +3,7 @@ import './App.css';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { Container, Row, Col } from 'bootstrap-4-react';
+import {} from 'bootstrap-4-react';
 import Login from './Components/Login.jsx';
 import Register from './Components/Register.jsx';
 import Verify from './Components/Verify.jsx';
@@ -27,10 +27,11 @@ import Ticket from './Components/Ticket.jsx';
 import TrustFailed from './Components/TrustFailed.jsx';
 import TransactionFailed from './Components/TransactionFailed.jsx';
 import TransactionSuccess from './Components/TransactionSuccess.jsx';
+import Upgrade from './Components/Upgrade.jsx';
 import Cookies from 'universal-cookie';
 import { faUser , faAngleUp , faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import AuthService from "./Components/AuthService";
-import { Offline, Online } from "react-detect-offline";
+import { Offline } from "react-detect-offline";
 const cookies = new Cookies();
 
 class App extends Component {
@@ -64,7 +65,7 @@ class App extends Component {
     }
 
     componentWillMount() {
-      if(window.location.href == "https://my.exireum.com/" || window.location.href == "http://localhost:3000/")
+      if(window.location.href === "https://my.exireum.com/" || window.location.href === "http://localhost:3000/")
       {
           if (this.Auth.loggedIn()) {
               window.location.replace('/Components/Dashboard');
@@ -114,7 +115,7 @@ class App extends Component {
         <a className="col-6 text-center text-light text-decoration-none"><div className="col-12 font-weight-bold">Profile</div></a>
       </div>
     </div>;
-    if(this.state.key == false)
+    if(this.state.key === false)
     {
       item = <div className="sub-user-none col-12 d-none">
         <div className="row">
@@ -136,7 +137,7 @@ class App extends Component {
       <FontAwesomeIcon className="" icon={faUser}/>
       <FontAwesomeIcon className="ml-2" icon={faAngleDown}/>
     </div>;
-    if(this.state.key == false)
+    if(this.state.key === false)
     {
       icon = <div className="icon-user col-4 text-left">
         <FontAwesomeIcon className="" icon={faUser}/>
@@ -151,7 +152,7 @@ class App extends Component {
     }
 
       let header="";
-      if(window.location.pathname == "/Components/Login" || window.location.pathname == "/Components/TrustFailed" || window.location.pathname == "/Components/Trust" || window.location.pathname == "/Components/ResetPassword" || window.location.pathname == "/Components/Register" || window.location.pathname == "/Components/Verify" || window.location.pathname == "/Components/Confirmpassword" || window.location.pathname == "/Components/Account")
+      if(window.location.pathname === "/Components/Login" || window.location.pathname === "/Components/TrustFailed" || window.location.pathname === "/Components/Trust" || window.location.pathname === "/Components/ResetPassword" || window.location.pathname === "/Components/Register" || window.location.pathname === "/Components/Verify" || window.location.pathname === "/Components/Confirmpassword" || window.location.pathname === "/Components/Account")
       {
           header = <div className="col-12 header2 mb-5">
                       <div className="row">
@@ -160,7 +161,7 @@ class App extends Component {
                       </div>
                   </div>;
       }
-      else if(window.location.pathname == "/Components/Dashboard" || window.location.pathname == "/Components/TransactionSuccess" || window.location.pathname == "/Components/TransactionFailed" || window.location.pathname == "/Components/Ticket" || window.location.pathname == "/Components/ExchangeXir" || window.location.pathname == "/Components/ExchangeXlm" || window.location.pathname == "/Components/DepositXirWithIpg" || window.location.pathname == "/Components/DepositXirWithQr" || window.location.pathname == "/Components/DepositXlm" || window.location.pathname == "/Components/WithdrawedXirWithSheba" || window.location.pathname == "/Components/SendXir" || window.location.pathname == "/Components/SendXlm" || window.location.pathname == "/Components/PayingTheBill" || window.location.pathname == "/Components/Orders" || window.location.pathname == "/Components/Profile")
+      else if(window.location.pathname === "/Components/Dashboard" || window.location.pathname === "/Components/Upgrade" || window.location.pathname === "/Components/TransactionSuccess" || window.location.pathname === "/Components/TransactionFailed" || window.location.pathname === "/Components/Ticket" || window.location.pathname === "/Components/ExchangeXir" || window.location.pathname === "/Components/ExchangeXlm" || window.location.pathname === "/Components/DepositXirWithIpg" || window.location.pathname === "/Components/DepositXirWithQr" || window.location.pathname === "/Components/DepositXlm" || window.location.pathname === "/Components/WithdrawedXirWithSheba" || window.location.pathname === "/Components/SendXir" || window.location.pathname === "/Components/SendXlm" || window.location.pathname === "/Components/PayingTheBill" || window.location.pathname === "/Components/Orders" || window.location.pathname === "/Components/Profile")
       {
           header = <div className="col-12 header1 mb-5">
                       <div className="row">
@@ -168,6 +169,7 @@ class App extends Component {
                           <div className="menu col-sm-7 col-12">
                               <div className="row">
                                   <a className={'menu-in ml-3 text-light' + (window.location.pathname === '/Components/Dashboard' ? ' activation' : '')} href="/Components/Dashboard">Dashboard</a>
+                                  <a className={'menu-in ml-3 text-light' + (window.location.pathname === '/Components/Upgrade' ? ' activation' : '')} href="/Components/Upgrade">Upgrad</a>
                                   <a className={'menu-in ml-4 text-light' + (window.location.pathname === '/Components/Orders' ? ' activation' : '')} href="/Components/Orders">Orders</a>
                                   <a className={'menu-in ml-4 text-light' + (window.location.pathname === '/Components/Ticket' ? ' activation' : '')} href="/Components/Ticket">Support</a>
                               </div>
@@ -215,6 +217,7 @@ class App extends Component {
                 <Route path="/Components/Ticket" component={Ticket}/>
                 <Route path="/Components/TransactionSuccess" component={TransactionSuccess}/>
                 <Route path="/Components/TransactionFailed" component={TransactionFailed}/>
+                <Route path="/Components/Upgrade" component={Upgrade}/>
              </div>
            </div>
           </Router>

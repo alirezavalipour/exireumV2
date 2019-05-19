@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import '../App.css';
 import axios from 'axios';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { Container, Row, Col } from 'bootstrap-4-react';
+import {} from 'bootstrap-4-react';
 import AuthService from './AuthService.jsx';
 import Clipboard from 'react-clipboard.js';
 var QRCode = require('qrcode.react');

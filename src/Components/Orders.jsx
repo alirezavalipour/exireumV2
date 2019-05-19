@@ -3,7 +3,7 @@ import '../App.css';
 import axios from 'axios';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import { faAngleLeft , faAngleRight , faExternalLinkSquareAlt } from '@fortawesome/free-solid-svg-icons';
-import {Container, Row, Col} from 'bootstrap-4-react';
+import {} from 'bootstrap-4-react';
 import AuthService from './AuthService.jsx';
 
 class Orders extends Component {

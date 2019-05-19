@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import '../App.css';
 import axios from 'axios';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faEye, faAngleLeft, faAngleRight} from '@fortawesome/free-solid-svg-icons';
-import {Container, Row, Col} from 'bootstrap-4-react';
+import {faAngleLeft, faAngleRight} from '@fortawesome/free-solid-svg-icons';
+import {} from 'bootstrap-4-react';
 import AuthService from './AuthService.jsx';
 import Loader from 'react-loader-spinner';
 
@@ -268,11 +268,11 @@ class Ticket extends Component {
             </button>;
         }
         let loader = "";
-        if(this.state.load == false)
+        if(this.state.load === false)
         {
             loader = <button className="col-12 bg-warning p-2 rounded mt-3 mb-3 shadow-lg text-light">SUBMIT</button>;
         }
-        else if(this.state.load == true)
+        else if(this.state.load === true)
         {
             loader = <button className="col-12 bg-warning p-2 rounded mt-3 mb-3 shadow-lg text-light">
                 <Loader
@@ -291,23 +291,23 @@ class Ticket extends Component {
                 let title = elem.title;
                 let status = elem.status.value;
                 let message;
-                if (status == 0)
+                if (status === 0)
                 {
                     message = 'Unanswered';
                 }
-                else if(status == 1)
+                else if(status === 1)
                 {
                     message = 'Answered';
                 }
-                else if(status == 2)
+                else if(status === 2)
                 {
                     message = 'Inprogress';
                 }
-                else if(status == 3)
+                else if(status === 3)
                 {
                     message = 'Closed';
                 }
-                else if(status == 4)
+                else if(status === 4)
                 {
                     message = 'Suspend';
                 }
@@ -353,7 +353,7 @@ class Ticket extends Component {
                 </div>
             </div>;
         }
-        if(this.state.ticket == false && this.state.ticket2 == false) {
+        if(this.state.ticket === false && this.state.ticket2 === false) {
             return (
                 <div className="col-sm-8 col-12 clearfix mx-auto">
                     <div className="row">
@@ -361,7 +361,7 @@ class Ticket extends Component {
                         <div className="col-12 mt-3">
                             <div className="row">
                                 <a className="col-12" onClick={this.createTicket}>
-                                    <div class="col-12 col-sm-3 bg-warning pt-2 pb-2 text-center text-light rounded shadow-lg mx-auto">CREATE TICKET</div>
+                                    <div className="col-12 col-sm-3 bg-warning pt-2 pb-2 text-center text-light rounded shadow-lg mx-auto">CREATE TICKET</div>
                                 </a>
                                 <div className="col-12 border border-warning mt-3 rounded shadow-lg mb-2">
                                     <div className="row mt-3 mb-3">
@@ -393,7 +393,7 @@ class Ticket extends Component {
                 </div>
             );
         }
-        else if(this.state.ticket == true)
+        else if(this.state.ticket === true)
         {
             return(
                 <div className="col-sm-8 col-12 clearfix mx-auto">
@@ -424,7 +424,7 @@ class Ticket extends Component {
                 </div>
             );
         }
-        else if(this.state.ticket2 == true)
+        else if(this.state.ticket2 === true)
         {
             return(
                 <div className="col-sm-8 col-12 clearfix mx-auto">

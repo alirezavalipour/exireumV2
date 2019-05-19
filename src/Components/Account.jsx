@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import '../App.css';
 import axios from 'axios';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { Container, Row, Col } from 'bootstrap-4-react';
+import {} from 'bootstrap-4-react';
 import AuthService from './AuthService.jsx';
 import Loader from 'react-loader-spinner';
 var StellarSdk = require('stellar-sdk');
@@ -57,7 +54,7 @@ class Account extends Component {
             inValidPublicKey: false,
             change1: true,
             change2: false
-        }
+        };
         this.handleGenerate = event => {
             let keypair = StellarSdk.Keypair.random();
             this.setState({
@@ -170,7 +167,7 @@ class Account extends Component {
         var config = { headers };
         axios.post(url, formData, config)
             .then(response =>{
-                if(response.status == 200) {
+                if(response.status === 200) {
                     this.acceptAsset(this.state.public_key);
                 }
             });
@@ -190,7 +187,7 @@ class Account extends Component {
         var config = { headers };
         return axios.post(url, formData, config)
             .then(response =>{
-                if(response.status == 200){
+                if(response.status === 200){
                     this.setState({
                         order: response.data.order_id
                     });
@@ -213,7 +210,7 @@ class Account extends Component {
         var config = { headers };
         axios.post(url, formData, config)
             .then(response =>{
-                if(response.status == 200){
+                if(response.status === 200){
                     this.signXdr(response.data.xdr);
                 }
             });
@@ -240,7 +237,7 @@ class Account extends Component {
         var config = { headers };
         return axios.post(url, formData, config)
             .then(response =>{
-                if(response.status == 200){
+                if(response.status === 200){
                     window.location.replace('/Components/Dashboard');
                 }
             })
@@ -275,7 +272,7 @@ class Account extends Component {
 
     render() {
         let valid = "";
-        if(this.state.inValidSecretKey == true && this.state.inValidPublicKey == false)
+        if(this.state.inValidSecretKey === true && this.state.inValidPublicKey === false)
         {
             valid = <div className="col-12">
                 <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
@@ -283,7 +280,7 @@ class Account extends Component {
                 </div>
             </div>;
         }
-        else if(this.state.inValidPublicKey == true && this.state.inValidSecretKey == false)
+        else if(this.state.inValidPublicKey === true && this.state.inValidSecretKey === false)
         {
             valid = <div className="col-12">
                 <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
@@ -291,7 +288,7 @@ class Account extends Component {
                 </div>
             </div>;
         }
-        else if(this.state.inValidPublicKey == true && this.state.inValidSecretKey == true)
+        else if(this.state.inValidPublicKey === true && this.state.inValidSecretKey === true)
         {
             valid = <div className="col-12">
                 <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
@@ -300,11 +297,11 @@ class Account extends Component {
             </div>;
         }
         let loader = "";
-        if(this.state.load == false)
+        if(this.state.load === false)
         {
             loader = <button className="mb-3 col-12 bg-warning p-2 rounded mt-2 shadow-lg text-light">SUBMIT</button>;
         }
-        else if(this.state.load == true)
+        else if(this.state.load === true)
         {
             loader = <button className="mb-3 col-12 bg-warning p-2 rounded mt-2 shadow-lg text-light">
                 <Loader

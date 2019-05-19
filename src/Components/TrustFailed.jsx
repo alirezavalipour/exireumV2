@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import '../App.css';
-import {Container, Row, Col} from 'bootstrap-4-react';
+import {} from 'bootstrap-4-react';
 import AuthService from './AuthService.jsx';
 
 class TrustFailed extends Component {

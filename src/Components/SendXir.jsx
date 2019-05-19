@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
 import '../App.css';
 import axios from 'axios';
-import {library} from '@fortawesome/fontawesome-svg-core';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {BrowserRouter as Router, Route, Link} from "react-router-dom";
-import {Container, Row, Col} from 'bootstrap-4-react';
+import {} from 'bootstrap-4-react';
 import AuthService from './AuthService.jsx';
 import {faEye} from '@fortawesome/free-solid-svg-icons';
 import Loader from 'react-loader-spinner';
@@ -134,19 +132,20 @@ class SendXir extends Component {
                 this.setState({
                     entry: res.data.subentry_count,
                 });
-                res.data.balances.map(elem =>{
-                    if(elem.asset_code=="XIR")
+                res.data.balances.map(elem => {
+                    if(elem.asset_code === "XIR")
                     {
                         this.setState({
                             xirBalance: elem.balance
                         });
                     }
-                    if(elem.asset_type=="native")
+                    if(elem.asset_type === "native")
                     {
                         this.setState({
                             xlmBalance: elem.balance
                         });
                     }
+                    return true;
                 });
             });
     }
@@ -206,7 +205,7 @@ class SendXir extends Component {
             priceXlm = parseInt(this.state.xirBalance).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' XIR';
         }
         let failAmount= '';
-        if(this.state.userAmount == true)
+        if(this.state.userAmount === true)
         {
             failAmount = <div className="col-12">
                 <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
@@ -215,7 +214,7 @@ class SendXir extends Component {
             </div>;
         }
         let failTransaction = "";
-        if(this.state.failed == 'op_underfunded')
+        if(this.state.failed === 'op_underfunded')
         {
             this.state.load2 = false;
             this.state.inValidPublicKey = false;
@@ -226,7 +225,7 @@ class SendXir extends Component {
                 </div>
             </div>;
         }
-        else if(this.state.failed == 'op_no_trust')
+        else if(this.state.failed === 'op_no_trust')
         {
             this.state.load2 = false;
             this.state.inValidPublicKey = false;
@@ -237,7 +236,7 @@ class SendXir extends Component {
                 </div>
             </div>;
         }
-        else if(this.state.failed == 'op_src_no_trust')
+        else if(this.state.failed === 'op_src_no_trust')
         {
             this.state.load2 = false;
             this.state.inValidPublicKey = false;
@@ -250,7 +249,7 @@ class SendXir extends Component {
         }
         let valid = "";
         let valids ="";
-        if(this.state.inValidSecretKey == true)
+        if(this.state.inValidSecretKey === true)
         {
             valid = <div className="col-12">
                 <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
@@ -259,7 +258,7 @@ class SendXir extends Component {
             </div>;
         }
 
-        if(this.state.inValidPublicKey == true)
+        if(this.state.inValidPublicKey === true)
         {
             valids = <div className="col-12">
                 <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
@@ -268,11 +267,11 @@ class SendXir extends Component {
             </div>;
         }
         let loader = "";
-        if(this.state.load == false)
+        if(this.state.load === false)
         {
             loader = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">SUBMIT</button>;
         }
-        else if(this.state.load == true)
+        else if(this.state.load === true)
         {
             loader = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">
                 <Loader

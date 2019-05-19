@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import '../App.css';
 import axios from 'axios';
-import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import {faArrowCircleRight} from '@fortawesome/free-solid-svg-icons';
-import { Container, Row, Col } from 'bootstrap-4-react';
-import Register from "./Register";
+import {} from 'bootstrap-4-react';
 import NumberFormat from 'react-number-format';
 import AuthService from "./AuthService";
 
