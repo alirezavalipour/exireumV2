@@ -168,8 +168,8 @@ class App extends Component {
                           <a href="https://exireum.com" className="logo col-sm-2 col-12"></a>
                           <div className="menu col-sm-7 col-12">
                               <div className="row">
-                                  <a className={'menu-in ml-3 text-light' + (window.location.pathname === '/Components/Dashboard' ? ' activation' : '')} href="/Components/Dashboard">Dashboard</a>
-                                  <a className={'menu-in ml-3 text-light' + (window.location.pathname === '/Components/Upgrade' ? ' activation' : '')} href="/Components/Upgrade">Upgrade</a>
+                                  <a className={'menu-in ml-4 text-light' + (window.location.pathname === '/Components/Dashboard' ? ' activation' : '')} href="/Components/Dashboard">Dashboard</a>
+                                  <a className={'menu-in ml-4 text-light' + (window.location.pathname === '/Components/Upgrade' ? ' activation' : '')} href="/Components/Upgrade">Upgrade</a>
                                   <a className={'menu-in ml-4 text-light' + (window.location.pathname === '/Components/Orders' ? ' activation' : '')} href="/Components/Orders">Orders</a>
                                   <a className={'menu-in ml-4 text-light' + (window.location.pathname === '/Components/Ticket' ? ' activation' : '')} href="/Components/Ticket">Support</a>
                               </div>
