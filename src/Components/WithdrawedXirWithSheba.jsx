@@ -7,6 +7,7 @@ import {} from 'bootstrap-4-react';
 import AuthService from './AuthService.jsx';
 import Loader from 'react-loader-spinner';
 import NumberFormat from 'react-number-format';
+import InputMask from 'react-input-mask';
 var StellarSdk = require('stellar-sdk');
 
 const isValidSecretKey = input => {
@@ -184,6 +185,8 @@ class WithdrawedXirWithSheba extends Component {
             this.setState({
                 load1: !this.state.load1
             });
+            console.log(this.state.sheba.replace(/-/g, ''));
+            let sheba = this.state.sheba.replace(/-/g, '');
             const url = this.Auth.getDomain() + '/user/bank/get-sheba-info';
             const headers = {
                 Accept: 'application/json',
@@ -191,13 +194,13 @@ class WithdrawedXirWithSheba extends Component {
                 Authorization: `Bearer ${this.Auth.getToken()}`,
             };
             var config = { headers };
-            return axios.get(url + "?sheba="+ this.state.sheba , config)
+            return axios.get(url + "?sheba="+ sheba , config)
                 .then(response => {
                     this.setState({
                         first_name: response.data.Data.AccountOwners[0].FirstName,
                         last_name: response.data.Data.AccountOwners[0].LastName,
                     });
-                    this.withdrawInfo(this.state.sheba);
+                    this.withdrawInfo(sheba);
                 })
                 .catch(err =>{
                     this.setState({
@@ -382,7 +385,8 @@ class WithdrawedXirWithSheba extends Component {
                             <label className="col-12 mt-3">
                                 <div className="row shadow-lg">
                                     <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Destination account (Sheba)</span>
-                                    <input required='required' className="col-9 text-center rounded-right p-2 text-light" name="sheba" type="text" onChange={this.handleChange} pattern={/(^\s)|(\s$)/}/>
+                                    {/*<input required='required' className="col-9 text-center rounded-right p-2 text-light" name="sheba" type="text" onChange={this.handleChange}/>*/}
+                                    <InputMask placeholder="IR-****-****-****-****-****-****" mask="IR-9999-9999-9999-9999-9999-9999" required='required' className="col-9 text-center rounded-right p-2 text-light" name="sheba" type="text" onChange={this.handleChange}/>
                                 </div>
                             </label>
                             <label className="col-12 mt-3">
