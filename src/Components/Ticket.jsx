@@ -312,7 +312,7 @@ class Ticket extends Component {
                     message = 'Suspend';
                 }
                 return <a key={index} className="" data-id={id} onClick={this.response}>
-                    <div className="row" style={{backgroundColor: (index%2 === 0 ? 'rgb(47, 61, 86)' : '#151d2e')}}>
+                    <div className="row cursor" style={{backgroundColor: (index%2 === 0 ? 'rgb(47, 61, 86)' : '#151d2e')}}>
                         <div className="col-sm-3 col-12 text-center text-light pt-2 pb-2">{id}</div>
                         <div className="col-sm-3 col-12 text-center text-light pt-2 pb-2">{date}</div>
                         <div className="col-sm-3 col-12 text-center text-light pt-2 pb-2">{title}</div>
@@ -360,7 +360,7 @@ class Ticket extends Component {
                         <h2 className="col-12 text-light text-center font-weight-bold mb-5">Support</h2>
                         <div className="col-12 mt-3">
                             <div className="row">
-                                <a className="col-12" onClick={this.createTicket}>
+                                <a className="col-12 cursor" onClick={this.createTicket}>
                                     <div className="col-12 col-sm-3 bg-warning pt-2 pb-2 text-center text-light rounded shadow-lg mx-auto">CREATE TICKET</div>
                                 </a>
                                 <div className="col-12 border border-warning mt-3 rounded shadow-lg mb-2">
@@ -401,7 +401,7 @@ class Ticket extends Component {
                         {mess}
                         <h2 className="col-12 text-light text-center font-weight-bold mb-5">Support</h2>
                         <a className="col-12" onClick={this.return}>
-                            <div className="col-3 bg-warning font-weight-bold text-center rounded shadow-lg text-light pt-2 pb-2">
+                            <div className="col-3 bg-warning font-weight-bold text-center rounded shadow-lg text-light pt-2 pb-2 cursor">
                                 RETURN
                             </div>
                         </a>
@@ -433,7 +433,7 @@ class Ticket extends Component {
                         <h2 className="col-12 text-light text-center font-weight-bold mb-5">Support</h2>
                         <div className="col-12">
                             <a className="col-12" onClick={this.return}>
-                                <div className="col-3 bg-warning font-weight-bold text-center rounded shadow-lg text-light pt-2 pb-2">
+                                <div className="col-3 bg-warning font-weight-bold text-center rounded shadow-lg text-light pt-2 pb-2 cursor">
                                     RETURN
                                 </div>
                             </a>

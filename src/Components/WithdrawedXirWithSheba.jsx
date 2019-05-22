@@ -382,7 +382,7 @@ class WithdrawedXirWithSheba extends Component {
                             <label className="col-12 mt-3">
                                 <div className="row shadow-lg">
                                     <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Destination account (Sheba)</span>
-                                    <input required='required' className="col-9 text-center rounded-right p-2 text-light" name="sheba" type="text" onChange={this.handleChange}/>
+                                    <input required='required' className="col-9 text-center rounded-right p-2 text-light" name="sheba" type="text" onChange={this.handleChange} pattern={/(^\s)|(\s$)/}/>
                                 </div>
                             </label>
                             <label className="col-12 mt-3">

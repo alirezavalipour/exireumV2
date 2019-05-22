@@ -176,3 +176,8 @@ input , textarea , .border-div , button
 {
     color: #fff;
 }
+
+.cursor
+{
+    cursor: pointer;
+}
