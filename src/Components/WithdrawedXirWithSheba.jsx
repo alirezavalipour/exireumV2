@@ -389,6 +389,14 @@ class WithdrawedXirWithSheba extends Component {
                                     <InputMask placeholder="IR-____-____-____-____-____-____" mask="IR-9999-9999-9999-9999-9999-9999" required='required' className="col-9 text-center rounded-right p-2 text-light" name="sheba" type="text" onChange={this.handleChange}/>
                                 </div>
                             </label>
+                            {/*<TextField*/}
+                                {/*outlined*/}
+                                {/*label='Name'*/}
+                            {/*>*/}
+                                {/*<Input*/}
+                                    {/*value={this.state.value}*/}
+                                    {/*onChange={(e) => this.setState({value: e.currentTarget.value})} />*/}
+                            {/*</TextField>*/}
                             <label className="col-12 mt-3">
                                 <div className="row shadow-lg">
                                     <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Amount will be IRR (Rial)</span>

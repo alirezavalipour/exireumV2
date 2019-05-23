@@ -3,13 +3,14 @@ import '../App.css';
 import {} from 'bootstrap-4-react';
 import AuthService from './AuthService.jsx';
 import Loader from 'react-loader-spinner';
+import axios from "axios";
 
 class Upgrade extends Component {
 
     constructor() {
         super();
         this.Auth = new AuthService();
-        this.handleClickButton = this.handleClickButton.bind(this);
+        this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.state = {
             load1: false,
@@ -29,12 +30,28 @@ class Upgrade extends Component {
         });
     }
 
-    handleClickButton(e)
+    handleFormSubmit(e)
     {
         e.preventDefault();
         this.setState({
            load1: !this.state.load1,
         });
+        const url = `${this.Auth.domain}/user/kyc/create`;
+        console.log(url);
+        const formData = {
+            public_key: this.state.public_key,
+            memo: this.state.memo,
+        };
+        const headers = {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${this.Auth.getToken()}`,
+        };
+        var config = { headers };
+        return axios.post(url, formData, config)
+            .then(response=>{
+                console.log(response);
+            });
     }
 
     render() {
@@ -58,7 +75,7 @@ class Upgrade extends Component {
             <div className="col-sm-8 col-12 clearfix mx-auto">
                 <div className="row">
                     <h2 className="col-12 text-light text-center font-weight-bold mb-5">Upgrade</h2>
-                    <form className="col-12" onSubmit={this.handleClickButton}>
+                    <form className="col-12" onSubmit={this.handleFormSubmit}>
                         <label className='col-12'>
                             <div className="row shadow-lg">
                                 <span className="col-3 text-center text-light p-2 rounded-left bg-warning">KYC public key</span>
