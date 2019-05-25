@@ -41,6 +41,7 @@ class Account extends Component {
         this.changeForm1 = this.changeForm1.bind(this);
         this.changeForm2 = this.changeForm2.bind(this);
         this.showPlacholder = this.showPlacholder.bind(this);
+        this.hidPlacholder = this.hidPlacholder.bind(this);
         this.state = {
             err: "",
             change: "",
@@ -115,7 +116,17 @@ class Account extends Component {
     {
         e.preventDefault();
         e.currentTarget.children[0].children[0].setAttribute("class", "enable text-left text-light placholder pr-2 pl-2");
-        e.currentTarget.children[0].children[1].removeAttribute("placeholder");
+        e.currentTarget.children[0].children[1].setAttribute('placeholder','');
+    }
+
+    hidPlacholder(e)
+    {
+        e.preventDefault();
+        if(!e.currentTarget.children[0].children[1].value)
+        {
+            e.currentTarget.children[0].children[0].setAttribute("class" , "disable");
+            e.currentTarget.children[0].children[1].setAttribute('placeholder',e.currentTarget.children[0].children[1].dataset.input);
+        }
     }
 
     handleChange(e) {
@@ -323,16 +334,16 @@ class Account extends Component {
             acceptShow2 = loader;
         }
         let account = <form autoComplete='off' className="col-12 border-bottom border-right border-left border-warning" onSubmit={this.handleFormSubmit1}>
-                        <div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>
+                        <div className="col-12" onFocus={this.showPlacholder} onBlur={this.hidPlacholder}>
                             <div className="row">
                                 <label className="disable" htmlFor="public_key">Public key</label>
-                                <input autoComplete="off" className="col-12 mt-4 p-2 rounded shadow-lg" placeholder="Public key : GDNRPMNBJYNFDVTOBBPGWQBJORVPYVI2YP4G2MG6DNRXGJKQA5TG2PRO" name="public_key" required="required" type="text" onChange={this.handleChange}/>
+                                <input data-input="Public key : GDNRPMNBJYNFDVTOBBPGWQBJORVPYVI2YP4G2MG6DNRXGJKQA5TG2PRO" autoComplete="off" className="col-12 mt-4 p-2 rounded shadow-lg" placeholder="Public key : GDNRPMNBJYNFDVTOBBPGWQBJORVPYVI2YP4G2MG6DNRXGJKQA5TG2PRO" name="public_key" required="required" type="text" onChange={this.handleChange}/>
                             </div>
                         </div>
-                        <div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>
+                        <div className="col-12" onFocus={this.showPlacholder} onBlur={this.hidPlacholder}>
                             <div className="row">
                                 <label className="disable" htmlFor="secret_key">Secret key</label>
-                                <input autoComplete="off" className="col-12 mt-3 p-2 rounded shadow-lg" placeholder="Secret key : SB3JKIKJ7ECA2GBB55KG55KRHUILGDHXZ5GZ5WBWYOFS7KU6JT73C7HX" name="secret_key" required="required" type="text" onChange={this.handleChange}/>
+                                <input data-input="Secret key : SB3JKIKJ7ECA2GBB55KG55KRHUILGDHXZ5GZ5WBWYOFS7KU6JT73C7HX" autoComplete="off" className="col-12 mt-3 p-2 rounded shadow-lg" placeholder="Secret key : SB3JKIKJ7ECA2GBB55KG55KRHUILGDHXZ5GZ5WBWYOFS7KU6JT73C7HX" name="secret_key" required="required" type="text" onChange={this.handleChange}/>
                             </div>
                         </div>
                         <div className="p-2 mt-3 col-12">
@@ -344,16 +355,16 @@ class Account extends Component {
         if(this.state.change1 && !this.state.change2)
         {
             account =<form autoComplete='off' className="col-12 border-bottom border-right border-left border-warning" onSubmit={this.handleFormSubmit1}>
-                <div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>
+                <div className="col-12" onFocus={this.showPlacholder} onBlur={this.hidPlacholder}>
                     <div className="row">
                         <label className="disable" htmlFor="public_key">Public key</label>
-                        <input autoComplete="off" className="col-12 mt-4 p-2 rounded shadow-lg" placeholder="Public key : GDNRPMNBJYNFDVTOBBPGWQBJORVPYVI2YP4G2MG6DNRXGJKQA5TG2PRO" name="public_key" required="required" type="text" onChange={this.handleChange}/>
+                        <input data-input="Public key : GDNRPMNBJYNFDVTOBBPGWQBJORVPYVI2YP4G2MG6DNRXGJKQA5TG2PRO" autoComplete="off" className="col-12 mt-4 p-2 rounded shadow-lg" placeholder="Public key : GDNRPMNBJYNFDVTOBBPGWQBJORVPYVI2YP4G2MG6DNRXGJKQA5TG2PRO" name="public_key" required="required" type="text" onChange={this.handleChange}/>
                     </div>
                 </div>
-                <div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>
+                <div className="col-12" onFocus={this.showPlacholder} onBlur={this.hidPlacholder}>
                     <div className="row">
                         <label className="disable" htmlFor="secret_key">Secret key</label>
-                        <input autoComplete="off" className="col-12 mt-3 p-2 rounded shadow-lg" placeholder="Secret key : SB3JKIKJ7ECA2GBB55KG55KRHUILGDHXZ5GZ5WBWYOFS7KU6JT73C7HX" name="secret_key" required="required" type="text" onChange={this.handleChange}/>
+                        <input data-input="Secret key : SB3JKIKJ7ECA2GBB55KG55KRHUILGDHXZ5GZ5WBWYOFS7KU6JT73C7HX" autoComplete="off" className="col-12 mt-3 p-2 rounded shadow-lg" placeholder="Secret key : SB3JKIKJ7ECA2GBB55KG55KRHUILGDHXZ5GZ5WBWYOFS7KU6JT73C7HX" name="secret_key" required="required" type="text" onChange={this.handleChange}/>
                     </div>
                 </div>
                 <div className="p-2 mt-3 col-12">
@@ -367,16 +378,16 @@ class Account extends Component {
         {
             account = <form autoComplete='off' className="col-12 border-bottom border-right border-left border-warning" onSubmit={this.handleFormSubmit2}>
                 <input className="col-12 mt-4 p-2 bg-warning rounded shadow-lg text-center" onClick={this.handleGenerate} value="GENERATE kEYPAIR"/>
-                <div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>
+                <div className="col-12" onFocus={this.showPlacholder} onBlur={this.hidPlacholder}>
                     <div className="row">
                         <label className="disable" htmlFor="generate_public_key">Generate Public key</label>
-                        <input autoComplete="off" className="col-12 mt-3 p-2 rounded shadow-lg" placeholder="Generate Public key" name="generate_public_key" value={this.state.newKeypair.pubKey}/>
+                        <input data-input="Generate Public key" autoComplete="off" className="col-12 mt-3 p-2 rounded shadow-lg" placeholder="Generate Public key" name="generate_public_key" value={this.state.newKeypair.pubKey}/>
                     </div>
                 </div>
-                <div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>
+                <div className="col-12" onFocus={this.showPlacholder} onBlur={this.hidPlacholder}>
                     <div className="row">
                         <label className="disable" htmlFor="generate_secret_key">Generate Secret key</label>
-                        <input autoComplete="off" className="col-12 mt-3 p-2 rounded shadow-lg" placeholder="Generate Secret key" name="generate_secret_key" value={this.state.newKeypair.secretKey}/>
+                        <input data-input="Generate Secret key" autoComplete="off" className="col-12 mt-3 p-2 rounded shadow-lg" placeholder="Generate Secret key" name="generate_secret_key" value={this.state.newKeypair.secretKey}/>
                     </div>
                 </div>
                 <div className="p-2 mt-3 col-12">

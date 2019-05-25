@@ -22,6 +22,9 @@ class ResetPassword extends Component {
     constructor() {
         super();
         this.showPlacholder = this.showPlacholder.bind(this);
+        this.hidPlacholder = this.hidPlacholder.bind(this);
+        this.showPlacholder2 = this.showPlacholder2.bind(this);
+        this.hidPlacholder2 = this.hidPlacholder2.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.handleFormSubmit2 = this.handleFormSubmit2.bind(this);
@@ -39,7 +42,33 @@ class ResetPassword extends Component {
     {
         e.preventDefault();
         e.currentTarget.children[0].children[0].setAttribute("class", "enable text-left text-light placholder pr-2 pl-2");
-        e.currentTarget.children[0].children[1].removeAttribute("placeholder");
+        e.currentTarget.children[0].children[1].lastChild.setAttribute('placeholder','');
+    }
+
+    hidPlacholder(e)
+    {
+        e.preventDefault();
+        if(!e.currentTarget.children[0].children[1].value)
+        {
+            e.currentTarget.children[0].children[0].setAttribute("class" , "disable");
+            e.currentTarget.children[0].children[1].lastChild.setAttribute('placeholder',e.currentTarget.children[0].children[0].dataset.input);
+        }
+    }
+
+    showPlacholder2(e) {
+        e.preventDefault();
+        e.currentTarget.children[0].children[0].setAttribute("class", "enable text-left text-light placholder pr-2 pl-2");
+        e.currentTarget.children[0].children[1].children[0].setAttribute("placeholder"," ");
+    }
+
+    hidPlacholder2(e)
+    {
+        e.preventDefault();
+        if(!e.currentTarget.children[0].children[1].value)
+        {
+            e.currentTarget.children[0].children[0].setAttribute("class" , "disable");
+            e.currentTarget.children[0].children[1].children[0].setAttribute('placeholder',e.currentTarget.children[0].children[0].innerHTML);
+        }
     }
 
     componentWillMount() {
@@ -227,9 +256,9 @@ class ResetPassword extends Component {
                     <div className="row">
                         <h2 className="col-12 text-light text-center font-weight-bold mb-5">Reset password</h2>
                         <form className="col-12" onSubmit={this.handleFormSubmit}>
-                            <div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>
+                            <div className="col-12" onFocus={this.showPlacholder} onBlur={this.hidPlacholder}>
                                 <div className="row">
-                                    <label className="disable" htmlFor="mobile">Phone number</label>
+                                    <label data-input="Phone number : 09191000000" className="disable" htmlFor="mobile">Phone number</label>
                                     {/*<input className="input-placeholder col-12 p-2 mt-3 rounded shadow-lg text-light"*/}
                                            {/*placeholder="Phone number : 09191000000" name="mobile" required="required"*/}
                                            {/*type="tel" pattern="^[0][9][0-3][0-9]{8,8}$" onChange={this.handleChange}/>*/}
@@ -288,7 +317,7 @@ class ResetPassword extends Component {
                         {equalpass}
                         <h2 className="col-12 text-light mb-5 text-center font-weight-bold">Reset password</h2>
                         <form autoComplete='nope' className="col-12" onSubmit={this.handleFormSubmit3}>
-                            <div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>
+                            <div className="col-12" onFocus={this.showPlacholder2} onBlur={this.hidPlacholder2}>
                                 <div className="row">
                                     <label className="disable" htmlFor="password">New Password</label>
                                     {/*<input className="input-placeholder col-12 p-2 mt-3 rounded shadow-lg" placeholder="New Password" name="password" minLength="8" required="required" type="password" onChange={this.handleChange}/>*/}
@@ -314,9 +343,6 @@ class ResetPassword extends Component {
                                             name: "password",
                                             placeholder: 'password',
                                             required: "required",
-                                            // onBlur: function () {
-                                            //     console.log('ad')
-                                            // },
                                             value: "1234" ,
                                             type: "password",
                                             onChange: 'this.handleChange'
@@ -324,7 +350,7 @@ class ResetPassword extends Component {
                                     />
                                 </div>
                             </div>
-                            <div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>
+                            <div className="col-12" onFocus={this.showPlacholder2} onBlur={this.hidPlacholder2}>
                                 <div className="row">
                                     <label className="disable" htmlFor="password_confirmation">Confirm Password</label>
                                     {/*<input className="input-placeholder col-12 p-2 mt-3 rounded shadow-lg" placeholder="Confirm Password" name="password_confirmation" minLength="8" required="required" type="password" onChange={this.handleChange}/>*/}
@@ -351,7 +377,6 @@ class ResetPassword extends Component {
                                             placeholder: 'Confirm password',
                                             required: "required",
                                             type: "password"
-
                                         }}
                                     />
                                 </div>

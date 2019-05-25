@@ -13,6 +13,7 @@ class ConfirmPassword extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.showPlacholder = this.showPlacholder.bind(this);
+        this.hidPlacholder = this.hidPlacholder.bind(this);
         this.state = {
             err: "",
             load: false
@@ -28,7 +29,17 @@ class ConfirmPassword extends Component {
     showPlacholder(e) {
         e.preventDefault();
         e.currentTarget.children[0].children[0].setAttribute("class", "enable text-left text-light placholder pr-2 pl-2");
-        e.currentTarget.children[0].children[1].children[0].removeAttribute("placeholder");
+        e.currentTarget.children[0].children[1].children[0].setAttribute("placeholder"," ");
+    }
+
+    hidPlacholder(e)
+    {
+        e.preventDefault();
+        if(!e.currentTarget.children[0].children[1].value)
+        {
+            e.currentTarget.children[0].children[0].setAttribute("class" , "disable");
+            e.currentTarget.children[0].children[1].children[0].setAttribute('placeholder',e.currentTarget.children[0].children[0].innerHTML);
+        }
     }
 
     handleChange(e) {
@@ -66,9 +77,9 @@ class ConfirmPassword extends Component {
         }
 
         let loader = "";
-        if (this.state.load == false) {
+        if (this.state.load === false) {
             loader = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">SUBMIT</button>;
-        } else if (this.state.load == true) {
+        } else if (this.state.load === true) {
             loader = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">
                 <Loader
                     type="ThreeDots"
@@ -84,7 +95,7 @@ class ConfirmPassword extends Component {
                     {equalpass}
                     <h2 className="col-12 text-light mb-5 text-center font-weight-bold">Set your password</h2>
                     <form autoComplete='nope' className="col-12" onSubmit={this.handleFormSubmit}>
-                        <div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>
+                        <div className="col-12" onFocus={this.showPlacholder} onBlur={this.hidPlacholder}>
                             <div className="row">
                                 <label className="disable" htmlFor="password">New Password</label>
                                 {/*<input className="input-placeholder col-12 p-2 mt-3 rounded shadow-lg" placeholder="New Password" name="password" minLength="8" required="required" type="password" onChange={this.handleChange}/>*/}
@@ -110,17 +121,14 @@ class ConfirmPassword extends Component {
                                         name: "password",
                                         placeholder: 'password',
                                         required: "required",
-                                        onBlur: function () {
-                                            console.log('ad')
-                                        },
                                         value: "1234" ,
                                         type: "password",
-                                        onChange: 'this.handleChange'
+                                        onChange: 'this.handleChange',
                                     }}
                                 />
                             </div>
                         </div>
-                        <div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>
+                        <div className="col-12" onFocus={this.showPlacholder} onBlur={this.hidPlacholder}>
                             <div className="row">
                                 <label className="disable" htmlFor="password_confirmation">Confirm Password</label>
                                 {/*<input className="input-placeholder col-12 p-2 mt-3 rounded shadow-lg" placeholder="Confirm Password" name="password_confirmation" minLength="8" required="required" type="password" onChange={this.handleChange}/>*/}
@@ -132,7 +140,6 @@ class ConfirmPassword extends Component {
                                         color: '#fff'
                                     }}
                                     minLength={4}
-
                                     minScore={0}
                                     scoreWords={[]}
                                     changeCallback={(e) => {
