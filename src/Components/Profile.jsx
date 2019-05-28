@@ -21,9 +21,15 @@ class Profile extends Component {
         this.Auth = new AuthService();
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.upgradeAccount = this.upgradeAccount.bind(this);
         this.state = {
             inValidPublicKey: false,
         };
+    }
+
+    upgradeAccount(e){
+        e.preventDefault();
+        window.location.replace('/Components/Upgrade');
     }
 
     componentWillMount() {
@@ -152,7 +158,7 @@ class Profile extends Component {
                 <div className="row">
                     {messages}
                     <h2 className="col-12 text-light text-center font-weight-bold mb-5">Profile</h2>
-                    <form className="col-12" onSubmit={this.handleSubmit}>
+                    <form className="col-12 mb-5" onSubmit={this.handleSubmit}>
                         <label className="col-12 mt-3">
                             <div className="row shadow-lg">
                                 <span className="col-3 text-center text-light p-2 rounded-left bg-warning">User name</span>
@@ -193,6 +199,11 @@ class Profile extends Component {
                             <div className="row shadow-lg">
                                 <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Public key</span>
                                 <input className="col-9 text-center rounded-right p-2 text-light" type="text" name="public_key" value={this.state.public_key} onChange={this.handleChange}/>
+                            </div>
+                        </label>
+                        <label className="col-12 mt-3">
+                            <div className="row shadow-lg">
+                                <button className="col-3 text-center rounded p-2 text-light bg-warning" onClick={this.upgradeAccount}>Upgrade your account</button>
                             </div>
                         </label>
                         <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">UPDATE</button>
