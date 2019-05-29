@@ -109,7 +109,7 @@ class Profile extends Component {
             Authorization: `Bearer ${this.Auth.getToken()}`,
         };
         var config = { headers };
-        const urlPublic = this.Auth.getDomain() + '/user/account/add';
+        const urlPublic = this.Auth.getDomain() + '/user/account/change';
         const formDataPublic = {
             public_key: this.state.public_key,
         };
@@ -131,6 +131,7 @@ class Profile extends Component {
                 .then(response =>{
                     this.setState({
                     });
+                    console.log(response);
                 }),
         ])
     }

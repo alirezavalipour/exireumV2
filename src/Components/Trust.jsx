@@ -28,6 +28,7 @@ class Trust extends Component {
         this.showPlacholder = this.showPlacholder.bind(this);
         this.showPass = this.showPass.bind(this);
         this.hiddenPass = this.hiddenPass.bind(this);
+        this.showXdr = this.showXdr.bind(this);
         this.state = {
             load: false,
             inValidSecretKey: false,
@@ -103,6 +104,7 @@ class Trust extends Component {
                 this.setState({
                     public_key: response.data[0].public_key
                 });
+                this.handleXDR(this.state.public_key);
             });
     }
 
@@ -113,8 +115,27 @@ class Trust extends Component {
             });
     }
 
-    handleFormSubmit(e)
+    handleXDR(x)
     {
+        const url = this.Auth.getDomain() + '/user/stellar/asset/accept';
+        const formData= {
+            public_key: x,
+        };
+        const headers = {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${this.Auth.getToken()}`,
+        };
+        var config = { headers };
+        axios.post(url, formData, config)
+            .then(response =>{
+                this.setState({
+                    xdr: response.data.xdr,
+                });
+            });
+    }
+
+    handleFormSubmit(e){
         e.preventDefault();
         if(!isValidSecretKey(this.state.secret_key))
         {
@@ -126,36 +147,17 @@ class Trust extends Component {
         this.setState({
             load: !this.state.load
         });
-        const url = this.Auth.getDomain() + '/user/stellar/asset/accept';
-        const formData= {
-            public_key: this.state.public_key,
-        };
-        const headers = {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${this.Auth.getToken()}`,
-        };
-        var config = { headers };
-        axios.post(url, formData, config)
-            .then(response =>{
-                if(response.status == 200){
-                    this.signXdr(response.data.xdr);
-                }
-            });
-    }
-
-    signXdr(xdr){
         StellarSdk.Network.useTestNetwork();
         var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
         let keypair = StellarSdk.Keypair.fromSecret(this.state.secret_key);
         //console.log(keypair);
         // let xdr = StellarSdk.xdr.TransactionEnvelope.fromXDR(this.state.xdr,'base64');
-        let transaction = new StellarSdk.Transaction(xdr);
+        let transaction = new StellarSdk.Transaction(this.state.xdr);
         transaction.sign(keypair);
-        let xdr1 = transaction.toEnvelope().toXDR('base64');
+        let xdr = transaction.toEnvelope().toXDR('base64');
         const url = this.Auth.getDomain() + '/user/stellar/asset/accept/submit';
         const formData = {
-            xdr: xdr1,
+            xdr: xdr,
         };
         const headers = {
             Accept: 'application/json',
@@ -169,6 +171,17 @@ class Trust extends Component {
                     window.location.replace('/Components/Dashboard');
                 }
             });
+    }
+
+    fixEscape(str)
+    {
+        return encodeURIComponent(str) ;
+    }
+
+    showXdr(e)
+    {
+        e.preventDefault();
+        window.location.replace('https://www.stellar.org/laboratory/#xdr-viewer?input=' + this.fixEscape(this.state.xdr));
     }
 
     render() {
@@ -198,7 +211,7 @@ class Trust extends Component {
             </button>;
         }
         return (
-            <div className="col-sm-6 col-12 clearfix mx-auto">
+            <div className="col-sm-7 col-12 clearfix mx-auto">
                 <div className="row">
                     {valid}
                     <h2 className="col-12 text-light text-center font-weight-bold mb-5">Stellar account trust</h2>
@@ -206,8 +219,9 @@ class Trust extends Component {
                         <div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>
                             <div className="row">
                                 <label className="disable" htmlFor="secret_key">Secret key</label>
-                                <input id='showOrHidden' className="col-sm-11 col-12 mt-3 p-2 rounded-left shadow-lg text-center" placeholder="Secret key : SB3JKIKJ7ECA2GBB55KG55KRHUILGDHXZ5GZ5WBWYOFS7KU6JT73C7HX" name="secret_key" required="required" type="password" onChange={this.handleChange}/>
+                                <input id='showOrHidden' className="col-sm-9 col-12 mt-3 p-2 rounded-left shadow-lg text-center" placeholder="Secret key : SB3JKIKJ7ECA2GBB55KG55KRHUILGDHXZ5GZ5WBWYOFS7KU6JT73C7HX" name="secret_key" required="required" type="password" onChange={this.handleChange}/>
                                 <a className='col-sm-1 col-12 text-center bg-warning rounded-right text-light mt-3' onMouseDown={this.showPass} onMouseUp={this.hiddenPass}><FontAwesomeIcon className="mt-3 col-12 pr-0 pl-0" icon={faEye}/></a>
+                                <a onClick={this.showXdr} className='col-sm-2 col-12 text-center text-light pr-0 mt-3'><div className='col-12 pt-2 pb-2 rounded  bg-warning border border-warning pr-0 pl-0'>XDR</div></a>
                             </div>
                         </div>
                         {loader}
