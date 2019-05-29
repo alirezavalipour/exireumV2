@@ -159,7 +159,8 @@ class ExchangeXir extends Component {
                 })
                 .catch(err =>{
                     this.setState({
-                        load1: false
+                        load1: false,
+                        max: err.response.data.error,
                     })
                 })
         }
@@ -243,6 +244,15 @@ class ExchangeXir extends Component {
                 </div>
             </div>;
         }
+        let failOrder= '';
+        if(this.state.max)
+        {
+            failOrder = <div className="col-12">
+                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
+                    {this.state.max}
+                </div>
+            </div>;
+        }
         let failTransaction= '';
         if(this.state.failed === 'tx_failed')
         {
@@ -310,6 +320,7 @@ class ExchangeXir extends Component {
                 <div className="col-sm-8 col-12 clearfix mx-auto">
                     <div className="row">
                         {failAmount}
+                        {failOrder}
                         <h2 className="col-12 text-light text-center font-weight-bold mb-2">Exchange XIR to XLM</h2>
                         <div className='col-12 text-center text-light mb-5'>Available : {priceXlm}</div>
                         <form className="col-12" onSubmit={this.handleFormSubmit}>
