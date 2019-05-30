@@ -85,13 +85,16 @@ class App extends Component {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${this.Auth.getToken()}`,
     };
-    var expTime = jwtDecode(this.Auth.getToken());
-    var nowTime = Math.round((new Date()).getTime() / 1000);
-    if(expTime < nowTime)
-    {
-        this.Auth.logout();
-        cookies.remove('reactUrl', { domain :'.exireum.com' , path: '/' });
-        window.location.replace('https://exireum.com');
+    if(this.Auth.getToken()) {
+        var decode = jwtDecode(this.Auth.getToken());
+        var expTime = decode.exp;
+        var nowTime = Math.round((new Date()).getTime() / 1000);
+        if (expTime < nowTime) {
+            localStorage.removeItem('id_token');
+            localStorage.removeItem('mobile');
+            cookies.remove('reactUrl', {domain: '.exireum.com', path: '/'});
+            window.location.replace('https://exireum.com');
+        }
     }
     var config = { headers };
     return axios.get(url, config)

@@ -4,6 +4,7 @@ import {} from 'bootstrap-4-react';
 import AuthService from './AuthService.jsx';
 import ReactPasswordStrength from 'react-password-strength';
 import Loader from 'react-loader-spinner';
+import axios from "axios";
 
 class ConfirmPassword extends Component {
 
@@ -24,6 +25,20 @@ class ConfirmPassword extends Component {
         if (!this.Auth.loggedIn()) {
             window.location.replace('/Components/Login');
         }
+        const url = this.Auth.getDomain() + '/user/profile';
+        const headers = {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${this.Auth.getToken()}`,
+        };
+        var config = { headers };
+        return axios.get(url, config)
+            .then(response => {
+                if(response.data.has_password === true)
+                {
+                    window.location.replace('/Components/Dashboard');
+                }
+            });
     }
 
     showPlacholder(e) {
