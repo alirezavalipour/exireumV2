@@ -167,7 +167,7 @@ class Trust extends Component {
         var config = { headers };
         return axios.post(url, formData, config)
             .then(response =>{
-                if(response.status == 200){
+                if(response.status === 200){
                     window.location.replace('/Components/Dashboard');
                 }
             });
@@ -186,7 +186,7 @@ class Trust extends Component {
 
     render() {
         let valid = "";
-        if(this.state.inValidSecretKey == true)
+        if(this.state.inValidSecretKey === true)
         {
             valid = <div className="col-12">
                 <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
@@ -195,11 +195,11 @@ class Trust extends Component {
             </div>;
         }
         let loader = "";
-        if(this.state.load == false)
+        if(this.state.load === false)
         {
             loader = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">SUBMIT</button>;
         }
-        else if(this.state.load == true)
+        else if(this.state.load === true)
         {
             loader = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">
                 <Loader
