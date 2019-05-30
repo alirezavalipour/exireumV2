@@ -32,6 +32,7 @@ import Cookies from 'universal-cookie';
 import { faUser , faAngleUp , faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import AuthService from "./Components/AuthService";
 import { Offline } from "react-detect-offline";
+var jwtDecode = require('jwt-decode');
 const cookies = new Cookies();
 
 class App extends Component {
@@ -84,6 +85,14 @@ class App extends Component {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${this.Auth.getToken()}`,
     };
+    var expTime = jwtDecode(this.Auth.getToken());
+    var nowTime = Math.round((new Date()).getTime() / 1000);
+    if(expTime < nowTime)
+    {
+        this.Auth.logout();
+        cookies.remove('reactUrl', { domain :'.exireum.com' , path: '/' });
+        window.location.replace('https://exireum.com');
+    }
     var config = { headers };
     return axios.get(url, config)
         .then(response => {
