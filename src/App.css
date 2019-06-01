@@ -181,3 +181,30 @@ input , textarea , .border-div , button
 {
     cursor: pointer;
 }
+
+.btc-img
+{
+    height: 50px;
+    background-image: url("../src/btcbit_logo.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.swtich-img
+{
+    height: 50px;
+    background-image: url("../src/index2.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.cex-img
+{
+    height: 50px;
+    background-image: url("../src/logo-square.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}

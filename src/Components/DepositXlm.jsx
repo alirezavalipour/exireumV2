@@ -73,6 +73,28 @@ class DepositXlm extends Component {
                             </Clipboard>
                         </div>
                     </div>
+                    <div className="col-12 mt-3">
+                        <div className="row">
+                            <a href="https://btcbit.net/buy-stellar-lumen-xlm-with-credit-card" target="_blank" className="col-sm-4 col-12">
+                                <div className="row">
+                                    <div className="col-12 btc-img"></div>
+                                    <div className="col-12 text-center text-white">BTC BIT</div>
+                                </div>
+                            </a>
+                            <a href="https://coinswitch.co/coins/stellar-lumens/buy-stellar-lumens-worldwide" target="_blank" className="col-sm-4 col-12">
+                                <div className="row">
+                                    <div className="col-12 swtich-img"></div>
+                                    <div className="col-12 text-center text-white">COIN SWITCH</div>
+                                </div>
+                            </a>
+                            <a href="https://cex.io/cards-xlm/" target="_blank" className="col-sm-4 col-12">
+                                <div className="row">
+                                    <div className="col-12 cex-img"></div>
+                                    <div className="col-12 text-center text-white">CEX IO</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         );
