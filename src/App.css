@@ -40,7 +40,6 @@ body{
 
 .menu
 {
-    line-height: 60px;
 }
 
 .menu-in
@@ -56,6 +55,10 @@ body{
 .activation
 {
     font-weight: bold;
+    border: 1px solid #ffc107;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
 }
 
 input , textarea , .border-div , button
@@ -96,7 +99,7 @@ input , textarea , .border-div , button
 
 .user
 {
-    line-height: 60px;
+
 }
 
 .sub-user-none
@@ -109,25 +112,29 @@ input , textarea , .border-div , button
     line-height: 40px;
     position: absolute !important;
     background-color: #151d2e;
-    top: 98%;
-    box-shadow: 0px 3px 4px #000;
+    top: 80%;
     z-index: 2;
 }
 
 .sub-user a div
 {
-    border-radius: 20px;
-    border: 2px solid #ffc107;
+    border-radius: 10px;
+    background-color: #4b3d10;
     cursor: pointer;
 }
 
-.sub-user a div:hover
+.sub-user div a div:hover
 {
-    animation: bg-color 0.8s;
-    background-color: #ffc107;
+    color: #fff;
 }
 
-@keyframes bg-color {0%{background-color: #151d2e;} 100%{background-color: #ffc107;}}
+/*.sub-user div a div:hover*/
+/*{*/
+    /*animation: bg-color 0.8s;*/
+    /*background-color: #ffc107;*/
+/*}*/
+
+/*@keyframes bg-color {0%{background-color: #151d2e;} 100%{background-color: #ffc107;}}*/
 
 .name-user , .icon-user
 {
@@ -207,4 +214,74 @@ input , textarea , .border-div , button
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
+}
+
+.select-color
+{
+    background-color: #4b3d10;
+    border: 1px solid #4b3d10;
+}
+
+.tab-color
+{
+    background-color: #1f2942;
+}
+
+.border-div2
+{
+    height: 36px;
+}
+
+.rounded2
+{
+    background-color: #1f2942;
+    border-radius: 0.35rem !important;
+}
+
+.button-tab
+{
+    position: absolute;
+    height: 45px;
+    width: 45px;
+    right: 48%;
+    top: 55%;
+    border-radius: 50%;
+    z-index: 2;
+    line-height: 45px;
+    font-size: 22px;
+}
+
+.div-tab1
+{
+    padding-left: 0 !important;
+    padding-right: 0.5rem !important;
+}
+
+.div-tab2
+{
+    padding-left: 0.5rem !important;
+    padding-right: 0 !important;
+}
+
+.border-tab
+{
+    border: 2px solid #ffc107;
+}
+
+@media(max-width: 800px) {
+    .button-tab
+    {
+        right: 45%;
+        top: 52%;
+    }
+
+    .div-tab1
+    {
+        padding-left: 0.5rem !important;
+    }
+
+    .div-tab2
+    {
+        padding-right: 0.5rem !important;
+    }
 }

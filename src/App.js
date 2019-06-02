@@ -121,43 +121,43 @@ class App extends Component {
 
   render() {
 
-    let item = <div className="sub-user-none col-12">
+    let item = <div className="sub-user-none bg-warning rounded-bottom col-12">
       <div className="row">
-        <a className="col-6 text-center"><div className="col-12 font-weight-bold">Logout</div></a>
-        <a className="col-6 text-center text-light text-decoration-none"><div className="col-12 font-weight-bold">Profile</div></a>
+          <a className="col-12 text-center text-light text-decoration-none"><div className="col-12 mb-2 font-weight-bold">Profile</div></a>
+          <a className="col-12 text-center"><div className="col-12 font-weight-bold">Logout</div></a>
       </div>
     </div>;
     if(this.state.key === false)
     {
-      item = <div className="sub-user-none col-12 d-none">
+      item = <div className="sub-user-none bg-warning rounded-bottom col-12 d-none">
         <div className="row">
-          <a className="col-6 text-center"><div className="col-12 font-weight-bold">Logout</div></a>
-          <a className="col-6 text-center text-light text-decoration-none"><div className="col-12 font-weight-bold">Profile</div></a>
+            <a className="col-12 text-center text-light text-decoration-none"><div className="col-12 mb-2 font-weight-bold">Profile</div></a>
+            <a className="col-12 text-center"><div className="col-12 font-weight-bold">Logout</div></a>
         </div>
       </div>;
     }else
     {
-      item = <div className="sub-user col-12 pr-5 pl-5 pt-3 pb-3">
+      item = <div className="sub-user bg-warning rounded-bottom col-12 pt-3 pb-3">
         <div className="row">
-          <a className="col-6 text-center" onClick={this.logOut}><div className="col-12 font-weight-bold">Logout</div></a>
-          <a onClick={this.goProfile} className="col-6 text-center text-light text-decoration-none"><div className="col-12 font-weight-bold">Profile</div></a>
+            <a onClick={this.goProfile} className="col-12 text-center text-warning text-decoration-none mb-2"><div className="col-12 font-weight-bold">Profile</div></a>
+            <a className="col-12 text-center text-warning" onClick={this.logOut}><div className="col-12 font-weight-bold">Logout</div></a>
         </div>
       </div>;
     }
 
-    let icon = <div className="icon-user col-4 text-left">
+    let icon = <div className="icon-user col-4 text-left bg-warning pt-2 pb-2 mt-2 mb-2 rounded-right">
       <FontAwesomeIcon className="" icon={faUser}/>
       <FontAwesomeIcon className="ml-2" icon={faAngleDown}/>
     </div>;
     if(this.state.key === false)
     {
-      icon = <div className="icon-user col-4 text-left">
+      icon = <div className="icon-user col-4 text-left bg-warning pt-2 pb-2 mt-2 mb-2 rounded-right">
         <FontAwesomeIcon className="" icon={faUser}/>
         <FontAwesomeIcon className="ml-2" icon={faAngleDown}/>
       </div>;
     }else
     {
-      icon = <div className="icon-user col-4 text-left">
+      icon = <div className="icon-user col-4 text-left bg-warning pt-2 pb-2 mt-2 mb-2 rounded-right">
         <FontAwesomeIcon className="" icon={faUser}/>
         <FontAwesomeIcon className="ml-2" icon={faAngleUp}/>
       </div>
@@ -180,18 +180,19 @@ class App extends Component {
                           <a href="https://exireum.com" className="logo col-sm-2 col-12"></a>
                           <div className="menu col-sm-7 col-12">
                               <div className="row">
-                                  <a className={'menu-in ml-4 text-light' + (window.location.pathname === '/Components/Dashboard' ? ' activation' : '')} href="/Components/Dashboard">Dashboard</a>
-                                  <a className={'menu-in ml-4 text-light' + (window.location.pathname === '/Components/Orders' ? ' activation' : '')} href="/Components/Orders">Orders</a>
-                                  <a className={'menu-in ml-4 text-light' + (window.location.pathname === '/Components/Ticket' ? ' activation' : '')} href="/Components/Ticket">Support</a>
+                                  <a className={'menu-in ml-4 text-light pt-2 pb-2 mt-2 mb-2 pr-1 pl-1' + (window.location.pathname === '/Components/Dashboard' ? ' activation' : '')} href="/Components/Dashboard">Dashboard</a>
+                                  <a className={'menu-in ml-4 text-light pt-2 pb-2 mt-2 mb-2 pr-1 pl-1' + (window.location.pathname === '/Components/Orders' ? ' activation' : '')} href="/Components/Orders">Orders</a>
+                                  <a className={'menu-in ml-4 text-light pt-2 pb-2 mt-2 mb-2 pr-1 pl-1' + (window.location.pathname === '/Components/Ticket' ? ' activation' : '')} href="/Components/Ticket">Support</a>
                               </div>
                           </div>
-                          <a className="user col-sm-3 col-12 text-light text-right" onClick={this.checkedItem}>
+                          <a className="user col-sm-2 col-12 text-right" onClick={this.checkedItem}>
                             <div className="row">
-                              <div className="name-user col-8 text-right font-weight-bold">{this.state.name}</div>
+                              <div className="name-user col-8 text-center font-weight-bold border-right border-dark bg-warning pt-2 pb-2 mt-2 mb-2 rounded-left">{this.state.name}</div>
                               {icon}
                               {item}
                             </div>
                           </a>
+                          <div className="col-sm-1 d-sm-block d-none"></div>
                       </div>
                   </div>;
       }
@@ -232,6 +233,9 @@ class App extends Component {
              </div>
            </div>
           </Router>
+            <div className="col-12">
+                <div className="col-12 text-center text-warning pt-2 pb-2 border-top border-light">Designed by Exireum Team</div>
+            </div>
         </div>
     );
   }
