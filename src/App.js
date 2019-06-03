@@ -233,9 +233,6 @@ class App extends Component {
              </div>
            </div>
           </Router>
-            <div className="col-12">
-                <div className="col-12 text-center text-warning pt-2 pb-2 border-top border-light">Designed by Exireum Team</div>
-            </div>
         </div>
     );
   }
