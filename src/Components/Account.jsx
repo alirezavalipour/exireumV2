@@ -97,8 +97,8 @@ class Account extends Component {
             change1: true,
             change2: false
         });
-        e.currentTarget.setAttribute("class", "col-6 text-light text-center font-weight-bold rounded-top border-top border-right border-left border-warning pt-3 pb-3");
-        document.getElementById('create').setAttribute("class","col-6 text-light text-center font-weight-bold rounded-top border-bottom border-warning pt-3 pb-3 hover-tab");
+        e.currentTarget.setAttribute("class", "col-6 text-light text-center font-weight-bold pt-2 pb-2 bg-warning");
+        document.getElementById('create').setAttribute("class","col-6 text-light text-center font-weight-bold pt-2 pb-2 hover-tab");
     }
 
     changeForm2(e)
@@ -108,8 +108,8 @@ class Account extends Component {
             change2: true,
             change1: false
         });
-        e.currentTarget.setAttribute("class", "col-6 text-light text-center font-weight-bold rounded-top border-top border-right border-left border-warning pt-3 pb-3");
-        document.getElementById('add').setAttribute("class","col-6 text-light text-center font-weight-bold rounded-top border-bottom border-warning pt-3 pb-3 hover-tab");
+        e.currentTarget.setAttribute("class", "col-6 text-light text-center font-weight-bold pt-2 pb-2 bg-warning");
+        document.getElementById('add').setAttribute("class","col-6 text-light text-center font-weight-bold pt-2 pb-2 hover-tab");
     }
 
     showPlacholder(e)
@@ -333,7 +333,7 @@ class Account extends Component {
         {
             acceptShow2 = loader;
         }
-        let account = <form autoComplete='off' className="col-12 border-bottom border-right border-left border-warning" onSubmit={this.handleFormSubmit1}>
+        let account = <form autoComplete='off' className="col-12 border border-warning rounded shadow-lg" onSubmit={this.handleFormSubmit1}>
                         <div className="col-12" onFocus={this.showPlacholder} onBlur={this.hidPlacholder}>
                             <div className="row">
                                 <label className="disable" htmlFor="public_key">Public key</label>
@@ -354,7 +354,7 @@ class Account extends Component {
                     </form>;
         if(this.state.change1 && !this.state.change2)
         {
-            account =<form autoComplete='off' className="col-12 border-bottom border-right border-left border-warning" onSubmit={this.handleFormSubmit1}>
+            account =<form autoComplete='off' className="col-12 border border-warning rounded shadow-lg" onSubmit={this.handleFormSubmit1}>
                 <div className="col-12" onFocus={this.showPlacholder} onBlur={this.hidPlacholder}>
                     <div className="row">
                         <label className="disable" htmlFor="public_key">Public key</label>
@@ -376,7 +376,7 @@ class Account extends Component {
         }
         if(!this.state.change1 && this.state.change2)
         {
-            account = <form autoComplete='off' className="col-12 border-bottom border-right border-left border-warning" onSubmit={this.handleFormSubmit2}>
+            account = <form autoComplete='off' className="col-12 border border-warning rounded shadow-lg" onSubmit={this.handleFormSubmit2}>
                 <input className="col-12 mt-4 p-2 bg-warning rounded shadow-lg text-center" onClick={this.handleGenerate} value="GENERATE kEYPAIR"/>
                 <div className="col-12" onFocus={this.showPlacholder} onBlur={this.hidPlacholder}>
                     <div className="row">
@@ -407,10 +407,10 @@ class Account extends Component {
                     {valid}
                     {/*{invalid}*/}
                     <h2 className="col-12 text-light text-center font-weight-bold mb-5">Stellar account</h2>
-                    <div className="col-12">
+                    <div className="col-12 border border-warning rounded shadow-lg mb-2">
                         <div className="row">
-                            <a id='add' onClick={this.changeForm1} className="col-6 text-light text-center font-weight-bold rounded-top border-top border-right border-left border-warning pt-3 pb-3">I Already Have An Account</a>
-                            <a id='create' onClick={this.changeForm2} className="col-6 text-light text-center font-weight-bold border-bottom border-warning pt-3 pb-3 hover-tab rounded-top">Create a new account</a>
+                            <a id='add' onClick={this.changeForm1} className="col-6 text-light text-center font-weight-bold pb-2 pt-2 bg-warning">I Already Have An Account</a>
+                            <a id='create' onClick={this.changeForm2} className="col-6 text-light text-center font-weight-bold pt-2 pb-2 hover-tab">Create a new account</a>
                         </div>
                     </div>
                     {account}
