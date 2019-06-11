@@ -312,7 +312,7 @@ class Ticket extends Component {
                     message = 'Suspend';
                 }
                 return <a key={index} className="" data-id={id} onClick={this.response}>
-                    <div className="row cursor" style={{backgroundColor: (index%2 === 0 ? 'rgb(47, 61, 86)' : '#151d2e')}}>
+                    <div className="row cursor border-top border-warning" style={{backgroundColor: (index%2 === 0 ? 'rgb(47, 61, 86)' : '#151d2e')}}>
                         <div className="col-sm-3 col-12 text-center text-light pt-2 pb-2">{id}</div>
                         <div className="col-sm-3 col-12 text-center text-light pt-2 pb-2">{date}</div>
                         <div className="col-sm-3 col-12 text-center text-light pt-2 pb-2">{title}</div>
@@ -364,19 +364,17 @@ class Ticket extends Component {
                                     <div className="col-12 col-sm-3 bg-warning pt-2 pb-2 text-center text-light rounded shadow-lg mx-auto">CREATE TICKET</div>
                                 </a>
                                 <div className="col-12 border border-warning mt-3 rounded shadow-lg mb-2">
-                                    <div className="row mt-3 mb-3">
+                                    <div className="row">
                                         <div className="col-12">
-                                            <div className="col-12">
-                                                <div className="row">
-                                                    <div className="col-sm-3 col-12 text-center text-light pt-2 pb-2">Id</div>
-                                                    <div className="col-sm-3 col-12 text-center text-light pt-2 pb-2">Date</div>
-                                                    <div className="col-sm-3 col-12 text-center text-light pt-2 pb-2">Title</div>
-                                                    <div className="col-sm-3 col-12 text-center text-light pt-2 pb-2">Status</div>
-                                                </div>
+                                            <div className="row">
+                                                <div className="col-sm-3 col-12 text-center text-light border-right border-warning pt-2 pb-2 font-weight-bold">Id</div>
+                                                <div className="col-sm-3 col-12 text-center text-light border-right border-warning pt-2 pb-2 font-weight-bold">Date</div>
+                                                <div className="col-sm-3 col-12 text-center text-light border-right border-warning pt-2 pb-2 font-weight-bold">Title</div>
+                                                <div className="col-sm-3 col-12 text-center text-light  pt-2 pb-2 font-weight-bold">Status</div>
                                             </div>
                                         </div>
                                         <div className="col-12">
-                                            <div className="col-12">{signers}</div>
+                                            {signers}
                                         </div>
                                     </div>
                                 </div>
