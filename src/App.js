@@ -166,7 +166,7 @@ class App extends Component {
       let header="";
       if(window.location.pathname === "/Components/Login" || window.location.pathname === "/Components/TrustFailed" || window.location.pathname === "/Components/Trust" || window.location.pathname === "/Components/ResetPassword" || window.location.pathname === "/Components/Register" || window.location.pathname === "/Components/Verify" || window.location.pathname === "/Components/Confirmpassword" || window.location.pathname === "/Components/Account")
       {
-          header = <div className="col-12 header2 mb-5">
+          header = <div className="col-12 header2 small">
                       <div className="row">
                           <a href="https://exireum.com" className="logo col-sm-2 col-12"></a>
                           <div className="col-sm-10 col-12"></div>
@@ -175,7 +175,7 @@ class App extends Component {
       }
       else if(window.location.pathname === "/Components/Dashboard" || window.location.pathname === "/Components/Upgrade" || window.location.pathname === "/Components/TransactionSuccess" || window.location.pathname === "/Components/TransactionFailed" || window.location.pathname === "/Components/Ticket" || window.location.pathname === "/Components/ExchangeXir" || window.location.pathname === "/Components/ExchangeXlm" || window.location.pathname === "/Components/DepositXirWithIpg" || window.location.pathname === "/Components/DepositXirWithQr" || window.location.pathname === "/Components/DepositXlm" || window.location.pathname === "/Components/WithdrawedXirWithSheba" || window.location.pathname === "/Components/SendXir" || window.location.pathname === "/Components/SendXlm" || window.location.pathname === "/Components/PayingTheBill" || window.location.pathname === "/Components/Orders" || window.location.pathname === "/Components/Profile")
       {
-          header = <div className="col-12 header1 mb-5">
+          header = <div className="col-12 header1">
                       <div className="row">
                           <a href="https://exireum.com" className="logo col-sm-2 col-12"></a>
                           <div className="menu col-sm-7 col-12">
@@ -204,7 +204,7 @@ class App extends Component {
                 <Offline><div className="col-12 mb-5 bg-danger pt-2 pb-2 rounded shadow-lg">Network error you are offline</div></Offline>
             </div>
           <Router>
-           <div className="col-12">
+           <div className="col-12 mt-5">
              <div className="row">
                 <Route exact path="/Components/Login" component={Login}/>
                 <Route path="/Components/Register" component={Register}/>

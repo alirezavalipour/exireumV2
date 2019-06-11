@@ -155,6 +155,7 @@ input , textarea , .border-div , button
 .hover-tab:hover
 {
     background-color: #ffc107;
+    color: rgba(0,0,0,1) !important;
     cursor: pointer;
 }
 
@@ -266,6 +267,11 @@ input , textarea , .border-div , button
 .border-tab
 {
     border: 2px solid #ffc107;
+}
+
+.smallText
+{
+    font-size: 14px;
 }
 
 @media(max-width: 800px) {
