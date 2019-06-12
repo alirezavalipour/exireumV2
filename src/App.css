@@ -321,6 +321,15 @@ input , textarea , .border-div , button
     background-image: url("../src/icons/icon5.png");
 }
 
+.icon6
+{
+    height: 45px;
+    background-image: url("../src/icons/icon6.png");
+    background-position: center;
+    background-size: 80% 70%;
+    background-repeat: no-repeat;
+}
+
 @media(max-width: 800px) {
     .button-tab
     {

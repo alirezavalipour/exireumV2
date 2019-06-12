@@ -182,7 +182,7 @@ class Dashboard extends Component {
                                     </div>
                                 </div>
                                 <a className="text-center font-weight-bold bg-warning button-tab mx-auto" onClick={this.convert}>
-                                    <FontAwesomeIcon icon={faExchangeAlt}/>
+                                    <div class="icon6"></div>
                                 </a>
                                 <div className="col-sm-6 col-12 div-tab2 mt-1 mb-1">
                                     <div className="col-12 border-tab tab-color pt-3 pb-3 rounded pl-4">
@@ -247,7 +247,7 @@ class Dashboard extends Component {
                                                         <a href="/Components/WithdrawedXirWithSheba" className="hover-div col-12 border-div3 rounded shadow-lg small">
                                                             <div className="row pt-2 pb-2">
                                                                 <div className="col-3 icon4 pl-0 pt-2 pb-2"></div>
-                                                                <div className="col-9 border-left border-warning pt-2 pb-2 pl-0 pr-0">Withdraw XIR to bank account</div>
+                                                                <div className="col-9 border-left border-warning pt-2 pb-2 pl-0 pr-0">Withdraw to bank account</div>
                                                             </div>
                                                         </a>
                                                         <a href="/Components/SendXir" className="hover-div col-12 border-div3 mt-3 rounded shadow-lg small">
