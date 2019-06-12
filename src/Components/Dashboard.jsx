@@ -220,18 +220,48 @@ class Dashboard extends Component {
                                             <div className="col-12 col-sm-6 mt-3">
                                                 <div className="col-12 div-tab1">
                                                     <div className="row">
-                                                        <a href="/Components/ExchangeXir" className="hover-div col-12 border-div3 pt-3 pb-3 pr-0 pl-0 rounded shadow-lg small">Exchange XIR to XLM</a>
-                                                        <a href="/Components/DepositXirWithQr" className="hover-div col-12 border-div3 pt-3 pb-3 pr-0 pl-0 mt-3 rounded shadow-lg small">Deposit XIR with QR</a>
-                                                        <a href="/Components/SendXir" className="hover-div col-12 border-div3 pt-3 pb-3 mt-3 pr-0 pl-0 rounded shadow-lg small">Send XIR</a>
+                                                        <a href="/Components/ExchangeXir" className="hover-div col-12 border-div3 rounded shadow-lg small">
+                                                            <div className="row pt-2 pb-2">
+                                                                <div className="col-3 icon3 pr-0 pt-2 pb-2"></div>
+                                                                <div className="col-9 border-left border-warning pt-2 pb-2">Exchange XIR to XLM</div>
+                                                            </div>
+                                                        </a>
+                                                        <a href="/Components/DepositXirWithQr" className="hover-div col-12 border-div3 mt-3 rounded shadow-lg small">
+                                                            <div className="row pt-2 pb-2">
+                                                                <div className="col-3 icon1 pr-0 pt-2 pb-2"></div>
+                                                                <div className="col-9 border-left border-warning pt-2 pb-2">Deposit XIR with QR</div>
+                                                            </div>
+                                                        </a>
+                                                        <a href="/Components/DepositXirWithIpg" className="hover-div col-12 border-div3 rounded mt-3 shadow-lg small">
+                                                            <div className="row pt-2 pb-2">
+                                                                <div className="col-3 icon1 pr-0 pt-2 pb-2"></div>
+                                                                <div className="col-9 border-left border-warning pt-2 pb-2">Deposit XIR With IPG</div>
+                                                            </div>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div className="col-12 col-sm-6 mt-3">
                                                 <div className="col-12 div-tab2">
                                                     <div className="row">
-                                                        <a href="/Components/DepositXirWithIpg" className="hover-div col-12 border-div3 pt-3 pb-3 pr-0 pl-0 rounded shadow-lg small">Deposit XIR With IPG</a>
-                                                        <a href="/Components/WithdrawedXirWithSheba" className="hover-div col-12 border-div3 pt-3 pb-3 pr-0 pl-0 mt-3 rounded shadow-lg small">Withdraw XIR to bank account</a>
-                                                        <a href="/Components/PayingTheBill" className="hover-div col-12 border-div3 pt-3 pb-3 pr-0 pl-0 mt-3 rounded shadow-lg small">Paying the bill</a>
+                                                        <a href="/Components/WithdrawedXirWithSheba" className="hover-div col-12 border-div3 rounded shadow-lg small">
+                                                            <div className="row pt-2 pb-2">
+                                                                <div className="col-3 icon4 pr-0 pt-2 pb-2"></div>
+                                                                <div className="col-9 border-left border-warning pt-2 pb-2">Withdraw XIR to bank account</div>
+                                                            </div>
+                                                        </a>
+                                                        <a href="/Components/SendXir" className="hover-div col-12 border-div3 mt-3 rounded shadow-lg small">
+                                                            <div className="row pt-2 pb-2">
+                                                                <div className="col-3 icon2 pr-0 pt-2 pb-2"></div>
+                                                                <div className="col-9 border-left border-warning pt-2 pb-2">Send XIR</div>
+                                                            </div>
+                                                        </a>
+                                                        <a href="/Components/PayingTheBill" className="hover-div col-12 border-div3 mt-3 rounded shadow-lg small">
+                                                            <div className="row pt-2 pb-2">
+                                                                <div className="col-3 icon5 pr-0 pt-2 pb-2"></div>
+                                                                <div className="col-9 border-left border-warning pt-2 pb-2">Paying the bill</div>
+                                                            </div>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -244,15 +274,30 @@ class Dashboard extends Component {
                                             <div className="col-12 col-sm-6 mt-3">
                                                 <div className="col-12 div-tab1">
                                                     <div className="row">
-                                                        <a href="/Components/ExchangeXlm" className="div-hover col-12 border-div3 pt-3 pb-3 pr-0 pl-0 rounded shadow-lg small">Exchange XLM to XIR</a>
+                                                        <a href="/Components/ExchangeXlm" className="div-hover col-12 border-div3 rounded shadow-lg small">
+                                                            <div className="row pt-2 pb-2">
+                                                                <div className="col-3 icon3 pr-0 pt-2 pb-2"></div>
+                                                                <div className="col-9 border-left border-warning pt-2 pb-2">Exchange XLM to XIR</div>
+                                                            </div>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div className="col-12 col-sm-6 mt-3">
                                                 <div className="col-12 div-tab2">
                                                     <div className="row">
-                                                        <a href="/Components/SendXlm" className="div-hover col-12 border-div3 pt-3 pb-3 pr-0 pl-0 rounded shadow-lg small">Send XLM</a>
-                                                        <a href="/Components/DepositXlm" className="div-hover col-12 border-div3 pt-3 pb-3 pr-0 pl-0 mt-3 rounded shadow-lg small">Deposit XLM</a>
+                                                        <a href="/Components/SendXlm" className="div-hover col-12 border-div3 rounded shadow-lg small">
+                                                            <div className="row pt-2 pb-2">
+                                                                <div className="col-3 icon2 pr-0 pt-2 pb-2"></div>
+                                                                <div className="col-9 border-left border-warning pt-2 pb-2">Send XLM</div>
+                                                            </div>
+                                                        </a>
+                                                        <a href="/Components/DepositXlm" className="div-hover col-12 border-div3 mt-3 rounded shadow-lg small">
+                                                            <div className="row pt-2 pb-2">
+                                                                <div className="col-3 icon1 pr-0 pt-2 pb-2"></div>
+                                                                <div className="col-9 border-left border-warning pt-2 pb-2">Deposit XLM</div>
+                                                            </div>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>

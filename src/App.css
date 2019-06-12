@@ -289,6 +289,38 @@ input , textarea , .border-div , button
     font-size: 14px;
 }
 
+.icon1 , .icon2 , .icon3 , .icon4 , .icon5
+{
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.icon1
+{
+    background-image: url("../src/icons/icon1.png");
+}
+
+.icon2
+{
+    background-image: url("../src/icons/icon2.png");
+}
+
+.icon3
+{
+    background-image: url("../src/icons/icon3.png");
+}
+
+.icon4
+{
+    background-image: url("../src/icons/icon4.png");
+}
+
+.icon5
+{
+    background-image: url("../src/icons/icon5.png");
+}
+
 @media(max-width: 800px) {
     .button-tab
     {
