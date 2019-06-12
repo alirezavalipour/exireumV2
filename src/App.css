@@ -292,7 +292,7 @@ input , textarea , .border-div , button
 .icon1 , .icon2 , .icon3 , .icon4 , .icon5
 {
     background-position: center;
-    background-size: contain;
+    background-size: 55% 70%;
     background-repeat: no-repeat;
 }
 
