@@ -27,6 +27,15 @@ body{
     background-repeat: no-repeat;
 }
 
+.alireza
+{
+    background-color: #22252a;
+    background-image: url("../src/back.png");
+    background-position: center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
 .header1
 {
     background-color: #151d2e;
@@ -230,6 +239,13 @@ input , textarea , .border-div , button
 .border-div2
 {
     height: 36px;
+}
+
+.border-div3
+{
+    border: 1px solid #1f2942;
+    background-color: #1f2942;
+    color: #ffc107;
 }
 
 .rounded2

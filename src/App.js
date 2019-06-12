@@ -204,7 +204,7 @@ class App extends Component {
                 <Offline><div className="col-12 mb-5 bg-danger pt-2 pb-2 rounded shadow-lg">Network error you are offline</div></Offline>
             </div>
           <Router>
-           <div className="col-12 mt-5">
+           <div className="col-12 pt-5">
              <div className="row">
                 <Route exact path="/Components/Login" component={Login}/>
                 <Route path="/Components/Register" component={Register}/>
