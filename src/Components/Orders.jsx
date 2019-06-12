@@ -70,7 +70,7 @@ class Orders extends Component {
         e.currentTarget.setAttribute("class", "col-sm-3 col-12 border-right border-warning pt-2 pb-2 font-weight-bold bg-warning");
         document.getElementById('bill').setAttribute("class","col-sm-3 col-12 border-right border-warning pt-2 pb-2 font-weight-bold hover-tab");
         document.getElementById('deposit').setAttribute("class","col-sm-3 col-12 border-right border-warning pt-2 pb-2 font-weight-bold hover-tab");
-        document.getElementById('withdraw').setAttribute("class","col-sm-3 col-12 pt-2 pb-2 font-weight-bold hover-tab");
+        document.getElementById('withdraw').setAttribute("class","col-sm-3 col-12 border-right border-warning pt-2 pb-2 font-weight-bold hover-tab");
         const url = this.Auth.getDomain() + '/user/stellar/exchange';
         const headers = {
             Accept: 'application/json',
