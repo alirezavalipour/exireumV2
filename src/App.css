@@ -161,10 +161,27 @@ input , textarea , .border-div , button
     font-size: 14px;
 }
 
+.placholder2
+{
+    left: 10%;
+    width: auto;
+    position: absolute !important;
+    z-index: 1;
+    top: -9px;
+    background-color: #151d2e !important;
+    font-size: 12px;
+}
+
 .hover-tab:hover
 {
     background-color: #ffc107;
     cursor: pointer;
+}
+
+.icon-size
+{
+    height: 100%;
+    width: 100% !important;
 }
 
 @media(max-width: 600px) {
@@ -328,6 +345,11 @@ input , textarea , .border-div , button
     background-position: center;
     background-size: 60% 50%;
     background-repeat: no-repeat;
+}
+
+.proInput
+{
+    border: 0 solid #000 !important;
 }
 
 @media(max-width: 800px) {

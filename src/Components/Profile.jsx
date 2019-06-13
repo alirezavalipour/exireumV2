@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import '../App.css';
 import axios from 'axios';
-import {Container, Row, Col} from 'bootstrap-4-react';
+import {} from 'bootstrap-4-react';
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import AuthService from './AuthService.jsx';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 var StellarSdk = require('stellar-sdk');
 
 const isValidPublicKey = input => {
@@ -160,54 +162,67 @@ class Profile extends Component {
                     {messages}
                     <h2 className="col-12 text-light text-center font-weight-bold mb-5">Profile</h2>
                     <form className="col-12 mb-5" onSubmit={this.handleSubmit}>
-                        <label className="col-12 mt-3">
-                            <div className="row shadow-lg">
-                                <span className="col-3 text-center text-light p-2 rounded-left bg-warning">User name</span>
-                                <input className="col-9 text-center rounded-right p-2 text-light" type="text" name="user_name" value={this.state.user_name} onChange={this.handleChange}/>
+                        <div className="col-12 border border-warning rounded shadow-lg">
+                            <div className="row">
+                                <div className="col-12 border-bottom border-warning">
+                                    <div className="row">
+                                        <div className="col-12 col-sm-2 pb-3 border-right border-warning">
+                                            <FontAwesomeIcon className="icon-size text-light" icon={faUserCircle}/>
+                                        </div>
+                                        <div className="col-12 col-sm-10 pb-3">
+                                            <div className="row">
+                                                <div className="col-12 text-light text-left mt-3 font-weight-bold">Personal Information</div>
+                                                <div className="col-sm-6 col-12 mt-3">
+                                                    <label htmlFor="username" className="enable text-left text-light placholder2">User name</label>
+                                                    <input className="col-12 text-center rounded text-light pt-2 pb-2 small" type="text" name="user_name" value={this.state.user_name} onChange={this.handleChange}/>
+                                                </div>
+                                                <div className="col-sm-6 col-12 mt-3">
+                                                    <label htmlFor="email" className="enable text-left text-light placholder2">Email</label>
+                                                    <input className="col-12 text-center rounded text-light pt-2 pb-2 small" type="text" name="email" value={this.state.email} onChange={this.handleChange}/>
+                                                </div>
+                                                <div className="col-sm-6 col-12 mt-3">
+                                                    <label htmlFor="first_name" className="enable text-left text-light placholder2">First name</label>
+                                                    <input className="col-12 text-center rounded text-light pt-2 pb-2 small" type="text" name="first_name" value={this.state.first_name} onChange={this.handleChange}/>
+                                                </div>
+                                                <div className="col-sm-6 col-12 mt-3">
+                                                    <label htmlFor="last_name" className="enable text-left text-light placholder2">Last name</label>
+                                                    <input className="col-12 text-center rounded text-light pt-2 pb-2 small" type="text" name="last_name" value={this.state.last_name} onChange={this.handleChange}/>
+                                                </div>
+                                                <div className="col-sm-6 col-12 mt-3">
+                                                    <label htmlFor="national_number" className="enable text-left text-light placholder2">National code</label>
+                                                    <input className="col-12 text-center rounded text-light pt-2 pb-2 small" type="text" name="national_number" value={this.state.national_number} onChange={this.handleChange}/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-12 pb-3 border-bottom border-warning">
+                                    <div className="row">
+                                        <div className="col-12 text-light text-left mt-3 font-weight-bold">Address</div>
+                                        <div className="col-12 mt-3">
+                                            <label htmlFor="address" className="enable text-left text-light placholder2">Address</label>
+                                            <textarea className="col-12 text-center rounded text-light small" name="address" onChange={this.handleChange} value={this.state.address}>
+                                            </textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-12 pb-3 border-bottom border-warning">
+                                    <div className="row">
+                                        <div className="col-12 text-light text-left mt-3 font-weight-bold">Account</div>
+                                        <div className="col-12 mt-3">
+                                            <label htmlFor="public_key" className="enable text-left text-light placholder2">Public key</label>
+                                            <input className="col-12 text-center rounded text-light pt-2 pb-2 small" type="text" name="public_key" value={this.state.public_key} onChange={this.handleChange}/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-sm-6 col-12 mt-3 mb-3 text-center">
+                                    <button className="col-12 col-sm-6 mx-auto text-center rounded text-light bg-success border border-success pt-1 pb-1" onClick={this.upgradeAccount}>Upgrade your account</button>
+                                </div>
+                                <div className="col-sm-6 col-12 mt-3 mb-3 text-center">
+                                    <button className="col-12 col-sm-6 mx-auto bg-warning rounded shadow-lg text-light pt-1 pb-1">UPDATE</button>
+                                </div>
                             </div>
-                        </label>
-                        <label className="col-12 mt-3">
-                            <div className="row shadow-lg">
-                                <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Email</span>
-                                <input className="col-9 text-center rounded-right p-2 text-light" type="text" name="email" value={this.state.email} onChange={this.handleChange}/>
-                            </div>
-                        </label>
-                        <label className="col-12 mt-3">
-                            <div className="row shadow-lg">
-                                <span className="col-3 text-center text-light p-2 rounded-left bg-warning">First name</span>
-                                <input className="col-9 text-center rounded-right p-2 text-light" type="text" name="first_name" value={this.state.first_name} onChange={this.handleChange}/>
-                            </div>
-                        </label>
-                        <label className="col-12 mt-3">
-                            <div className="row shadow-lg">
-                                <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Last name</span>
-                                <input className="col-9 text-center rounded-right p-2 text-light" type="text" name="last_name" value={this.state.last_name} onChange={this.handleChange}/>
-                            </div>
-                        </label>
-                        <label className="col-12 mt-3">
-                            <div className="row shadow-lg">
-                                <span className="col-3 text-center text-light p-2 rounded-left bg-warning">National code</span>
-                                <input className="col-9 text-center rounded-right p-2 text-light" type="text" name="national_number" value={this.state.national_number} onChange={this.handleChange}/>
-                            </div>
-                        </label>
-                        <label className="col-12 mt-3">
-                            <div className="row shadow-lg">
-                                <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Address</span>
-                                <textarea className="col-9 text-center rounded-right p-2 text-light" type="text" name="address" onChange={this.handleChange} value={this.state.address}></textarea>
-                            </div>
-                        </label>
-                        <label className="col-12 mt-3">
-                            <div className="row shadow-lg">
-                                <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Public key</span>
-                                <input className="col-9 text-center rounded-right p-2 text-light" type="text" name="public_key" value={this.state.public_key} onChange={this.handleChange}/>
-                            </div>
-                        </label>
-                        <label className="col-12 mt-3">
-                            <div className="row shadow-lg">
-                                <button className="col-3 text-center rounded p-2 text-light bg-warning" onClick={this.upgradeAccount}>Upgrade your account</button>
-                            </div>
-                        </label>
-                        <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">UPDATE</button>
+                        </div>
                     </form>
                 </div>
             </div>
