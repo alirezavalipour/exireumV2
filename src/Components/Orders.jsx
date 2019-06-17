@@ -38,7 +38,8 @@ class Orders extends Component {
                 this.setState({
                     data1: response.data.data,
                     currentTab: 1,
-                    currentPage: response.data.current_page
+                    currentPage: response.data.current_page,
+                    length1: response.data.data.length
                 });
                 if (response.data.next_page_url) {
                     this.setState({
@@ -83,13 +84,13 @@ class Orders extends Component {
                 this.setState({
                     data1: response.data.data,
                     currentTab: 1,
-                    currentPage: response.data.current_page
+                    currentPage: response.data.current_page,
+                    length1: response.data.data.length
                 });
                 if (response.data.next_page_url) {
                     this.setState({
                         nextPage: response.data.next_page_url,
                     });
-                    console.log(this.state.nextPage);
                 }
                 else
                 {
@@ -101,7 +102,6 @@ class Orders extends Component {
                     this.setState({
                         prevPage: response.data.prev_page_url,
                     });
-                    console.log(this.state.prevPage);
                 }
                 else
                 {
@@ -130,7 +130,8 @@ class Orders extends Component {
                 this.setState({
                     data2: response.data.data,
                     currentTab: 2,
-                    currentPage: response.data.current_page
+                    currentPage: response.data.current_page,
+                    length2: response.data.data.length
                 });
                 if (response.data.next_page_url) {
                     this.setState({
@@ -175,7 +176,8 @@ class Orders extends Component {
                 this.setState({
                     data3: response.data.data,
                     currentTab: 3,
-                    currentPage: response.data.current_page
+                    currentPage: response.data.current_page,
+                    length3: response.data.data.length
                 });
                 if (response.data.next_page_url) {
                     this.setState({
@@ -220,7 +222,8 @@ class Orders extends Component {
                 this.setState({
                     data4: response.data.data,
                     currentTab: 4,
-                    currentPage: response.data.current_page
+                    currentPage: response.data.current_page,
+                    length4: response.data.data.length
                 });
                 if (response.data.next_page_url) {
                     this.setState({
@@ -443,7 +446,7 @@ class Orders extends Component {
             </div>;
         }
         let signers = null;
-        if (this.state.data1 && this.state.currentTab === 1) {
+        if (this.state.data1 && this.state.currentTab === 1 && this.state.length1 !== 0) {
             signers = this.state.data1.map((elem , index) => {
                 let amount = (elem.amount).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");;
                 let base_asset = elem.base_asset;
@@ -510,7 +513,12 @@ class Orders extends Component {
                 </div>;
             });
         }
-        if (this.state.data2 && this.state.currentTab === 2) {
+        else if(this.state.length1 === 0)
+        {
+            signers = <div className="col-12 text-center border-top border-warning text-secondary pt-2 pb-2 pr-0 pl-0 smallText">There is no item to match.</div>;
+        }
+
+        if (this.state.data2 && this.state.currentTab === 2 && this.state.length2 !== 0) {
             signers = this.state.data2.map((elem , index) => {
                 let date = elem.created_at;
                 let amount = elem.amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -569,7 +577,12 @@ class Orders extends Component {
                 </div>;
             });
         }
-        if (this.state.data3 && this.state.currentTab === 3) {
+        else if(this.state.length2 === 0)
+        {
+            signers = <div className="col-12 text-center border-top border-warning text-secondary pt-2 pb-2 pr-0 pl-0 smallText">There is no item to match.</div>;
+        }
+
+        if (this.state.data3 && this.state.currentTab === 3 && this.state.length3 !== 0) {
             signers = this.state.data3.map((elem , index) => {
                 let amount = (elem.amount).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                 let receive_amount = (elem.price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -630,7 +643,12 @@ class Orders extends Component {
                 </div>;
             });
         }
-        if (this.state.data4 && this.state.currentTab === 4) {
+        else if(this.state.length3 === 0)
+        {
+            signers = <div className="col-12 text-center border-top border-warning text-secondary pt-2 pb-2 pr-0 pl-0 smallText">There is no item to match.</div>;
+        }
+
+        if (this.state.data4 && this.state.currentTab === 4 && this.state.length4 !== 0) {
             signers = this.state.data4.map((elem , index) => {
                 let id = elem.id;
                 let track = elem.tracking_code;
@@ -694,6 +712,11 @@ class Orders extends Component {
                 </div>;
             });
         }
+        else if(this.state.length4 === 0)
+        {
+            signers = <div className="col-12 text-center border-top border-warning text-secondary pt-2 pb-2 pr-0 pl-0 smallText">There is no item to match.</div>;
+        }
+
         return(
             <div className="col-sm-9 col-12 clearfix mx-auto">
                 <div className="row">
