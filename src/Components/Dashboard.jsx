@@ -13,59 +13,53 @@ class Dashboard extends Component {
         super();
         this.Auth = new AuthService();
         this.assetAmount = this.assetAmount.bind(this);
-        this.handleChange1 = this.handleChange1.bind(this);
-        this.handleChange2 = this.handleChange2.bind(this);
-        this.handleConvertRate = this.handleConvertRate.bind(this);
-        this.convert = this.convert.bind(this);
         this.state = {
             formSelect1: '',
             formSelect2: '',
         }
     }
 
-    handleChange1(e)
-    {
-        this.setState({
-            formSelect1: e.target.value,
-        });
-    }
-
-    handleChange2(e)
-    {
-        this.setState({
-            formSelect2: e.target.value,
-        });
-    }
-
-    handleConvertRate(e)
-    {
-        this.setState({
-            [e.target.name]:e.target.value,
-        });
-    }
-
-    convert(e)
-    {
-        e.preventDefault();
-        var url = `${this.Auth.domain}/user/convert?type=` + this.state.formSelect1 + `TO` + this.state.formSelect2 + `&amount=` + this.state.amount.replace(/,/g, '');
+    componentWillMount() {
+        if (!(this.Auth.getToken())) {
+            window.location.replace('/Components/Login');
+        }
+        let amount = 1;
+        var url = `${this.Auth.domain}/user/convert?type=XIRTOXLM&amount=` + amount;
+        var url2 = `${this.Auth.domain}/user/convert?type=IRRTOXIR&amount=` + amount;
+        var url3 = `${this.Auth.domain}/user/convert?type=XLMTOXIR&amount=` + amount;
+        var url4 = `${this.Auth.domain}/user/convert?type=XLMTOIRR&amount=` + amount;
         const headers = {
             Accept: 'application/json',
             'Content-Type': 'application/json',
             Authorization: `Bearer ${this.Auth.getToken()}`,
         };
         var config = {headers};
-        return axios.get(url, config)
-            .then(response => {
-                this.setState({
-                    price: (parseFloat(response.data.result).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-                });
-            });
-    }
-
-    componentWillMount() {
-        if (!(this.Auth.getToken())) {
-            window.location.replace('/Components/Login');
-        }
+        return axios.all[(
+            axios.get(url, config)
+                .then(response => {
+                    this.setState({
+                        price1: (parseFloat(response.data.result).toFixed(5)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                    });
+                }),
+            axios.get(url2, config)
+                .then(response => {
+                    this.setState({
+                        price2: (parseFloat(response.data.result).toFixed(5)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                    });
+                }),
+            axios.get(url3, config)
+                .then(response => {
+                    this.setState({
+                        price3: (parseInt(response.data.result)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                    });
+                }),
+            axios.get(url4, config)
+                .then(response => {
+                    this.setState({
+                        price4: (parseInt(response.data.result)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                    });
+                })
+        )];
     }
 
     componentDidMount() {
@@ -117,91 +111,123 @@ class Dashboard extends Component {
     let priceXlm = '';
     if(this.state.xlmBalance)
     {
-        priceXlm = (parseFloat((this.state.xlmBalances) - (0.5 * this.state.entry) - 1).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' XLM';
+        priceXlm = (parseFloat((this.state.xlmBalances) - (0.5 * this.state.entry) - 1).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
-    let option = <select className="font-weight-bold col-12 mt-3 mb-3 text-center text-light select-color pt-1 pb-1 rounded" name="type" onChange={this.handleChange2}>
-            <option>-</option>
-            <option type="0">XLM</option>
-            <option type="1">XIR</option>
-            <option type="2">IRR</option>
-        </select>;
-        if(this.state.formSelect1 == 'XLM')
-        {
-            option = <select className="font-weight-bold col-12 mt-3 mb-3 text-center text-light select-color pt-1 pb-1 rounded" name="type" onChange={this.handleChange2}>
-                <option>-</option>
-                <option type="1">XIR</option>
-                <option type="2">IRR</option>
-            </select>;
-        }
-        if(this.state.formSelect1 == 'XIR')
-        {
-            option = <select className="font-weight-bold col-12 mt-3 mb-3 text-center text-light select-color pt-1 pb-1 rounded" name="type" onChange={this.handleChange2}>
-                <option>-</option>
-                <option type="0">XLM</option>
-                <option type="2">IRR</option>
-            </select>;
-        }
-        if(this.state.formSelect1 == 'IRR')
-        {
-            option = <select className="font-weight-bold col-12 mt-3 mb-3 text-center text-light select-color pt-1 pb-1 rounded" name="type" onChange={this.handleChange2}>
-                <option>-</option>
-                <option type="0">XLM</option>
-                <option type="1">XIR</option>
-            </select>;
-        }
+    // let option = <select className="font-weight-bold col-12 mt-3 mb-3 text-center text-light select-color pt-1 pb-1 rounded" name="type" onChange={this.handleChange2}>
+    //         <option>-</option>
+    //         <option type="0">XLM</option>
+    //         <option type="1">XIR</option>
+    //         <option type="2">IRR</option>
+    //     </select>;
+    //     if(this.state.formSelect1 == 'XLM')
+    //     {
+    //         option = <select className="font-weight-bold col-12 mt-3 mb-3 text-center text-light select-color pt-1 pb-1 rounded" name="type" onChange={this.handleChange2}>
+    //             <option>-</option>
+    //             <option type="1">XIR</option>
+    //             <option type="2">IRR</option>
+    //         </select>;
+    //     }
+    //     if(this.state.formSelect1 == 'XIR')
+    //     {
+    //         option = <select className="font-weight-bold col-12 mt-3 mb-3 text-center text-light select-color pt-1 pb-1 rounded" name="type" onChange={this.handleChange2}>
+    //             <option>-</option>
+    //             <option type="0">XLM</option>
+    //             <option type="2">IRR</option>
+    //         </select>;
+    //     }
+    //     if(this.state.formSelect1 == 'IRR')
+    //     {
+    //         option = <select className="font-weight-bold col-12 mt-3 mb-3 text-center text-light select-color pt-1 pb-1 rounded" name="type" onChange={this.handleChange2}>
+    //             <option>-</option>
+    //             <option type="0">XLM</option>
+    //             <option type="1">XIR</option>
+    //         </select>;
+    //     }
         return (
             <div className="col-12">
                 <div className="row">
                     <div className="col-12 alireza pr-0 pl-0">
-                        <div className="col-sm-9 col-12 mx-auto mb-5">
+                        <div className="col-sm-9 col-12 mx-auto mb-3">
                             <div className="row">
-                                <h5 className="col-12 text-center text-warning font-weight-bold mb-5">Convert rate</h5>
-                                <div className="col-sm-6 col-12 div-tab1 mt-1 mb-1">
+                                {/*<h5 className="col-12 text-center text-warning font-weight-bold mb-5 mt-5"> </h5>*/}
+                                <div className="col-sm-6 col-12 div-tab1 mt-5 mb-5">
                                     <div className="col-12 border-tab rounded tab-color pt-3 pb-3 pr-4">
                                         <div className="col-12">
                                             <div className="row">
-                                                <div className="col-12 col-sm-6 text-center mt-3">
+                                                <div className="col-12 col-md-6 text-center mt-3">
                                                     <div className="row">
                                                         <h2 className="col-12 font-weight-bold text-light">XIR</h2>
-                                                        <div className="col-12 text-light mt-2">Balance : {this.state.xirBalance} XIR</div>
-                                                        <div className="col-12 text-light small mt-3">Available : {this.state.xirBalance} XIR</div>
+                                                        <div className="col-12 text-light mt-2">Balance : {this.state.xirBalance}</div>
+                                                        <div className="col-12 text-light small mt-2">Available : {this.state.xirBalance}</div>
                                                     </div>
                                                 </div>
-                                                <div className="col-12 col-sm-6 bg-warning rounded mt-3 mb-3">
-                                                    <div className="col-12 text-center pt-3 pb-3 font-weight-bold">Base asset</div>
-                                                    <NumberFormat className="col-12 text-center pt-1 pb-1 rounded2" thousandSeparator={true} name="amount" type="text" onChange={this.handleConvertRate}/>
-                                                    <select className="col-12 mt-3 mb-3 text-center text-light select-color pt-1 pb-1 rounded font-weight-bold" name="type" onChange={this.handleChange1}>
-                                                        <option>-</option>
-                                                        <option type="0">XLM</option>
-                                                        <option type="1">XIR</option>
-                                                        <option type="2">IRR</option>
-                                                    </select>
+                                                <div className="col-12 col-md-6 bg-warning rounded mt-3 mb-3 pb-3">
+                                                    {/*<div className="col-12 text-center pt-3 pb-3 font-weight-bold">Base asset</div>*/}
+                                                    {/*<NumberFormat className="col-12 text-center pt-1 pb-1 rounded2" thousandSeparator={true} name="amount" type="text" onChange={this.handleConvertRate}/>*/}
+                                                    {/*<select className="col-12 mt-3 mb-3 text-center text-light select-color pt-1 pb-1 rounded font-weight-bold" name="type" onChange={this.handleChange1}>*/}
+                                                        {/*<option>-</option>*/}
+                                                        {/*<option type="0">XLM</option>*/}
+                                                        {/*<option type="1">XIR</option>*/}
+                                                        {/*<option type="2">IRR</option>*/}
+                                                    {/*</select>*/}
+                                                    <div className="col-12 text-center text-light pt-1 pb-1 bg-dark rounded border-div2 mt-3">
+                                                        <div className="row">
+                                                            <div className="col-6 pr-0 text-left">
+                                                                <span className="font-weight-bold">XIR</span> / <span className="small">XLM</span>
+                                                            </div>
+                                                            <div className="col-6 text-right pl-0">{this.state.price1}</div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-12 text-light pt-1 pb-1 bg-dark rounded border-div2 mt-3">
+                                                        <div className="row">
+                                                            <div className="col-6 pr-0 text-left">
+                                                                <span className="font-weight-bold">XIR</span> / <span className="small">IRR</span>
+                                                            </div>
+                                                            <div className="col-6 pl-0 text-right">{this.state.price2}</div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <a className="text-center font-weight-bold bg-warning button-tab mx-auto" onClick={this.convert}>
-                                    <div class="icon6"></div>
-                                </a>
-                                <div className="col-sm-6 col-12 div-tab2 mt-1 mb-1">
+                                {/*<a className="text-center font-weight-bold bg-warning button-tab mx-auto" onClick={this.convert}>*/}
+                                    {/*<div class="icon6"></div>*/}
+                                {/*</a>*/}
+                                <div className="col-sm-6 col-12 div-tab2 mt-5 mb-5">
                                     <div className="col-12 border-tab tab-color pt-3 pb-3 rounded pl-4">
                                         <div className="col-12">
                                             <div className="row">
-                                                <div className="col-12 col-sm-6 bg-warning rounded mt-3 mb-3">
+                                                <div className="col-12 col-md-6 bg-warning rounded mt-3 mb-3 pb-3">
                                                     <div className="col-12">
                                                         <div className="row">
-                                                            <div className="col-12 text-center pt-3 pb-3 font-weight-bold">Counter asset</div>
-                                                            <div className="col-12 text-center text-light pt-1 pb-1 bg-dark rounded border-div2">{this.state.price}</div>
-                                                            {option}
+                                                            {/*<div className="col-12 text-center pt-3 pb-3 font-weight-bold">Counter asset</div>*/}
+                                                            {/*<div className="col-12 text-center text-light pt-1 pb-1 bg-dark rounded border-div2">{this.state.price}</div>*/}
+                                                            {/*{option}*/}
+                                                            <div className="col-12 text-center text-light pt-1 pb-1 bg-dark rounded border-div2 mt-3">
+                                                                <div className="row">
+                                                                    <div className="col-6 pr-0 text-left">
+                                                                        <span className="font-weight-bold">XLM</span> / <span className="small">XIR</span>
+                                                                    </div>
+                                                                    <div className="col-6 text-right pl-0">{this.state.price3}</div>
+                                                                </div>
+                                                            </div>
+                                                            <div className="col-12 text-light pt-1 pb-1 bg-dark rounded border-div2 mt-3">
+                                                                <div className="row">
+                                                                    <div className="col-6 pr-0 text-left">
+                                                                        <span className="font-weight-bold">XLM</span> / <span className="small">IRR</span>
+                                                                    </div>
+                                                                    <div className="col-6 pl-0 text-right">{this.state.price4}</div>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div className="col-12 col-sm-6 text-center mt-3">
+                                                <div className="col-12 col-md-6 text-center mt-3">
                                                     <div className="row">
                                                         <h2 className="col-12 font-weight-bold text-light">XLM</h2>
-                                                        <div className="col-12 text-light mt-2">Balance : {this.state.xlmBalance} XLM</div>
-                                                        <div className="col-12 text-light small mt-3">Available : {priceXlm}</div>
+                                                        <div className="col-12 text-light mt-2">Balance : {this.state.xlmBalance}</div>
+                                                        <div className="col-12 text-light small mt-2">Available : {priceXlm}</div>
                                                     </div>
                                                 </div>
                                             </div>

@@ -2,6 +2,11 @@ body{
     background-color: #151d2e !important;
 }
 
+.back-ground
+{
+    background-color: #fff !important;
+}
+
 .disable
 {
     display: none;
@@ -20,10 +25,10 @@ body{
 
 .logo
 {
-    height: 60px;
+    height: 50px;
     background-image: url("../src/logo-exireum.png");
-    background-position: 80%;
-    background-size: 70%;
+    background-position: center;
+    background-size: 60% 70%;
     background-repeat: no-repeat;
 }
 
@@ -47,15 +52,6 @@ body{
     background-color: #151d2e;
 }
 
-.menu
-{
-}
-
-.menu-in
-{
-    font-size: 18px;
-}
-
 .menu-in:hover
 {
     text-decoration: none;
@@ -63,11 +59,8 @@ body{
 
 .activation
 {
-    font-weight: bold;
-    border: 1px solid #ffc107;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
+    font-weight: bold !important;
+    border-bottom: 1px solid #ffc107;
 }
 
 input , textarea , .border-div , button
@@ -86,30 +79,23 @@ input , textarea , .border-div , button
 
 .hover-div:hover
 {
-    background-color: #ffc107;
     color: #fff;
     text-decoration: none;
-    animation: left 0.8s;
-    left: 5%;
+    animation: left 0.3s;
+    left: 1%;
 }
 
-@keyframes left {0%{left: 0; background-color: #151d2e;} 100%{left: 5%; background-color: #ffc107;}}
+@keyframes left {0%{left: 0;} 100%{left: 1%;}}
 
 .div-hover:hover
 {
-    background-color: #ffc107;
     color: #fff;
     text-decoration: none;
-    animation: right 0.8s;
-    right: 5%;
+    animation: right 0.3s;
+    right: 1%;
 }
 
-@keyframes right {0%{right: 0; background-color: #151d2e;} 100%{right: 5%; background-color: #ffc107;}}
-
-.user
-{
-
-}
+@keyframes right {0%{right: 0;} 100%{right: 1%;}}
 
 .sub-user-none
 {
@@ -121,8 +107,9 @@ input , textarea , .border-div , button
     line-height: 40px;
     position: absolute !important;
     background-color: #151d2e;
-    top: 80%;
+    top: 100%;
     z-index: 2;
+    right: 0;
 }
 
 .sub-user a div
@@ -187,8 +174,8 @@ input , textarea , .border-div , button
 @media(max-width: 600px) {
     .logo
     {
-        background-position: center;
-        margin-bottom: 20px;
+        background-size: 50% 50%;
+        height: 50px;
     }
 
     .menu
@@ -267,8 +254,7 @@ input , textarea , .border-div , button
 
 .rounded2
 {
-    background-color: #1f2942;
-    border-radius: 0.35rem !important;
+    border-radius: 50%;
 }
 
 .button-tab

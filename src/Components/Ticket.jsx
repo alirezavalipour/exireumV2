@@ -256,25 +256,25 @@ class Ticket extends Component {
         let leftButton= "";
         if(this.state.nextPage)
         {
-            leftButton = <button onClick={this.clickNextButton} className="rounded shadow-lg border border-warning">
+            leftButton = <button onClick={this.clickNextButton} className="rounded text-secondary shadow-lg border border-warning">
                 <FontAwesomeIcon className="" icon={faAngleLeft}/>
             </button>;
         }
         let rightButton= "";
         if(this.state.prevPage)
         {
-            rightButton = <button onClick={this.clickPrevButton} className="rounded shadow-lg border border-warning">
+            rightButton = <button onClick={this.clickPrevButton} className="rounded text-secondary shadow-lg border border-warning">
                 <FontAwesomeIcon className="" icon={faAngleRight}/>
             </button>;
         }
         let loader = "";
         if(this.state.load === false)
         {
-            loader = <button className="col-12 bg-warning p-2 rounded mt-3 mb-3 shadow-lg text-light">SUBMIT</button>;
+            loader = <button className="col-12 bg-warning p-2 rounded mt-3 mb-3 text-light">SUBMIT</button>;
         }
         else if(this.state.load === true)
         {
-            loader = <button className="col-12 bg-warning p-2 rounded mt-3 mb-3 shadow-lg text-light">
+            loader = <button className="col-12 bg-warning p-2 rounded mt-3 mb-3 text-light">
                 <Loader
                     type="ThreeDots"
                     color="#fff"
@@ -312,11 +312,11 @@ class Ticket extends Component {
                     message = 'Suspend';
                 }
                 return <a key={index} className="" data-id={id} onClick={this.response}>
-                    <div className="row cursor border-top border-warning" style={{backgroundColor: (index%2 === 0 ? 'rgb(47, 61, 86)' : '#151d2e')}}>
-                        <div className="col-sm-3 col-12 text-center text-light pt-2 pb-2">{id}</div>
-                        <div className="col-sm-3 col-12 text-center text-light pt-2 pb-2">{date}</div>
-                        <div className="col-sm-3 col-12 text-center text-light pt-2 pb-2">{title}</div>
-                        <div className="col-sm-3 col-12 text-center text-light pt-2 pb-2">{message}</div>
+                    <div className="row smallText cursor border-top border-warning text-secondary">
+                        <div className="col-sm-3 col-12 text-center pt-2 pb-2">{id}</div>
+                        <div className="col-sm-3 col-12 text-center pt-2 pb-2">{date}</div>
+                        <div className="col-sm-3 col-12 text-center pt-2 pb-2">{title}</div>
+                        <div className="col-sm-3 col-12 text-center pt-2 pb-2">{message}</div>
                     </div>
                 </a>
             })
@@ -327,11 +327,11 @@ class Ticket extends Component {
                 let date = elem.created_at;
                 let text = elem.text;
                 let user = elem.user_type;
-                return <div key={index} className="row border border-warning rounded shadow-lg mt-3">
+                return <div key={index} className="row text-secondary smallText border border-warning rounded shadow-lg mt-3">
                     {/*<div className="col-sm-1 col-12 text-center text-light pt-2 pb-2">{id}</div>*/}
-                    <div className="col-sm-6 col-12 text-left text-light pt-2 pb-2 border-bottom border-warning">Author : {user}</div>
-                    <div className="col-sm-6 col-12 text-left text-light pt-2 pb-2 border-bottom border-warning">Date : {date}</div>
-                    <div className="col-12 text-left text-light pt-2 pb-2">Comment : {text}</div>
+                    <div className="col-sm-6 col-12 text-left pt-2 pb-2 border-bottom border-warning">Author : {user}</div>
+                    <div className="col-sm-6 col-12 text-left pt-2 pb-2 border-bottom border-warning">Date : {date}</div>
+                    <div className="col-12 text-left pt-2 pb-2">Comment : {text}</div>
                 </div>
             })
         }
@@ -357,20 +357,20 @@ class Ticket extends Component {
             return (
                 <div className="col-sm-8 col-12 clearfix mx-auto">
                     <div className="row">
-                        <h2 className="col-12 text-light text-center font-weight-bold mb-5">Support</h2>
+                        <h4 className="col-12 text-center mt-3">Support</h4>
                         <div className="col-12 mt-3">
                             <div className="row">
                                 <a className="col-12 cursor" onClick={this.createTicket}>
-                                    <div className="col-12 col-sm-3 bg-warning pt-2 pb-2 text-center text-light rounded shadow-lg mx-auto">CREATE TICKET</div>
+                                    <div className="col-12 col-sm-3 bg-warning pt-2 pb-2 text-center text-light rounded shadow-lg mx-auto smallText font-weight-bold">CREATE TICKET</div>
                                 </a>
                                 <div className="col-12 border border-warning mt-3 rounded shadow-lg mb-2">
                                     <div className="row">
                                         <div className="col-12">
-                                            <div className="row">
-                                                <div className="col-sm-3 col-12 text-center text-light border-right border-warning pt-2 pb-2 font-weight-bold">Id</div>
-                                                <div className="col-sm-3 col-12 text-center text-light border-right border-warning pt-2 pb-2 font-weight-bold">Date</div>
-                                                <div className="col-sm-3 col-12 text-center text-light border-right border-warning pt-2 pb-2 font-weight-bold">Title</div>
-                                                <div className="col-sm-3 col-12 text-center text-light  pt-2 pb-2 font-weight-bold">Status</div>
+                                            <div className="row text-secondary smallText">
+                                                <div className="col-sm-3 col-12 text-center border-right border-warning pt-2 pb-2">Id</div>
+                                                <div className="col-sm-3 col-12 text-center border-right border-warning pt-2 pb-2">Date</div>
+                                                <div className="col-sm-3 col-12 text-center border-right border-warning pt-2 pb-2">Title</div>
+                                                <div className="col-sm-3 col-12 text-center pt-2 pb-2">Status</div>
                                             </div>
                                         </div>
                                         <div className="col-12">
@@ -378,8 +378,8 @@ class Ticket extends Component {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-12 text-center text-light mb-5">
-                                    <div className="row">
+                                <div className="col-12 text-center mb-5">
+                                    <div className="row text-secondary">
                                         <div className="col-5 text-right">{leftButton}</div>
                                         <div className="col-2 text-center border border-warning rounded shadow-lg pr-0 pl-0">{this.state.currentPage}</div>
                                         <div className="col-5 text-left">{rightButton}</div>
@@ -397,9 +397,9 @@ class Ticket extends Component {
                 <div className="col-sm-8 col-12 clearfix mx-auto">
                     <div className="row">
                         {mess}
-                        <h2 className="col-12 text-light text-center font-weight-bold mb-5">Support</h2>
+                        <h4 className="col-12 text-center mb-3 mt-3">Support</h4>
                         <a className="col-12" onClick={this.return}>
-                            <div className="col-3 bg-warning font-weight-bold text-center rounded shadow-lg text-light pt-2 pb-2 cursor">
+                            <div className="col-3 bg-warning text-center rounded shadow-lg text-light pt-2 pb-2 cursor">
                                 RETURN
                             </div>
                         </a>
@@ -428,16 +428,16 @@ class Ticket extends Component {
                 <div className="col-sm-8 col-12 clearfix mx-auto">
                     <div className="row">
                         {messag}
-                        <h2 className="col-12 text-light text-center font-weight-bold mb-5">Support</h2>
+                        <h4 className="col-12 text-center mt-3">Support</h4>
                         <div className="col-12">
                             <a className="col-12" onClick={this.return}>
-                                <div className="col-3 bg-warning font-weight-bold text-center rounded shadow-lg text-light pt-2 pb-2 cursor">
+                                <div className="col-3 bg-warning text-center rounded shadow-lg text-light pt-2 pb-2 cursor">
                                     RETURN
                                 </div>
                             </a>
                             <form className="col-12 border border-warning rounded shadow-lg" onSubmit={this.addText}>
                                 <label className="col-12 mt-3">
-                                    <div className="row shadow-lg">
+                                    <div className="row">
                                         <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Text</span>
                                         <textarea className="col-9 text-center rounded-right p-2" name="text" type="text" onChange={this.handleChange}></textarea>
                                     </div>

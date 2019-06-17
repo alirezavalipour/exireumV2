@@ -67,10 +67,10 @@ class Orders extends Component {
 
     handleExchange(e) {
         e.preventDefault();
-        e.currentTarget.setAttribute("class", "col-sm-3 col-12 border-right border-warning pt-2 pb-2 font-weight-bold bg-warning");
-        document.getElementById('bill').setAttribute("class","col-sm-3 col-12 border-right border-warning pt-2 pb-2 font-weight-bold hover-tab");
-        document.getElementById('deposit').setAttribute("class","col-sm-3 col-12 border-right border-warning pt-2 pb-2 font-weight-bold hover-tab");
-        document.getElementById('withdraw').setAttribute("class","col-sm-3 col-12 border-right border-warning pt-2 pb-2 font-weight-bold hover-tab");
+        e.currentTarget.setAttribute("class", "col-sm-3 col-12 text-light border-right border-warning pt-2 pb-2 bg-warning small");
+        document.getElementById('bill').setAttribute("class","col-sm-3 col-12 border-right border-warning pt-2 pb-2 hover-tab small");
+        document.getElementById('deposit').setAttribute("class","col-sm-3 col-12 border-right border-warning pt-2 pb-2 hover-tab small");
+        document.getElementById('withdraw').setAttribute("class","col-sm-3 col-12 border-right border-warning pt-2 pb-2 hover-tab small");
         const url = this.Auth.getDomain() + '/user/stellar/exchange';
         const headers = {
             Accept: 'application/json',
@@ -114,10 +114,10 @@ class Orders extends Component {
 
     handleDeposit(e) {
         e.preventDefault();
-        e.currentTarget.setAttribute("class", "col-sm-3 col-12 border-right border-warning pt-2 pb-2 font-weight-bold bg-warning");
-        document.getElementById('exchange').setAttribute("class","col-sm-3 col-12 border-right border-warning pt-2 pb-2 font-weight-bold hover-tab");
-        document.getElementById('bill').setAttribute("class","col-sm-3 col-12 border-right border-warning pt-2 pb-2 font-weight-bold hover-tab");
-        document.getElementById('withdraw').setAttribute("class","col-sm-3 col-12 border-right border-warning pt-2 pb-2 font-weight-bold hover-tab");
+        e.currentTarget.setAttribute("class", "col-sm-3 col-12 text-light border-right border-warning pt-2 pb-2 bg-warning small");
+        document.getElementById('exchange').setAttribute("class","col-sm-3 col-12 border-right border-warning pt-2 pb-2 hover-tab small");
+        document.getElementById('bill').setAttribute("class","col-sm-3 col-12 border-right border-warning pt-2 pb-2 hover-tab small");
+        document.getElementById('withdraw').setAttribute("class","col-sm-3 col-12 border-right border-warning pt-2 pb-2 hover-tab small");
         const url = this.Auth.getDomain() + '/user/deposit';
         const headers = {
             Accept: 'application/json',
@@ -159,10 +159,10 @@ class Orders extends Component {
 
     handleWithdraw(e) {
         e.preventDefault();
-        e.currentTarget.setAttribute("class", "col-sm-3 col-12 border-right border-warning pt-2 pb-2 font-weight-bold bg-warning");
-        document.getElementById('exchange').setAttribute("class","col-sm-3 col-12 border-right border-warning pt-2 pb-2 font-weight-bold hover-tab");
-        document.getElementById('deposit').setAttribute("class","col-sm-3 col-12 border-right border-warning pt-2 pb-2 font-weight-bold hover-tab");
-        document.getElementById('bill').setAttribute("class","col-sm-3 col-12 pt-2 border-right border-warning pb-2 font-weight-bold hover-tab");
+        e.currentTarget.setAttribute("class", "col-sm-3 col-12 text-light border-right border-warning pt-2 pb-2 bg-warning small");
+        document.getElementById('exchange').setAttribute("class","col-sm-3 col-12 border-right border-warning pt-2 pb-2 hover-tab small");
+        document.getElementById('deposit').setAttribute("class","col-sm-3 col-12 border-right border-warning pt-2 pb-2 hover-tab small");
+        document.getElementById('bill').setAttribute("class","col-sm-3 col-12 pt-2 border-right border-warning pb-2 hover-tab small");
         const url = this.Auth.getDomain() + '/user/stellar/withdraw';
         const headers = {
             Accept: 'application/json',
@@ -204,10 +204,10 @@ class Orders extends Component {
 
     handleBill(e) {
         e.preventDefault();
-        e.currentTarget.setAttribute("class", "col-sm-3 col-12border-right border-warning pt-2 pb-2 font-weight-bold bg-warning");
-        document.getElementById('exchange').setAttribute("class","col-sm-3 col-12 border-right border-warning pt-2 pb-2 font-weight-bold hover-tab");
-        document.getElementById('deposit').setAttribute("class","col-sm-3 col-12 border-right border-warning pt-2 pb-2 font-weight-bold hover-tab");
-        document.getElementById('withdraw').setAttribute("class","col-sm-3 col-12 pt-2 pb-2 font-weight-bold hover-tab");
+        e.currentTarget.setAttribute("class", "col-sm-3 col-12 text-light border-right border-warning pt-2 pb-2 bg-warning small");
+        document.getElementById('exchange').setAttribute("class","col-sm-3 col-12 border-right border-warning pt-2 pb-2 hover-tab small");
+        document.getElementById('deposit').setAttribute("class","col-sm-3 col-12 border-right border-warning pt-2 pb-2 hover-tab small");
+        document.getElementById('withdraw').setAttribute("class","col-sm-3 col-12 pt-2 pb-2 hover-tab small");
         const url = this.Auth.getDomain() + '/user/bank/bill-payment';
         const headers = {
             Accept: 'application/json',
@@ -392,58 +392,54 @@ class Orders extends Component {
                 <FontAwesomeIcon className="" icon={faAngleRight}/>
             </button>;
         }
-        let attr = <div className="row smallText">
-            <div className="col-sm-2 col-12 border-right border-warning text-center text-light pt-2 pb-2 pr-1 pl-1 font-weight-bold">Date</div>
-            <div className="col-sm-2 col-12 border-right border-warning text-center text-light pt-2 pb-2 pr-1 pl-1 font-weight-bold">Base Amount</div>
-            <div className="col-sm-1 col-12 border-right border-warning text-center text-light pt-2 pb-2 pr-1 pl-1 font-weight-bold">Base asset</div>
-            <div className="col-sm-2 col-12 border-right border-warning text-center text-light pt-2 pb-2 pr-1 pl-1 font-weight-bold">Counter amount</div>
-            <div className="col-sm-1 col-12 border-right border-warning text-center text-light pt-2 pb-2 pr-1 pl-1 font-weight-bold">Counter asset</div>
-            <div className="col-sm-2 col-12 border-right border-warning text-center text-light pt-2 pb-2 pr-1 pl-1 font-weight-bold">Payment status</div>
-            <div className="col-sm-2 col-12 text-center text-light pt-2 pb-2 pr-1 pl-1 font-weight-bold">Settlement status</div>
+        let attr = <div className="row smallText text-secondary">
+            <div className="col-sm-2 col-12 border-right border-warning text-center pt-2 pb-2 pr-1 pl-1">Date</div>
+            <div className="col-sm-3 col-12 border-right border-warning text-center pt-2 pb-2 pr-1 pl-1">Base Amount</div>
+            <div className="col-sm-3 col-12 border-right border-warning text-center pt-2 pb-2 pr-1 pl-1">Counter amount</div>
+            <div className="col-sm-2 col-12 border-right border-warning text-center pt-2 pb-2 pr-1 pl-1">Payment status</div>
+            <div className="col-sm-2 col-12 text-center pt-2 pb-2 pr-1 pl-1">Settlement status</div>
         </div>;
         if(this.state.currentTab === 1)
         {
-            attr = <div className="row smallText">
-                <div className="col-sm-2 col-12 border-right border-warning text-center text-light pt-2 pb-2 pr-1 pl-1 font-weight-bold">Date</div>
-                <div className="col-sm-2 col-12 border-right border-warning text-center text-light pt-2 pb-2 pr-1 pl-1 font-weight-bold">Base Amount</div>
-                <div className="col-sm-1 col-12 border-right border-warning text-center text-light pt-2 pb-2 pr-1 pl-1 font-weight-bold">Base Asset</div>
-                <div className="col-sm-2 col-12 border-right border-warning text-center text-light pt-2 pb-2 pr-1 pl-1 font-weight-bold">Counter Amount</div>
-                <div className="col-sm-1 col-12 border-right border-warning text-center text-light pt-2 pb-2 pr-1 pl-1 font-weight-bold">Counter Asset</div>
-                <div className="col-sm-2 col-12 border-right border-warning text-center text-light pt-2 pb-2 pr-1 pl-1 font-weight-bold">Payment Status</div>
-                <div className="col-sm-2 col-12 text-center text-light pt-2 pb-2 pr-1 pl-1 font-weight-bold">Settlement Status</div>
+            attr = <div className="row smallText text-secondary">
+                <div className="col-sm-2 col-12 border-right border-warning text-center pt-2 pb-2 pr-1 pl-1">Date</div>
+                <div className="col-sm-3 col-12 border-right border-warning text-center pt-2 pb-2 pr-1 pl-1">Base Amount</div>
+                <div className="col-sm-3 col-12 border-right border-warning text-center pt-2 pb-2 pr-1 pl-1">Counter Amount</div>
+                <div className="col-sm-2 col-12 border-right border-warning text-center pt-2 pb-2 pr-1 pl-1">Payment Status</div>
+                <div className="col-sm-2 col-12 text-center pt-2 pb-2 pr-1 pl-1">Settlement Status</div>
             </div>;
         }
         if(this.state.currentTab === 2)
         {
-            attr = <div className="row smallText">
-                <div className="col-sm-2 col-12 border-right border-warning text-center text-light pt-2 pb-2 pr-1 pl-1 font-weight-bold">Date</div>
-                <div className="col-sm-2 col-12 border-right border-warning text-center text-light pt-2 pb-2 pr-1 pl-1 font-weight-bold">Base Amount (IRR)</div>
-                <div className="col-sm-2 col-12 border-right border-warning text-center text-light pt-2 pb-2 pr-1 pl-1 font-weight-bold">Counter Amount (XIR)</div>
-                <div className="col-sm-3 col-12 border-right border-warning text-center text-light pt-2 pb-2 pr-1 pl-1 font-weight-bold">Payment Status</div>
-                <div className="col-sm-3 col-12 text-center text-light pt-2 pb-2 pr-1 pl-1 font-weight-bold">Settlement Ref.</div>
+            attr = <div className="row smallText text-secondary">
+                <div className="col-sm-2 col-12 border-right border-warning text-center pt-2 pb-2 pr-1 pl-1">Date</div>
+                <div className="col-sm-2 col-12 border-right border-warning text-center pt-2 pb-2 pr-1 pl-1">Base Amount</div>
+                <div className="col-sm-2 col-12 border-right border-warning text-center pt-2 pb-2 pr-1 pl-1">Counter Amount</div>
+                <div className="col-sm-3 col-12 border-right border-warning text-center pt-2 pb-2 pr-1 pl-1">Payment Status</div>
+                <div className="col-sm-3 col-12 text-center pt-2 pb-2 pr-1 pl-1">Settlement Ref.</div>
             </div>;
         }
         if(this.state.currentTab === 3)
         {
-            attr = <div className="row smallText">
-                <div className="col-sm-2 col-12 border-right border-warning text-center text-light pt-2 pb-2 font-weight-bold">Date</div>
-                <div className="col-sm-2 col-12 border-right border-warning text-center text-light pt-2 pb-2 font-weight-bold">Base Amount (XIR)</div>
-                <div className="col-sm-2 col-12 border-right border-warning text-center text-light pt-2 pb-2 font-weight-bold">Counter Amount (IRR)</div>
-                <div className="col-sm-3 col-12 border-right border-warning text-center text-light pt-2 pb-2 font-weight-bold">Bank Account</div>
-                <div className="col-sm-1 col-12 border-right border-warning text-center text-light pt-2 pb-2 font-weight-bold">Payment status</div>
-                <div className="col-sm-2 col-12 text-center text-light pt-2 pb-2 font-weight-bold">Settlement Ref.</div>
+            attr = <div className="row smallText text-secondary">
+                <div className="col-sm-2 col-12 border-right border-warning text-center pt-2 pb-2">Date</div>
+                <div className="col-sm-2 col-12 border-right border-warning text-center pt-2 pb-2">Base Amount</div>
+                <div className="col-sm-2 col-12 border-right border-warning text-center pt-2 pb-2">Counter Amount</div>
+                <div className="col-sm-3 col-12 border-right border-warning text-center pt-2 pb-2">Bank Account</div>
+                <div className="col-sm-1 col-12 border-right border-warning text-center pt-2 pb-2">Payment status</div>
+                <div className="col-sm-2 col-12 text-center pt-2 pb-2">Settlement Ref.</div>
             </div>;
         }
         if(this.state.currentTab === 4)
         {
-            attr = <div className="row smallText">
-                <div className="col-sm-2 col-12 border-right border-warning text-center text-light pt-2 pb-2 font-weight-bold">Date</div>
-                <div className="col-sm-1 col-12 border-right border-warning text-center text-light pt-2 pb-2 font-weight-bold">Base Amount (XIR)</div>
-                <div className="col-sm-1 col-12 border-right border-warning text-center text-light pt-2 pb-2 font-weight-bold">Bill Amount (IRR)</div>
-                <div className="col-sm-2 col-12 border-right border-warning text-center text-light pt-2 pb-2 font-weight-bold">Billing Code</div>
-                <div className="col-sm-2 col-12 border-right border-warning text-center text-light pt-2 pb-2 font-weight-bold">Payment Code</div>
-                <div className="col-sm-2 col-12 border-right border-warning text-center text-light pt-2 pb-2 font-weight-bold">Payment status</div>
-                <div className="col-sm-2 col-12 text-center text-light pt-2 pb-2 font-weight-bold">Bill Ref.</div>
+            attr = <div className="row smallText text-secondary">
+                <div className="col-sm-2 col-12 border-right border-warning text-center pt-2 pb-2">Date</div>
+                <div className="col-sm-1 col-12 border-right border-warning text-center pt-2 pb-2">Base Amount</div>
+                <div className="col-sm-1 col-12 border-right border-warning text-center pt-2 pb-2">Bill Amount</div>
+                <div className="col-sm-2 col-12 border-right border-warning text-center pt-2 pb-2">Billing Code</div>
+                <div className="col-sm-2 col-12 border-right border-warning text-center pt-2 pb-2">Payment Code</div>
+                <div className="col-sm-2 col-12 border-right border-warning text-center pt-2 pb-2">Payment status</div>
+                <div className="col-sm-2 col-12 text-center pt-2 pb-2">Bill Ref.</div>
             </div>;
         }
         let signers = null;
@@ -505,14 +501,12 @@ class Orders extends Component {
                 {
                     order_status = 'Rejected'
                 }
-                return <div key={index} className="row smallText border-top border-warning" style={{backgroundColor: (index%2 === 0 ? 'rgb(47, 61, 86)' : '#151d2e')}}>
-                    <div className="col-sm-2 col-12 text-center text-light pt-2 pb-2">{date}</div>
-                    <div className="col-sm-2 col-12 text-center text-light pt-2 pb-2">{amount}</div>
-                    <div className="col-sm-1 col-12 text-center text-light pt-2 pb-2">{base_asset}</div>
-                    <div className="col-sm-2 col-12 text-center text-light pt-2 pb-2">{receive_amount}</div>
-                    <div className="col-sm-1 col-12 text-center text-light pt-2 pb-2">{counter_asset}</div>
-                    <div className="col-sm-2 col-12 text-center text-light pt-2 pb-2">{status} <a target='_blank' href={"https://horizon-testnet.stellar.org/transactions/" + hash} className="text-center text-light pt-2 pb-2 ml-2"><FontAwesomeIcon className="" icon={faExternalLinkSquareAlt}/></a></div>
-                    <div className="col-sm-2 col-12 text-center text-light pt-2 pb-2">{order_status} <a target='_blank' href={"https://horizon-testnet.stellar.org/transactions/" + hash_paid} className="text-center text-light pt-2 pb-2 ml-2"><FontAwesomeIcon className="" icon={faExternalLinkSquareAlt}/></a></div>
+                return <div key={index} className="row smallText border-top border-warning text-secondary">
+                    <div className="col-sm-2 col-12 text-center pt-2 pb-2">{date}</div>
+                    <div className="col-sm-3 col-12 text-center pt-2 pb-2">{amount} {base_asset}</div>
+                    <div className="col-sm-3 col-12 text-center pt-2 pb-2">{receive_amount} {counter_asset}</div>
+                    <div className="col-sm-2 col-12 text-center pt-2 pb-2">{status} <a target='_blank' href={"https://horizon-testnet.stellar.org/transactions/" + hash} className="text-center text-secondary pt-2 pb-2 ml-2"><FontAwesomeIcon className="" icon={faExternalLinkSquareAlt}/></a></div>
+                    <div className="col-sm-2 col-12 text-center pt-2 pb-2">{order_status} <a target='_blank' href={"https://horizon-testnet.stellar.org/transactions/" + hash_paid} className="text-center text-secondary pt-2 pb-2 ml-2"><FontAwesomeIcon className="" icon={faExternalLinkSquareAlt}/></a></div>
                 </div>;
             });
         }
@@ -565,13 +559,13 @@ class Orders extends Component {
                 // {
                 //     order_status = 'Rejected'
                 // }
-                return <div key={index} className="row smallText border-top border-warning" style={{backgroundColor: (index%2 === 0 ? 'rgb(47, 61, 86)' : '#151d2e')}}>
+                return <div key={index} className="row smallText border-top border-warning text-secondary">
                     {/*<div className="col-4 text-center text-light pt-2 pb-2">{request()}</div>*/}
-                    <div className="col-sm-2 col-12 text-center text-light pt-2 pb-2">{date}</div>
-                    <div className="col-sm-2 col-12 text-center text-light pt-2 pb-2">{price}</div>
-                    <div className="col-sm-2 col-12 text-center text-light pt-2 pb-2">{amount}</div>
-                    <div className="col-sm-3 col-12 text-center text-light pt-2 pb-2">{track}</div>
-                    <div className="col-sm-3 col-12 text-center text-light pt-2 pb-2">{status} <a target='_blank' href={"https://horizon-testnet.stellar.org/transactions/" + hash_paid} className="text-center text-light pt-2 pb-2 ml-2"><FontAwesomeIcon className="" icon={faExternalLinkSquareAlt}/></a></div>
+                    <div className="col-sm-2 col-12 text-center pt-2 pb-2">{date}</div>
+                    <div className="col-sm-2 col-12 text-center pt-2 pb-2">{price} IRR</div>
+                    <div className="col-sm-2 col-12 text-center pt-2 pb-2">{amount} XIR</div>
+                    <div className="col-sm-3 col-12 text-center pt-2 pb-2">{track}</div>
+                    <div className="col-sm-3 col-12 text-center pt-2 pb-2">{status} <a target='_blank' href={"https://horizon-testnet.stellar.org/transactions/" + hash_paid} className="text-center text-secondary pt-2 pb-2 ml-2"><FontAwesomeIcon className="" icon={faExternalLinkSquareAlt}/></a></div>
                 </div>;
             });
         }
@@ -625,13 +619,13 @@ class Orders extends Component {
                 {
                     order_status = 'Rejected'
                 }
-                return <div key={index} className="row smallText border-top border-warning" style={{backgroundColor: (index%2 === 0 ? 'rgb(47, 61, 86)' : '#151d2e')}}>
-                    <div className="col-sm-2 col-12 text-center text-light pt-2 pb-2">{date}</div>
-                    <div className="col-sm-2 col-12 text-center text-light pt-2 pb-2">{amount}</div>
-                    <div className="col-sm-2 col-12 text-center text-light pt-2 pb-2">{receive_amount}</div>
-                    <div className="col-sm-3 col-12 text-center text-light pt-2 pb-2">{bank_account}</div>
-                    <div className="col-sm-1 col-12 text-center text-light pt-2 pb-2">{status} <a target='_blank' href={"https://horizon-testnet.stellar.org/transactions/" + hash} className="text-center text-light pt-2 pb-2 ml-2"><FontAwesomeIcon className="" icon={faExternalLinkSquareAlt}/></a></div>
-                    <div className="col-sm-2 col-12 text-center text-light pt-2 pb-2">{track}</div>
+                return <div key={index} className="row smallText border-top border-warning text-secondary">
+                    <div className="col-sm-2 col-12 text-center pt-2 pb-2">{date}</div>
+                    <div className="col-sm-2 col-12 text-center pt-2 pb-2">{amount} XIR</div>
+                    <div className="col-sm-2 col-12 text-center pt-2 pb-2">{receive_amount} IRR</div>
+                    <div className="col-sm-3 col-12 text-center pt-2 pb-2">{bank_account}</div>
+                    <div className="col-sm-1 col-12 text-center pt-2 pb-2">{status} <a target='_blank' href={"https://horizon-testnet.stellar.org/transactions/" + hash} className="text-center text-secondary pt-2 pb-2 ml-2"><FontAwesomeIcon className="" icon={faExternalLinkSquareAlt}/></a></div>
+                    <div className="col-sm-2 col-12 text-center pt-2 pb-2">{track}</div>
                     {/*<a target='_blank' href={"https://horizon-testnet.stellar.org/transactions/" + hash_paid} className="text-center text-light pt-2 pb-2 ml-2"><FontAwesomeIcon className="" icon={faExternalLinkSquareAlt}/></a>*/}
                 </div>;
             });
@@ -688,14 +682,14 @@ class Orders extends Component {
                 {
                     order_status = 'Rejected'
                 }
-                return <div key={index} className="row smallText border-top border-warning" style={{backgroundColor: (index%2 === 0 ? 'rgb(47, 61, 86)' : '#151d2e')}}>
-                    <div className="col-sm-2 col-12 text-center text-light pt-2 pb-2">{date}</div>
-                    <div className="col-sm-1 col-12 text-center text-light pt-2 pb-2">{amount}</div>
-                    <div className="col-sm-1 col-12 text-center text-light pt-2 pb-2">{price}</div>
-                    <div className="col-sm-2 col-12 text-center text-light pt-2 pb-2">{billing_code}</div>
-                    <div className="col-sm-2 col-12 text-center text-light pt-2 pb-2">{payment_code}</div>
-                    <div className="col-sm-2 col-12 text-center text-light pt-2 pb-2">{status} <a target='_blank' href={"https://horizon-testnet.stellar.org/transactions/" + hash} className="text-center text-light pt-2 pb-2 ml-2"><FontAwesomeIcon className="" icon={faExternalLinkSquareAlt}/></a></div>
-                    <div className="col-sm-2 col-12 text-center text-light pt-2 pb-2">{track}</div>
+                return <div key={index} className="row smallText border-top border-warning text-secondary">
+                    <div className="col-sm-2 col-12 text-center pt-2 pb-2">{date}</div>
+                    <div className="col-sm-1 col-12 text-center pt-2 pb-2">{amount} XIR</div>
+                    <div className="col-sm-1 col-12 text-center pt-2 pb-2">{price} IRR</div>
+                    <div className="col-sm-2 col-12 text-center pt-2 pb-2">{billing_code}</div>
+                    <div className="col-sm-2 col-12 text-center pt-2 pb-2">{payment_code}</div>
+                    <div className="col-sm-2 col-12 text-center pt-2 pb-2">{status} <a target='_blank' href={"https://horizon-testnet.stellar.org/transactions/" + hash} className="text-center text-secondary pt-2 pb-2 ml-2"><FontAwesomeIcon className="" icon={faExternalLinkSquareAlt}/></a></div>
+                    <div className="col-sm-2 col-12 text-center pt-2 pb-2">{track}</div>
                     {/*<a target='_blank' href={"https://horizon-testnet.stellar.org/transactions/" + hash_paid} className="text-center text-light pt-2 pb-2 ml-2"><FontAwesomeIcon className="" icon={faExternalLinkSquareAlt}/></a>*/}
                 </div>;
             });
@@ -703,15 +697,15 @@ class Orders extends Component {
         return(
             <div className="col-sm-9 col-12 clearfix mx-auto">
                 <div className="row">
-                    <h2 className="col-12 text-light text-center font-weight-bold mb-5">Orders</h2>
+                    <h4 className="col-12 text-center mb-3 mt-3">History</h4>
                     <div className="col-12">
                         <div className="row">
-                            <div className="col-12 col-12 text-center border border-warning mb-2 rounded shadow-lg text-light">
-                                <div className="row ">
-                                    <a id="exchange" onClick={this.handleExchange} className="col-sm-3 col-12  border-right border-warning pt-2 pb-2 font-weight-bold bg-warning">Exchange</a>
-                                    <a id="deposit" onClick={this.handleDeposit} className="col-sm-3 col-12 border-right border-warning pt-2 pb-2 font-weight-bold hover-tab">Deposit</a>
-                                    <a id="withdraw" onClick={this.handleWithdraw} className="col-sm-3 col-12 border-right border-warning pt-2 pb-2 font-weight-bold hover-tab">Withdraw</a>
-                                    <a id="bill" onClick={this.handleBill} className="col-sm-3 col-12 pt-2 pb-2 font-weight-bold hover-tab">Bill payment</a>
+                            <div className="col-12 text-center border border-warning mb-2 rounded shadow-lg">
+                                <div className="row text-secondary">
+                                    <a id="exchange" onClick={this.handleExchange} className="col-sm-3 col-12 text-light border-right border-warning pt-2 pb-2 bg-warning small">Exchange</a>
+                                    <a id="deposit" onClick={this.handleDeposit} className="col-sm-3 col-12 border-right border-warning pt-2 pb-2 hover-tab small">Deposit</a>
+                                    <a id="withdraw" onClick={this.handleWithdraw} className="col-sm-3 col-12 border-right border-warning pt-2 pb-2 hover-tab small">Withdrawal</a>
+                                    <a id="bill" onClick={this.handleBill} className="col-sm-3 col-12 pt-2 pb-2 small hover-tab">Bill payment</a>
                                 </div>
                             </div>
                             {/*<div className="col-12 text-center text-light border-bottom border-warning">*/}
@@ -728,8 +722,8 @@ class Orders extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="col-12 mt-3 text-center text-light mb-3">
-                        <div className="row">
+                    <div className="col-12 mt-3 text-center mb-3">
+                        <div className="row text-secondary">
                             <div className="col-5 text-right">{leftButton}</div>
                             <div className="col-2 text-center border border-warning rounded shadow-lg pr-0 pl-0">{this.state.currentPage}</div>
                             <div className="col-5 text-left">{rightButton}</div>
