@@ -118,7 +118,7 @@ class Login extends Component {
             <div className="col-sm-6 col-12 clearfix mx-auto">
                 <div className="row">
                     {error}
-                    <h2 className="col-12 text-light text-center font-weight-bold mb-5">Login</h2>
+                    <h4 className="col-12 text-light text-center mt-5 mb-5">Login</h4>
                     <form className="col-12" onSubmit={this.handleFormSubmit}>
                         <div className="col-12" onFocus={this.showPlacholder2} onBlur={this.hidPlacholder2}>
                             <div className="row">

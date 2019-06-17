@@ -406,7 +406,7 @@ class Account extends Component {
                 <div className="row">
                     {valid}
                     {/*{invalid}*/}
-                    <h2 className="col-12 text-light text-center font-weight-bold mb-5">Stellar account</h2>
+                    <h4 className="col-12 text-light text-center mt-5 mb-5">Stellar account</h4>
                     <div className="col-12 border border-warning rounded shadow-lg mb-2">
                         <div className="row">
                             <a id='add' onClick={this.changeForm1} className="col-6 text-light text-center font-weight-bold pb-2 pt-2 bg-warning">I Already Have An Account</a>

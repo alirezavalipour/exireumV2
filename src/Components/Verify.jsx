@@ -116,7 +116,7 @@ class sms extends Component {
             <div className="col-sm-6 col-12 clearfix mx-auto">
                 <div className="row">
                     {mes}
-                    <h2 className="col-12 text-light text-center font-weight-bold mb-5">Verify</h2>
+                    <h4 className="col-12 text-light text-center mt-5 mb-5">Verify</h4>
                     <div className="col-12 text-light text-center mb-5">Please enter the verification code sent to your phone by SMS</div>
                     <form  className="col-12" onSubmit={this.handleFormSubmit}>
                         <input className="col-12 p-2 rounded shadow-lg" name="temporary_code" type="tel" onChange={this.handleChange}/>

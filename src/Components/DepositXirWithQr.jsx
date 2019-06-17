@@ -53,7 +53,7 @@ class DepositXirWithQr extends Component {
         return(
             <div className="col-sm-7 col-12 clearfix mx-auto">
                 <div className="row">
-                    <h2 className="col-12 text-light text-center font-weight-bold mb-5">Deposit XIR With QR</h2>
+                    <h4 className="col-12 text-light text-center mt-5 mb-5">Deposit XIR With QR</h4>
                     <div className="col-12 p-2">
                         <QRCode
                             className="d-flex mx-auto"

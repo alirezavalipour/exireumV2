@@ -214,7 +214,7 @@ class Trust extends Component {
             <div className="col-sm-7 col-12 clearfix mx-auto">
                 <div className="row">
                     {valid}
-                    <h2 className="col-12 text-light text-center font-weight-bold mb-5">Stellar account trust</h2>
+                    <h4 className="col-12 text-light text-center mt-5 mb-5">Stellar account trust</h4>
                     <form className="col-12" onSubmit={this.handleFormSubmit}>
                         <div className="col-12" onClick={this.showPlacholder} onChange={this.showPlacholder}>
                             <div className="row">

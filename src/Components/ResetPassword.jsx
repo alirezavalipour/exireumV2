@@ -315,7 +315,7 @@ class ResetPassword extends Component {
                 <div className="col-sm-6 col-12 clearfix mx-auto">
                     <div className="row">
                         {equalpass}
-                        <h2 className="col-12 text-light mb-5 text-center font-weight-bold">Reset password</h2>
+                        <h4 className="col-12 text-light mb-5 text-center mt-5">Reset password</h4>
                         <form autoComplete='nope' className="col-12" onSubmit={this.handleFormSubmit3}>
                             <div className="col-12" onFocus={this.showPlacholder2} onBlur={this.hidPlacholder2}>
                                 <div className="row">

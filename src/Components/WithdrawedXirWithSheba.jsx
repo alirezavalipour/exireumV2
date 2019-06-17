@@ -372,7 +372,7 @@ class WithdrawedXirWithSheba extends Component {
                         {error}
                         {failAmount}
                         {failOrder}
-                        <h2 className="col-12 text-light text-center font-weight-bold mb-2">Withdraw XIR to bank account</h2>
+                        <h4 className="col-12 text-light text-center mt-5 mb-2">Withdraw XIR to bank account</h4>
                         <div className='col-12 text-center text-light mb-5'>Available : {priceXlm}</div>
                         <form className="col-12" onSubmit={this.handleFormSubmit}>
                             <label className="col-12">
@@ -407,7 +407,7 @@ class WithdrawedXirWithSheba extends Component {
                 <div className="col-sm-8 col-12 clearfix mx-auto">
                     <div className="row">
                         {failTransaction}
-                        <h2 className="col-12 text-light text-center font-weight-bold mb-5">Withdraw XIR to bank account</h2>
+                        <h4 className="col-12 text-light text-center mt-5 mb-5">Withdraw XIR to bank account</h4>
                         <div className="col-12 text-center text-light font-size-bold">Sheba : {this.state.sheba}</div>
                         <div className="col-12 text-center text-light font-size-bold mt-3">First Name : {this.state.first_name}</div>
                         <div className="col-12 text-center text-light font-size-bold mt-3">Last Name : {this.state.last_name}</div>
@@ -437,7 +437,7 @@ class WithdrawedXirWithSheba extends Component {
             return(
                 <div className="col-sm-8 col-12 clearfix mx-auto">
                     <div className="row">
-                        <h2 className="col-12 text-light text-center font-weight-bold mb-5">Withdraw XIR to bank account</h2>
+                        <h4 className="col-12 text-light text-center mt-5 mb-5">Withdraw XIR to bank account</h4>
                         <div className="col-12 text-center text-light p-2">Your transaction has been done successfully.</div>
                         <div className="col-12 text-center text-light p-2 mt-3">Your transaction hash : <a target='_blank' href={'https://horizon-testnet.stellar.org/transactions/' + this.state.hash}>{this.state.hash}</a></div>
                         <a href="../Components/Dashboard" className='col-sm-4 col-12 text-center text-light pt-2 pb-2 mt-3 bg-warning mx-auto rounded shadow-lg'>Back to dashboard</a>

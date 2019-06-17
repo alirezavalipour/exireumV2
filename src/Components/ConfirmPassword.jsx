@@ -108,7 +108,7 @@ class ConfirmPassword extends Component {
             <div className="col-sm-6 col-12 clearfix mx-auto">
                 <div className="row">
                     {equalpass}
-                    <h2 className="col-12 text-light mb-5 text-center font-weight-bold">Set your password</h2>
+                    <h4 className="col-12 text-light mt-5 mb-5 text-center">Set your password</h4>
                     <form autoComplete='nope' className="col-12" onSubmit={this.handleFormSubmit}>
                         <div className="col-12" onFocus={this.showPlacholder} onBlur={this.hidPlacholder}>
                             <div className="row">

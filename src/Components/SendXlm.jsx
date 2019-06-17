@@ -284,7 +284,7 @@ class SendXlm extends Component {
                     <div className="row">
                         {valids}
                         {failAmount}
-                        <h2 className="col-12 text-light text-center font-weight-bold mb-2">Send XLM</h2>
+                        <h4 className="col-12 text-light text-center mt-5 mb-2">Send XLM</h4>
                         <div className='col-12 text-center text-light mb-5'>Available : {priceXlm}</div>
                         <form className="col-12" onSubmit={this.handleClickButton}>
                             <label className="col-12">
@@ -315,7 +315,7 @@ class SendXlm extends Component {
                     <div className="row">
                         {failTransaction}
                         {valid}
-                        <h2 className="col-12 text-light text-center font-weight-bold mb-5">Send XLM</h2>
+                        <h4 className="col-12 text-light text-center mt-5 mb-5">Send XLM</h4>
                         <div className="col-12 text-center text-light mb-3">You are sending {this.state.amount} XLM to the following address :</div>
                         <div className="col-12 text-center text-light mb-3">{this.state.public_key_dest}</div>
                         <div className="col-12 text-center text-light mb-5">Please enter your secret key to approve the transaction.</div>
@@ -343,7 +343,7 @@ class SendXlm extends Component {
             return(
                 <div className="col-sm-8 col-12 clearfix mx-auto">
                     <div className="row">
-                        <h2 className="col-12 text-light text-center font-weight-bold mb-5">Send XLM</h2>
+                        <h4 className="col-12 text-light text-center mt-5 mb-5">Send XLM</h4>
                         <div className="col-12 text-center text-light p-2">Your transaction has been done successfully.</div>
                         <div className="col-12 text-center text-light p-2 mt-3">Your transaction hash : <a target='_blank' href={'https://horizon-testnet.stellar.org/transactions/' + this.state.hash}>{this.state.hash}</a></div>
                         <a href="../Components/Dashboard" className='col-sm-4 col-12 text-center text-light pt-2 pb-2 mt-3 bg-warning mx-auto rounded shadow-lg'>Back to dashboard</a>

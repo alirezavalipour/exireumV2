@@ -173,7 +173,7 @@ class Register extends Component {
                 <div className="row">
                     {errors}
                     {error}
-                    <h2 className="col-12 text-light text-center font-weight-bold mb-5">Sign Up</h2>
+                    <h4 className="col-12 text-light text-center mt-5 mb-5">Sign Up</h4>
                     <form className="col-12" onSubmit={this.handleFormSubmit}>
                         <div className="col-12" onFocus={this.showPlacholder} onBlur={this.hidPlacholder}>
                             <div className="row">
