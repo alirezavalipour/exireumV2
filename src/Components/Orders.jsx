@@ -381,14 +381,14 @@ class Orders extends Component {
         let leftButton= "";
         if(this.state.nextPage)
         {
-            leftButton = <button onClick={this.clickNextButton} className="rounded shadow-lg border border-warning">
+            leftButton = <button onClick={this.clickNextButton} className="rounded shadow-lg bg-white text-secondary border border-warning">
                 <FontAwesomeIcon className="" icon={faAngleLeft}/>
             </button>;
         }
         let rightButton= "";
         if(this.state.prevPage)
         {
-            rightButton = <button onClick={this.clickPrevButton} className="rounded shadow-lg border border-warning">
+            rightButton = <button onClick={this.clickPrevButton} className="rounded shadow-lg bg-white text-secondary border border-warning">
                 <FontAwesomeIcon className="" icon={faAngleRight}/>
             </button>;
         }
