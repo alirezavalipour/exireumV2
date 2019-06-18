@@ -367,10 +367,10 @@ class Ticket extends Component {
                                     <div className="row">
                                         <div className="col-12">
                                             <div className="row text-secondary smallText">
-                                                <div className="col-sm-3 col-12 text-center border-right border-warning pt-2 pb-2">Id</div>
-                                                <div className="col-sm-3 col-12 text-center border-right border-warning pt-2 pb-2">Date</div>
-                                                <div className="col-sm-3 col-12 text-center border-right border-warning pt-2 pb-2">Title</div>
-                                                <div className="col-sm-3 col-12 text-center pt-2 pb-2">Status</div>
+                                                <div className="col-sm-3 col-12 text-center border-right border-warning pt-2 pb-2 font-weight-bold">Id</div>
+                                                <div className="col-sm-3 col-12 text-center border-right border-warning pt-2 pb-2 font-weight-bold">Date</div>
+                                                <div className="col-sm-3 col-12 text-center border-right border-warning pt-2 pb-2 font-weight-bold">Title</div>
+                                                <div className="col-sm-3 col-12 text-center pt-2 pb-2 font-weight-bold">Status</div>
                                             </div>
                                         </div>
                                         <div className="col-12">

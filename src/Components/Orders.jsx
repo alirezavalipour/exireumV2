@@ -396,52 +396,52 @@ class Orders extends Component {
             </button>;
         }
         let attr = <div className="row smallText text-secondary">
-            <div className="col-sm-2 col-12 border-right border-warning text-center pt-2 pb-2 pr-1 pl-1">Date</div>
-            <div className="col-sm-3 col-12 border-right border-warning text-center pt-2 pb-2 pr-1 pl-1">Base Amount</div>
-            <div className="col-sm-3 col-12 border-right border-warning text-center pt-2 pb-2 pr-1 pl-1">Counter amount</div>
-            <div className="col-sm-2 col-12 border-right border-warning text-center pt-2 pb-2 pr-1 pl-1">Payment status</div>
-            <div className="col-sm-2 col-12 text-center pt-2 pb-2 pr-1 pl-1">Settlement status</div>
+            <div className="col-sm-2 col-12 border-right border-warning text-center pt-2 pb-2 pr-1 pl-1 font-weight-bold">Date</div>
+            <div className="col-sm-3 col-12 border-right border-warning text-center pt-2 pb-2 pr-1 pl-1 font-weight-bold">Base Amount</div>
+            <div className="col-sm-3 col-12 border-right border-warning text-center pt-2 pb-2 pr-1 pl-1 font-weight-bold">Counter amount</div>
+            <div className="col-sm-2 col-12 border-right border-warning text-center pt-2 pb-2 pr-1 pl-1 font-weight-bold">Payment status</div>
+            <div className="col-sm-2 col-12 text-center pt-2 pb-2 pr-1 pl-1 font-weight-bold">Settlement status</div>
         </div>;
         if(this.state.currentTab === 1)
         {
             attr = <div className="row smallText text-secondary">
-                <div className="col-sm-2 col-12 border-right border-warning text-center pt-2 pb-2 pr-1 pl-1">Date</div>
-                <div className="col-sm-3 col-12 border-right border-warning text-center pt-2 pb-2 pr-1 pl-1">Base Amount</div>
-                <div className="col-sm-3 col-12 border-right border-warning text-center pt-2 pb-2 pr-1 pl-1">Counter Amount</div>
-                <div className="col-sm-2 col-12 border-right border-warning text-center pt-2 pb-2 pr-1 pl-1">Payment Status</div>
-                <div className="col-sm-2 col-12 text-center pt-2 pb-2 pr-1 pl-1">Settlement Status</div>
+                <div className="col-sm-2 col-12 border-right border-warning text-center pt-2 pb-2 pr-1 pl-1 font-weight-bold">Date</div>
+                <div className="col-sm-3 col-12 border-right border-warning text-center pt-2 pb-2 pr-1 pl-1 font-weight-bold">Base Amount</div>
+                <div className="col-sm-3 col-12 border-right border-warning text-center pt-2 pb-2 pr-1 pl-1 font-weight-bold">Counter Amount</div>
+                <div className="col-sm-2 col-12 border-right border-warning text-center pt-2 pb-2 pr-1 pl-1 font-weight-bold">Payment Status</div>
+                <div className="col-sm-2 col-12 text-center pt-2 pb-2 pr-1 pl-1 font-weight-bold">Settlement Status</div>
             </div>;
         }
         if(this.state.currentTab === 2)
         {
             attr = <div className="row smallText text-secondary">
-                <div className="col-sm-2 col-12 border-right border-warning text-center pt-2 pb-2 pr-1 pl-1">Date</div>
-                <div className="col-sm-2 col-12 border-right border-warning text-center pt-2 pb-2 pr-1 pl-1">Base Amount</div>
-                <div className="col-sm-2 col-12 border-right border-warning text-center pt-2 pb-2 pr-1 pl-1">Counter Amount</div>
-                <div className="col-sm-3 col-12 border-right border-warning text-center pt-2 pb-2 pr-1 pl-1">Payment Status</div>
-                <div className="col-sm-3 col-12 text-center pt-2 pb-2 pr-1 pl-1">Settlement Ref.</div>
+                <div className="col-sm-2 col-12 border-right border-warning text-center pt-2 pb-2 pr-1 pl-1 font-weight-bold">Date</div>
+                <div className="col-sm-2 col-12 border-right border-warning text-center pt-2 pb-2 pr-1 pl-1 font-weight-bold">Base Amount</div>
+                <div className="col-sm-2 col-12 border-right border-warning text-center pt-2 pb-2 pr-1 pl-1 font-weight-bold">Counter Amount</div>
+                <div className="col-sm-3 col-12 border-right border-warning text-center pt-2 pb-2 pr-1 pl-1 font-weight-bold">Payment Status</div>
+                <div className="col-sm-3 col-12 text-center pt-2 pb-2 pr-1 pl-1 font-weight-bold">Settlement Ref.</div>
             </div>;
         }
         if(this.state.currentTab === 3)
         {
             attr = <div className="row smallText text-secondary">
-                <div className="col-sm-2 col-12 border-right border-warning text-center pt-2 pb-2">Date</div>
-                <div className="col-sm-2 col-12 border-right border-warning text-center pt-2 pb-2">Base Amount</div>
-                <div className="col-sm-2 col-12 border-right border-warning text-center pt-2 pb-2">Counter Amount</div>
-                <div className="col-sm-3 col-12 border-right border-warning text-center pt-2 pb-2">Bank Account</div>
-                <div className="col-sm-1 col-12 border-right border-warning text-center pt-2 pb-2">Payment status</div>
-                <div className="col-sm-2 col-12 text-center pt-2 pb-2">Settlement Ref.</div>
+                <div className="col-sm-2 col-12 border-right border-warning text-center pt-2 pb-2 font-weight-bold">Date</div>
+                <div className="col-sm-2 col-12 border-right border-warning text-center pt-2 pb-2 font-weight-bold">Base Amount</div>
+                <div className="col-sm-2 col-12 border-right border-warning text-center pt-2 pb-2 font-weight-bold">Counter Amount</div>
+                <div className="col-sm-3 col-12 border-right border-warning text-center pt-2 pb-2 font-weight-bold">Bank Account</div>
+                <div className="col-sm-1 col-12 border-right border-warning text-center pt-2 pb-2 font-weight-bold">Payment status</div>
+                <div className="col-sm-2 col-12 text-center pt-2 pb-2 font-weight-bold">Settlement Ref.</div>
             </div>;
         }
         if(this.state.currentTab === 4)
         {
             attr = <div className="row smallText text-secondary">
-                <div className="col-sm-2 col-12 border-right border-warning text-center pt-2 pb-2">Date</div>
-                <div className="col-sm-1 col-12 border-right border-warning text-center pt-2 pb-2">Base Amount</div>
-                <div className="col-sm-1 col-12 border-right border-warning text-center pt-2 pb-2">Bill Amount</div>
-                <div className="col-sm-2 col-12 border-right border-warning text-center pt-2 pb-2">Billing Code</div>
-                <div className="col-sm-2 col-12 border-right border-warning text-center pt-2 pb-2">Payment Code</div>
-                <div className="col-sm-2 col-12 border-right border-warning text-center pt-2 pb-2">Payment status</div>
+                <div className="col-sm-2 col-12 border-right border-warning text-center pt-2 pb-2 font-weight-bold">Date</div>
+                <div className="col-sm-1 col-12 border-right border-warning text-center pt-2 pb-2 font-weight-bold">Base Amount</div>
+                <div className="col-sm-1 col-12 border-right border-warning text-center pt-2 pb-2 font-weight-bold">Bill Amount</div>
+                <div className="col-sm-2 col-12 border-right border-warning text-center pt-2 pb-2 font-weight-bold">Billing Code</div>
+                <div className="col-sm-2 col-12 border-right border-warning text-center pt-2 pb-2 font-weight-bold">Payment Code</div>
+                <div className="col-sm-2 col-12 border-right border-warning text-center pt-2 pb-2 font-weight-bold">Payment status</div>
                 <div className="col-sm-2 col-12 text-center pt-2 pb-2">Bill Ref.</div>
             </div>;
         }
@@ -515,7 +515,7 @@ class Orders extends Component {
         }
         else if(this.state.length1 === 0)
         {
-            signers = <div className="col-12 text-center border-top border-warning text-secondary pt-2 pb-2 pr-0 pl-0 smallText">There is no item to match.</div>;
+            signers = <div className="col-12 text-center border-top border-warning text-secondary pt-2 pb-2 pr-0 pl-0 smallText">There is no item to show.</div>;
         }
 
         if (this.state.data2 && this.state.currentTab === 2 && this.state.length2 !== 0) {
@@ -579,7 +579,7 @@ class Orders extends Component {
         }
         else if(this.state.length2 === 0)
         {
-            signers = <div className="col-12 text-center border-top border-warning text-secondary pt-2 pb-2 pr-0 pl-0 smallText">There is no item to match.</div>;
+            signers = <div className="col-12 text-center border-top border-warning text-secondary pt-2 pb-2 pr-0 pl-0 smallText">There is no item to show.</div>;
         }
 
         if (this.state.data3 && this.state.currentTab === 3 && this.state.length3 !== 0) {
@@ -645,7 +645,7 @@ class Orders extends Component {
         }
         else if(this.state.length3 === 0)
         {
-            signers = <div className="col-12 text-center border-top border-warning text-secondary pt-2 pb-2 pr-0 pl-0 smallText">There is no item to match.</div>;
+            signers = <div className="col-12 text-center border-top border-warning text-secondary pt-2 pb-2 pr-0 pl-0 smallText">There is no item to show.</div>;
         }
 
         if (this.state.data4 && this.state.currentTab === 4 && this.state.length4 !== 0) {
@@ -714,7 +714,7 @@ class Orders extends Component {
         }
         else if(this.state.length4 === 0)
         {
-            signers = <div className="col-12 text-center border-top border-warning text-secondary pt-2 pb-2 pr-0 pl-0 smallText">There is no item to match.</div>;
+            signers = <div className="col-12 text-center border-top border-warning text-secondary pt-2 pb-2 pr-0 pl-0 smallText">There is no item to show.</div>;
         }
 
         return(
@@ -723,7 +723,7 @@ class Orders extends Component {
                     <h4 className="col-12 text-center mb-3 mt-3">History</h4>
                     <div className="col-12">
                         <div className="row">
-                            <div className="col-12 text-center border border-warning mb-2 rounded shadow-lg">
+                            <div className="col-6 mx-auto text-center border border-warning mb-2 rounded shadow-lg">
                                 <div className="row text-secondary">
                                     <a id="exchange" onClick={this.handleExchange} className="col-sm-3 col-12 text-light border-right border-warning pt-2 pb-2 bg-warning small">Exchange</a>
                                     <a id="deposit" onClick={this.handleDeposit} className="col-sm-3 col-12 border-right border-warning pt-2 pb-2 hover-tab small">Deposit</a>

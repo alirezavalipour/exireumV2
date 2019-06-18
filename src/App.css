@@ -107,7 +107,7 @@ input , textarea , .border-div , button
     line-height: 40px;
     position: absolute !important;
     background-color: #151d2e;
-    top: 100%;
+    top: 102%;
     z-index: 2;
     right: 0;
 }
@@ -115,7 +115,7 @@ input , textarea , .border-div , button
 .sub-user a div
 {
     border-radius: 10px;
-    background-color: #4b3d10;
+    background-color: #FFF;
     cursor: pointer;
 }
 
@@ -336,6 +336,18 @@ input , textarea , .border-div , button
 .proInput
 {
     border: 0 solid #000 !important;
+}
+
+.name-cursor
+{
+    color: #fff !important;
+    cursor: pointer;
+}
+
+.name-cursor:hover
+{
+    color: #fff !important;
+    cursor: pointer;
 }
 
 @media(max-width: 800px) {
