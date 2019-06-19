@@ -128,24 +128,24 @@ class App extends Component {
 
     let item = <div className="sub-user-none rounded-bottom col-md-2 col-sm-4 col-12">
       <div className="row">
-          <a className="col-12 text-center text-light text-decoration-none"><div className="col-12 mb-2 font-weight-bold">Profile</div></a>
-          <a className="col-12 text-center"><div className="col-12 font-weight-bold">Logout</div></a>
+          <a className="col-12 text-center small text-decoration-none text-hover"><div className="col-12 mb-2 font-weight-bold">Profile</div></a>
+          <a className="col-12 text-center small text-hover"><div className="col-12 font-weight-bold">Logout</div></a>
       </div>
     </div>;
     if(this.state.key === false)
     {
       item = <div className="sub-user-none rounded-bottom col-md-2 col-sm-4 col-12 d-none">
         <div className="row">
-            <a className="col-12 text-center text-light text-decoration-none"><div className="col-12 mb-2 font-weight-bold">Profile</div></a>
-            <a className="col-12 text-center"><div className="col-12 font-weight-bold">Logout</div></a>
+            <a className="col-12 text-center small text-decoration-none text-hover"><div className="col-12 mb-2 font-weight-bold">Profile</div></a>
+            <a className="col-12 text-center small text-hover"><div className="col-12 font-weight-bold">Logout</div></a>
         </div>
       </div>;
     }else
     {
       item = <div className="sub-user rounded-bottom col-md-2 col-sm-4 col-12 pt-3 pb-3">
         <div className="row">
-            <a onClick={this.goProfile} className="col-12 text-center text-decoration-none mb-2"><div className="col-12 font-weight-bold">Profile</div></a>
-            <a className="col-12 text-center" onClick={this.logOut}><div className="col-12 font-weight-bold">Logout</div></a>
+            <a onClick={this.goProfile} className="col-12 text-center small text-decoration-none text-hover mb-2"><div className="col-12 font-weight-bold">Profile</div></a>
+            <a className="col-12 text-center small text-hover" onClick={this.logOut}><div className="col-12 font-weight-bold">Logout</div></a>
         </div>
       </div>;
     }

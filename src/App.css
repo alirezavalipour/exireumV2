@@ -112,6 +112,11 @@ input , textarea , .border-div , button
     right: 0;
 }
 
+.text-hover:hover div
+{
+    color: #000 !important;
+}
+
 .sub-user a div
 {
     border-radius: 10px;
