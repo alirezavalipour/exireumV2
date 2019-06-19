@@ -102,7 +102,7 @@ class Dashboard extends Component {
                 });
                 if (!trustFlag)
                 {
-                    window.location.replace('/Components/Trust');
+                    window.location.replace('/Components/ChangeAccount');
                 }
             });
     }

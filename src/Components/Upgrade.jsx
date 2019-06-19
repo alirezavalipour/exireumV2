@@ -150,7 +150,7 @@ class Upgrade extends Component {
             return (
                 <div className="col-sm-8 col-12 clearfix mx-auto">
                     <div className="row">
-                        <h2 className="col-12 text-light text-center font-weight-bold mb-5">Upgrade</h2>
+                        <h4 className="col-12 text-light text-center mt-5 mb-5">Upgrade</h4>
                         <form className="col-12" onSubmit={this.handleFormSubmit}>
                             <label className='col-12'>
                                 <div className="row shadow-lg">
@@ -180,7 +180,7 @@ class Upgrade extends Component {
             return (
                 <div className="col-sm-8 col-12 clearfix mx-auto">
                     <div className="row">
-                        <h2 className="col-12 text-light text-center font-weight-bold mb-5">Upgrade</h2>
+                        <h4 className="col-12 text-light text-center mt-5 mb-5">Upgrade</h4>
                         <form className="col-12" onSubmit={this.signWithSecretKey}>
                             <label className='col-12'>
                                 <div className="row shadow-lg">

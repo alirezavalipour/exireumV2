@@ -117,6 +117,11 @@ input , textarea , .border-div , button
     color: #000 !important;
 }
 
+.text-hover2:hover
+{
+    text-decoration: none !important;
+}
+
 .sub-user a div
 {
     border-radius: 10px;
@@ -172,8 +177,7 @@ input , textarea , .border-div , button
 
 .icon-size
 {
-    height: 100%;
-    width: 100% !important;
+    font-size: 20px;
 }
 
 @media(max-width: 600px) {
