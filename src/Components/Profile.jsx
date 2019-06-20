@@ -92,7 +92,7 @@ class Profile extends Component {
                                     </div>
                                     <div className="col-sm-6 col-12 mt-3">
                                         <div className="row">
-                                            <span className="col-4 small text-left font-weight-bold">National code : </span>
+                                            <span className="col-4 small text-left font-weight-bold">National id : </span>
                                             <div className="col-8 small text-left">{this.state.national_number}</div>
                                         </div>
                                     </div>
@@ -102,10 +102,10 @@ class Profile extends Component {
                                             <div className="col-8 small text-left">{this.state.address}</div>
                                         </div>
                                     </div>
-                                    <div className="col-12 col-sm-6 mt-3 mb-3 small text-hover2">
+                                    <div className="col-12 col-sm-6 mt-3 mb-3 small">
                                         <div className="row">
                                             <div className="col-sm-6 d-none d-sm-block"></div>
-                                            <a href={'/Components/PersonalInfo'} className="col-12 col-sm-6"><div className="col-12 bg-warning rounded text-light text-center pt-2 pb-2 font-weight-bold">Edit</div></a>
+                                            <a href={'/Components/PersonalInfo'} className="col-12 col-sm-6 text-hover2"><div className="col-12 bg-warning rounded text-light text-center pt-2 pb-2 font-weight-bold">Edit</div></a>
                                         </div>
                                     </div>
                                 </div>
@@ -136,8 +136,14 @@ class Profile extends Component {
                                             </a>
                                         </div>
                                     </div>
+                                    <div className="col-12 mt-3">
+                                        <div className="row">
+                                            <span className="col-sm-5 col-12 small text-left pt-2 pb-2 font-weight-bold">Transfer limitation : </span>
+                                            <div className="col-sm-7 col-12 small text-left pt-2 pb-2 pr-0 pl-0">10,000,000 IRR<span className="font-weight-bold">*</span></div>
+                                        </div>
+                                    </div>
                                     <div className="col-12 mt-3 col-12 small pt-2 pb-2 text-left">
-                                        Transfer limitation 10,000,000 IRR you can upgrade your KYC level to change your daily transfer limitation to 150,000,000 IRR.
+                                        <span className="font-weight-bold">*</span>You can increase your transfer limitation to 150,000,000 IRR by upgrading your KYC level <span className="font-weight-bold text-primary">More Info</span>.
                                     </div>
                                 </div>
                             </div>
