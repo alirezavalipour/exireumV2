@@ -96,15 +96,18 @@ class Profile extends Component {
                                             <div className="col-8 small text-left">{this.state.national_number}</div>
                                         </div>
                                     </div>
-                                    <div className="col-12 mt-3">
+                                    <div className="col-12 col-sm-6 mt-3">
                                         <div className="row">
-                                            <span className="col-2 small text-left font-weight-bold">Address : </span>
-                                            <div className="col-10 small text-left">{this.state.address}</div>
+                                            <span className="col-4 small text-left font-weight-bold">Address : </span>
+                                            <div className="col-8 small text-left">{this.state.address}</div>
                                         </div>
                                     </div>
-                                    <a href={'/Components/PersonalInfo'} className="col-12 mt-3 mb-3 small text-hover2">
-                                        <div className="col-12 col-sm-4 mx-auto bg-warning rounded text-light text-center pt-2 pb-2 font-weight-bold">Edit personal information</div>
-                                    </a>
+                                    <div className="col-12 col-sm-6 mt-3 mb-3 small text-hover2">
+                                        <div className="row">
+                                            <div className="col-sm-6 d-none d-sm-block"></div>
+                                            <a href={'/Components/PersonalInfo'} className="col-12 col-sm-6"><div className="col-12 bg-warning rounded text-light text-center pt-2 pb-2 font-weight-bold">Edit</div></a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div className="col-12 pb-3 border border-warning mt-3 rounded shadow-lg">
@@ -120,18 +123,21 @@ class Profile extends Component {
                                             <span className="col-sm-2 col-12 small text-left pt-2 pb-2 font-weight-bold">Public key : </span>
                                             <div className="col-sm-7 col-12 small text-center pt-2 pb-2 pr-0 pl-0">{this.state.public_key}</div>
                                             <a href={'/Components/ChangeAccount'} className="col-sm-3 col-12 text-hover2">
-                                                <div className="pt-2 pb-2 small text-center bg-warning text-light rounded font-weight-bold">Change account</div>
+                                                <div className="pt-2 pb-2 small text-center bg-warning text-light rounded font-weight-bold">Change</div>
                                             </a>
                                         </div>
                                     </div>
                                     <div className="col-12 mt-3">
                                         <div className="row">
-                                            <span className="col-sm-2 col-12 small text-left pt-2 pb-2 font-weight-bold">Account status : </span>
-                                            <div className="col-sm-7 col-12 small text-center pt-2 pb-2 pr-0 pl-0">Unverified</div>
+                                            <span className="col-sm-2 col-12 small text-left pt-2 pb-2 font-weight-bold">KYC level : </span>
+                                            <div className="col-sm-7 col-12 small text-center pt-2 pb-2 pr-0 pl-0">Level 1 (unverified)</div>
                                             <a href={'/Components/Upgrade'} className="col-sm-3 col-12 text-hover2">
-                                                <div className="pt-2 pb-2 small text-center bg-warning text-light rounded font-weight-bold">Verify now</div>
+                                                <div className="pt-2 pb-2 small text-center bg-warning text-light rounded font-weight-bold">Upgrade</div>
                                             </a>
                                         </div>
+                                    </div>
+                                    <div className="col-12 mt-3 col-12 small pt-2 pb-2 text-left">
+                                        Transfer limitation 10,000,000 IRR you can upgrade your KYC level to change your daily transfer limitation to 150,000,000 IRR.
                                     </div>
                                 </div>
                             </div>
