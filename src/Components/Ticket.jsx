@@ -407,13 +407,13 @@ class Ticket extends Component {
                             <label className="col-12 mt-3">
                                 <div className="row shadow-lg">
                                     <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Title</span>
-                                    <input className="col-9 text-center rounded-right p-2" placeholder="" name="title" type="text" onChange={this.handleChange}/>
+                                    <input className="col-9 text-center rounded-right p-2 text-dark bg-light" placeholder="" name="title" type="text" onChange={this.handleChange}/>
                                 </div>
                             </label>
                             <label className="col-12 mt-3">
                                 <div className="row shadow-lg">
                                     <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Text</span>
-                                    <textarea className="col-9 text-center rounded-right p-2" name="text" type="text" onChange={this.handleChange}></textarea>
+                                    <textarea className="col-9 text-center rounded-right p-2 text-dark bg-light" name="text" type="text" onChange={this.handleChange}></textarea>
                                 </div>
                             </label>
                             {loader}
@@ -439,7 +439,7 @@ class Ticket extends Component {
                                 <label className="col-12 mt-3">
                                     <div className="row">
                                         <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Text</span>
-                                        <textarea className="col-9 text-center rounded-right p-2" name="text" type="text" onChange={this.handleChange}></textarea>
+                                        <textarea className="col-9 text-center text-dark rounded-right p-2 bg-light" name="text" type="text" onChange={this.handleChange}></textarea>
                                     </div>
                                 </label>
                                 {loader}
