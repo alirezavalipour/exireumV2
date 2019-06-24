@@ -25,7 +25,7 @@ body{
 
 .logo
 {
-    height: 50px;
+    height: 51px;
     background-image: url("../src/logo-exireum.png");
     background-position: center;
     background-size: 60% 70%;
@@ -104,7 +104,8 @@ input , textarea , .border-div , button
 
 .sub-user
 {
-    line-height: 40px;
+    width: 12%;
+    line-height: 30px;
     position: absolute !important;
     background-color: #151d2e;
     top: 102%;
@@ -112,9 +113,26 @@ input , textarea , .border-div , button
     right: 0;
 }
 
-.text-hover:hover div
+.text-hover
 {
-    color: #000 !important;
+    display: block;
+    width: 100%;
+    color: #fff !important;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    border-bottom: 1px solid #aaa;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.text-hover .icon-size
+{
+    font-size: 13px;
+}
+
+.text-hover:hover
+{
+    color: #ffc107 !important;
 }
 
 .text-hover2:hover
@@ -359,6 +377,62 @@ input , textarea , .border-div , button
     cursor: pointer;
 }
 
+.pro-name
+{
+    height: 35px;
+    width: 35px;
+    color: #fff;
+    line-height: 32px;
+    font-size: 20px;
+}
+
+.diamond1-img
+{
+    height: 30px;
+    background-image: url("../src/diamond1.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 13% 100%;
+}
+
+.diamond1-img:after
+{
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    height: 1px;
+    width: 50%;
+    background-color: #929292;
+}
+
+.diamond2-img
+{
+    height: 30px;
+    width: 30px;
+    background-image: url("../src/diamond2.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 13% 100%;
+}
+
+.diamond2-img:after
+{
+    content: "";
+    position: absolute;
+    top: 100%;
+    right: 50%;
+    height: 1px;
+    width: 50%;
+    background-color: #929292;
+}
+
+.flex
+{
+    display: flex;
+    margin: auto;
+}
+
 @media(max-width: 800px) {
     .button-tab
     {
@@ -374,5 +448,10 @@ input , textarea , .border-div , button
     .div-tab2
     {
         padding-right: 0.5rem !important;
+    }
+
+    .sub-user
+    {
+        width: 100%;
     }
 }

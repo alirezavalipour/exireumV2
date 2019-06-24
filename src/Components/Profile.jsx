@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import '../App.css';
 import axios from 'axios';
 import {} from 'bootstrap-4-react';
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { faUserCircle, } from '@fortawesome/free-solid-svg-icons';
 import AuthService from './AuthService.jsx';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 var StellarSdk = require('stellar-sdk');
@@ -130,21 +130,38 @@ class Profile extends Component {
                                     <div className="col-12 mt-3">
                                         <div className="row">
                                             <span className="col-sm-2 col-12 small text-left pt-2 pb-2 font-weight-bold">KYC level : </span>
-                                            <div className="col-sm-7 col-12 small text-center pt-2 pb-2 pr-0 pl-0">Level 1 (unverified)</div>
+                                            <div className="col-sm-7 col-12 small text-center pt-2 pb-2">
+                                                <div className="row">
+                                                    <div className="col-6">
+                                                        <div className="row">
+                                                            <div className="col-12">24h transaction limit: 10,000,000 IRR</div>
+                                                            <div className="col-12 diamond1-img mt-2"> </div>
+                                                            <div className="col-12 mt-2">Level 1 (unverified)</div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-6">
+                                                        <div className="row">
+                                                            <div className="col-12">24h transaction limit: 150,000,000 IRR</div>
+                                                            <div className="col-12 diamond2-img mt-2"> </div>
+                                                            <div className="col-12 mt-2">Level 2 (verified)</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <a href={'/Components/Upgrade'} className="col-sm-3 col-12 text-hover2">
                                                 <div className="pt-2 pb-2 small text-center bg-warning text-light rounded font-weight-bold">Upgrade</div>
                                             </a>
                                         </div>
                                     </div>
-                                    <div className="col-12 mt-3">
-                                        <div className="row">
-                                            <span className="col-sm-5 col-12 small text-left pt-2 pb-2 font-weight-bold">Transfer limitation : </span>
-                                            <div className="col-sm-7 col-12 small text-left pt-2 pb-2 pr-0 pl-0">10,000,000 IRR<span className="font-weight-bold">*</span></div>
-                                        </div>
-                                    </div>
-                                    <div className="col-12 mt-3 col-12 small pt-2 pb-2 text-left">
-                                        <span className="font-weight-bold">*</span>You can increase your transfer limitation to 150,000,000 IRR by upgrading your KYC level <span className="font-weight-bold text-primary">More Info</span>.
-                                    </div>
+                                    {/*<div className="col-12 mt-3">*/}
+                                        {/*<div className="row">*/}
+                                            {/*<span className="col-sm-5 col-12 small text-left pt-2 pb-2 font-weight-bold">Transfer limitation : </span>*/}
+                                            {/*<div className="col-sm-7 col-12 small text-left pt-2 pb-2 pr-0 pl-0">10,000,000 IRR<span className="font-weight-bold">*</span></div>*/}
+                                        {/*</div>*/}
+                                    {/*</div>*/}
+                                    {/*<div className="col-12 mt-3 col-12 small pt-2 pb-2 text-left">*/}
+                                        {/*<span className="font-weight-bold">*</span>You can increase your transfer limitation to 150,000,000 IRR by upgrading your KYC level <span className="font-weight-bold text-primary">More Info</span>.*/}
+                                    {/*</div>*/}
                                 </div>
                             </div>
                         </div>

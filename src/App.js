@@ -30,7 +30,7 @@ import TransactionSuccess from './Components/TransactionSuccess.jsx';
 import Upgrade from './Components/Upgrade.jsx';
 import PersonalInfo from './Components/PersonalInfo.jsx';
 import Cookies from 'universal-cookie';
-import { faUser , faAngleUp , faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import {faUser, faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
 import AuthService from "./Components/AuthService";
 import { Offline } from "react-detect-offline";
 var jwtDecode = require('jwt-decode');
@@ -106,7 +106,7 @@ class App extends Component {
     return axios.get(url, config)
         .then(response => {
           this.setState({
-            name: response.data.username.charAt(0)
+            name: response.data.username.charAt(0).toUpperCase()
           });
         });
   }
@@ -127,27 +127,21 @@ class App extends Component {
 
   render() {
 
-    let item = <div className="sub-user-none rounded-bottom col-md-2 col-sm-4 col-12">
-      <div className="row">
-          <a className="col-12 text-center small text-decoration-none text-hover"><div className="col-12 mb-2 font-weight-bold">Profile</div></a>
-          <a className="col-12 text-center small text-hover"><div className="col-12 font-weight-bold">Logout</div></a>
-      </div>
+    let item = <div className="sub-user-none rounded-bottom">
+          <a className="text-center text-hover">Profile</a>
+          <a className="text-center text-hover">Logout</a>
     </div>;
     if(this.state.key === false)
     {
-      item = <div className="sub-user-none rounded-bottom col-md-2 col-sm-4 col-12 d-none">
-        <div className="row">
-            <a className="col-12 text-center small text-decoration-none text-hover"><div className="col-12 mb-2 font-weight-bold">Profile</div></a>
-            <a className="col-12 text-center small text-hover"><div className="col-12 font-weight-bold">Logout</div></a>
-        </div>
+      item = <div className="sub-user-none rounded-bottom">
+            <a className="text-center text-hover">Profile</a>
+            <a className="text-center text-hover">Logout</a>
       </div>;
     }else
     {
-      item = <div className="sub-user rounded-bottom col-md-2 col-sm-4 col-12 pt-3 pb-3">
-        <div className="row">
-            <a onClick={this.goProfile} className="col-12 text-center small text-decoration-none text-hover mb-2"><div className="col-12 font-weight-bold">Profile</div></a>
-            <a className="col-12 text-center small text-hover" onClick={this.logOut}><div className="col-12 font-weight-bold">Logout</div></a>
-        </div>
+      item = <div className="sub-user rounded-bottom">
+            <a className="text-center text-hover" onClick={this.goProfile}><FontAwesomeIcon className="mr-2 icon" icon={faUser}/>Profile</a>
+            <a className="text-center text-hover" onClick={this.logOut}><FontAwesomeIcon className="mr-2 icon" icon={faSignOutAlt}/>Logout</a>
       </div>;
     }
 
@@ -190,7 +184,7 @@ class App extends Component {
                                     <div className="d-none d-sm-block col-sm-8"> </div>
                                     <a className={'col-sm-1 col-12 col-12 menu-in text-light pt-2 pb-2 mt-1 text-center pr-0 pl-0' + (window.location.pathname === '/Components/Orders' ? ' activation' : '')} href="/Components/Orders">History</a>
                                     <a className={'col-sm-1 col-12 menu-in text-light pt-2 pb-2 mt-1 text-center pr-0 pl-0' + (window.location.pathname === '/Components/Ticket' ? ' activation' : '')} href="/Components/Ticket">Support</a>
-                                    <a className="col-sm-1 col-12 text-center name-cursor" onClick={this.checkedItem}><div className="col-lg-6 col-md-8 col-3 mx-auto bg-warning rounded2 pt-1 pb-1 mt-2 mb-2 text-center pr-0 pl-0 font-weight-bold">{this.state.name}</div></a>
+                                    <a className="col-sm-1 col-12 text-center name-cursor" onClick={this.checkedItem}><div className="pro-name mt-2 mb-2 font-weight-bold mx-auto rounded2 text-center bg-warning">{this.state.name}</div></a>
                                 </div>
                                 {item}
                             </div>
