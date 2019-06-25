@@ -4,7 +4,7 @@ import axios from 'axios';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {} from 'bootstrap-4-react';
 import AuthService from './AuthService.jsx';
-import {faEye} from '@fortawesome/free-solid-svg-icons';
+import {faEye, faExclamationCircle, faTimes} from '@fortawesome/free-solid-svg-icons';
 import Loader from 'react-loader-spinner';
 import NumberFormat from 'react-number-format';
 var StellarSdk = require('stellar-sdk');
@@ -39,6 +39,8 @@ class SendXir extends Component {
         this.hidePass = this.hidePass.bind(this);
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.handleClickButton = this.handleClickButton.bind(this);
+        this.handleOpen = this.handleOpen.bind(this);
+        this.handleClose = this.handleClose.bind(this);
         // this.return = this.return.bind(this);
         this.state = {
             price: null,
@@ -61,6 +63,18 @@ class SendXir extends Component {
     //     e.preventDefault();
     //     window.location.replace('/Components/SendXir');
     // }
+
+    handleOpen(e)
+    {
+        e.preventDefault();
+        document.getElementById('modal').style.display = "block";
+    }
+
+    handleClose(e)
+    {
+        e.preventDefault();
+        document.getElementById('modal').style.display = "none";
+    }
 
     showPass(e){
         e.preventDefault();
@@ -284,30 +298,45 @@ class SendXir extends Component {
         }
         if(!this.state.hash && !this.state.button) {
             return (
-                <div className="col-sm-8 col-12 clearfix mx-auto">
+                <div className="col-12">
                     <div className="row">
-                        {valids}
-                        {failAmount}
-                        <h4 className="col-12 text-light text-center mt-5 mb-2">Send XIR</h4>
-                        <div className='col-12 text-center text-light mb-5'>Available : {priceXlm}</div>
-                        <form className="col-12" onSubmit={this.handleClickButton}>
-                            <label className="col-12">
-                                <div className="row shadow-lg">
-                                    <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Amount XIR (Exir)</span>
-                                    {/*<input className="col-9 text-center rounded-right p-2" placeholder="" name="amount" type="tel" onChange={this.handleChange}/>*/}
-                                    <NumberFormat required='required' className="col-9 text-center rounded-right p-2 text-light" thousandSeparator={true} name="amount" onChange={this.handleChange} />
-                                </div>
-                            </label>
-                            <label className="col-12 mt-3">
-                                <div className="row shadow-lg">
-                                    <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Destination public_key</span>
-                                    <input required='required' className="col-9 text-center rounded-right p-2"
-                                           placeholder="GDNRPMNBJYNFDVTOBBPGWQBJORVPYVI2YP4G2MG6DNRXGJKQA5TG2PRO"
-                                           name="public_key_dest" type="text" onChange={this.handleChange}/>
-                                </div>
-                            </label>
-                            {loader}
-                        </form>
+                        <div className="col-sm-8 col-12 clearfix mx-auto">
+                            <div className="row">
+                                {valids}
+                                {failAmount}
+                                <h4 className="col-12 text-light text-center mt-5 mb-2">Send XIR</h4>
+                                <div className='col-12 text-center text-light mb-5'>Available : {priceXlm}</div>
+                                <form className="col-12" onSubmit={this.handleClickButton}>
+                                    <label className="col-12">
+                                        <div className="row shadow-lg">
+                                            <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Amount XIR (Exir)</span>
+                                            {/*<input className="col-9 text-center rounded-right p-2" placeholder="" name="amount" type="tel" onChange={this.handleChange}/>*/}
+                                            <NumberFormat required='required' className="col-9 text-center rounded-right p-2 text-light" thousandSeparator={true} name="amount" onChange={this.handleChange} />
+                                        </div>
+                                    </label>
+                                    <label className="col-12 mt-3">
+                                        <div className="row shadow-lg">
+                                            <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Destination public_key</span>
+                                            <input required='required' className="col-9 text-center rounded-right p-2"
+                                                   placeholder="GDNRPMNBJYNFDVTOBBPGWQBJORVPYVI2YP4G2MG6DNRXGJKQA5TG2PRO"
+                                                   name="public_key_dest" type="text" onChange={this.handleChange}/>
+                                        </div>
+                                    </label>
+                                    {loader}
+                                </form>
+                            </div>
+                        </div>
+                        <a className="exclamation-icon" onClick={this.handleOpen}>
+                            <FontAwesomeIcon className="" icon={faExclamationCircle}/>
+                        </a>
+                        <div id="modal" className="exclamation-text rounded">
+                            <div className="exclamation-text-in rounded shadow-lg small">
+                                <a className="col-12 exclamation-text-icon text-danger mt-1" onClick={this.handleClose}>
+                                    <FontAwesomeIcon className="" icon={faTimes}/>
+                                </a>
+                                <div className="col-12">ghcghcvghch</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             );
