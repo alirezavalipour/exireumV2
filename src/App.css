@@ -460,10 +460,10 @@ input , textarea , .border-div , button
     position: fixed;
     background-color: #fff;
     width: 40%;
-    height: 50%;
     left: 30%;
-    top: 25%;
+    top: 20%;
     border-top: 5px solid #dc3545;
+    text-align: justify;
 }
 
 .exclamation-text-icon

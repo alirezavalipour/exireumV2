@@ -334,7 +334,16 @@ class SendXir extends Component {
                                 <a className="col-12 exclamation-text-icon text-danger mt-1" onClick={this.handleClose}>
                                     <FontAwesomeIcon className="" icon={faTimes}/>
                                 </a>
-                                <div className="col-12">ghcghcvghch</div>
+                                <div className="col-12 font-weight-bold mt-2">In order to you send your money to another account you must do the following :</div>
+                                <div className="col-12 mt-2">1- Enter your amount then enter the desired destination public key.</div>
+                                <div className="col-12 mt-2">2- Click on submit button.</div>
+                                <div className="col-12 mt-2">3- Enter your secret key.</div>
+                                <div className="col-12 mt-2">4- Click on submit button.</div>
+                                <div className="col-12 mt-2">5- If everything goes well the Transaction will be successful.</div>
+                                <div className="col-12 font-weight-bold mt-2">Notice a few notes before sending :</div>
+                                <div className="col-12 mt-2">1- Required amount for transaction must be available balance.</div>
+                                <div className="col-12 mt-2">2- Minimum amount of money for send 1 XIR and maximum is equal to your available balance.</div>
+                                <div className="col-12 mt-2 mb-4">3- The reciver must have XIR trust.</div>
                             </div>
                         </div>
                     </div>
