@@ -206,7 +206,7 @@ class SendXlm extends Component {
         {
             failAmount = <div className="col-12">
                 <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
-                    Your amount should be between 10000 and {priceXlm}
+                    The XIR amount must be between 1 and {priceXlm}
                 </div>
             </div>;
         }
@@ -265,45 +265,86 @@ class SendXlm extends Component {
         let loader = "";
         if(this.state.load === false)
         {
-            loader = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">SUBMIT</button>;
+            loader = <div className="col-12 text-right pr-0 pl-0">
+                <button className="col-sm-2 col-12 bg-warning rounded shadow-lg text-light mb-3 mt-2 small font-weight-bold pt-1 pb-1">SUBMIT</button>
+            </div>;
         }
         else if(this.state.load === true)
         {
-            loader = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">
-                <Loader
-                    type="ThreeDots"
-                    color="#fff"
-                    height="20"
-                    width="40"
-                />
-            </button>;
+            loader = <div className="col-12 text-right pr-0 pl-0">
+                <button className="col-sm-2 col-12 bg-warning rounded shadow-lg mb-3 mt-2 text-light pt-1 pb-1">
+                    <Loader
+                        type="ThreeDots"
+                        color="#fff"
+                        height="20"
+                        width="40"
+                    />
+                </button>
+            </div>;
         }
         if(!this.state.hash && !this.state.button) {
             return (
-                <div className="col-sm-8 col-12 clearfix mx-auto">
+                <div className="col-12">
                     <div className="row">
-                        {valids}
-                        {failAmount}
-                        <h4 className="col-12 text-light text-center mt-5 mb-2">Send XLM</h4>
-                        <div className='col-12 text-center text-light mb-5'>Available : {priceXlm}</div>
-                        <form className="col-12" onSubmit={this.handleClickButton}>
-                            <label className="col-12">
-                                <div className="row shadow-lg">
-                                    <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Amount XLM</span>
-                                    {/*<input className="col-9 text-center rounded-right p-2" placeholder="" name="amount" type="tel" onChange={this.handleChange}/>*/}
-                                    <NumberFormat required='required' className="col-9 text-center rounded-right p-2 text-light" thousandSeparator={true} name="amount" onChange={this.handleChange} />
+                        <div className="col-12 alireza">
+                            <div className="col-sm-8 col-12 clearfix mx-auto mt-3 mb-5">
+                                <div className="row">
+                                    {valids}
+                                    {failAmount}
+                                    <div className="col-12">
+                                        <div className="row">
+                                            <div className="col-4 text-center">
+                                                <div className="col-12 text-center text-light font-weight-bold small">Create</div>
+                                                <div className="bg-warning mx-auto box-height box-height1 box-height-color mt-2">1</div>
+                                            </div>
+                                            <div className="col-4 text-center">
+                                                <div className="col-12 text-center text-light font-weight-bold small">Approve</div>
+                                                <div className="bg-light mx-auto box-height box-height2 mt-2">2</div>
+                                            </div>
+                                            <div className="col-4 text-center">
+                                                <div className="col-12 text-center text-light font-weight-bold small">Result</div>
+                                                <div className="bg-light mx-auto box-height box-height3 mt-2">3</div>
+                                            </div>
+                                            <div className="col-sm-9 col-12 bg-light mx-auto rounded shadow-lg box-triangle1 mt-3 small">
+                                                <div className="col-12 mt-2 text-center">To send XLM to another account,</div>
+                                                <div className="col-12 mt-2 text-center">enter the amount of XLM you are going to send and the destination public-key.</div>
+                                                <div className="col-12 mt-2 mb-2 text-center">Notice! The destination account must have XLM trustline.</div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </label>
-                            <label className="col-12 mt-3">
-                                <div className="row shadow-lg">
-                                    <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Destination public_key</span>
-                                    <input required='required' className="col-9 text-center rounded-right p-2"
-                                           placeholder="GDNRPMNBJYNFDVTOBBPGWQBJORVPYVI2YP4G2MG6DNRXGJKQA5TG2PRO"
-                                           name="public_key_dest" type="text" onChange={this.handleChange}/>
+                            </div>
+                        </div>
+                        <div className="col-12">
+                            <div className="col-sm-8 col-12 clearfix mx-auto border border-warning mt-3 mb-3 shadow-lg rounded">
+                                <div className="row">
+                                    <div className="col-12 border-bottom border-warning">
+                                        <div className="row mt-2 mb-2">
+                                            <div className="col-sm-1 d-sm-block d-none icon9"> </div>
+                                            <div className="col-sm-11 pl-0 d-sm-block d-none small font-weight-bold">Send XLM</div>
+                                            <div className="col-12 d-sm-none d-block small font-weight-bold">Send XLM</div>
+                                        </div>
+                                    </div>
+                                    <form className="col-12" onSubmit={this.handleClickButton}>
+                                        <div className='col-12 text-center small font-weight-bold mt-3'>Available : {priceXlm}</div>
+                                        <label className="col-12 mt-3">
+                                            <div className="row">
+                                                <span className="col-sm-3 col-12 pt-1 pb-1 small font-weight-bold">Amount XLM :</span>
+                                                {/*<input className="col-9 text-center rounded-right p-2" placeholder="" name="amount" type="tel" onChange={this.handleChange}/>*/}
+                                                <NumberFormat required='required' className="col-sm-9 col-12 input2 text-center rounded pt-1 pb-1" thousandSeparator={true} name="amount" onChange={this.handleChange} />
+                                            </div>
+                                        </label>
+                                        <label className="col-12 mt-2">
+                                            <div className="row">
+                                                <span className="col-sm-3 col-12 p-2 rounded-left font-weight-bold small">Destination public_key :</span>
+                                                <input required='required' className="col-sm-9 col-12 input2 text-center rounded pt-1 pb-1" placeholder="GDNRPMNBJYNFDVTOBBPGWQBJORVPYVI2YP4G2MG6DNRXGJKQA5TG2PRO" name="public_key_dest" type="text" onChange={this.handleChange}/>
+                                            </div>
+                                        </label>
+                                        {loader}
+                                    </form>
                                 </div>
-                            </label>
-                            {loader}
-                        </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             );
@@ -311,29 +352,65 @@ class SendXlm extends Component {
         else if(!this.state.hash && this.state.button)
         {
             return(
-                <div className="col-sm-8 col-12 clearfix mx-auto">
+                <div className="col-12">
                     <div className="row">
-                        {failTransaction}
-                        {valid}
-                        <h4 className="col-12 text-light text-center mt-5 mb-5">Send XLM</h4>
-                        <div className="col-12 text-center text-light mb-3">You are sending {this.state.amount} XLM to the following address :</div>
-                        <div className="col-12 text-center text-light mb-3">{this.state.public_key_dest}</div>
-                        <div className="col-12 text-center text-light mb-5">Please enter your secret key to approve the transaction.</div>
-                        {/*<a className="col-12" onClick={this.return}>*/}
-                            {/*<div className="col-3 bg-warning text-center rounded shadow-lg text-light pt-2 pb-2">*/}
-                                {/*RETURN*/}
-                            {/*</div>*/}
-                        {/*</a>*/}
-                        <form className="col-12" onSubmit={this.handleFormSubmit}>
-                            <label className="col-12 mt-3">
-                                <div className="row shadow-lg">
-                                    <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Source secret key</span>
-                                    <input required='required' id='showOrHidden' className="col-8 text-center p-2" placeholder="SBFHY64P7A4UUONPZJFBUUCI76PCKJXYMA5AESBC4LAETUUOAS55GBI2" name="secret_key_source" type="password" onChange={this.handleChange}/>
-                                    <a className='col-1 text-center bg-warning rounded-right text-light' onMouseDown={this.showPass} onMouseUp={this.hidePass}><FontAwesomeIcon className="mt-3 col-12 pr-0 pl-0" icon={faEye}/></a>
+                        <div className="col-12 alireza">
+                            <div className="col-sm-8 col-12 clearfix mx-auto mt-3 mb-5">
+                                <div className="row">
+                                    {failTransaction}
+                                    {valid}
+                                    <div className="col-12">
+                                        <div className="row">
+                                            <div className="col-4 text-center">
+                                                <div className="col-12 text-center text-light font-weight-bold small">Create</div>
+                                                <div className="bg-warning mx-auto box-height box-height1 box-height-color mt-2">1</div>
+                                            </div>
+                                            <div className="col-4 text-center">
+                                                <div className="col-12 text-center text-light font-weight-bold small">Approve</div>
+                                                <div className="bg-warning mx-auto box-height box-height2 box-height-color mt-2">2</div>
+                                            </div>
+                                            <div className="col-4 text-center">
+                                                <div className="col-12 text-center text-light font-weight-bold small">Result</div>
+                                                <div className="bg-light mx-auto box-height box-height3 mt-2">3</div>
+                                            </div>
+                                            <div className="col-sm-9 col-12 bg-light mx-auto rounded shadow-lg box-triangle2 mt-3 small">
+                                                <div className="col-12 mt-2 text-center">You are sending <span className="font-weight-bold">{this.state.amount}</span> XLM to the following address :</div>
+                                                <div className="col-12 mt-2 font-weight-bold text-center word-wrap">{this.state.public_key_dest}</div>
+                                                <div className="col-12 mt-2 mb-2 text-center">Please enter your secret key to approve the transaction.</div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </label>
-                            {loader}
-                        </form>
+                            </div>
+                        </div>
+                        <div className="col-12">
+                            <div className="col-sm-8 col-12 clearfix mx-auto border border-warning mt-3 mb-3 rounded shadow-lg">
+                                <div className="row">
+                                    <div className="col-12 border-bottom border-warning">
+                                        <div className="row mt-2 mb-2">
+                                            <div className="col-sm-1 d-none d-sm-block icon9"> </div>
+                                            <div className="col-sm-11 d-none d-sm-block pl-0 small font-weight-bold">Send XIR</div>
+                                            <div className="col-12 d-sm-none d-block small font-weight-bold">Send XIR</div>
+                                        </div>
+                                    </div>
+                                    {/*<a className="col-12" onClick={this.return}>*/}
+                                        {/*<div className="col-3 bg-warning text-center rounded shadow-lg text-light pt-2 pb-2">*/}
+                                            {/*RETURN*/}
+                                        {/*</div>*/}
+                                    {/*</a>*/}
+                                    <form className="col-12" onSubmit={this.handleFormSubmit}>
+                                        <label className="col-12 mt-3">
+                                            <div className="row">
+                                                <span className="col-sm-3 col-12 pt-1 pb-1 small font-weight-bold">Source secret key :</span>
+                                                <input required='required' id='showOrHidden' className="col-sm-8 col-10 input2 text-center pt-1 pb-1 rounded-left" placeholder="SBFHY64P7A4UUONPZJFBUUCI76PCKJXYMA5AESBC4LAETUUOAS55GBI2" name="secret_key_source" type="password" onChange={this.handleChange}/>
+                                                <a className='co-sm-1 col-2 text-center bg-warning rounded-right text-light pt-1 pb-1' onMouseDown={this.showPass} onMouseUp={this.hidePass}><FontAwesomeIcon className="col-12 pr-0 pl-0" icon={faEye}/></a>
+                                            </div>
+                                        </label>
+                                        {loader}
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             );
@@ -341,12 +418,55 @@ class SendXlm extends Component {
         else if(this.state.hash && this.state.button)
         {
             return(
-                <div className="col-sm-8 col-12 clearfix mx-auto">
+                <div className="col-12">
                     <div className="row">
-                        <h4 className="col-12 text-light text-center mt-5 mb-5">Send XLM</h4>
-                        <div className="col-12 text-center text-light p-2">Your transaction has been done successfully.</div>
-                        <div className="col-12 text-center text-light p-2 mt-3">Your transaction hash : <a target='_blank' href={'https://horizon-testnet.stellar.org/transactions/' + this.state.hash}>{this.state.hash}</a></div>
-                        <a href="../Components/Dashboard" className='col-sm-4 col-12 text-center text-light pt-2 pb-2 mt-3 bg-warning mx-auto rounded shadow-lg'>Back to dashboard</a>
+                        <div className="col-12 alireza">
+                            <div className="col-sm-8 col-12 clearfix mx-auto mt-3 mb-5">
+                                <div className="row">
+                                    <div className="col-12">
+                                        <div className="row">
+                                            <div className="col-4 text-center">
+                                                <div className="col-12 text-center text-light font-weight-bold small">Create</div>
+                                                <div className="bg-warning mx-auto box-height box-height1 box-height-color mt-2">1</div>
+                                            </div>
+                                            <div className="col-4 text-center">
+                                                <div className="col-12 text-center text-light font-weight-bold small">Approve</div>
+                                                <div className="bg-warning mx-auto box-height box-height2 box-height-color mt-2">2</div>
+                                            </div>
+                                            <div className="col-4 text-center">
+                                                <div className="col-12 text-center text-light font-weight-bold small">Result</div>
+                                                <div className="bg-warning mx-auto box-height box-height3 box-height-color mt-2">3</div>
+                                            </div>
+                                            <div className="col-sm-9 col-12 bg-light mx-auto rounded shadow-lg box-triangle3 mt-3 small">
+                                                <div className="col-12 font-weight-bold mt-2 mb-2 text-center">Your transaction has been done successfully.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-12">
+                            <div className="col-sm-8 col-12 clearfix mx-auto border border-warning mt-3 mb-3 rounded shadow-lg">
+                                <div className="row">
+                                    <div className="col-12 border-bottom border-warning">
+                                        <div className="row mt-2 mb-2">
+                                            <div className="col-sm-1 d-sm-block d-none icon9"> </div>
+                                            <div className="col-sm-11 d-sm-block d-none pl-0 small font-weight-bold">Send XLM</div>
+                                            <div className="col-12 d-sm-none d-block small font-weight-bold">Send XLM</div>
+                                        </div>
+                                    </div>
+                                    <div className="col-12 mt-3">
+                                        <div className="row">
+                                            <div className="col-sm-3 col-12 pt-1 pb-1 small font-weight-bold">Your transaction hash :</div>
+                                            <a className="col-sm-9 col-12 pt-1 pb-1 word-wrap" target='_blank' href={'https://horizon-testnet.stellar.org/transactions/' + this.state.hash}>{this.state.hash}</a>
+                                        </div>
+                                    </div>
+                                    <div className="col-12 mt-3 mb-3 text-right">
+                                        <a href="../Components/Dashboard" className='col-sm-2 col-12 text-center text-light pt-2 pb-2 bg-warning rounded ml-auto small font-weight-bold'>Back to dashboard</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             );

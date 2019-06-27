@@ -284,7 +284,7 @@ class Dashboard extends Component {
                                                         </a>
                                                         <a href="/Components/PayingTheBill" className="hover-div col-12 border-div3 mt-3 rounded shadow-lg small">
                                                             <div className="row pt-2 pb-2">
-                                                                <div className="col-3 icon5 pl-0 pt-2 pb-2"></div>
+                                                                <div className="col-3 icon3 pl-0 pt-2 pb-2"></div>
                                                                 <div className="col-9 border-left border-warning pt-2 pb-2 pl-0 pr-0">Paying the bill</div>
                                                             </div>
                                                         </a>
