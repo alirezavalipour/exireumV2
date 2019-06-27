@@ -489,7 +489,7 @@ class ExchangeXir extends Component {
                                 <div className="row">
                                     <div className="col-12 border-bottom border-warning">
                                         <div className="row mt-2 mb-2">
-                                            <div className="col-sm-1 d-sm-block d-none icon9"> </div>
+                                            <div className="col-sm-1 d-sm-block d-none icon6"> </div>
                                             <div className="col-sm-11 d-sm-block d-none pl-0 small font-weight-bold">Exchange XIR with XLM</div>
                                             <div className="col-12 d-sm-none d-block small font-weight-bold">Exchange XIR with XLM</div>
                                         </div>

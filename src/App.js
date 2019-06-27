@@ -78,7 +78,7 @@ class App extends Component {
           }
       }
 
-      if(window.location.pathname === "/Components/Dashboard" || window.location.pathname === "/Components/Orders" || window.location.pathname === "/Components/Ticket" || window.location.pathname === "/Components/Profile" || window.location.pathname === "/Components/SendXir" || window.location.pathname === "/Components/SendXlm" || window.location.pathname === "/Components/ExchangeXir" || window.location.pathname === "/Components/ExchangeXlm")
+      if(window.location.pathname === "/Components/Dashboard" || window.location.pathname === "/Components/Orders" || window.location.pathname === "/Components/Ticket" || window.location.pathname === "/Components/Profile" || window.location.pathname === "/Components/SendXir" || window.location.pathname === "/Components/SendXlm" || window.location.pathname === "/Components/ExchangeXir" || window.location.pathname === "/Components/ExchangeXlm" || window.location.pathname === "/Components/WithdrawedXirWithSheba")
       {
           document.querySelector("body").setAttribute('class','back-ground');
       }
