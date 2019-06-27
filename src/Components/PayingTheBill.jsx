@@ -424,99 +424,227 @@ class PayingTheBill extends Component {
             }
         }
         let loader = "";
-        let loader2 = "";
-        if (this.state.load1 === false) {
-            loader = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">SUBMIT</button>;
-        } else if (this.state.load1 === true) {
-            loader = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">
-                <Loader
-                    type="ThreeDots"
-                    color="#fff"
-                    height="20"
-                    width="40"
-                />
-            </button>;
+        let loader2 ="";
+        if(this.state.load1 === false)
+        {
+            loader = <div className="col-12 text-right pr-0 pl-0">
+                <button className="col-sm-2 col-12 bg-warning rounded shadow-lg text-light mb-3 mt-2 small font-weight-bold pt-1 pb-1">SUBMIT</button>
+            </div>;
         }
-        if (this.state.load2 === false) {
-            loader2 = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">SUBMIT</button>;
-        } else if (this.state.load2 === true) {
-            loader2 = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">
-                <Loader
-                    type="ThreeDots"
-                    color="#fff"
-                    height="20"
-                    width="40"
-                />
-            </button>;
+        else if(this.state.load1 === true)
+        {
+            loader = <div className="col-12 text-right pr-0 pl-0">
+                <button className="col-sm-2 col-12 bg-warning rounded shadow-lg mb-3 mt-2 text-light pt-1 pb-1">
+                    <Loader
+                        type="ThreeDots"
+                        color="#fff"
+                        height="20"
+                        width="40"
+                    />
+                </button>
+            </div>;
+        }
+        if(this.state.load2 === false)
+        {
+            loader2 = <div className="col-12 text-right pr-0 pl-0">
+                <button className="col-sm-2 col-12 bg-warning rounded shadow-lg text-light mb-3 mt-2 small font-weight-bold pt-1 pb-1">SUBMIT</button>
+            </div>;
+        }
+        else if(this.state.load2 === true)
+        {
+            loader2 = <div className="col-12 text-right pr-0 pl-0">
+                <button className="col-sm-2 col-12 bg-warning rounded shadow-lg mb-3 mt-2 text-light pt-1 pb-1">
+                    <Loader
+                        type="ThreeDots"
+                        color="#fff"
+                        height="20"
+                        width="40"
+                    />
+                </button>
+            </div>;
         }
         if (!this.state.xdr && !this.state.hash) {
             return (
-                <div className="col-sm-8 col-12 clearfix mx-auto">
+                <div className="col-12">
                     <div className="row">
-                        {error}
-                        {failOrder}
-                        <h4 className="col-12 text-light text-center mt-5 mb-2">Paying the bill</h4>
-                        <div className='col-12 text-center text-light mb-5'>Available : {priceXlm}</div>
-                        <form className="col-12" onSubmit={this.handleFormSubmit}>
-                            <label className="col-12">
-                                <div className="row shadow-lg">
-                                    <span className="col-3 bg-warning p-2 rounded-left text-center text-light">Billing code</span>
-                                    <input required='required' className="col-9 p-2 rounded-right text-center" placeholder=""
-                                           name="billing_code" type="tel" onChange={this.handleChange}/>
+                        <div className="col-12 alireza">
+                            <div className="col-sm-8 col-12 clearfix mx-auto mt-3 mb-5">
+                                <div className="row">
+                                    {error}
+                                    {failOrder}
+                                    <div className="col-12">
+                                        <div className="row">
+                                            <div className="col-4 text-center">
+                                                <div className="col-12 text-center text-light font-weight-bold small">Create</div>
+                                                <div className="bg-warning mx-auto box-height box-height1 box-height-color mt-2">1</div>
+                                            </div>
+                                            <div className="col-4 text-center">
+                                                <div className="col-12 text-center text-light font-weight-bold small">Approve</div>
+                                                <div className="bg-light mx-auto box-height box-height2 mt-2">2</div>
+                                            </div>
+                                            <div className="col-4 text-center">
+                                                <div className="col-12 text-center text-light font-weight-bold small">Result</div>
+                                                <div className="bg-light mx-auto box-height box-height3 mt-2">3</div>
+                                            </div>
+                                            <div className="col-sm-9 col-12 bg-light mx-auto rounded shadow-lg box-triangle1 mt-3 small">
+                                                <div className="col-12 mt-2 text-center">To exchange XIR with XLM,</div>
+                                                <div className="col-12 mt-2 mb-2 text-center">enter the amount of XIR you are going to change.</div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </label>
-                            <label className="col-12 mt-3">
-                                <div className="row shadow-lg">
-                                    <span className="col-3 bg-warning p-2 rounded-left text-center text-light">Payment code</span>
-                                    <input required='required' className="col-9 p-2 rounded-right text-center" placeholder=""
-                                           name="payment_code" type="tel" onChange={this.handleChange}/>
+                            </div>
+                        </div>
+                        <div className="col-12">
+                            <div className="col-sm-8 col-12 clearfix mx-auto border border-warning shadow-lg rounded mt-3 mb-3">
+                                <div className="row">
+                                    <div className="col-12 border-bottom border-warning">
+                                        <div className="row mt-2 mb-2">
+                                            <div className="col-sm-1 d-none d-sm-block icon6"> </div>
+                                            <div className="col-sm-11 pl-0 d-none d-sm-block small font-weight-bold">Paying the bill</div>
+                                            <div className="col-12 d-sm-none d-bolck small font-weight-bold">Paying the bill</div>
+                                        </div>
+                                    </div>
+                                    <form className="col-12" onSubmit={this.handleFormSubmit}>
+                                        <div className='col-12 text-center mt-3 font-weight-bold small'>Available : {priceXlm}</div>
+                                        <label className="col-12 mt-3">
+                                            <div className="row">
+                                                <span className="col-sm-3 col-12 pt-1 pb-1 small font-weight-bold">Billing code :</span>
+                                                <input required='required' className="col-sm-9 col-12 input2 pt-1 pb-1 rounded text-center" placeholder="" name="billing_code" type="tel" onChange={this.handleChange}/>
+                                            </div>
+                                        </label>
+                                        <label className="col-12 mt-3">
+                                            <div className="row">
+                                                <span className="col-sm-3 col-12 pt-1 pb-1 small font-weight-bold">Payment code :</span>
+                                                <input required='required' className="col-sm-9 col-12 input2 pt-1 pb-1 rounded text-center" placeholder="" name="payment_code" type="tel" onChange={this.handleChange}/>
+                                            </div>
+                                        </label>
+                                        {loader}
+                                    </form>
                                 </div>
-                            </label>
-                            {loader}
-                        </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             );
         } else if (this.state.xdr && !this.state.hash) {
             return (
-                <div className="col-sm-8 col-12 clearfix mx-auto">
+                <div className="col-12">
                     <div className="row">
-                        {failTransaction}
-                        <h4 className="col-12 text-light mt-5 mb-5 text-center">Paying the bill</h4>
-                        <div className="col-12 text-cenetr text-light mb-5">
-                            <div className="col-12 text-center mb-3">You are paying a bill with this properties :</div>
-                            <div className="col-12 text-center mb-3">Billing code : {this.state.billing_code}</div>
-                            <div className="col-12 text-center mb-3">Payment code : {this.state.payment_code}</div>
-                            {project()}
-                            <div className="col-12 text-center mt-3">Bill Amount : {this.state.payment} IRR</div>
-                            <div className="col-12 text-center mt-3">Please enter your secret key to approve the transaction.</div>
+                        <div className="col-12 alireza">
+                            <div className="col-sm-8 col-12 clearfix mx-auto mt-3 mb-5">
+                                <div className="row">
+                                    {failTransaction}
+                                    <div className="col-12">
+                                        <div className="row">
+                                            <div className="col-4 text-center">
+                                                <div className="col-12 text-center text-light font-weight-bold small">Create</div>
+                                                <div className="bg-warning mx-auto box-height box-height1 box-height-color mt-2">1</div>
+                                            </div>
+                                            <div className="col-4 text-center">
+                                                <div className="col-12 text-center text-light font-weight-bold small">Approve</div>
+                                                <div className="bg-warning mx-auto box-height box-height2 box-height-color mt-2">2</div>
+                                            </div>
+                                            <div className="col-4 text-center">
+                                                <div className="col-12 text-center text-light font-weight-bold small">Result</div>
+                                                <div className="bg-light mx-auto box-height box-height3 mt-2">3</div>
+                                            </div>
+                                            <div className="col-sm-9 col-12 bg-light mx-auto rounded shadow-lg box-triangle2 mt-3 small">
+                                                <div className="col-12 mt-2 text-center">You are paying a bill with this properties :</div>
+                                                <div className="col-12 mt-2 text-center">Billing code : {this.state.billing_code}</div>
+                                                <div className="col-12 mt-2 text-center">Payment code : {this.state.payment_code}</div>
+                                                {project()}
+                                                <div className="col-12 mt-2 text-center">Bill Amount : {this.state.payment} IRR</div>
+                                                <div className="col-12 mt-2 mb-2 text-center">Please enter your secret key to approve the transaction.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        {/*<a className="col-12" onClick={this.return}>*/}
-                            {/*<div className="col-3 bg-warning text-center rounded shadow-lg text-light pt-2 pb-2">*/}
-                                {/*RETURN*/}
-                            {/*</div>*/}
-                        {/*</a>*/}
-                        <form className="col-12" onSubmit={this.handleForSignWithSecretKey}>
-                            <label className="col-12">
-                                <div className="row shadow-lg">
-                                    <span className="col-3 text-center text-light p-2 rounded-left bg-warning mt-3">Secret key</span>
-                                    <input required='required' id='showOrHidden' className="col-7 text-center p-2 mt-3" placeholder="SB3JKIKJ7ECA2GBB55KG55KRHUILGDHXZ5GZ5WBWYOFS7KU6JT73C7HX" name="secret_key" type="password" onChange={this.handleChange}/>
-                                    <a className='col-1 text-center bg-warning rounded-right text-light mt-3' onMouseDown={this.showPass} onMouseUp={this.hidePass}><FontAwesomeIcon className="mt-3 col-12 pr-0 pl-0" icon={faEye}/></a>
-                                    <a target='_blank' href={'https://www.stellar.org/laboratory/#xdr-viewer?input=' + this.fixEscape(this.state.xdr)} className='col-1 text-center text-light pr-0 mt-3'><div className='col-12  pt-2 pb-2 rounded  bg-warning border border-warning pr-0 pl-0'>XDR</div></a>                                </div>
-                            </label>
-                            {loader2}
-                        </form>
+                        <div className="col-12">
+                            <div className="col-sm-8 col-12 clearfix mx-auto border border-warning shadow-lg mt-3 mb-3">
+                                <div className="row">
+                                    <div className="col-12 border-bottom border-warning">
+                                        <div className="row mt-2 mb-2">
+                                            <div className="col-sm-1 d-none d-sm-block icon6"> </div>
+                                            <div className="col-sm-11 d-none d-sm-block pl-0 small font-weight-bold">Paying the bill</div>
+                                            <div className="col-12 d-sm-none d-block small font-weight-bold">Paying the bill</div>
+                                        </div>
+                                    </div>
+                                    {/*<a className="col-12" onClick={this.return}>*/}
+                                        {/*<div className="col-3 bg-warning text-center rounded shadow-lg text-light pt-2 pb-2">*/}
+                                            {/*RETURN*/}
+                                        {/*</div>*/}
+                                    {/*</a>*/}
+                                    <form className="col-12" onSubmit={this.handleForSignWithSecretKey}>
+                                        <label className="col-12 mt-3">
+                                            <div className="row">
+                                                <span className="col-sm-2 col-12 pt-1 pb-1 small font-weight-bold">Secret key :</span>
+                                                <input required='required' id='showOrHidden' className="col-8 input2 text-center pt-1 pb-1 rounded-left" placeholder="SB3JKIKJ7ECA2GBB55KG55KRHUILGDHXZ5GZ5WBWYOFS7KU6JT73C7HX" name="secret_key" type="password" onChange={this.handleChange}/>
+                                                <a className='col-sm-1 col-2 text-center bg-warning text-light pt-1 pb-1' onMouseDown={this.showPass} onMouseUp={this.hidePass}><FontAwesomeIcon className="col-12 pr-0 pl-0" icon={faEye}/></a>
+                                                <a target='_blank' href={'https://www.stellar.org/laboratory/#xdr-viewer?input=' + this.fixEscape(this.state.xdr)} className='col-sm-1 col-2 text-center text-light bg-warning pr-0 pl-0 pt-2 pb-2 click-border rounded-right small font-weight-bold'>XDR</a>
+                                            </div>
+                                        </label>
+                                        {loader2}
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             );
         } else if (this.state.hash) {
             return (
-                <div className="col-sm-8 col-12 clearfix mx-auto">
+                <div className="col-12">
                     <div className="row">
-                        <h4 className="col-12 text-light text-center mt-5 mb-5">Paying the bill</h4>
-                        <div className="col-12 text-center text-light p-2">Your transaction has been done successfully.</div>
-                        <div className="col-12 text-center text-light p-2 mt-3">Your transaction hash : <a target='_blank' href={'https://horizon-testnet.stellar.org/transactions/' + this.state.hash}>{this.state.hash}</a></div>
-                        <a href="../Components/Dashboard" className='col-sm-4 col-12 text-center text-light pt-2 pb-2 mt-3 bg-warning mx-auto rounded shadow-lg'>Back to dashboard</a>
+                        <div className="col-12 alireza">
+                            <div className="col-sm-8 col-12 clearfix mx-auto mt-3 mb-5">
+                                <div className="row">
+                                    <div className="col-12">
+                                        <div className="row">
+                                            <div className="col-4 text-center">
+                                                <div className="col-12 text-center text-light font-weight-bold small">Create</div>
+                                                <div className="bg-warning mx-auto box-height box-height1 box-height-color mt-2">1</div>
+                                            </div>
+                                            <div className="col-4 text-center">
+                                                <div className="col-12 text-center text-light font-weight-bold small">Approve</div>
+                                                <div className="bg-warning mx-auto box-height box-height2 box-height-color mt-2">2</div>
+                                            </div>
+                                            <div className="col-4 text-center">
+                                                <div className="col-12 text-center text-light font-weight-bold small">Result</div>
+                                                <div className="bg-warning mx-auto box-height box-height3 box-height-color mt-2">3</div>
+                                            </div>
+                                            <div className="col-sm-9 col-12 bg-light mx-auto rounded shadow-lg box-triangle3 mt-3 small">
+                                                <div className="col-12 font-weight-bold mt-2 mb-2 text-center">Your transaction has been done successfully.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-12">
+                            <div className="col-sm-8 col-12 clearfix mx-auto border border-warning mt-3 mb-3 shadow-lg rounded">
+                                <div className="row">
+                                    <div className="col-12 border-bottom border-warning">
+                                        <div className="row mt-2 mb-2">
+                                            <div className="col-sm-1 d-sm-block d-none icon6"> </div>
+                                            <div className="col-sm-11 d-sm-block d-none pl-0 small font-weight-bold">Exchange XIR with XLM</div>
+                                            <div className="col-12 d-sm-none d-block small font-weight-bold">Exchange XIR with XLM</div>
+                                        </div>
+                                    </div>
+                                    <div className="col-12 mt-3">
+                                        <div className="row">
+                                            <div className="col-sm-3 col-12 pt-1 pb-1 small font-weight-bold">Your transaction hash :</div>
+                                            <a className="col-sm-9 col-12 pt-1 pb-1 word-wrap" target='_blank' href={'https://horizon-testnet.stellar.org/transactions/' + this.state.hash}>{this.state.hash}</a>
+                                        </div>
+                                    </div>
+                                    <div className="col-12 mt-3 mb-3 text-right">
+                                        <a href="../Components/Dashboard" className='col-sm-2 col-12 text-center text-light pt-2 pb-2 bg-warning rounded ml-auto small font-weight-bold'>Back to dashboard</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             );
