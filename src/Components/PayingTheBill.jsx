@@ -487,8 +487,8 @@ class PayingTheBill extends Component {
                                                 <div className="bg-light mx-auto box-height box-height3 mt-2">3</div>
                                             </div>
                                             <div className="col-sm-9 col-12 bg-light mx-auto rounded shadow-lg box-triangle1 mt-3 small">
-                                                <div className="col-12 mt-2 text-center">To exchange XIR with XLM,</div>
-                                                <div className="col-12 mt-2 mb-2 text-center">enter the amount of XIR you are going to change.</div>
+                                                <div className="col-12 mt-2 text-center">For paying a bill,</div>
+                                                <div className="col-12 mt-2 mb-2 text-center">enter its billing code and payment code.</div>
                                             </div>
                                         </div>
                                     </div>
