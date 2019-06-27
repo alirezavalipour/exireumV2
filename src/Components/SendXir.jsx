@@ -4,7 +4,7 @@ import axios from 'axios';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {} from 'bootstrap-4-react';
 import AuthService from './AuthService.jsx';
-import {faEye, faHourglassEnd, faHourglassStart, faHourglassHalf} from '@fortawesome/free-solid-svg-icons';
+import {faEye} from '@fortawesome/free-solid-svg-icons';
 import Loader from 'react-loader-spinner';
 import NumberFormat from 'react-number-format';
 var StellarSdk = require('stellar-sdk');
