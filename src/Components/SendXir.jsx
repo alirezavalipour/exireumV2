@@ -428,7 +428,7 @@ class SendXir extends Component {
                                         <div className="row mt-2 mb-2">
                                             <div className="col-sm-1 d-none d-sm-block icon9"> </div>
                                             <div className="col-sm-11 d-none d-sm-block pl-0 small font-weight-bold">Send XIR</div>
-                                            <div className="col-12 d-sm-none d-block d-none d-sm-block small font-weight-bold">Send XIR</div>
+                                            <div className="col-12 d-sm-none d-block small font-weight-bold">Send XIR</div>
                                         </div>
                                     </div>
                                     {/*<a className="col-12" onClick={this.return}>*/}

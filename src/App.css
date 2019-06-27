@@ -78,8 +78,17 @@ input , textarea , .border-div , button
 
 .input2
 {
-    background-color: #FFF;
+    background-color: #fff;
     color: #000 !important;
+}
+
+.border-div2
+{
+    border: 2px solid #ffc107;
+    height: 30px;
+    background-color: #fff;
+    color: #000 !important;
+    line-height: 20px;
 }
 
 .ReactPasswordStrength-input
@@ -375,7 +384,7 @@ input , textarea , .border-div , button
     background-image: url("../src/icons/icon5.png");
 }
 
-.icon5
+.icon6
 {
     background-image: url("../src/icons/icon6.png");
 }
