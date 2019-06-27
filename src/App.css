@@ -86,9 +86,14 @@ input , textarea , .border-div , button
 {
     border: 2px solid #ffc107;
     height: 30px;
-    background-color: #fff;
+    background-color: #eeeeee;
     color: #000 !important;
     line-height: 20px;
+}
+
+.click-border
+{
+    border-left: 2px solid #eeeeee;
 }
 
 .ReactPasswordStrength-input
