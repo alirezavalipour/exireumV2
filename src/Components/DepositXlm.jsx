@@ -51,48 +51,66 @@ class DepositXlm extends Component {
     render() {
 
         return(
-            <div className="col-sm-7 col-12 clearfix mx-auto">
+            <div className="col-12">
                 <div className="row">
-                    <h4 className="col-12 text-light text-center mt-5 mb-5">Deposit XLM With QR</h4>
-                    <div className="col-12 p-2">
-                        <QRCode
-                            className="d-flex mx-auto"
-                            value={this.state.public_key}
-                            size="150"
-                            level="L"
-                            includeMargin="true"
-                            bgColor="#fff"
-                            fgColor="#151d2e"
-                        />
-                    </div>
-                    <div className="col-12 p-2 mt-3">
-                        <div className="row">
-                            <div className="text-center col-9 p-2 border-div rounded-left shadow-lg">{this.state.public_key}</div>
-                            <Clipboard className="text-center col-3 bg-warning font-weight-bold border border-warning rounded-right shadow-lg" option-text={this.getText} onSuccess={this.onSuccess}>
-                                Copy to clipboard
-                            </Clipboard>
+                    <div className="col-12 alireza">
+                        <div className="col-sm-8 col-12 clearfix mx-auto mt-3 mb-5">
+                            <div className="row">
+                                <div className="col-12">
+                                    <div className="row">
+                                        <div className="col-sm-9 col-12 bg-light mx-auto rounded shadow-lg mt-3 small pb-2">
+                                            <div className="row">
+                                                <div className="col-12 mt-2 text-center">To deposit XLM,</div>
+                                                <div className="col-12 mt-2 mb-2 text-center">You can use your public-key on the following websites to buy XLM.</div>
+                                                <a href="https://btcbit.net/buy-stellar-lumen-xlm-with-credit-card" target="_blank" className="col-sm-4 col-12">
+                                                    <div className="row">
+                                                        <div className="col-12 btc-img"></div>
+                                                        <div className="col-12 text-center text-dark small font-weight-bold">BTC BIT</div>
+                                                    </div>
+                                                </a>
+                                                <a href="https://coinswitch.co/coins/stellar-lumens/buy-stellar-lumens-worldwide" target="_blank" className="col-sm-4 col-12">
+                                                    <div className="row">
+                                                        <div className="col-12 swtich-img"></div>
+                                                        <div className="col-12 text-center text-dark small font-weight-bold">COIN SWITCH</div>
+                                                    </div>
+                                                </a>
+                                                <a href="https://cex.io/cards-xlm/" target="_blank" className="col-sm-4 col-12">
+                                                    <div className="row">
+                                                        <div className="col-12 cex-img"></div>
+                                                        <div className="col-12 text-center text-dark small font-weight-bold">CEX IO</div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div className="col-12 mt-3">
-                        <div className="row">
-                            <a href="https://btcbit.net/buy-stellar-lumen-xlm-with-credit-card" target="_blank" className="col-sm-4 col-12">
-                                <div className="row">
-                                    <div className="col-12 btc-img"></div>
-                                    <div className="col-12 text-center text-white">BTC BIT</div>
+                    <div className="col-12">
+                        <div className="col-sm-8 col-12 clearfix mx-auto border border-warning shadow-lg rounded mt-3 mb-3">
+                            <div className="row">
+                                <div className="col-12 border-bottom border-warning">
+                                    <div className="row mt-2 mb-2">
+                                        <div className="col-sm-1 d-none d-sm-block icon10"> </div>
+                                        <div className="col-sm-11 pl-0 d-none d-sm-block small font-weight-bold">Deposit XLM</div>
+                                        <div className="col-12 d-sm-none d-bolck small font-weight-bold">Deposit XLM</div>
+                                    </div>
                                 </div>
-                            </a>
-                            <a href="https://coinswitch.co/coins/stellar-lumens/buy-stellar-lumens-worldwide" target="_blank" className="col-sm-4 col-12">
-                                <div className="row">
-                                    <div className="col-12 swtich-img"></div>
-                                    <div className="col-12 text-center text-white">COIN SWITCH</div>
+                                <div className="col-12">
+                                    <div className="col-12">
+                                        <QRCode className="d-flex mx-auto" value={this.state.public_key} size="150" level="L" includeMargin="true" bgColor="#fff" fgColor="#151d2e"/>
+                                    </div>
+                                    <div className="col-12 mt-3 mb-3">
+                                        <div className="row">
+                                            <div className="col-sm-9 d-none d-sm-block text-center pt-1 pb-1 border-div2 rounded-left">{this.state.public_key}</div>
+                                            <div className="col-12 d-sm-none d-block text-center pt-1 pb-1 border-div4 rounded mb-1 word-wrap">{this.state.public_key}</div>
+                                            <Clipboard className="col-sm-3 d-none d-sm-block text-center bg-warning font-weight-bold rounded-right small" option-text={this.getText} onSuccess={this.onSuccess}>Copy to clipboard</Clipboard>
+                                            <Clipboard className="col-12 d-sm-none d-block pt-1 pb-1 text-center bg-warning font-weight-bold rounded small" option-text={this.getText} onSuccess={this.onSuccess}>Copy to clipboard</Clipboard>
+                                        </div>
+                                    </div>
                                 </div>
-                            </a>
-                            <a href="https://cex.io/cards-xlm/" target="_blank" className="col-sm-4 col-12">
-                                <div className="row">
-                                    <div className="col-12 cex-img"></div>
-                                    <div className="col-12 text-center text-white">CEX IO</div>
-                                </div>
-                            </a>
+                            </div>
                         </div>
                     </div>
                 </div>

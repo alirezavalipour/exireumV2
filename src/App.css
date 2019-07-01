@@ -91,6 +91,13 @@ input , textarea , .border-div , button
     line-height: 20px;
 }
 
+.border-div4
+{
+    border: 2px solid #ffc107;
+    background-color: #eeeeee;
+    color: #000 !important;
+}
+
 .click-border
 {
     border-left: 2px solid #eeeeee;
