@@ -61,7 +61,7 @@ class DepositXirWithQr extends Component {
                                         <div className="col-sm-9 col-12 bg-light mx-auto rounded shadow-lg mt-3 small pb-2">
                                             <div className="row">
                                                 <div className="col-12 mt-2 text-center">To deposit XIR,</div>
-                                                <div className="col-12 mt-2 mb-2 text-center">You can use your public-key to buy XIR.</div>
+                                                <div className="col-12 mt-2 mb-2 text-center">you can use your public-key to buy XIR.</div>
                                             </div>
                                         </div>
                                     </div>

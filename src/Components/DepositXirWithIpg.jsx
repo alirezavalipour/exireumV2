@@ -166,45 +166,77 @@ class DepositXirWithIpg extends Component {
         let loader = "";
         if(this.state.load === false)
         {
-            loader = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">SUBMIT</button>;
+            loader = <div className="col-12 text-right pr-0 pl-0">
+                <button className="col-sm-2 col-12 bg-warning rounded shadow-lg text-light mb-3 mt-2 small font-weight-bold pt-1 pb-1">SUBMIT</button>
+            </div>;
         }
         else if(this.state.load === true)
         {
-            loader = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">
-                <Loader
-                    type="ThreeDots"
-                    color="#fff"
-                    height="20"
-                    width="40"
-                />
-            </button>;
+            loader = <div className="col-12 text-right pr-0 pl-0">
+                <button className="col-sm-2 col-12 bg-warning rounded shadow-lg mb-3 mt-2 text-light pt-1 pb-1">
+                    <Loader
+                        type="ThreeDots"
+                        color="#fff"
+                        height="20"
+                        width="40"
+                    />
+                </button>
+            </div>;
         }
         let exir = '';
         if(this.state.rial) {
             exir = this.state.rial.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
         return(
-            <div className="col-sm-8 col-12 clearfix mx-auto">
+            <div className="col-12">
                 <div className="row">
-                    {failAmount}
-                    <h4 className="col-12 text-light text-center mt-5 mb-2">Deposit XIR With IPG</h4>
-                    <div className='col-12 text-center text-light mb-5'>Available : {priceXlm}</div>
-                    <form className="col-12" onSubmit={this.handleFormSubmit}>
-                        <label className="col-12">
-                            <div className="row shadow-lg">
-                                <span className="col-3 bg-warning p-2 rounded-left text-center text-light">Amount XIR (Exir)</span>
-                                {/*<input className="col-9 p-2 rounded-right text-center" placeholder="" name="amount" minLength="5" type="tel" onChange={this.handleChange}/>*/}
-                                <NumberFormat required='required' className="col-9 text-center rounded-right p-2 text-light" thousandSeparator={true} minLength="5" name="amount" onChange={this.handleChange} />
+                    <div className="col-12 alireza">
+                        <div className="col-sm-8 col-12 clearfix mx-auto mt-3 mb-5">
+                            <div className="row">
+                                {failAmount}
+                                <div className="col-12">
+                                    <div className="row">
+                                        <div className="col-sm-9 col-12 bg-light mx-auto rounded shadow-lg mt-5 small pb-2">
+                                            <div className="row">
+                                                <div className="col-12 mt-2 text-center">To deposit XIR,</div>
+                                                <div className="col-12 mt-2 mb-2 text-center">enter the amount of XIR you are going to deposit.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </label>
-                        <label className="col-12 mt-3">
-                            <div className="row shadow-lg">
-                                <span className="col-3 bg-warning p-2 rounded-left text-center text-light">Amount will be IRR (Rial)</span>
-                                <div className="col-9 p-2 rounded-right border-div text-center">  {exir}  </div>
+                        </div>
+                    </div>
+                    <div className="col-12">
+                        <div className="col-sm-8 col-12 clearfix mx-auto border border-warning shadow-lg rounded mt-3 mb-3">
+                            <div className="row">
+                                <div className="col-12 border-bottom border-warning">
+                                    <div className="row mt-2 mb-2">
+                                        <div className="col-sm-1 d-none d-sm-block icon10"> </div>
+                                        <div className="col-sm-11 pl-0 d-none d-sm-block small font-weight-bold">Deposit XIR with ipg</div>
+                                        <div className="col-12 d-sm-none d-bolck small font-weight-bold">Deposit XIR with ipg</div>
+                                    </div>
+                                </div>
+                                <form className="col-12" onSubmit={this.handleFormSubmit}>
+                                    <div className='col-12 text-center mt-3 small font-weight-bold'>Available : {priceXlm}</div>
+                                    <label className="col-12 mt-3">
+                                        <div className="row">
+                                            <span className="col-sm-3 col-12 pt-1 pb-1 small font-weight-bold">Amount XIR (Exir)</span>
+                                            {/*<input className="col-9 p-2 rounded-right text-center" placeholder="" name="amount" minLength="5" type="tel" onChange={this.handleChange}/>*/}
+                                            <NumberFormat required='required' className="col-sm-9 col-12 text-center rounded input2 pt-1 pb-1" thousandSeparator={true} minLength="5" name="amount" onChange={this.handleChange} />
+                                        </div>
+                                    </label>
+                                    <label className="col-12 mt-2">
+                                        <div className="row">
+                                            <span className="col-sm-3 col-12 pt-1 pb-1 small font-weight-bold">Amount will be IRR (Rial)</span>
+                                            <div className="col-sm-9 pt-1 pb-1 rounded border-div2 text-center">  {exir}  </div>
+                                        </div>
+                                    </label>
+                                    {loader}
+                                </form>
                             </div>
-                        </label>
-                        {loader}
-                    </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         );
