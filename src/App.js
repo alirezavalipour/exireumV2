@@ -78,7 +78,7 @@ class App extends Component {
           }
       }
 
-      if(window.location.pathname === "/Components/Dashboard" || window.location.pathname === "/Components/Orders" || window.location.pathname === "/Components/Ticket" || window.location.pathname === "/Components/Profile" || window.location.pathname === "/Components/SendXir" || window.location.pathname === "/Components/SendXlm" || window.location.pathname === "/Components/ExchangeXir" || window.location.pathname === "/Components/ExchangeXlm" || window.location.pathname === "/Components/WithdrawedXirWithSheba" || window.location.pathname === "/Components/PayingTheBill" || window.location.pathname === "/Components/DepositXlm" || window.location.pathname === "/Components/DepositXirWithQr" || window.location.pathname === "/Components/DepositXirWithIpg")
+      if(window.location.pathname === "/Components/Dashboard" || window.location.pathname === "/Components/Orders" || window.location.pathname === "/Components/Ticket" || window.location.pathname === "/Components/Profile" || window.location.pathname === "/Components/SendXir" || window.location.pathname === "/Components/SendXlm" || window.location.pathname === "/Components/ExchangeXir" || window.location.pathname === "/Components/ExchangeXlm" || window.location.pathname === "/Components/WithdrawedXirWithSheba" || window.location.pathname === "/Components/PayingTheBill" || window.location.pathname === "/Components/DepositXlm" || window.location.pathname === "/Components/DepositXirWithQr" || window.location.pathname === "/Components/DepositXirWithIpg" || window.location.pathname === "/Components/Upgrade")
       {
           document.querySelector("body").setAttribute('class','back-ground');
       }
