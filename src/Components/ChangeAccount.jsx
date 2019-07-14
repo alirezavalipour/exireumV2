@@ -223,53 +223,99 @@ class ChangeAccount extends Component {
             </div>;
         }
         let loader = "";
+        let loader2 ="";
         if(this.state.load1 === false)
         {
-            loader = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">SUBMIT</button>;
+            loader = <div className="col-12 text-right pr-0 pl-0">
+                <button className="col-sm-2 col-12 bg-warning rounded shadow-lg text-light mb-3 mt-2 small font-weight-bold pt-1 pb-1">SUBMIT</button>
+            </div>;
         }
         else if(this.state.load1 === true)
         {
-            loader = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">
-                <Loader
-                    type="ThreeDots"
-                    color="#fff"
-                    height="20"
-                    width="40"
-                />
-            </button>;
+            loader = <div className="col-12 text-right pr-0 pl-0">
+                <button className="col-sm-2 col-12 bg-warning rounded shadow-lg mb-3 mt-2 text-light pt-1 pb-1">
+                    <Loader
+                        type="ThreeDots"
+                        color="#fff"
+                        height="20"
+                        width="40"
+                    />
+                </button>
+            </div>;
         }
-        let loader2 = "";
         if(this.state.load2 === false)
         {
-            loader2 = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">SUBMIT</button>;
+            loader2 = <div className="col-12 text-right pr-0 pl-0">
+                <button className="col-sm-2 col-12 bg-warning rounded shadow-lg text-light mb-3 mt-2 small font-weight-bold pt-1 pb-1">SUBMIT</button>
+            </div>;
         }
         else if(this.state.load2 === true)
         {
-            loader2 = <button className="col-12 bg-warning p-2 rounded mt-3 shadow-lg text-light">
-                <Loader
-                    type="ThreeDots"
-                    color="#fff"
-                    height="20"
-                    width="40"
-                />
-            </button>;
+            loader2 = <div className="col-12 text-right pr-0 pl-0">
+                <button className="col-sm-2 col-12 bg-warning rounded shadow-lg mb-3 mt-2 text-light pt-1 pb-1">
+                    <Loader
+                        type="ThreeDots"
+                        color="#fff"
+                        height="20"
+                        width="40"
+                    />
+                </button>
+            </div>;
         }
         if(!this.state.msg && !this.state.hash)
         {
             return (
-                <div className="col-sm-8 col-12 clearfix mx-auto">
+                <div className="col-12">
                     <div className="row">
-                        {valid1}
-                        <h4 className="col-12 text-light text-center mt-5 mb-5">Change stellar account</h4>
-                        <form className="col-12" onSubmit={this.handleFormSubmit}>
-                            <label className="col-12 ">
-                                <div className="row shadow-lg">
-                                    <span className="col-3 text-center text-light rounded-left bg-warning pt-2 pb-2">Public key</span>
-                                    <input className="col-sm-9 col-12 rounded-right shadow-lg text-center pt-2 pb-2" name="public_key" required="required" type="text" value={this.state.public_key} onChange={this.handleChange}/>
+                        <div className="col-12 alireza">
+                            <div className="col-sm-8 col-12 clearfix mx-auto mt-3 mb-5">
+                                <div className="row">
+                                    {valid1}
+                                    <div className="col-12">
+                                        <div className="row">
+                                            <div className="col-4 text-center">
+                                                <div className="col-12 text-center text-light font-weight-bold small">Create</div>
+                                                <div className="bg-warning mx-auto box-height box-height1 box-height-color mt-2">1</div>
+                                            </div>
+                                            <div className="col-4 text-center">
+                                                <div className="col-12 text-center text-light font-weight-bold small">Approve</div>
+                                                <div className="bg-light mx-auto box-height box-height2 mt-2">2</div>
+                                            </div>
+                                            <div className="col-4 text-center">
+                                                <div className="col-12 text-center text-light font-weight-bold small">Result</div>
+                                                <div className="bg-light mx-auto box-height box-height3 mt-2">3</div>
+                                            </div>
+                                            <div className="col-sm-9 col-12 bg-light mx-auto rounded shadow-lg box-triangle1 mt-3 small">
+                                                <div className="col-12 mt-2 text-center">To change stellar account,</div>
+                                                <div className="col-12 mt-2 mb-2 text-center">enter the new public-key you are going to change.</div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </label>
-                            {loader}
-                        </form>
+                            </div>
+                        </div>
+                        <div className="col-12">
+                            <div className="col-sm-8 col-12 clearfix mx-auto border border-warning shadow-lg rounded mt-3 mb-3">
+                                <div className="row">
+                                    <div className="col-12 border-bottom border-warning">
+                                        <div className="row mt-2 mb-2">
+                                            <div className="col-sm-1 d-none d-sm-block icon6"> </div>
+                                            <div className="col-sm-11 pl-0 d-none d-sm-block small font-weight-bold">Change stellar account</div>
+                                            <div className="col-12 d-sm-none d-bolck small font-weight-bold">Change stellar account</div>
+                                        </div>
+                                    </div>
+                                    <form className="col-12" onSubmit={this.handleFormSubmit}>
+                                        <label className="col-12 mt-3">
+                                            <div className="row">
+                                                <span className="col-sm-3 col-12 pt-1 pb-1 small font-weight-bold">Public key :</span>
+                                                <input className="col-sm-9 input2 col-12 text-center rounded pt-1 pb-1 rounded" name="public_key" required="required" type="text" value={this.state.public_key} onChange={this.handleChange}/>
+                                            </div>
+                                        </label>
+                                        {loader}
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             );
@@ -277,34 +323,114 @@ class ChangeAccount extends Component {
         else if(this.state.msg && !this.state.hash)
         {
             return (
-            <div className="col-sm-8 col-12 clearfix mx-auto">
-                <div className="row">
-                    {valid2}
-                    <h4 className="col-12 text-light text-center mt-5 mb-5">Change stellar account</h4>
-                    <form className="col-12" onSubmit={this.handleXdr}>
-                        <label className="col-12">
-                            <div className="row shadow-lg">
-                                <span className="col-3 text-center text-light p-2 rounded-left bg-warning">Secret key</span>
-                                <input id='showOrHidden' className="col-7 text-center p-2" required='required' placeholder="SB3JKIKJ7ECA2GBB55KG55KRHUILGDHXZ5GZ5WBWYOFS7KU6JT73C7HX" name="secret_key" type="password" onChange={this.handleChange}/>
-                                <a className='col-1 text-center bg-warning rounded-right text-light' onMouseDown={this.showPass} onMouseUp={this.hiddenPass}><FontAwesomeIcon className="mt-3 col-12 pr-0 pl-0" icon={faEye}/></a>
-                                <a target='_blank' href={'https://www.stellar.org/laboratory/#xdr-viewer?input=' + this.fixEscape(this.state.xdr)} className='col-1 text-center text-light pr-0'><div className='col-12  pt-2 pb-2 rounded  bg-warning border border-warning pr-0 pl-0'>XDR</div></a>
+                <div className="col-12">
+                    <div className="row">
+                        <div className="col-12 alireza">
+                            <div className="col-sm-8 col-12 clearfix mx-auto mt-3 mb-5">
+                                <div className="row">
+                                    {valid2}
+                                    <div className="col-12">
+                                        <div className="row">
+                                            <div className="col-4 text-center">
+                                                <div className="col-12 text-center text-light font-weight-bold small">Create</div>
+                                                <div className="bg-warning mx-auto box-height box-height1 box-height-color mt-2">1</div>
+                                            </div>
+                                            <div className="col-4 text-center">
+                                                <div className="col-12 text-center text-light font-weight-bold small">Approve</div>
+                                                <div className="bg-warning mx-auto box-height box-height2 box-height-color mt-2">2</div>
+                                            </div>
+                                            <div className="col-4 text-center">
+                                                <div className="col-12 text-center text-light font-weight-bold small">Result</div>
+                                                <div className="bg-light mx-auto box-height box-height3 mt-2">3</div>
+                                            </div>
+                                            <div className="col-sm-9 col-12 bg-light mx-auto rounded shadow-lg box-triangle2 mt-3 small">
+                                                <div className="col-12 mt-2 mb-2 text-center">Please enter your secret-key to change stellar account.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </label>
-                        {loader2}
-                    </form>
+                        </div>
+                        <div className="col-12">
+                            <div className="col-sm-8 col-12 clearfix mx-auto border border-warning shadow-lg mt-3 mb-3">
+                                <div className="row">
+                                    <div className="col-12 border-bottom border-warning">
+                                        <div className="row mt-2 mb-2">
+                                            <div className="col-sm-1 d-none d-sm-block icon6"> </div>
+                                            <div className="col-sm-11 d-none d-sm-block pl-0 small font-weight-bold">Change stellar account</div>
+                                            <div className="col-12 d-sm-none d-block small font-weight-bold">Change stellar account</div>
+                                        </div>
+                                    </div>
+                                    <form className="col-12" onSubmit={this.handleXdr}>
+                                        <label className="col-12 mt-3">
+                                            <div className="row">
+                                                <span className="col-sm-2 col-12 pt-1 pb-1 small font-weight-bold">Secret key :</span>
+                                                <input id='showOrHidden' className="col-8 input2 text-center pt-1 pb-1 rounded-left" required='required' placeholder="SB3JKIKJ7ECA2GBB55KG55KRHUILGDHXZ5GZ5WBWYOFS7KU6JT73C7HX" name="secret_key" type="password" onChange={this.handleChange}/>
+                                                <a className='col-sm-1 col-2 pt-1 pb-1 text-center bg-warning text-light' onMouseDown={this.showPass} onMouseUp={this.hiddenPass}><FontAwesomeIcon className="col-12 pr-0 pl-0" icon={faEye}/></a>
+                                                <a target='_blank' href={'https://www.stellar.org/laboratory/#xdr-viewer?input=' + this.fixEscape(this.state.xdr)} className='col-sm-1 col-2 text-center bg-warning pt-2 pb-2 text-light small font-weight-bold rounded-right click-border pr-0 pl-0'>XDR</a>
+                                            </div>
+                                        </label>
+                                        {loader2}
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
             );
         }
         else if(this.state.hash)
         {
             return (
-                <div className="col-sm-8 col-12 clearfix mx-auto">
+                <div className="col-12">
                     <div className="row">
-                        <h4 className="col-12 text-light text-center mt-5 mb-5">Change stellar account</h4>
-                        <div className="col-12 text-center text-light p-2">Your stellar account has been changed successfully.</div>
-                        <div className="col-12 text-center text-light p-2 mt-3">Your change hash : <a target='_blank' href={'https://horizon-testnet.stellar.org/transactions/' + this.state.hash}>{this.state.hash}</a></div>
-                        <a href="../Components/Dashboard" className='col-sm-4 col-12 text-center text-light pt-2 pb-2 mt-3 bg-warning mx-auto rounded shadow-lg'>Back to dashboard</a>
+                        <div className="col-12 alireza">
+                            <div className="col-sm-8 col-12 clearfix mx-auto mt-3 mb-5">
+                                <div className="row">
+                                    <div className="col-12">
+                                        <div className="row">
+                                            <div className="col-4 text-center">
+                                                <div className="col-12 text-center text-light font-weight-bold small">Create</div>
+                                                <div className="bg-warning mx-auto box-height box-height1 box-height-color mt-2">1</div>
+                                            </div>
+                                            <div className="col-4 text-center">
+                                                <div className="col-12 text-center text-light font-weight-bold small">Approve</div>
+                                                <div className="bg-warning mx-auto box-height box-height2 box-height-color mt-2">2</div>
+                                            </div>
+                                            <div className="col-4 text-center">
+                                                <div className="col-12 text-center text-light font-weight-bold small">Result</div>
+                                                <div className="bg-warning mx-auto box-height box-height3 box-height-color mt-2">3</div>
+                                            </div>
+                                            <div className="col-sm-9 col-12 bg-light mx-auto rounded shadow-lg box-triangle3 mt-3 small">
+                                                <div className="col-12 font-weight-bold mt-2 mb-2 text-center">Your stellar account has been changed successfully.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-12">
+                            <div className="col-sm-8 col-12 clearfix mx-auto border border-warning mt-3 mb-3 shadow-lg rounded">
+                                <div className="row">
+                                    <div className="col-12 border-bottom border-warning">
+                                        <div className="row mt-2 mb-2">
+                                            <div className="col-sm-1 d-sm-block d-none icon6"> </div>
+                                            <div className="col-sm-11 d-sm-block d-none pl-0 small font-weight-bold">Change stellar account</div>
+                                            <div className="col-12 d-sm-none d-block small font-weight-bold">Change stellar account</div>
+                                        </div>
+                                    </div>
+                                    <div className="col-12 mt-3">
+                                        <div className="row">
+                                            <div className="col-sm-3 col-12 pt-1 pb-1 small font-weight-bold">Your change hash :</div>
+                                            <a className="col-sm-9 col-12 pt-1 pb-1 word-wrap" target='_blank' href={'https://horizon-testnet.stellar.org/transactions/' + this.state.hash}>{this.state.hash}</a>
+                                        </div>
+                                    </div>
+                                    <div className="col-12 mt-3 mb-3 text-right">
+                                        <a href="../Components/Dashboard" className='col-sm-2 col-12 text-center text-light pt-2 pb-2 bg-warning rounded ml-auto small font-weight-bold'>Back to dashboard</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             );

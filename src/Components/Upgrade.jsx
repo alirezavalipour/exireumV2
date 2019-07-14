@@ -239,7 +239,7 @@ class Upgrade extends Component {
                                                 <div className="bg-light mx-auto box-height box-height3 mt-2">3</div>
                                             </div>
                                             <div className="col-sm-9 col-12 bg-light mx-auto rounded shadow-lg box-triangle2 mt-3 small">
-                                                <div className="col-12 mt-5 mb-5 text-center">Please enter your KYC secret-key to upgrade your account.</div>
+                                                <div className="col-12 mt-2 mb-2 text-center">Please enter your KYC secret-key to upgrade your account.</div>
                                             </div>
                                         </div>
                                     </div>
@@ -315,7 +315,7 @@ class Upgrade extends Component {
                                     </div>
                                     <div className="col-12 mt-3">
                                         <div className="row">
-                                            <div className="col-sm-3 col-12 pt-1 pb-1 small font-weight-bold">Your transaction hash :</div>
+                                            <div className="col-sm-3 col-12 pt-1 pb-1 small font-weight-bold">Your upgrade hash :</div>
                                             <a className="col-sm-9 col-12 pt-1 pb-1 word-wrap" target='_blank' href={'https://horizon-testnet.stellar.org/transactions/' + this.state.hash}>{this.state.hash}</a>
                                         </div>
                                     </div>
