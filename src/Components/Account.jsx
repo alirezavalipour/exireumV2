@@ -228,8 +228,8 @@ class Account extends Component {
     }
 
     signXdr(xdr){
-        StellarSdk.Network.useTestNetwork();
-        var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
+        StellarSdk.Network.usePublicNetwork();
+        var server = new StellarSdk.Server('https://horizon.stellar.org');
         let keypair = StellarSdk.Keypair.fromSecret(this.state.secret_key);
         //console.log(keypair);
         // let xdr = StellarSdk.xdr.TransactionEnvelope.fromXDR(this.state.xdr,'base64');

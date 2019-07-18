@@ -508,8 +508,8 @@ class Orders extends Component {
                     <div className="col-sm-2 col-12 text-center pt-2 pb-2">{date}</div>
                     <div className="col-sm-3 col-12 text-center pt-2 pb-2">{amount} {base_asset}</div>
                     <div className="col-sm-3 col-12 text-center pt-2 pb-2">{receive_amount} {counter_asset}</div>
-                    <div className="col-sm-2 col-12 text-center pt-2 pb-2">{status} <a target='_blank' href={"https://horizon-testnet.stellar.org/transactions/" + hash} className="text-center text-secondary pt-2 pb-2 ml-2"><FontAwesomeIcon className="" icon={faExternalLinkSquareAlt}/></a></div>
-                    <div className="col-sm-2 col-12 text-center pt-2 pb-2">{order_status} <a target='_blank' href={"https://horizon-testnet.stellar.org/transactions/" + hash_paid} className="text-center text-secondary pt-2 pb-2 ml-2"><FontAwesomeIcon className="" icon={faExternalLinkSquareAlt}/></a></div>
+                    <div className="col-sm-2 col-12 text-center pt-2 pb-2">{status} <a target='_blank' href={"https://horizon.stellar.org/transactions/" + hash} className="text-center text-secondary pt-2 pb-2 ml-2"><FontAwesomeIcon className="" icon={faExternalLinkSquareAlt}/></a></div>
+                    <div className="col-sm-2 col-12 text-center pt-2 pb-2">{order_status} <a target='_blank' href={"https://horizon.stellar.org/transactions/" + hash_paid} className="text-center text-secondary pt-2 pb-2 ml-2"><FontAwesomeIcon className="" icon={faExternalLinkSquareAlt}/></a></div>
                 </div>;
             });
         }
@@ -573,7 +573,7 @@ class Orders extends Component {
                     <div className="col-sm-2 col-12 text-center pt-2 pb-2">{price} IRR</div>
                     <div className="col-sm-2 col-12 text-center pt-2 pb-2">{amount} XIR</div>
                     <div className="col-sm-3 col-12 text-center pt-2 pb-2">{track}</div>
-                    <div className="col-sm-3 col-12 text-center pt-2 pb-2">{status} <a target='_blank' href={"https://horizon-testnet.stellar.org/transactions/" + hash_paid} className="text-center text-secondary pt-2 pb-2 ml-2"><FontAwesomeIcon className="" icon={faExternalLinkSquareAlt}/></a></div>
+                    <div className="col-sm-3 col-12 text-center pt-2 pb-2">{status} <a target='_blank' href={"https://horizon.stellar.org/transactions/" + hash_paid} className="text-center text-secondary pt-2 pb-2 ml-2"><FontAwesomeIcon className="" icon={faExternalLinkSquareAlt}/></a></div>
                 </div>;
             });
         }
@@ -637,7 +637,7 @@ class Orders extends Component {
                     <div className="col-sm-2 col-12 text-center pt-2 pb-2">{amount} XIR</div>
                     <div className="col-sm-2 col-12 text-center pt-2 pb-2">{receive_amount} IRR</div>
                     <div className="col-sm-3 col-12 text-center pt-2 pb-2">{bank_account}</div>
-                    <div className="col-sm-1 col-12 text-center pt-2 pb-2">{status} <a target='_blank' href={"https://horizon-testnet.stellar.org/transactions/" + hash} className="text-center text-secondary pt-2 pb-2 ml-2"><FontAwesomeIcon className="" icon={faExternalLinkSquareAlt}/></a></div>
+                    <div className="col-sm-1 col-12 text-center pt-2 pb-2">{status} <a target='_blank' href={"https://horizon.stellar.org/transactions/" + hash} className="text-center text-secondary pt-2 pb-2 ml-2"><FontAwesomeIcon className="" icon={faExternalLinkSquareAlt}/></a></div>
                     <div className="col-sm-2 col-12 text-center pt-2 pb-2">{track}</div>
                     {/*<a target='_blank' href={"https://horizon-testnet.stellar.org/transactions/" + hash_paid} className="text-center text-light pt-2 pb-2 ml-2"><FontAwesomeIcon className="" icon={faExternalLinkSquareAlt}/></a>*/}
                 </div>;
@@ -706,7 +706,7 @@ class Orders extends Component {
                     <div className="col-sm-1 col-12 text-center pt-2 pb-2">{price} IRR</div>
                     <div className="col-sm-2 col-12 text-center pt-2 pb-2">{billing_code}</div>
                     <div className="col-sm-2 col-12 text-center pt-2 pb-2">{payment_code}</div>
-                    <div className="col-sm-2 col-12 text-center pt-2 pb-2">{status} <a target='_blank' href={"https://horizon-testnet.stellar.org/transactions/" + hash} className="text-center text-secondary pt-2 pb-2 ml-2"><FontAwesomeIcon className="" icon={faExternalLinkSquareAlt}/></a></div>
+                    <div className="col-sm-2 col-12 text-center pt-2 pb-2">{status} <a target='_blank' href={"https://horizon.stellar.org/transactions/" + hash} className="text-center text-secondary pt-2 pb-2 ml-2"><FontAwesomeIcon className="" icon={faExternalLinkSquareAlt}/></a></div>
                     <div className="col-sm-2 col-12 text-center pt-2 pb-2">{track}</div>
                     {/*<a target='_blank' href={"https://horizon-testnet.stellar.org/transactions/" + hash_paid} className="text-center text-light pt-2 pb-2 ml-2"><FontAwesomeIcon className="" icon={faExternalLinkSquareAlt}/></a>*/}
                 </div>;

@@ -423,7 +423,7 @@ class ChangeAccount extends Component {
                                     <div className="col-12 mt-3">
                                         <div className="row">
                                             <div className="col-sm-3 col-12 pt-1 pb-1 small font-weight-bold">Your change hash :</div>
-                                            <a className="col-sm-9 col-12 pt-1 pb-1 word-wrap" target='_blank' href={'https://horizon-testnet.stellar.org/transactions/' + this.state.hash}>{this.state.hash}</a>
+                                            <a className="col-sm-9 col-12 pt-1 pb-1 word-wrap" target='_blank' href={'https://horizon.stellar.org/transactions/' + this.state.hash}>{this.state.hash}</a>
                                         </div>
                                     </div>
                                     <div className="col-12 mt-3 mb-3 text-right">
