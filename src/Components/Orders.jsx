@@ -16,6 +16,8 @@ class Orders extends Component {
         this.handleExchange = this.handleExchange.bind(this);
         this.handleDeposit = this.handleDeposit.bind(this);
         this.handleWithdraw = this.handleWithdraw.bind(this);
+        this.handleSendXir = this.handleSendXir.bind(this);
+        this.handleSendXlm = this.handleSendXlm.bind(this);
         this.state = {}
     }
 
@@ -68,10 +70,12 @@ class Orders extends Component {
 
     handleExchange(e) {
         e.preventDefault();
-        e.currentTarget.setAttribute("class", "col-sm-3 col-12 text-light border-right border-warning pt-2 pb-2 bg-warning small");
-        document.getElementById('bill').setAttribute("class","col-sm-3 col-12 border-right border-warning pt-2 pb-2 hover-tab small");
-        document.getElementById('deposit').setAttribute("class","col-sm-3 col-12 border-right border-warning pt-2 pb-2 hover-tab small");
-        document.getElementById('withdraw').setAttribute("class","col-sm-3 col-12 border-right border-warning pt-2 pb-2 hover-tab small");
+        e.currentTarget.setAttribute("class", "col-sm-2 col-12 text-light border-right border-warning pt-2 pb-2 bg-warning small");
+        document.getElementById('bill').setAttribute("class","col-sm-2 col-12 border-right border-warning pt-2 pb-2 hover-tab small");
+        document.getElementById('deposit').setAttribute("class","col-sm-2 col-12 border-right border-warning pt-2 pb-2 hover-tab small");
+        document.getElementById('withdraw').setAttribute("class","col-sm-2 col-12 border-right border-warning pt-2 pb-2 hover-tab small");
+        document.getElementById('send-xir').setAttribute("class","col-sm-2 col-12 border-right border-warning pt-2 pb-2 hover-tab small");
+        document.getElementById('send-xlm').setAttribute("class","col-sm-2 col-12 pt-2 pb-2 hover-tab small");
         const url = this.Auth.getDomain() + '/user/stellar/exchange';
         const headers = {
             Accept: 'application/json',
@@ -114,10 +118,12 @@ class Orders extends Component {
 
     handleDeposit(e) {
         e.preventDefault();
-        e.currentTarget.setAttribute("class", "col-sm-3 col-12 text-light border-right border-warning pt-2 pb-2 bg-warning small");
-        document.getElementById('exchange').setAttribute("class","col-sm-3 col-12 border-right border-warning pt-2 pb-2 hover-tab small");
-        document.getElementById('bill').setAttribute("class","col-sm-3 col-12 border-right border-warning pt-2 pb-2 hover-tab small");
-        document.getElementById('withdraw').setAttribute("class","col-sm-3 col-12 border-right border-warning pt-2 pb-2 hover-tab small");
+        e.currentTarget.setAttribute("class", "col-sm-2 col-12 text-light border-right border-warning pt-2 pb-2 bg-warning small");
+        document.getElementById('exchange').setAttribute("class","col-sm-2 col-12 border-right border-warning pt-2 pb-2 hover-tab small");
+        document.getElementById('bill').setAttribute("class","col-sm-2 col-12 border-right border-warning pt-2 pb-2 hover-tab small");
+        document.getElementById('withdraw').setAttribute("class","col-sm-2 col-12 border-right border-warning pt-2 pb-2 hover-tab small");
+        document.getElementById('send-xir').setAttribute("class","col-sm-2 col-12 border-right border-warning pt-2 pb-2 hover-tab small");
+        document.getElementById('send-xlm').setAttribute("class","col-sm-2 col-12 pt-2 pb-2 hover-tab small");
         const url = this.Auth.getDomain() + '/user/deposit';
         const headers = {
             Accept: 'application/json',
@@ -160,10 +166,12 @@ class Orders extends Component {
 
     handleWithdraw(e) {
         e.preventDefault();
-        e.currentTarget.setAttribute("class", "col-sm-3 col-12 text-light border-right border-warning pt-2 pb-2 bg-warning small");
-        document.getElementById('exchange').setAttribute("class","col-sm-3 col-12 border-right border-warning pt-2 pb-2 hover-tab small");
-        document.getElementById('deposit').setAttribute("class","col-sm-3 col-12 border-right border-warning pt-2 pb-2 hover-tab small");
-        document.getElementById('bill').setAttribute("class","col-sm-3 col-12 pt-2 border-right border-warning pb-2 hover-tab small");
+        e.currentTarget.setAttribute("class", "col-sm-2 col-12 text-light border-right border-warning pt-2 pb-2 bg-warning small");
+        document.getElementById('exchange').setAttribute("class","col-sm-2 col-12 border-right border-warning pt-2 pb-2 hover-tab small");
+        document.getElementById('deposit').setAttribute("class","col-sm-2 col-12 border-right border-warning pt-2 pb-2 hover-tab small");
+        document.getElementById('bill').setAttribute("class","col-sm-2 col-12 pt-2 border-right border-warning pb-2 hover-tab small");
+        document.getElementById('send-xir').setAttribute("class","col-sm-2 col-12 pt-2 border-right border-warning pb-2 hover-tab small");
+        document.getElementById('send-xlm').setAttribute("class","col-sm-2 col-12 pt-2 pb-2 hover-tab small");
         const url = this.Auth.getDomain() + '/user/stellar/withdraw';
         const headers = {
             Accept: 'application/json',
@@ -206,10 +214,12 @@ class Orders extends Component {
 
     handleBill(e) {
         e.preventDefault();
-        e.currentTarget.setAttribute("class", "col-sm-3 col-12 text-light border-right border-warning pt-2 pb-2 bg-warning small");
-        document.getElementById('exchange').setAttribute("class","col-sm-3 col-12 border-right border-warning pt-2 pb-2 hover-tab small");
-        document.getElementById('deposit').setAttribute("class","col-sm-3 col-12 border-right border-warning pt-2 pb-2 hover-tab small");
-        document.getElementById('withdraw').setAttribute("class","col-sm-3 col-12 pt-2 pb-2 hover-tab small");
+        e.currentTarget.setAttribute("class", "col-sm-2 col-12 text-light border-right border-warning pt-2 pb-2 bg-warning small");
+        document.getElementById('exchange').setAttribute("class","col-sm-2 col-12 border-right border-warning pt-2 pb-2 hover-tab small");
+        document.getElementById('deposit').setAttribute("class","col-sm-2 col-12 border-right border-warning pt-2 pb-2 hover-tab small");
+        document.getElementById('withdraw').setAttribute("class","col-sm-2 col-12 border-right border-warning pt-2 pb-2 hover-tab small");
+        document.getElementById('send-xir').setAttribute("class","col-sm-2 col-12 border-right border-warning pt-2 pb-2 hover-tab small");
+        document.getElementById('send-xlm').setAttribute("class","col-sm-2 col-12 pt-2 pb-2 hover-tab small");
         const url = this.Auth.getDomain() + '/user/bank/bill-payment';
         const headers = {
             Accept: 'application/json',
@@ -224,6 +234,102 @@ class Orders extends Component {
                     currentTab: 4,
                     currentPage: response.data.current_page,
                     length4: response.data.data.length
+                });
+                if (response.data.next_page_url) {
+                    this.setState({
+                        nextPage: response.data.next_page_url,
+                    });
+                }
+                else
+                {
+                    this.setState({
+                        nextPage: null,
+                    });
+                }
+                if (response.data.prev_page_url) {
+                    this.setState({
+                        prevPage: response.data.prev_page_url,
+                    });
+                }
+                else
+                {
+                    this.setState({
+                        prevPage: null,
+                    });
+                }
+            });
+    }
+
+    handleSendXir(e) {
+        e.preventDefault();
+        e.currentTarget.setAttribute("class", "col-sm-2 col-12 text-light border-right border-warning pt-2 pb-2 bg-warning small");
+        document.getElementById('exchange').setAttribute("class","col-sm-2 col-12 border-right border-warning pt-2 pb-2 hover-tab small");
+        document.getElementById('deposit').setAttribute("class","col-sm-2 col-12 border-right border-warning pt-2 pb-2 hover-tab small");
+        document.getElementById('withdraw').setAttribute("class","col-sm-2 col-12 border-right border-warning pt-2 pb-2 hover-tab small");
+        document.getElementById('bill').setAttribute("class","col-sm-2 col-12 border-right border-warning pt-2 pb-2 hover-tab small");
+        document.getElementById('send-xlm').setAttribute("class","col-sm-2 col-12 pt-2 pb-2 hover-tab small");
+        const url = this.Auth.getDomain() + '/user/stellar/send-xir';
+        const headers = {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${this.Auth.getToken()}`,
+        };
+        var config = {headers};
+        return axios.get(url, config)
+            .then(response => {
+                this.setState({
+                    data5: response.data.data,
+                    currentTab: 5,
+                    currentPage: response.data.current_page,
+                    length5: response.data.data.length
+                });
+                if (response.data.next_page_url) {
+                    this.setState({
+                        nextPage: response.data.next_page_url,
+                    });
+                }
+                else
+                {
+                    this.setState({
+                        nextPage: null,
+                    });
+                }
+                if (response.data.prev_page_url) {
+                    this.setState({
+                        prevPage: response.data.prev_page_url,
+                    });
+                }
+                else
+                {
+                    this.setState({
+                        prevPage: null,
+                    });
+                }
+            });
+    }
+
+    handleSendXlm(e) {
+        e.preventDefault();
+        e.currentTarget.setAttribute("class", "col-sm-2 col-12 text-light border-right border-warning pt-2 pb-2 bg-warning small");
+        document.getElementById('exchange').setAttribute("class","col-sm-2 col-12 border-right border-warning pt-2 pb-2 hover-tab small");
+        document.getElementById('deposit').setAttribute("class","col-sm-2 col-12 border-right border-warning pt-2 pb-2 hover-tab small");
+        document.getElementById('withdraw').setAttribute("class","col-sm-2 col-12 border-right border-warning pt-2 pb-2 hover-tab small");
+        document.getElementById('bill').setAttribute("class","col-sm-2 col-12 border-right border-warning pt-2 pb-2 hover-tab small");
+        document.getElementById('send-xir').setAttribute("class","col-sm-2 border-right border-warning col-12 pt-2 pb-2 hover-tab small");
+        const url = this.Auth.getDomain() + '/user/stellar/send-xlm';
+        const headers = {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${this.Auth.getToken()}`,
+        };
+        var config = {headers};
+        return axios.get(url, config)
+            .then(response => {
+                this.setState({
+                    data6: response.data.data,
+                    currentTab: 6,
+                    currentPage: response.data.current_page,
+                    length6: response.data.data.length
                 });
                 if (response.data.next_page_url) {
                     this.setState({
@@ -290,6 +396,20 @@ class Orders extends Component {
                         data4: response.data.data,
                     });
                 }
+                if(this.state.currentTab === 5)
+                {
+                    this.setState({
+                        currentPage: response.data.current_page,
+                        data5: response.data.data,
+                    });
+                }
+                if(this.state.currentTab === 6)
+                {
+                    this.setState({
+                        currentPage: response.data.current_page,
+                        data6: response.data.data,
+                    });
+                }
                 if (response.data.next_page_url) {
                     this.setState({
                         nextPage: response.data.next_page_url,
@@ -353,6 +473,20 @@ class Orders extends Component {
                     this.setState({
                         currentPage: response.data.current_page,
                         data4: response.data.data,
+                    });
+                }
+                if(this.state.currentTab === 5)
+                {
+                    this.setState({
+                        currentPage: response.data.current_page,
+                        data5: response.data.data,
+                    });
+                }
+                if(this.state.currentTab === 6)
+                {
+                    this.setState({
+                        currentPage: response.data.current_page,
+                        data6: response.data.data,
                     });
                 }
                 if (response.data.next_page_url) {
@@ -443,6 +577,22 @@ class Orders extends Component {
                 <div className="col-sm-2 col-12 border-right border-warning text-center pt-2 pb-2 font-weight-bold">Payment Code</div>
                 <div className="col-sm-2 col-12 border-right border-warning text-center pt-2 pb-2 font-weight-bold">Payment status</div>
                 <div className="col-sm-2 col-12 text-center pt-2 pb-2">Bill Ref.</div>
+            </div>;
+        }
+        if(this.state.currentTab === 5)
+        {
+            attr = <div className="row smallText text-secondary">
+                <div className="col-sm-3 col-12 border-right border-warning text-center pt-2 pb-2 pr-1 pl-1 font-weight-bold">Date</div>
+                <div className="col-sm-3 col-12 border-right border-warning text-center pt-2 pb-2 pr-1 pl-1 font-weight-bold">Amount</div>
+                <div className="col-sm-6 col-12 text-center pt-2 pb-2 pr-1 pl-1 font-weight-bold">Receiver</div>
+            </div>;
+        }
+        if(this.state.currentTab === 6)
+        {
+            attr = <div className="row smallText text-secondary">
+                <div className="col-sm-3 col-12 border-right border-warning text-center pt-2 pb-2 pr-1 pl-1 font-weight-bold">Date</div>
+                <div className="col-sm-3 col-12 border-right border-warning text-center pt-2 pb-2 pr-1 pl-1 font-weight-bold">Amount</div>
+                <div className="col-sm-6 col-12 text-center pt-2 pb-2 pr-1 pl-1 font-weight-bold">Receiver</div>
             </div>;
         }
         let signers = null;
@@ -717,18 +867,55 @@ class Orders extends Component {
             signers = <div className="col-12 text-center border-top border-warning text-secondary pt-2 pb-2 pr-0 pl-0 smallText">There is no item to show.</div>;
         }
 
+        if (this.state.data5 && this.state.currentTab === 5 && this.state.length5 !== 0) {
+            signers = this.state.data5.map((elem , index) => {
+                console.log(elem);
+                let date = elem.created_at;
+                let amount = parseInt(elem.amount).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                let receiver = elem.receiver;
+                return <div key={index} className="row smallText border-top border-warning text-secondary">
+                    <div className="col-sm-3 col-12 text-center pt-2 pb-2">{date}</div>
+                    <div className="col-sm-3 col-12 text-center pt-2 pb-2">{amount} XIR</div>
+                    <div className="col-sm-6 col-12 text-center pt-2 pb-2 word-wrap small">{receiver}</div>
+                </div>;
+            });
+        }
+        else if(this.state.length5 === 0)
+        {
+            signers = <div className="col-12 text-center border-top border-warning text-secondary pt-2 pb-2 pr-0 pl-0 smallText">There is no item to show.</div>;
+        }
+
+        if (this.state.data6 && this.state.currentTab === 6 && this.state.length6 !== 0) {
+            signers = this.state.data6.map((elem , index) => {
+                let date = elem.created_at;
+                let amount = parseInt(elem.amount).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                let receiver = elem.receiver;
+                return <div key={index} className="row smallText border-top border-warning text-secondary">
+                    <div className="col-sm-3 col-12 text-center pt-2 pb-2">{date}</div>
+                    <div className="col-sm-3 col-12 text-center pt-2 pb-2">{amount} XLM</div>
+                    <div className="col-sm-6 col-12 text-center pt-2 pb-2 word-wrap small">{receiver}</div>
+                </div>;
+            });
+        }
+        else if(this.state.length6 === 0)
+        {
+            signers = <div className="col-12 text-center border-top border-warning text-secondary pt-2 pb-2 pr-0 pl-0 smallText">There is no item to show.</div>;
+        }
+
         return(
             <div className="col-sm-9 col-12 clearfix mx-auto">
                 <div className="row">
                     <h4 className="col-12 text-center mb-3 mt-3">History</h4>
                     <div className="col-12">
                         <div className="row">
-                            <div className="col-6 mx-auto text-center border border-warning mb-2 rounded shadow-lg">
+                            <div className="col-8 mx-auto text-center border border-warning mb-2 rounded shadow-lg">
                                 <div className="row text-secondary">
-                                    <a id="exchange" onClick={this.handleExchange} className="col-sm-3 col-12 text-light border-right border-warning pt-2 pb-2 bg-warning small">Exchange</a>
-                                    <a id="deposit" onClick={this.handleDeposit} className="col-sm-3 col-12 border-right border-warning pt-2 pb-2 hover-tab small">Deposit</a>
-                                    <a id="withdraw" onClick={this.handleWithdraw} className="col-sm-3 col-12 border-right border-warning pt-2 pb-2 hover-tab small">Withdrawal</a>
-                                    <a id="bill" onClick={this.handleBill} className="col-sm-3 col-12 pt-2 pb-2 small hover-tab">Bill payment</a>
+                                    <a id="exchange" onClick={this.handleExchange} className="col-sm-2 col-12 text-light border-right border-warning pt-2 pb-2 bg-warning small">Exchange</a>
+                                    <a id="deposit" onClick={this.handleDeposit} className="col-sm-2 col-12 border-right border-warning pt-2 pb-2 hover-tab small">Deposit</a>
+                                    <a id="withdraw" onClick={this.handleWithdraw} className="col-sm-2 col-12 border-right border-warning pt-2 pb-2 hover-tab small">Withdrawal</a>
+                                    <a id="bill" onClick={this.handleBill} className="col-sm-2 col-12 border-right border-warning pt-2 pb-2 hover-tab small">Bill payment</a>
+                                    <a id="send-xir" onClick={this.handleSendXir} className="col-sm-2 col-12 border-right border-warning pt-2 pb-2 hover-tab small">Send XIR</a>
+                                    <a id="send-xlm" onClick={this.handleSendXlm} className="col-sm-2 col-12 pt-2 pb-2 small hover-tab">Send XLM</a>
                                 </div>
                             </div>
                             {/*<div className="col-12 text-center text-light border-bottom border-warning">*/}
