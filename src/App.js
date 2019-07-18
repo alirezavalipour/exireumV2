@@ -99,7 +99,7 @@ class App extends Component {
             localStorage.removeItem('id_token');
             localStorage.removeItem('mobile');
             cookies.remove('reactUrl', {domain: '.exireum.com', path: '/'});
-            window.location.replace('https://exireum.com');
+            window.location.replace('/Components/Login');
         }
     }
     var config = { headers };
