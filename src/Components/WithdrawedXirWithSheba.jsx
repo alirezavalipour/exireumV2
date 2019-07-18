@@ -127,7 +127,7 @@ class WithdrawedXirWithSheba extends Component {
     }
 
     assetAmount(public_key) {
-        const url = 'https://horizon-testnet.stellar.org/accounts/' + public_key;
+        const url = 'https://horizon.stellar.org/accounts/' + public_key;
         return axios.get(url)
             .then(res =>{
                 this.setState({
@@ -229,8 +229,8 @@ class WithdrawedXirWithSheba extends Component {
         this.setState({
            load2:!this.state.load2
         });
-        StellarSdk.Network.useTestNetwork();
-        var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
+        StellarSdk.Network.usePublicNetwork();
+        var server = new StellarSdk.Server('https://horizon.stellar.org');
         let keypair = StellarSdk.Keypair.fromSecret(this.state.secret_key);
         //console.log(keypair);
         // let xdr = StellarSdk.xdr.TransactionEnvelope.fromXDR(this.state.xdr,'base64');

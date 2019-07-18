@@ -154,6 +154,7 @@ class ChangeAccount extends Component {
                 this.setState({
                     xdr: response.data.xdr,
                 });
+                console.log(this.state.xdr);
             });
     }
 
@@ -169,8 +170,8 @@ class ChangeAccount extends Component {
         this.setState({
             load2: !this.state.load2
         });
-        StellarSdk.Network.useTestNetwork();
-        var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
+        StellarSdk.Network.usePublicNetwork();
+        var server = new StellarSdk.Server('https://horizon.stellar.org');
         let keypair = StellarSdk.Keypair.fromSecret(this.state.secret_key);
         //console.log(keypair);
         // let xdr = StellarSdk.xdr.TransactionEnvelope.fromXDR(this.state.xdr,'base64');

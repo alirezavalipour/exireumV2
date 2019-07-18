@@ -70,7 +70,7 @@ class DepositXirWithIpg extends Component {
     }
 
     assetAmount(public_key) {
-        const url = 'https://horizon-testnet.stellar.org/accounts/' + public_key;
+        const url = 'https://horizon.stellar.org/accounts/' + public_key;
         return axios.get(url)
             .then(res =>{
                 this.setState({
