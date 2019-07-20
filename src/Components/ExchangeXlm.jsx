@@ -135,7 +135,7 @@ class ExchangeXir extends Component {
 
     handleFormSubmit(e) {
         e.preventDefault();
-        if(parseFloat(this.state.amount.replace(/,/g, '')) >= 0 && parseFloat(this.state.amount.replace(/,/g, '')) <= parseFloat((this.state.xlmBalance) - (0.5 * this.state.entry) - 1).toFixed(2))
+        if(parseFloat(this.state.amount.replace(/,/g, '')) > 0 && parseFloat(this.state.amount.replace(/,/g, '')) <= parseFloat((this.state.xlmBalance) - (0.5 * this.state.entry) - 1).toFixed(2))
         {
             this.setState({
                 load1: !this.state.load1,
@@ -167,10 +167,16 @@ class ExchangeXir extends Component {
                     })
                 })
         }
-        else
+        else if(parseFloat(this.state.amount.replace(/,/g, '')) <= 0)
         {
             this.setState({
-                userAmount: true
+                userAmount: 1
+            })
+        }
+        else if(parseFloat(this.state.amount.replace(/,/g, '')) > parseFloat((this.state.xlmBalance) - (0.5 * this.state.entry) - 1).toFixed(2))
+        {
+            this.setState({
+                userAmount: 2
             })
         }
     }
@@ -237,8 +243,9 @@ class ExchangeXir extends Component {
         {
             priceXlm = (parseFloat((this.state.xlmBalance) - (0.5 * this.state.entry) - 1).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' XLM';
         }
+
         let failAmount= '';
-        if(this.state.userAmount === true)
+        if(this.state.userAmount === 1)
         {
             failAmount = <div className="col-12">
                 <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
@@ -246,6 +253,15 @@ class ExchangeXir extends Component {
                 </div>
             </div>;
         }
+        else if(this.state.userAmount === 2)
+        {
+            failAmount = <div className="col-12">
+                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
+                    Your account doesn't have enough XIR to send
+                </div>
+            </div>;
+        }
+
         let failOrder= '';
         if(this.state.max)
         {
@@ -255,16 +271,9 @@ class ExchangeXir extends Component {
                 </div>
             </div>;
         }
+
         let failTransaction = "";
-        if(this.state.failed === 'tx_failed')
-        {
-            failTransaction = <div className="col-12">
-                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
-                    Your account doesn't have enough XLM to send
-                </div>
-            </div>;
-        }
-        else if(this.state.failed === 'tx_bad_auth')
+        if(this.state.failed === 'tx_bad_auth')
         {
             failTransaction = <div className="col-12">
                 <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
@@ -280,6 +289,7 @@ class ExchangeXir extends Component {
                 </div>
             </div>;
         }
+
         let loader = "";
         let loader2 ="";
         if(this.state.load1 === false)

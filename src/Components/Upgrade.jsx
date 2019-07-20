@@ -84,7 +84,7 @@ class Upgrade extends Component {
         this.setState({
             load2: !this.state.load2,
         });
-        StellarSdk.Network.useTestNetwork();
+        StellarSdk.Network.usePublicNetwork();
         let keypair = StellarSdk.Keypair.fromSecret(this.state.secret_key);
         let transaction = new StellarSdk.Transaction(this.state.xdr);
         transaction.sign(keypair);
