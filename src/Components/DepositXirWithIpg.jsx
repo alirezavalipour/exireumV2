@@ -96,7 +96,7 @@ class DepositXirWithIpg extends Component {
 
     handleFormSubmit(e) {
         e.preventDefault();
-        if(parseFloat(this.state.amount.replace(/,/g, '')) >= 10000 && parseFloat(this.state.amount.replace(/,/g, '')) <= this.state.xirBalance)
+        if(parseFloat(this.state.amount.replace(/,/g, '')) >= 10000)
         {
             this.setState({
                load: !this.state.load
@@ -159,7 +159,7 @@ class DepositXirWithIpg extends Component {
         {
             failAmount = <div className="col-12">
                 <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
-                    Your amount should be between 10000 and {priceXlm}
+                    Your deposit amount should be at least 10000 XIR
                 </div>
             </div>;
         }
