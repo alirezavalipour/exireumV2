@@ -185,7 +185,6 @@ class WithdrawedXirWithSheba extends Component {
             this.setState({
                 load1: !this.state.load1
             });
-            console.log(this.state.sheba.replace(/-/g, ''));
             let sheba = this.state.sheba.replace(/-/g, '');
             const url = this.Auth.getDomain() + '/user/bank/get-sheba-info';
             const headers = {
@@ -209,10 +208,16 @@ class WithdrawedXirWithSheba extends Component {
                     });
                 });
         }
-        else
+        else if(parseFloat(this.state.amount.replace(/,/g, '')) < 10000)
         {
             this.setState({
-                userAmount: true,
+                userAmount: 1
+            })
+        }
+        else if(parseFloat(this.state.amount.replace(/,/g, '')) > this.state.xirBalance)
+        {
+            this.setState({
+                userAmount: 2
             })
         }
     }
@@ -283,13 +288,15 @@ class WithdrawedXirWithSheba extends Component {
                 </div>
             </div>;
         }
+
         let priceXlm = '';
         if(this.state.xirBalance)
         {
             priceXlm = parseInt(this.state.xirBalance).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' XIR';
         }
+
         let failAmount= '';
-        if(this.state.userAmount === true)
+        if(this.state.userAmount === 1)
         {
             failAmount = <div className="col-12">
                 <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
@@ -297,6 +304,15 @@ class WithdrawedXirWithSheba extends Component {
                 </div>
             </div>;
         }
+        else if(this.state.userAmount === 2)
+        {
+            failAmount = <div className="col-12">
+                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
+                    Your account doesn't have enough XIR to send
+                </div>
+            </div>;
+        }
+
         let failOrder= '';
         if(this.state.max)
         {
@@ -306,16 +322,9 @@ class WithdrawedXirWithSheba extends Component {
                 </div>
             </div>;
         }
+
         let failTransaction = "";
-        if(this.state.failed === 'tx_failed')
-        {
-            failTransaction = <div className="col-12">
-                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
-                    Your account doesn't have enough XIR to send
-                </div>
-            </div>;
-        }
-        else if(this.state.failed === 'tx_bad_auth')
+        if(this.state.failed === 'tx_bad_auth')
         {
             failTransaction = <div className="col-12">
                 <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
@@ -331,6 +340,7 @@ class WithdrawedXirWithSheba extends Component {
                 </div>
             </div>;
         }
+
         let loader = "";
         let loader2 ="";
         if(this.state.load1 === false)
