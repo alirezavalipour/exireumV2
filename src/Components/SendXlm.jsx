@@ -159,7 +159,7 @@ class SendXlm extends Component {
             });
             return true;
         }
-        if(parseFloat(this.state.amount.replace(/,/g, '')) >= 0 && parseFloat(this.state.amount.replace(/,/g, '')) <= parseFloat((this.state.xlmBalance) - (0.5 * this.state.entry) - 1).toFixed(2))
+        if(parseFloat(this.state.amount.replace(/,/g, '')) > 0 && parseFloat(this.state.amount.replace(/,/g, '')) <= parseFloat((this.state.xlmBalance) - (0.5 * this.state.entry) - 1).toFixed(2))
         {
             this.setState({
                 load: !this.state.load,
@@ -190,10 +190,16 @@ class SendXlm extends Component {
                     })
                 })
         }
-        else
+        else if(parseFloat(this.state.amount.replace(/,/g, '')) <= 0)
         {
             this.setState({
-                userAmount: true
+                userAmount: 1
+            })
+        }
+        else if(parseFloat(this.state.amount.replace(/,/g, '')) > parseFloat((this.state.xlmBalance) - (0.5 * this.state.entry) - 1).toFixed(2))
+        {
+            this.setState({
+                userAmount: 2
             })
         }
     }
@@ -240,6 +246,12 @@ class SendXlm extends Component {
                         failed: response.data.extras.result_codes.transaction,
                         load2: false
                     });
+                    if(response.data.extras.result_codes.operations[0])
+                    {
+                        this.setState({
+                            oper: response.data.extras.result_codes.operations[0],
+                        })
+                    }
                 }
             })
             .catch(err =>{
@@ -306,7 +318,7 @@ class SendXlm extends Component {
             priceXlm = (parseFloat((this.state.xlmBalance) - (0.5 * this.state.entry) - 1).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' XLM';
         }
         let failAmount= '';
-        if(this.state.userAmount === true)
+        if(this.state.userAmount === 1)
         {
             failAmount = <div className="col-12">
                 <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
@@ -314,44 +326,35 @@ class SendXlm extends Component {
                 </div>
             </div>;
         }
+        else if(this.state.userAmount === 2)
+        {
+            failAmount = <div className="col-12">
+                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
+                    Your account doesn't have enough XLM to send
+                </div>
+            </div>;
+        }
+
         let failTransaction = "";
-        if(this.state.failed === 'op_underfunded')
-        {
-            failTransaction = <div className="col-12">
-                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
-                    Your account doesn't have enough XLM to send
-                </div>
-            </div>;
-        }
-        else if(this.state.failed === 'op_no_trust')
-        {
-            failTransaction = <div className="col-12">
-                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
-                    Receiver account doesn't have trust to XLM
-                </div>
-            </div>;
-        }
-        else if(this.state.failed === 'op_src_no_trust')
-        {
-            failTransaction = <div className="col-12">
-                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
-                    Your account doesn't Have trust to XLM
-                </div>
-            </div>;
-        }
-        else if(this.state.failed === 'tx_failed')
-        {
-            failTransaction = <div className="col-12">
-                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
-                    Your account doesn't have enough XLM to send
-                </div>
-            </div>;
-        }
-        else if(this.state.failed === 'tx_bad_auth')
+        if(this.state.failed === 'tx_bad_auth')
         {
             failTransaction = <div className="col-12">
                 <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
                     This secret key not belong to register stellar account
+                </div>
+            </div>;
+        }
+        else if (this.state.failed === "tx_failed" && this.state.oper === "op_no_destination") {
+            failTransaction = <div className="col-12">
+                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
+                    Receiver account invalid
+                </div>
+            </div>;
+        }
+        else if (this.state.failed === "tx_failed" && this.state.oper === 'op_no_trust') {
+            failTransaction = <div className="col-12">
+                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
+                    Receiver account doesn't have trust to XLM
                 </div>
             </div>;
         }

@@ -181,10 +181,16 @@ class SendXir extends Component {
                 })
             })
         }
-        else
+        else if(parseFloat(this.state.amount.replace(/,/g, '')) < 10000)
         {
             this.setState({
-                userAmount: true
+                userAmount: 1,
+            })
+        }
+        else if(parseFloat(this.state.amount.replace(/,/g, '')) > this.state.xirBalance)
+        {
+            this.setState({
+                userAmount: 2,
             })
         }
     }
@@ -231,6 +237,12 @@ class SendXir extends Component {
                         failed: response.data.extras.result_codes.transaction,
                         load2: false
                     });
+                    if(response.data.extras.result_codes.operations[0])
+                    {
+                        this.setState({
+                            oper: response.data.extras.result_codes.operations[0],
+                        });
+                    }
                 }
             })
             .catch(err =>{
@@ -301,7 +313,7 @@ class SendXir extends Component {
             priceXlm = parseInt(this.state.xirBalance).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' XIR';
         }
         let failAmount= '';
-        if(this.state.userAmount === true)
+        if(this.state.userAmount === 1)
         {
             failAmount = <div className="col-12">
                 <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
@@ -309,44 +321,34 @@ class SendXir extends Component {
                 </div>
             </div>;
         }
-        let failTransaction = "";
-        if(this.state.failed === 'op_underfunded')
+        else if(this.state.userAmount === 2)
         {
-            failTransaction = <div className="col-12">
+            failAmount = <div className="col-12">
                 <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
                     Your account doesn't have enough XIR to send
                 </div>
             </div>;
         }
-        else if(this.state.failed === 'op_no_trust')
-        {
-            failTransaction = <div className="col-12">
-                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
-                    Receiver account doesn't have trust to XIR
-                </div>
-            </div>;
-        }
-        else if(this.state.failed === 'op_src_no_trust')
-        {
-            failTransaction = <div className="col-12">
-                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
-                    Your account doesn't Have trust to XIR
-                </div>
-            </div>;
-        }
-        else if(this.state.failed === 'tx_failed')
-        {
-            failTransaction = <div className="col-12">
-                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
-                    Your account doesn't have enough XLM to send
-                </div>
-            </div>;
-        }
-        else if(this.state.failed === 'tx_bad_auth')
+        let failTransaction = "";
+        if(this.state.failed === 'tx_bad_auth')
         {
             failTransaction = <div className="col-12">
                 <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
                     This secret key not belong to register stellar account
+                </div>
+            </div>;
+        }
+        else if (this.state.failed === "tx_failed" && this.state.oper === "op_no_destination") {
+            failTransaction = <div className="col-12">
+                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
+                    Receiver account invalid
+                </div>
+            </div>;
+        }
+        else if (this.state.failed === "tx_failed" && this.state.oper === 'op_no_trust') {
+            failTransaction = <div className="col-12">
+                <div className="col-12 bg-danger text-light p-2 mb-2 rounded shadow-lg text-center mb-5">
+                    Receiver account doesn't have trust to XIR
                 </div>
             </div>;
         }
