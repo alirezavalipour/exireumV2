@@ -97,28 +97,28 @@ class Account extends Component {
         document.getElementById('iran').style.display = "none";
     }
 
-    // componentWillMount() {
-    //     if (!this.Auth.loggedIn()) {
-    //         window.location.replace('/Components/Login');
-    //     }
-    //     const urlPublic = this.Auth.getDomain() + '/user/account';
-    //     const headersPublic = {
-    //         Accept: 'application/json',
-    //         'Content-Type': 'application/json',
-    //         Authorization: `Bearer ${this.Auth.getToken()}`,
-    //     };
-    //     var configPublic = { headers: headersPublic };
-    //     return axios.get(urlPublic, configPublic)
-    //         .then(response => {
-    //             this.setState({
-    //                 public_key: response.data[0].public_key
-    //             });
-    //             if (this.state.public_key)
-    //             {
-    //                 window.location.replace('/Components/Dashboard');
-    //             }
-    //         });
-    // }
+    componentWillMount() {
+        if (!this.Auth.loggedIn()) {
+            window.location.replace('/Components/Login');
+        }
+        const urlPublic = this.Auth.getDomain() + '/user/account';
+        const headersPublic = {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${this.Auth.getToken()}`,
+        };
+        var configPublic = { headers: headersPublic };
+        return axios.get(urlPublic, configPublic)
+            .then(response => {
+                this.setState({
+                    public_key: response.data[0].public_key
+                });
+                if (this.state.public_key)
+                {
+                    window.location.replace('/Components/Dashboard');
+                }
+            });
+    }
 
     changeForm1(e)
     {
