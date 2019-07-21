@@ -627,6 +627,60 @@ input , textarea , .border-div , button
     z-index: 2;
 }
 
+.term-condition
+{
+    display: none;
+    position: absolute;
+    height: 99vh;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    background-color: rgba(0,0,0,0.8);
+}
+
+.height-term
+{
+    height: 75vh;
+    overflow-y: scroll;
+}
+
+#britain
+{
+    display: block;
+}
+
+#iran
+{
+    display: none;
+    direction: rtl;
+}
+
+.iran-img
+{
+    background-image: url("../src/iran.png");
+    height: 30px;
+    background-position: center center;
+    background-size: 50% 100%;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.britain-img
+{
+    background-image: url("../src/britain.png");
+    height: 30px;
+    background-position: left center;
+    background-size: 50% 100%;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.generate
+{
+    cursor: pointer;
+}
+
 @media(max-width: 800px) {
     .button-tab
     {

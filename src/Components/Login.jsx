@@ -149,7 +149,12 @@ class Login extends Component {
                         </div>
                         {loader}
                     </form>
-                    <a href='../Components/ResetPassword' className="col-12 text-light text-center pt-2 pb-2 mt-2 font-weight-bold">Forgot password?</a>
+                    <div className="col-12">
+                        <div className="row">
+                            <a href='../Components/ResetPassword' className="col-6 text-light text-center pt-2 pb-2 mt-2 font-weight-bold">Forgot password?</a>
+                            <div className="col-6 text-light text-center pt-2 pb-2 mt-2 font-weight-bold">Not on exireum yet? <a className="text-warning" href='../Components/Register'>Register</a></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         );
